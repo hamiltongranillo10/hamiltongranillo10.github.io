@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="facebook-domain-verification" content="1rz4wc6eg8r5tab79zsufzy82imwpg" />
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    fbq('init', '1274753604821165'); 
+    fbq('track', 'PageView');
+
+    function btm_track_checkout(event, link) {
+        event.preventDefault();
+        fbq('track', 'InitiateCheckout', {
+            content_name: 'Curso Velas Artesanales Premium',
+            content_category: 'Manualidades y Emprendimiento',
+            value: 37.00,
+            currency: 'USD'
+        });
+        setTimeout(function(){ window.location.href = link; }, 250);
+    }
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
+    /></noscript>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Curso Velas Artesanales Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+      :root {
+    --primary: #d4af37;
+    --primary-dark: #b88a2a;
+    --accent: #f43f5e;
+    --glass: rgba(255, 255, 255, 0.65);
+}
+        
+       body { 
+    margin: 0; 
+    font-family: 'Montserrat', sans-serif; 
+
+    background: 
+        radial-gradient(circle at top, rgba(255,255,255,0.7), transparent 60%),
+        linear-gradient(135deg, #f7f1e8, #e8dccb);
+
+    background-attachment: fixed;
+    background-size: cover;
+
+    color: #2b2b2b;
+    overflow-x: hidden;
+}
+
+        .top-bar { background: linear-gradient(90deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 10px; font-size: 12px; font-weight: 800; text-transform: uppercase; }
+        .wrapper { max-width: 900px; margin: auto; padding: 15px; text-align: center; }
+        
+        .hero, .bottom-section { 
+            background: var(--glass); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px); 
+            padding: 40px 20px; 
+            border-radius: 30px; 
+            border: 1px solid rgba(255,255,255,0.6); 
+            box-shadow: 
+            0 20px 50px rgba(0,0,0,0.08),
+            0 2px 10px rgba(0,0,0,0.04);
+        }
+
+        h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 5vw, 48px); color: #111827; line-height: 1.2; margin-bottom: 15px; }
+        .old { text-decoration: line-through; color: #9ca3af; font-size: 18px; }
+        .new { font-size: clamp(40px, 8vw, 60px); color: var(--primary); font-weight: 800; display: block; margin: 5px 0; }
+        
+        .btn { 
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); 
+            color: white !important; 
+            padding: 20px 35px; 
+            border-radius: 100px; 
+            text-decoration: none; 
+            font-weight: 800; 
+            display: inline-block; 
+            font-size: clamp(14px, 4.5vw, 18px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4); 
+            transition: 0.3s; 
+            cursor: pointer; 
+            border: none;
+            position: relative;
+            overflow: hidden; 
+            animation: floatBtn 3s ease-in-out infinite, pulse 2.5s infinite;
+        }
+
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: -50%; left: -100%; width: 50%; height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(25deg);
+            animation: glassShine 4s infinite;
+        }
+
+        .vibrate { animation: shake 0.4s !important; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 50% { transform: translateX(4px); } 75% { transform: translateX(-4px); } }
+        @keyframes glassShine { 0% { left: -120%; } 15% { left: 150%; } 100% { left: 150%; } }
+        @keyframes floatBtn { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+
+        .btn-temario {
+    background: transparent;
+    color: #b88a2a;
+    border: 2px solid #b88a2a;
+    padding: 12px 25px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.btn-temario:hover {
+    background: rgba(184, 138, 42, 0.08);
+    transform: scale(1.03);
+}
+        .timer { color: var(--accent); font-weight: 700; margin: 15px 0; display: inline-block; padding: 6px 15px; background: #fee2e2; border-radius: 50px; font-size: 14px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin: 30px 0; text-align: left; }
+        .card { background: white; padding: 15px; border-radius: 12px; border: 1px solid #f3f4f6; font-size: 14px; font-weight: 600; }
+
+        .faq-container { background: white; border-radius: 25px; padding: 25px; border: 1px solid #e5e7eb; text-align: left; margin: 30px 0; }
+        .faq-item { border-bottom: 1px solid #f3f4f6; padding: 15px 0; }
+        .faq-item:last-child { border: none; }
+        .faq-item h3 { font-size: 17px; margin-bottom: 8px; color: #111827; }
+        .faq-item p { font-size: 15px; color: #4b5563; margin: 0; }
+
+        /* NOTIFICACIÓN DE PRUEBA SOCIAL */
+        .sale-popup { position: fixed; left: 20px; bottom: 80px; background: white; padding: 12px 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: none; z-index: 999; border-left: 5px solid #22c55e; animation: slideIn 0.5s ease-out; max-width: 250px; }
+        .sale-popup p { margin: 0; font-size: 13px; color: #1f2937; font-weight: 600; }
+        @keyframes slideIn { from { transform: translateX(-120%); } to { transform: translateX(0); } }
+
+        /* WHATSAPP CON TEXTO */
+        .whatsapp-container { position: fixed; right: 15px; bottom: 15px; display: flex; align-items: center; gap: 10px; z-index: 1000; text-decoration: none; }
+        .whatsapp-text { background: white; color: #111827; padding: 8px 15px; border-radius: 50px; font-weight: 700; font-size: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 1px solid #25D366; }
+        .whatsapp-icon { background: #25D366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        @media (max-width: 600px) { .btn { width: 100%; box-sizing: border-box; } .whatsapp-text { display: none; } }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">🔥 OFERTA ACTIVA - DESCUENTO LIMITADO DISPONIBLE AHORA</div>
+
+<div class="wrapper">
+   <div style="margin-bottom:20px;">
+  <img src="vela1.png" style="width:100%; border-radius:20px;">
+</div>
+    <div class="hero">
+        <h1>Crea velas artesanales tipo postre y realistas</h1>
+        <p>que puedes vender desde casa incluso si empiezas desde cero</p>
+        <video preload="metadata" controls poster="portada-video.jpg" style="width:100%; border-radius:20px;">
+     <source src="video-velas.mp4" type="video/mp4">
+        </video>
+        <div class="old">$74 USD</div>
+        <div class="new">$37 USD</div>
+        <div class="timer" id="timer">Oferta termina en: 14:18</div>
+        <br>
+        <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">QUIERO INSCRIBIRME AHORA</a>
+        <p style="font-size:11px;color:#6b7280;margin-top:12px;">💳 Precio convertido automáticamente a tu moneda local</p>
+        <a href="https://go.hotmart.com/L104931361I" class="btn-temario">VER TEMARIO COMPLETO</a>
+    </div>
+       <h2 style="font-family: 'Playfair Display', serif; font-size:28px; margin-top:30px;">
+Todo lo que recibirás con el curso
+</h2>
+
+<div style="margin:20px 0;">
+  <img src="contenido-curso.png" style="width:100%; border-radius:20px;">
+</div>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 30px;">Preguntas Frecuentes</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <h3>¿Como y cuando recibire el curso?</h3>
+            <p>Una vez realices el pago, recibirás un correo electrónico (el mismo que indicaras al momento de hacer la compra) con las instrucciones para acceder al área privada de alumnos. Este curso podrás estudiarlo dentro de la plataforma de Hotmart, es la misma plataforma donde se realiza el pago. El curso es completamente digital y tendrás ACCESO DE POR VIDA.</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿El pago es seguro?</h3>
+            <p>Si, el pago es realizado a través de Hotmart, una plataforma digital que cuenta con un certificado de seguridad, siendo uno de los procesadores de pago mas importantes del mundo que opera en más de 160 países.
+Tus datos de pago son 100% privados..</p>
+        </div>
+    </div>
+
+    <div style="text-align:center; margin:40px 0;">
+        <img src="garantia-7-dias.png" 
+             style="width:100%; max-width:420px; border-radius:25px; box-shadow:0 15px 40px rgba(0,0,0,0.12);">
+    </div>
+
+    <div class="bottom-section">
+       <div style="
+    font-size: 45px;
+    font-weight: 800;
+    color: #d4af37 !important;
+    text-shadow: 0 2px 10px rgba(212,175,55,0.25);
+">
+  Solo $37 USD
+</div>
+        <p style="font-weight: 700;">¡ÚLTIMA OPORTUNIDAD PARA UNIRTE CON DESCUENTO!</p>
+        <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">SÍ, QUIERO MI ACCESO AHORA</a>
+        <p style="font-size: 12px; margin-top: 15px;">🔒 Pago 100% Seguro | Acceso Inmediato</p>
+    </div>
+    <div style="margin:30px 0;">
+  <h2 style="font-family: 'Playfair Display', serif; font-size:26px;">
+  Resultados reales de alumnas
+  </h2>
+        <p style="text-align:center; font-size:18px;">
+👉 Haz clic en la imagen para verla más grande
+</p>
+  <img src="testimonios.png"
+     id="zoomImg"
+     style="width:100%; border-radius:20px; margin-top:15px; cursor:grab; transition:0.3s; transform:scale(1);"
+     onclick="toggleZoom(this)">
+    
+    <p style="text-align:center; font-size:18px; margin-top:15px;">
+ ✔️ Pedidos reales desde casa <br>
+ ✔️ Sin experiencia previa <br>
+ ✔️ Personas empezando desde cero
+ </p>
+    
+<a class="btn cta" 
+   href="https://go.hotmart.com/L104931361I?ap=329d" 
+   onclick="btm_track_checkout(event, this.href)">
+   QUIERO INSCRIBIRME AHORA
+</a>
+        
+    <p style="font-size:11px;color:#6b7280;margin-top:12px;">
+        💳 Precio convertido automáticamente a tu moneda local
+    </p>
+
+</div>
+
+<div id="sale-popup" class="sale-popup">
+    <p id="sale-text"></p>
+</div>
+<div id="imageModal" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+backdrop-filter: blur(8px);
+justify-content:center;
+align-items:center;
+z-index:9999;
+opacity:0;
+transition: opacity 0.25s ease;
+">
+
+<img id="modalImg" style="
+max-width:92%;
+max-height:92%;
+border-radius:14px;
+transform: scale(0.7);
+transition: transform 0.25s ease;
+box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+">
+
+</div>
+<a class="whatsapp-container" href="https://wa.link/7h1fs9" target="_blank">
+    <div class="whatsapp-text">Hablar con asesor</div>
+    <div class="whatsapp-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30">
+    </div>
+</a>
+
+<script>
+    /* Temporizador */
+    let time=900; setInterval(()=>{ let m=Math.floor(time/60); let s=time%60; document.getElementById("timer").innerText="Oferta termina en: "+m+":"+String(s).padStart(2,'0'); time=time<=0?900:time-1; },1000);
+
+    /* PRUEBA SOCIAL */
+    const names = ["Ana", "Maria", "Laura", "Sofia", "Elena", "Claudia", "Valentina", "Marta", "Isabel"];
+    const countries = ["de México", "de Colombia", "de Chile", "de Perú", "de Ecuador", "de Argentina", "de España"];
+    
+    function showPopup() {
+        const popup = document.getElementById('sale-popup');
+        const text = document.getElementById('sale-text');
+        const name = names[Math.floor(Math.random() * names.length)];
+        const country = countries[Math.floor(Math.random() * countries.length)];
+        
+        text.innerText = `✅ ${name} ${country} se acaba de inscribir`;
+        popup.style.display = 'block';
+        
+        setTimeout(() => { popup.style.display = 'none'; }, 4000);
+    }
+    
+    // Inicia después de 5 seg y repite cada 12 seg
+    setTimeout(() => {
+        showPopup();
+        setInterval(showPopup, 12000);
+    }, 5000);
+
+    /* Vibración en scroll */
+    let isScrolling;
+    window.addEventListener('scroll', () => {
+        window.clearTimeout(isScrolling);
+        document.querySelectorAll('.cta').forEach(btn => btn.classList.add('vibrate'));
+        isScrolling = setTimeout(() => {
+            document.querySelectorAll('.cta').forEach(btn => btn.classList.remove('vibrate'));
+        }, 150);
+    }, {passive: true});
+</script>
+
+<script>
+let zoomed = false;
+let posX = 0;
+let startX = 0;
+let isDragging = false;
+
+function toggleZoom(img){
+    zoomed = !zoomed;
+
+    if(zoomed){
+        img.style.transform = "scale(3)";
+        img.style.cursor = "grab";
+    } else {
+        img.style.transform = "scale(1)";
+        posX = 0;
+    }
+}
+
+// bloquear scroll cuando zoom está activo
+const img = document.getElementById("zoomImg");
+
+img.addEventListener("touchmove", function(e){
+    if(zoomed) e.preventDefault(); // 🔥 evita scroll vertical
+}, {passive:false});
+
+img.addEventListener("mousedown", startDrag);
+img.addEventListener("touchstart", startDrag);
+
+function startDrag(e){
+    if(!zoomed) return;
+
+    isDragging = true;
+    startX = e.touches ? e.touches[0].clientX : e.clientX;
+
+    document.addEventListener("mousemove", drag);
+    document.addEventListener("touchmove", drag, {passive:false});
+    document.addEventListener("mouseup", stopDrag);
+    document.addEventListener("touchend", stopDrag);
+}
+
+function drag(e){
+    if(!isDragging) return;
+
+    let currentX = e.touches ? e.touches[0].clientX : e.clientX;
+    let x = currentX - startX;
+
+    posX += x * 0.4;
+
+    startX = currentX;
+
+    // SOLO en móvil aplicamos límite
+    const isMobile = window.innerWidth <= 768;
+
+    if(isMobile){
+        const maxMove = 300;
+
+        if(posX > maxMove) posX = maxMove;
+        if(posX < -maxMove) posX = -maxMove;
+    }
+
+    img.style.transform = `scale(3) translateX(${posX}px)`;
+    img.style.transition = "transform 0.05s linear";
+
+    e.preventDefault();
+}
+
+function stopDrag(){
+    isDragging = false;
+    document.removeEventListener("mousemove", drag);
+    document.removeEventListener("touchmove", drag);
+}
+</script>
+</body>
+</html>

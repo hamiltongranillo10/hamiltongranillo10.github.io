@@ -545,28 +545,38 @@ text-decoration: none;
         
 
 <script>
-    /* Temporizador */
-   let time = 900;
+/* =======================
+   TEMPORIZADOR
+======================= */
+let time = 900;
 
-    setInterval(() => {
-        let m = Math.floor(time / 60);
-        let s = time % 60;
+setInterval(() => {
+    let m = Math.floor(time / 60);
+    let s = time % 60;
 
-        let text = "Oferta termina en: " + m + ":" + String(s).padStart(2,'0');
+    let text = "Oferta termina en: " + m + ":" + String(s).padStart(2,'0');
 
-        document.getElementById("timer1").innerText = text;
-        document.getElementById("timer2").innerText = text;
+    const t1 = document.getElementById("timer1");
+    const t2 = document.getElementById("timer2");
 
-        time = time <= 0 ? 900 : time - 1;
-    }, 1000);
+    if (t1) t1.innerText = text;
+    if (t2) t2.innerText = text;
 
-    <script>
+    time = time <= 0 ? 900 : time - 1;
+}, 1000);
+
+
+/* =======================
+   PRUEBA SOCIAL (PRO FIX)
+======================= */
 const names = ["Ana","María","Laura","Sofía","Elena","Claudia","Valentina","Marta","Isabel","Carla","Lucía"];
 const countries = ["de México","de Colombia","de Chile","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
 
 function showPopup() {
     const popup = document.getElementById('sale-popup');
     const text = document.getElementById('sale-text');
+
+    if (!popup || !text) return;
 
     const name = names[Math.floor(Math.random() * names.length)];
     const country = countries[Math.floor(Math.random() * countries.length)];
@@ -575,28 +585,27 @@ function showPopup() {
 
     popup.style.display = 'block';
 
-    setTimeout(() => {
-        popup.classList.add('show');
-    }, 10);
+    setTimeout(() => popup.classList.add('show'), 10);
 
     setTimeout(() => {
         popup.classList.remove('show');
 
         setTimeout(() => {
             popup.style.display = 'none';
-        }, 500);
-
+        }, 400);
     }, 3500);
 }
 
-/* ARRANQUE NATURAL (parece tráfico real) */
+/* arranque natural */
 setTimeout(() => {
     showPopup();
     setInterval(showPopup, 9000 + Math.random() * 4000);
 }, 4000);
 
 
-/* CTA efecto psicológico */
+/* =======================
+   EFECTO CTA SCROLL
+======================= */
 let scrollTimeout;
 
 window.addEventListener('scroll', () => {
@@ -614,7 +623,9 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 
-/* FAQ */
+/* =======================
+   FAQ ACORDEÓN
+======================= */
 document.querySelectorAll('.faq-question').forEach(q => {
     q.addEventListener('click', () => {
         const item = q.parentElement;

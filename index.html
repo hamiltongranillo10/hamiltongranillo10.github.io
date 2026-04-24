@@ -150,7 +150,39 @@
         .whatsapp-icon { background: #25D366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
         @media (max-width: 600px) { .btn { width: 100%; box-sizing: border-box; } .whatsapp-text { display: none; } }
+        
+.faq-question {
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px 0;
+  position: relative;
+}
+
+.faq-question::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  font-size: 18px;
+}
+
+.faq-item.active .faq-question::after {
+  content: "-";
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.3s ease;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  margin-top: 8px;
+}
     </style>
+    
 </head>
 <body>
 
@@ -374,7 +406,7 @@
 </p>
   <img src="testimonios.png"
      id="zoomImg"
-     style="width:100%; border-radius:20px; margin-top:15px; cursor:grab; transition:0.3s; transform:scale(1);"
+     style="width:100%; border-radius:20px; margin-top:15px; cursor:grab; transition:0.3s; transform:scalet(1);"
      onclick="toggleZoom(this)">
     
     <p style="text-align:center; font-size:18px; margin-top:15px;">
@@ -538,6 +570,20 @@ function stopDrag(){
     document.removeEventListener("mousemove", drag);
     document.removeEventListener("touchmove", drag);
 }
+      </script>
+        
+    <script>
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+
+    document.querySelectorAll('.faq-item').forEach(i => {
+      if(i !== item) i.classList.remove('active');
+    });
+
+    item.classList.toggle('active');
+  });
+});
 </script>
 </body>
 </html>

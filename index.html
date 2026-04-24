@@ -169,6 +169,29 @@
     color: #1f2937; 
     font-weight: 600; 
 }
+.sale-popup {
+    position: fixed !important;
+    left: 15px;
+    bottom: 90px;
+    z-index: 999999 !important;
+
+    background: white;
+    padding: 12px 16px;
+    border-radius: 14px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+
+    max-width: 260px;
+
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.sale-popup.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+        
         /* WHATSAPP CON TEXTO */
         html, body {
     overflow-x: hidden;
@@ -220,6 +243,19 @@
 .faq-item.active .faq-answer {
   max-height: 300px;
   margin-top: 8px;
+}
+        html, body {
+    overflow-x: hidden !important;
+}
+
+/* fuerza contexto correcto */
+body {
+    position: relative;
+}
+
+/* evita que transforms rompan fixed */
+.wrapper, .hero, .bottom-section {
+    transform: none !important;
 }
     </style>
     
@@ -516,14 +552,17 @@ box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 ">
 
 </div>
+        
+<div id="sale-popup" class="sale-popup"></div>
+        
 <a class="whatsapp-container" href="https://wa.link/7h1fs9" target="_blank" style="
-position: fixed;
+position: fixed !important;
 right: 15px;
 bottom: 15px;
+z-index: 999999 !important;
 display: flex;
 align-items: center;
 gap: 10px;
-z-index: 999999;
 text-decoration: none;
 ">
     <div style="background: white; color: #111827; padding: 8px 15px; border-radius: 50px; font-weight: 700; font-size: 12px; border: 1px solid #25D366;">
@@ -567,25 +606,26 @@ setInterval(() => {
 
 
 /* =======================
-   PRUEBA SOCIAL (PRO FIX)
+   PRUEBA SOCIAL (FIX PRO REAL)
 ======================= */
 const names = ["Ana","María","Laura","Sofía","Elena","Claudia","Valentina","Marta","Isabel","Carla","Lucía"];
 const countries = ["de México","de Colombia","de Chile","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
 
 function showPopup() {
     const popup = document.getElementById('sale-popup');
-    const text = document.getElementById('sale-text');
 
-    if (!popup || !text) return;
+    if (!popup) return;
 
     const name = names[Math.floor(Math.random() * names.length)];
     const country = countries[Math.floor(Math.random() * countries.length)];
 
-    text.innerText = `🔥 ${name} ${country} acaba de inscribirse`;
+    popup.innerHTML = `🔥 <b>${name}</b> ${country} acaba de inscribirse`;
 
     popup.style.display = 'block';
 
-    setTimeout(() => popup.classList.add('show'), 10);
+    setTimeout(() => {
+        popup.classList.add('show');
+    }, 10);
 
     setTimeout(() => {
         popup.classList.remove('show');
@@ -604,7 +644,7 @@ setTimeout(() => {
 
 
 /* =======================
-   EFECTO CTA SCROLL
+   CTA EFECTO SCROLL
 ======================= */
 let scrollTimeout;
 

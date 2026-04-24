@@ -324,13 +324,14 @@
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 15px;
 }
-
+    
 .card-img {
   background: white;
   border-radius: 15px;
   padding: 10px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   transition: 0.3s;
+  overflow: hidden; 
 }
 
 .card-img:hover {
@@ -340,13 +341,12 @@
 .card-img img {
   width: 100%;
   border-radius: 10px;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
   cursor: pointer;
 }
 
-/* 🔥 zoom suave */
-.card-img img:hover {
-  transform: scale(1.08);
+.card-img:hover img {
+  transform: scale(1.1);
 }
 
 .card-img p {
@@ -355,7 +355,6 @@
   margin-top: 8px;
 }
 
-/* 🔥 VIP DESTACADO */
 .vip {
   border: 2px solid #d4af37;
   box-shadow: 0 10px 30px rgba(212,175,55,0.25);
@@ -591,35 +590,7 @@ document.querySelectorAll('.faq-question').forEach(q => {
     item.classList.toggle('active');
   });
 });
-    </script>
         
-     <script>
-document.querySelectorAll('.card-img img').forEach(img => {
-  img.addEventListener('click', () => {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImg');
-
-    modal.style.display = 'flex';
-    modalImg.src = img.src;
-
-    setTimeout(() => {
-      modal.style.opacity = '1';
-      modalImg.style.transform = 'scale(1)';
-    }, 10);
-  });
-});
-
-document.getElementById('imageModal').addEventListener('click', () => {
-  const modal = document.getElementById('imageModal');
-  const modalImg = document.getElementById('modalImg');
-
-  modal.style.opacity = '0';
-  modalImg.style.transform = 'scale(0.7)';
-
-  setTimeout(() => {
-    modal.style.display = 'none';
-  }, 200);
-});
 </script>
         
 </body>

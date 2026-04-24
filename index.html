@@ -573,16 +573,11 @@ setInterval(() => {
     time = time <= 0 ? 900 : time - 1;
 }, 1000);
 
-
-/* =======================
-   PRUEBA SOCIAL (FIX PRO REAL)
-======================= */
 const names = ["Ana","María","Laura","Sofía","Elena","Claudia","Valentina","Marta","Isabel","Carla","Lucía"];
 const countries = ["de México","de Colombia","de Chile","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
 
 function showPopup() {
     const popup = document.getElementById('sale-popup');
-
     if (!popup) return;
 
     const name = names[Math.floor(Math.random() * names.length)];
@@ -590,62 +585,18 @@ function showPopup() {
 
     popup.innerHTML = `🔥 <b>${name}</b> ${country} acaba de inscribirse`;
 
-    popup.style.display = 'block';
-
-    setTimeout(() => {
-        popup.classList.add('show');
-    }, 10);
+    popup.classList.add('show');
 
     setTimeout(() => {
         popup.classList.remove('show');
-
-        setTimeout(() => {
-            popup.style.display = 'none';
-        }, 400);
     }, 3500);
 }
 
-/* arranque natural */
 setTimeout(() => {
     showPopup();
-    setInterval(showPopup, 9000 + Math.random() * 4000);
-}, 4000);
-
-
-/* =======================
-   CTA EFECTO SCROLL
-======================= */
-let scrollTimeout;
-
-window.addEventListener('scroll', () => {
-    clearTimeout(scrollTimeout);
-
-    document.querySelectorAll('.cta').forEach(btn => {
-        btn.classList.add('vibrate');
-    });
-
-    scrollTimeout = setTimeout(() => {
-        document.querySelectorAll('.cta').forEach(btn => {
-            btn.classList.remove('vibrate');
-        });
-    }, 180);
-}, { passive: true });
-
-
-/* =======================
-   FAQ ACORDEÓN
-======================= */
-document.querySelectorAll('.faq-question').forEach(q => {
-    q.addEventListener('click', () => {
-        const item = q.parentElement;
-
-        document.querySelectorAll('.faq-item').forEach(i => {
-            if (i !== item) i.classList.remove('active');
-        });
-
-        item.classList.toggle('active');
-    });
-});
+    setInterval(showPopup, 8000);
+}, 3000);
+    
 </script>
         
 </body>

@@ -158,15 +158,18 @@
         @keyframes slideIn { from { transform: translateX(-120%); } to { transform: translateX(0); } }
 
         /* WHATSAPP CON TEXTO */
-        .whatsapp-container {
-    position: fixed;
-    right: 15px;
-    bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+        html, body {
+    overflow-x: hidden;
+    height: 100%;
+}
+
+.whatsapp-container,
+.sale-popup {
+    position: fixed !important;
     z-index: 999999 !important;
-    text-decoration: none;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    will-change: transform;
 }
 
 @media (max-width: 600px) { 
@@ -545,30 +548,35 @@ text-decoration: none;
         time = time <= 0 ? 900 : time - 1;
     }, 1000);
 
-    /* PRUEBA SOCIAL */
-    const names = ["Ana", "Maria", "Laura", "Sofia", "Elena", "Claudia", "Valentina", "Marta", "Isabel"];
-    const countries = ["de México", "de Colombia", "de Chile", "de Perú", "de Ecuador", "de Argentina", "de España"];
-    
-    function showPopup() {
-        const popup = document.getElementById('sale-popup');
-        const text = document.getElementById('sale-text');
-        const name = names[Math.floor(Math.random() * names.length)];
-        const country = countries[Math.floor(Math.random() * countries.length)];
-        
-        text.innerText = `✅ ${name} ${country} se acaba de inscribir`;
-        popup.style.display = 'block';
-        
-        setTimeout(() => { popup.style.display = 'none'; }, 4000);
-    }
-    
-    // Inicia después de 5 seg y repite cada 12 seg
-    setTimeout(() => {
-        showPopup();
-        setInterval(showPopup, 12000);
-    }, 5000);
+    <script>
+/* PRUEBA SOCIAL */
+const names = ["Ana", "Maria", "Laura", "Sofia", "Elena", "Claudia", "Valentina", "Marta", "Isabel"];
+const countries = ["de México", "de Colombia", "de Chile", "de Perú", "de Ecuador", "de Argentina", "de España"];
 
-    /* Vibración en scroll */
-    let scrollTimeout;
+function showPopup() {
+    const popup = document.getElementById('sale-popup');
+    const text = document.getElementById('sale-text');
+
+    const name = names[Math.floor(Math.random() * names.length)];
+    const country = countries[Math.floor(Math.random() * countries.length)];
+
+    text.innerText = `✅ ${name} ${country} se acaba de inscribir`;
+    popup.style.display = 'block';
+
+    setTimeout(() => {
+        popup.style.display = 'none';
+    }, 4000);
+}
+
+// Inicia después de 5 segundos y repite cada 12 segundos
+setTimeout(() => {
+    showPopup();
+    setInterval(showPopup, 12000);
+}, 5000);
+
+
+/* VIBRACIÓN EN SCROLL */
+let scrollTimeout;
 
 window.addEventListener('scroll', () => {
     clearTimeout(scrollTimeout);
@@ -583,22 +591,20 @@ window.addEventListener('scroll', () => {
         });
     }, 200);
 }, { passive: true });
-    
-</script>
-        
-    <script>
+
+
+/* FAQ ACORDEÓN */
 document.querySelectorAll('.faq-question').forEach(q => {
-  q.addEventListener('click', () => {
-    const item = q.parentElement;
+    q.addEventListener('click', () => {
+        const item = q.parentElement;
 
-    document.querySelectorAll('.faq-item').forEach(i => {
-      if(i !== item) i.classList.remove('active');
+        document.querySelectorAll('.faq-item').forEach(i => {
+            if (i !== item) i.classList.remove('active');
+        });
+
+        item.classList.toggle('active');
     });
-
-    item.classList.toggle('active');
-  });
 });
-        
 </script>
         
 </body>

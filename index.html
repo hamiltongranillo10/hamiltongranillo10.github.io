@@ -340,6 +340,13 @@
 .card-img img {
   width: 100%;
   border-radius: 10px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* 🔥 zoom suave */
+.card-img img:hover {
+  transform: scale(1.08);
 }
 
 .card-img p {
@@ -584,6 +591,36 @@ document.querySelectorAll('.faq-question').forEach(q => {
     item.classList.toggle('active');
   });
 });
+    </script>
+        
+     <script>
+document.querySelectorAll('.card-img img').forEach(img => {
+  img.addEventListener('click', () => {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+
+    modal.style.display = 'flex';
+    modalImg.src = img.src;
+
+    setTimeout(() => {
+      modal.style.opacity = '1';
+      modalImg.style.transform = 'scale(1)';
+    }, 10);
+  });
+});
+
+document.getElementById('imageModal').addEventListener('click', () => {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImg');
+
+  modal.style.opacity = '0';
+  modalImg.style.transform = 'scale(0.7)';
+
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 200);
+});
 </script>
+        
 </body>
 </html>

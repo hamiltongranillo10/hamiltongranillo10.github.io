@@ -140,7 +140,7 @@
         .faq-item p { font-size: 15px; color: #4b5563; margin: 0; }
 
         /* NOTIFICACIÓN DE PRUEBA SOCIAL */
-        .sale-popup { 
+       .sale-popup { 
     position: fixed; 
     left: 20px; 
     bottom: 80px; 
@@ -149,7 +149,7 @@
     border-radius: 15px; 
     box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
     display: none; 
-    z-index: 999999; 
+    z-index: 999999 !important; 
     border-left: 5px solid #22c55e; 
     animation: slideIn 0.5s ease-out; 
     max-width: 250px; 
@@ -158,15 +158,15 @@
         @keyframes slideIn { from { transform: translateX(-120%); } to { transform: translateX(0); } }
 
         /* WHATSAPP CON TEXTO */
-        .whatsapp-container { 
-    position: fixed; 
-    right: 15px; 
-    bottom: 15px; 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    z-index: 999999; 
-    text-decoration: none; 
+        .whatsapp-container {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 999999 !important;
+    text-decoration: none;
 }
 
 @media (max-width: 600px) { 
@@ -568,14 +568,22 @@ text-decoration: none;
     }, 5000);
 
     /* Vibración en scroll */
-    let isScrolling;
-    window.addEventListener('scroll', () => {
-        window.clearTimeout(isScrolling);
-        document.querySelectorAll('.cta').forEach(btn => btn.classList.add('vibrate'));
-        isScrolling = setTimeout(() => {
-            document.querySelectorAll('.cta').forEach(btn => btn.classList.remove('vibrate'));
-        }, 150);
-    }, {passive: true});
+    let scrollTimeout;
+
+window.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+
+    document.querySelectorAll('.cta').forEach(btn => {
+        btn.classList.add('vibrate');
+    });
+
+    scrollTimeout = setTimeout(() => {
+        document.querySelectorAll('.cta').forEach(btn => {
+            btn.classList.remove('vibrate');
+        });
+    }, 200);
+}, { passive: true });
+    
 </script>
         
     <script>

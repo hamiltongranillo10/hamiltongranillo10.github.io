@@ -1,146 +1,181 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gracias por descargar tu guía</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gracias por tu guía</title>
 
-  <!-- META PIXEL -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
+<!-- PIXEL -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
 
-    fbq('init', '1274753604821165');
-    fbq('track', 'PageView');
-    fbq('track', 'Lead');
-  </script>
+fbq('init', '1274753604821165');
+fbq('track', 'PageView');
+fbq('track', 'Lead');
+</script>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f8f6f3;
-      color: #2c2c2c;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 40px 20px;
-      text-align: center;
-    }
+<style>
 
-    h1 { font-size: 32px; }
+body{
+margin:0;
+font-family:'Montserrat', sans-serif;
+background: linear-gradient(135deg,#f7f1e8,#e8dccb);
+color:#2b2b2b;
+}
 
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-    }
+.container{
+max-width:800px;
+margin:auto;
+padding:40px 20px;
+text-align:center;
+}
 
-    .highlight {
-      font-weight: bold;
-      color: #b07a4a;
-    }
+h1{
+font-family:'Playfair Display', serif;
+font-size:34px;
+margin-bottom:10px;
+}
 
-    .box {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      margin-top: 25px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
+p{
+font-size:18px;
+line-height:1.6;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 15px 25px;
-      background: #b07a4a;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-    }
+.highlight{
+color:#b88a2a;
+font-weight:800;
+}
 
-    .btn:hover {
-      background: #8c5f36;
-    }
+.box{
+background: rgba(255,255,255,0.75);
+backdrop-filter: blur(10px);
+border-radius:25px;
+padding:30px;
+margin-top:25px;
+box-shadow:0 20px 50px rgba(0,0,0,0.08);
+border:1px solid rgba(255,255,255,0.6);
+}
 
-    .small {
-      font-size: 14px;
-      opacity: 0.8;
-      margin-top: 15px;
-    }
-  </style>
+/* 🔥 BOTONES PREMIUM IGUAL LANDING */
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:18px 30px;
+border-radius:100px;
+text-decoration:none;
+font-weight:800;
+font-size:16px;
+color:white;
+background: linear-gradient(135deg, #d4af37, #b88a2a);
+box-shadow:0 10px 25px rgba(212,175,55,0.35);
+transition:0.3s;
+position:relative;
+overflow:hidden;
+}
+
+.btn:hover{
+transform:scale(1.05);
+box-shadow:0 15px 35px rgba(212,175,55,0.45);
+}
+
+/* brillo */
+.btn::after{
+content:"";
+position:absolute;
+top:-50%;
+left:-100%;
+width:50%;
+height:200%;
+background:rgba(255,255,255,0.4);
+transform:rotate(25deg);
+animation:shine 3s infinite;
+}
+
+@keyframes shine{
+0%{left:-120%;}
+100%{left:150%;}
+}
+
+.small{
+font-size:13px;
+opacity:0.8;
+margin-top:15px;
+}
+
+h2{
+font-family:'Playfair Display', serif;
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <h1>🎉 ¡Tu guía ya es tuya!</h1>
+<h1>🎉 Tu guía ya está lista</h1>
 
-    <p>
-      Ya diste el primer paso para aprender a crear <span class="highlight">velas de gel desde cero</span>.
-    </p>
+<p>
+Ya diste el primer paso para crear <span class="highlight">velas de gel desde cero</span>
+</p>
 
-    <div class="box">
+<div class="box">
 
-      <p>
-        En esta guía aprenderás los <strong>materiales exactos</strong> y el <strong>paso a paso real</strong>.
-      </p>
+<p>
+Aquí tienes tu guía gratuita con materiales exactos y paso a paso real.
+</p>
 
-      <!-- 🔥 BOTÓN DE DESCARGA DEL PDF -->
-      <a href="Guia-digital.pdf" download class="btn">
-        📥 DESCARGAR MI GUÍA GRATIS
-      </a>
+<!-- 🔥 BOTÓN 1 -->
+<a href="Guia-digital.pdf" download class="btn">
+📥 DESCARGAR MI GUÍA GRATIS
+</a>
 
-      <p style="margin-top:15px;">
-        Pero lo más importante no es hacer velas…
-      </p>
+<p style="margin-top:15px;">
+Pero lo más importante no es hacer velas…
+</p>
 
-      <p class="highlight">
-        Es saber cómo convertirlas en ingresos reales.
-      </p>
+<p class="highlight">
+Es saber cómo convertirlas en ingresos reales.
+</p>
 
-      <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">
-  🔥 QUIERO APRENDER A VENDER MIS VELAS
-   </a>
+<!-- 🔥 BOTÓN 2 -->
+<a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">
+🔥 QUIERO APRENDER A VENDER MIS VELAS
+</a>
 
-      <p class="small">Este es el siguiente paso si quieres resultados reales</p>
+<p class="small">
+Este es el siguiente paso si quieres resultados reales
+</p>
 
-    </div>
+</div>
 
-    <div class="box" id="oferta">
+<!-- SECCIÓN EXTRA -->
+<div class="box">
 
-      <h2>🚀 SECCIÓN 1: Antes de empezar</h2>
+<h2>🚀 Antes de empezar</h2>
 
-      <p>Hacer velas es fácil.</p>
+<p>Hacer velas es fácil.</p>
+<p>Lo difícil es venderlas.</p>
 
-      <p>Lo difícil es saber venderlas.</p>
+<p class="highlight">Ahí está el dinero real.</p>
 
-      <p class="highlight">Ahí está el dinero real.</p>
+<!-- BOTÓN REPETIDO (OPCIONAL) -->
+<a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">
+🔥 QUIERO APRENDER A VENDER MIS VELAS
+</a>
 
-      <p>Si quieres ir más allá, este es tu siguiente paso:</p>
+</div>
 
-      <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">
-   🔥 QUIERO APRENDER A VENDER MIS VELAS
-   </a>
-
-      <p class="small">
-        Si solo querías la guía, puedes empezar ahora. Si quieres ingresos, esto es lo siguiente.
-      </p>
-
-    </div>
-
-  </div>
+</div>
 
 </body>
 </html>

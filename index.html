@@ -133,12 +133,60 @@
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin: 30px 0; text-align: left; }
         .card { background: white; padding: 15px; border-radius: 12px; border: 1px solid #f3f4f6; font-size: 14px; font-weight: 600; }
 
-        .faq-container { background: white; border-radius: 25px; padding: 25px; border: 1px solid #e5e7eb; text-align: left; margin: 30px 0; }
-        .faq-item { border-bottom: 1px solid #f3f4f6; padding: 15px 0; }
-        .faq-item:last-child { border: none; }
-        .faq-item h3 { font-size: 17px; margin-bottom: 8px; color: #111827; }
-        .faq-item p { font-size: 15px; color: #4b5563; margin: 0; }
+        .faq-container {
+  max-width: 700px;
+  margin: 25px auto;
+  background: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+  border: 1px solid #eee;
+}
 
+.faq-item {
+  border-bottom: 1px solid #f1f1f1;
+  padding: 15px 0;
+  cursor: pointer;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-question {
+  font-weight: 700;
+  font-size: 16px;
+  position: relative;
+  padding-right: 25px;
+}
+
+.faq-question::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  font-size: 18px;
+  transition: 0.3s;
+  color: #d4af37;
+}
+
+.faq-item.active .faq-question::after {
+  content: "-";
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.35s ease;
+  font-size: 14px;
+  color: #555;
+  margin-top: 0;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 10px;
+}
        
 .sale-popup {
     position: fixed;
@@ -444,27 +492,30 @@ body {
   box-shadow: 0 10px 30px rgba(212,175,55,0.25);
 }
 </style>
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 30px;">Preguntas Frecuentes</h2>
-    <div class="faq-container">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 30px; text-align:center;">
+Preguntas Frecuentes
+</h2>
+
+<div class="faq-container">
 
   <div class="faq-item">
     <div class="faq-question">¿Cómo y cuándo recibiré el curso?</div>
     <div class="faq-answer">
-      Una vez realices el pago, recibirás un correo con acceso inmediato al área privada dentro de Hotmart. Tendrás acceso de por vida.
+      Recibirás acceso inmediato después del pago por correo electrónico. Tendrás acceso de por vida desde cualquier dispositivo.
     </div>
   </div>
 
   <div class="faq-item">
     <div class="faq-question">¿El pago es seguro?</div>
     <div class="faq-answer">
-      Sí, el pago es procesado por Hotmart, una plataforma internacional con altos estándares de seguridad. Tus datos están protegidos.
+      Sí, el pago es procesado por Hotmart, una plataforma segura a nivel internacional que protege tus datos.
     </div>
   </div>
 
   <div class="faq-item">
     <div class="faq-question">¿Necesito experiencia previa?</div>
     <div class="faq-answer">
-      No. El curso está diseñado desde cero, paso a paso, para principiantes.
+      No necesitas experiencia. El curso está diseñado paso a paso desde cero para principiantes.
     </div>
   </div>
 

@@ -139,22 +139,28 @@
         .faq-item h3 { font-size: 17px; margin-bottom: 8px; color: #111827; }
         .faq-item p { font-size: 15px; color: #4b5563; margin: 0; }
 
-        .sale-popup { 
+       .sale-popup { 
     position: fixed; 
     left: 20px; 
     bottom: 80px; 
     background: white; 
-    padding: 12px 20px; 
-    border-radius: 15px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+    padding: 12px 18px; 
+    border-radius: 14px; 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.18); 
     display: none; 
     z-index: 999999; 
     border-left: 5px solid #22c55e;
+    max-width: 260px;
 
-    /* IMPORTANTE: animación estable */
+    /* PRO ANIMATION */
     transform: translateY(40px);
     opacity: 0;
-    transition: all 0.4s ease;
+    transition: all 0.5s cubic-bezier(.22,1,.36,1);
+}
+
+.sale-popup.show {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .sale-popup p { 
@@ -555,9 +561,8 @@ text-decoration: none;
     }, 1000);
 
     <script>
-/* PRUEBA SOCIAL */
-const names = ["Ana", "Maria", "Laura", "Sofia", "Elena", "Claudia", "Valentina", "Marta", "Isabel"];
-const countries = ["de México", "de Colombia", "de Chile", "de Perú", "de Ecuador", "de Argentina", "de España"];
+const names = ["Ana","María","Laura","Sofía","Elena","Claudia","Valentina","Marta","Isabel","Carla","Lucía"];
+const countries = ["de México","de Colombia","de Chile","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
 
 function showPopup() {
     const popup = document.getElementById('sale-popup');
@@ -566,22 +571,32 @@ function showPopup() {
     const name = names[Math.floor(Math.random() * names.length)];
     const country = countries[Math.floor(Math.random() * countries.length)];
 
-    text.innerText = `✅ ${name} ${country} se acaba de inscribir`;
+    text.innerText = `🔥 ${name} ${country} acaba de inscribirse`;
+
     popup.style.display = 'block';
 
     setTimeout(() => {
-        popup.style.display = 'none';
-    }, 4000);
+        popup.classList.add('show');
+    }, 10);
+
+    setTimeout(() => {
+        popup.classList.remove('show');
+
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 500);
+
+    }, 3500);
 }
 
-// Inicia después de 5 segundos y repite cada 12 segundos
+/* ARRANQUE NATURAL (parece tráfico real) */
 setTimeout(() => {
     showPopup();
-    setInterval(showPopup, 12000);
-}, 5000);
+    setInterval(showPopup, 9000 + Math.random() * 4000);
+}, 4000);
 
 
-/* VIBRACIÓN EN SCROLL */
+/* CTA efecto psicológico */
 let scrollTimeout;
 
 window.addEventListener('scroll', () => {
@@ -595,11 +610,11 @@ window.addEventListener('scroll', () => {
         document.querySelectorAll('.cta').forEach(btn => {
             btn.classList.remove('vibrate');
         });
-    }, 200);
+    }, 180);
 }, { passive: true });
 
 
-/* FAQ ACORDEÓN */
+/* FAQ */
 document.querySelectorAll('.faq-question').forEach(q => {
     q.addEventListener('click', () => {
         const item = q.parentElement;

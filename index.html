@@ -201,7 +201,7 @@
         
         <div class="old">$74 USD</div>
         <div class="new">$37 USD</div>
-        <div class="timer" id="timer">Oferta termina en: 14:18</div>
+        <div class="timer" id="timer1">Oferta termina en: 14:18</div>
         <br>
         <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">
        🚀 QUIERO ACCEDER AHORA
@@ -426,7 +426,7 @@ Tú podrías ser el siguiente 👇
     
  <div class="old">$74 USD</div>
         <div class="new">$37 USD</div>
-        <div class="timer" id="timer">Oferta termina en: 14:18</div>
+        <div class="timer" id="timer2">Oferta termina en: 14:18</div>
         <br>
         <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">
        🚀 QUIERO CAMBIAR MI SITUACIÓN AHORA
@@ -481,7 +481,19 @@ box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 
 <script>
     /* Temporizador */
-    let time=900; setInterval(()=>{ let m=Math.floor(time/60); let s=time%60; document.getElementById("timer").innerText="Oferta termina en: "+m+":"+String(s).padStart(2,'0'); time=time<=0?900:time-1; },1000);
+   let time = 900;
+
+    setInterval(() => {
+        let m = Math.floor(time / 60);
+        let s = time % 60;
+
+        let text = "Oferta termina en: " + m + ":" + String(s).padStart(2,'0');
+
+        document.getElementById("timer1").innerText = text;
+        document.getElementById("timer2").innerText = text;
+
+        time = time <= 0 ? 900 : time - 1;
+    }, 1000);
 
     /* PRUEBA SOCIAL */
     const names = ["Ana", "Maria", "Laura", "Sofia", "Elena", "Claudia", "Valentina", "Marta", "Isabel"];

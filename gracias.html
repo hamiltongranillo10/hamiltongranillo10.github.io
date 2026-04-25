@@ -1,4 +1,125 @@
-<!-- 🎉 INTRO -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gracias por tu guía</title>
+
+<!-- PIXEL -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1274753604821165');
+fbq('track', 'PageView');
+fbq('track', 'Lead');
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Montserrat', sans-serif;
+background: linear-gradient(135deg,#f7f1e8,#e8dccb);
+color:#2b2b2b;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+padding:40px 20px;
+text-align:center;
+}
+
+h1{
+font-family:'Playfair Display', serif;
+font-size:34px;
+margin-bottom:10px;
+}
+
+p{
+font-size:18px;
+line-height:1.6;
+}
+
+.highlight{
+color:#b88a2a;
+font-weight:800;
+}
+
+.box{
+background: rgba(255,255,255,0.75);
+backdrop-filter: blur(10px);
+border-radius:25px;
+padding:30px;
+margin-top:25px;
+box-shadow:0 20px 50px rgba(0,0,0,0.08);
+border:1px solid rgba(255,255,255,0.6);
+}
+
+/* BOTÓN */
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:18px 30px;
+border-radius:100px;
+text-decoration:none;
+font-weight:800;
+font-size:16px;
+color:white;
+background: linear-gradient(135deg, #d4af37, #b88a2a);
+box-shadow:0 10px 25px rgba(212,175,55,0.35);
+transition:0.3s;
+position:relative;
+overflow:hidden;
+}
+
+.btn:hover{
+transform:scale(1.05);
+box-shadow:0 15px 35px rgba(212,175,55,0.45);
+}
+
+/* brillo */
+.btn::after{
+content:"";
+position:absolute;
+top:-50%;
+left:-100%;
+width:50%;
+height:200%;
+background:rgba(255,255,255,0.4);
+transform:rotate(25deg);
+animation:shine 3s infinite;
+}
+
+@keyframes shine{
+0%{left:-120%;}
+100%{left:150%;}
+}
+
+.small{
+font-size:13px;
+opacity:0.8;
+margin-top:15px;
+}
+
+h2{
+font-family:'Playfair Display', serif;
+}
+
+</style>
+</head>
+
+<body>
+
 <div class="container">
 
 <h1>🎉 Felicidades Tu bono ya está listo</h1>
@@ -24,7 +145,7 @@ Pero lo más importante no es hacer velas…
 Es saber cómo convertirlas en ingresos reales.
 </p>
 
-<!-- 🚀 CURSO PRINCIPAL (PRIMER BOTÓN FUERTE) -->
+<!-- 🚀 CURSO PRINCIPAL -->
 <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">
 🔥 QUIERO APRENDER A VENDER MIS VELAS
 </a>
@@ -35,7 +156,7 @@ Este es el siguiente paso si quieres resultados reales
 
 </div>
 
-<!-- 💰 GUÍA DE PAGO (NUEVA QUE AGREGAS) -->
+<!-- 💰 NUEVA GUÍA DE PAGO -->
 <div class="box">
 
 <h2>✨ ¿Quieres ir más allá?</h2>
@@ -58,7 +179,7 @@ Aprende el proceso completo paso a paso para crear velas más profesionales.
 
 </div>
 
-<!-- 🚀 REFUERZO DEL CURSO PRINCIPAL -->
+<!-- 🚀 REFUERZO FINAL -->
 <div class="box">
 
 <h2>🚀 Antes de empezar</h2>
@@ -75,3 +196,6 @@ Aprende el proceso completo paso a paso para crear velas más profesionales.
 </div>
 
 </div>
+
+</body>
+</html>

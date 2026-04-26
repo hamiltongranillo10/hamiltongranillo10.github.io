@@ -246,6 +246,12 @@ html, body {
     overflow-x: hidden;
     height: 100%;
 }
+        img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transform: translateZ(0);
+}
 
 .whatsapp-container {
     position: fixed;
@@ -312,6 +318,7 @@ html, body {
 /* fuerza contexto correcto */
 body {
     position: relative;
+    overflow-anchor: none;
 }
 
 /* evita que transforms rompan fixed */
@@ -326,31 +333,38 @@ body {
 <div class="top-bar">🔥 OFERTA DE LANZAMIENTO ACTIVA - DESCUENTO LIMITADO DISPONIBLE AHORA</div>
 
 <div class="wrapper">
-   <div style="margin-bottom:20px;">
-  <img src="vela2.jpg" style="width:100%; border-radius:20px;">
-</div>
 
-    <div class="wrapper" style="text-align:center;">
+  <!-- IMAGEN PRINCIPAL -->
+  <div style="margin-bottom:20px;">
+    <img src="vela2.jpg" style="width:100%; border-radius:20px;">
+  </div>
 
-  <h2 style="font-size:24px; font-weight:bold; margin-bottom:10px;">
-    Aprende con una persona que ya vive de esto
-  </h2>
+  <!-- BLOQUE PRO (YA SIN WRAPPER DUPLICADO) -->
+  <div style="text-align:center; min-height: 300px;">
 
-  <p style="max-width:600px; margin:0 auto 10px;">
-    Este curso fue creado por Yuly Mar Rivas, quien pasó de ser ama de casa 
-    a generar ingresos desde casa con velas artesanales.
-  </p>
+    <h2 style="font-size:24px; font-weight:bold; margin-bottom:10px;">
+      Aprende con una persona que ya vive de esto
+    </h2>
 
-  <p style="max-width:600px; margin:0 auto 20px;">
-    Hoy tú puedes seguir el mismo paso a paso y empezar tu propio negocio desde cero.
-  </p>
+    <p style="max-width:600px; margin:0 auto 10px;">
+      Este curso fue creado por Yuly Mar Rivas, quien pasó de ser ama de casa 
+      a generar ingresos desde casa con velas artesanales.
+    </p>
 
-  <img src="yuly.jpg" 
-       style="width:220px; border-radius:50%; margin-bottom:20px;">
+    <p style="max-width:600px; margin:0 auto 20px;">
+      Hoy tú puedes seguir el mismo paso a paso y empezar tu propio negocio desde cero.
+    </p>
 
-</div>
+    <img src="yuly.jpg"
+         width="220"
+         height="220"
+         loading="lazy"
+         style="border-radius:50%; object-fit:cover;">
 
+  </div>
     
+</div>
+
     <div class="hero reveal">
         <h1>Únete a más de 1,200 mujeres que ya transformaron su sala en un taller de velas</h1>
         <p>Mira cómo funciona por dentro</p>

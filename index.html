@@ -92,11 +92,13 @@
             border: none;
             position: relative;
             overflow: hidden; 
-            animation: pulseSoft 2.5s ease-in-out infinite;
-           @keyframes pulseSoft {
-           0%, 100% { transform: scale(1); }
-           50% { transform: scale(1.02); }
-         }
+           animation: pulseSoft 2.5s ease-in-out infinite;
+       }
+
+        @keyframes pulseSoft {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+       }
 
         .btn::after {
             content: "";
@@ -349,7 +351,7 @@ body {
 </div>
 
     
-    <div class="hero">
+    <div class="hero reveal">
         <h1>Únete a más de 1,200 mujeres que ya transformaron su sala en un taller de velas</h1>
         <p>Mira cómo funciona por dentro</p>
         <video preload="metadata" controls poster="portada.video.jpg" style="width:100%; border-radius:20px;">
@@ -431,7 +433,7 @@ body {
     Un sistema paso a paso para crear, vender y empezar desde cero (aunque no tengas experiencia)
   </p>
 
-  <div class="grid-img">
+ <div class="grid-img reveal">
 
     <div class="card-img">
       <img src="curso-completo.jpg">
@@ -532,7 +534,7 @@ body {
 Preguntas Frecuentes
 </h2>
 
-<div class="faq-container">
+<div class="faq-container reveal">
 
   <div class="faq-item">
     <div class="faq-question">¿Cómo y cuándo recibiré el curso?</div>
@@ -561,7 +563,7 @@ Preguntas Frecuentes
              style="width:100%; max-width:420px; border-radius:25px; box-shadow:0 15px 40px rgba(0,0,0,0.12);">
     </div>
 
-    <div class="bottom-section">
+   <div class="bottom-section reveal">
        <div style="
     font-size: 45px;
     font-weight: 800;
@@ -700,6 +702,10 @@ setTimeout(() => {
     setInterval(showPopup, 8000);
 }, 3000);
 
+
+/* =======================
+   FAQ
+======================= */
 document.querySelectorAll('.faq-item').forEach(item => {
   item.addEventListener('click', () => {
 
@@ -711,33 +717,22 @@ document.querySelectorAll('.faq-item').forEach(item => {
 
   });
 });
-    @media (max-width: 768px) {
-  .hero, .bottom-section {
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-}
 
-    @media (max-width: 768px) {
 
-  /* Mejora rendimiento general */
-  * {
-    -webkit-tap-highlight-color: transparent;
-  }
+/* =======================
+   ANIMACIÓN SCROLL (PRO)
+======================= */
+const reveals = document.querySelectorAll('.reveal');
 
-  /* Optimiza animaciones */
-  .btn,
-  .wa-icon,
-  .wa-bubble {
-    will-change: transform;
-  }
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+    }
+  });
+}, { threshold: 0.15 });
 
-  /* Evita sobrecarga */
-  video {
-    transform: translateZ(0);
-  }
-
-}
+reveals.forEach(el => observer.observe(el));
     
 </script>
         

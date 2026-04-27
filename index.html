@@ -325,32 +325,42 @@ body {
 .wrapper, .hero, .bottom-section {
     transform: none !important;
 }
-body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-/* CONTENEDOR REAL DE CENTRADO */
 .wrapper {
     max-width: 900px;
     margin: 0 auto;
     padding: 15px;
 }
 
-/* asegura que imágenes no rompan layout */
-img, video {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+/* BLOQUES GRANDES CONTROLADOS */
+.hero,
+.bottom-section,
+.faq-container {
+    max-width: 900px;
+    margin: 30px auto;
 }
 
-/* evita que textos o divs se salgan */
-.wrapper > div {
+/* VIDEO CONTROLADO (ESTE ES TU PROBLEMA PRINCIPAL) */
+video {
+    max-width: 100%;
     width: 100%;
-    box-sizing: border-box;
+    max-height: 520px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* CENTRAR TEXTOS SUELTOS */
+.old,
+.new,
+.timer,
+p,
+h1,
+h2 {
+    text-align: center;
+}
+
+/* EVITA QUE SE VAYA A IZQUIERDA EN PC */
+body {
+    overflow-x: hidden;
 }
         
     </style>

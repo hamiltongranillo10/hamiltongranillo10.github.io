@@ -46,10 +46,14 @@
        body { 
     margin: 0; 
     font-family: 'Montserrat', sans-serif; 
+
     background: 
         radial-gradient(circle at top, rgba(255,255,255,0.7), transparent 60%),
         linear-gradient(135deg, #f7f1e8, #e8dccb);
+
+    
     background-size: cover;
+
     color: #2b2b2b;
     overflow-x: hidden;
 }
@@ -64,7 +68,9 @@
             padding: 40px 20px; 
             border-radius: 30px; 
             border: 1px solid rgba(255,255,255,0.6); 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.08), 0 2px 10px rgba(0,0,0,0.04);
+            box-shadow: 
+            0 20px 50px rgba(0,0,0,0.08),
+            0 2px 10px rgba(0,0,0,0.04);
         }
 
         h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 5vw, 48px); color: #111827; line-height: 1.2; margin-bottom: 15px; }
@@ -90,9 +96,9 @@
        }
 
         @keyframes pulseSoft {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+       }
 
         .btn::after {
             content: "";
@@ -103,101 +109,753 @@
             animation: glassShine 4s infinite;
         }
 
+        .vibrate { animation: shake 0.4s !important; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 50% { transform: translateX(4px); } 75% { transform: translateX(-4px); } }
         @keyframes glassShine { 0% { left: -120%; } 15% { left: 150%; } 100% { left: 150%; } }
+        @keyframes floatBtn { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
 
         .btn-temario {
-            background: transparent;
-            color: #b88a2a;
-            border: 2px solid #b88a2a;
-            padding: 12px 25px;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            font-size: 14px;
-            margin-top: 15px;
-            transition: 0.3s;
-        }
+    background: transparent;
+    color: #b88a2a;
+    border: 2px solid #b88a2a;
+    padding: 12px 25px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 15px;
+    transition: 0.3s;
+}
 
-        .timer {  color: var(--accent);  font-weight: 700;  padding: 6px 15px;  background: #fee2e2;  border-radius: 50px;  font-size: 14px;  display: table !important; margin: 15px auto !important; text-align: center !important; }
+.btn-temario:hover {
+    background: rgba(184, 138, 42, 0.08);
+    transform: scale(1.03);
+}
+     .timer {  color: var(--accent);  font-weight: 700;  padding: 6px 15px;  background: #fee2e2;  border-radius: 50px;  font-size: 14px;  display: table !important; margin: 15px auto !important; 
+    text-align: center !important;
+ }
     
-        .faq-container { max-width: 700px; margin: 25px auto; background: white; border-radius: 20px; padding: 10px 20px; border: 1px solid #eee; }
-        .faq-item { border-bottom: 1px solid #f1f1f1; padding: 15px 0; cursor: pointer; }
-        .faq-question { font-weight: 700; font-size: 16px; position: relative; padding-right: 25px; }
-        .faq-question::after { content: "+"; position: absolute; right: 0; font-size: 18px; transition: 0.3s; color: #d4af37; }
-        .faq-item.active .faq-question::after { content: "-"; }
-        .faq-answer { max-height: 0; overflow: hidden; opacity: 0; transition: all 0.35s ease; font-size: 14px; color: #555; margin-top: 0; }
-        .faq-item.active .faq-answer { max-height: 200px; opacity: 1; margin-top: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin: 30px 0; text-align: left; }
+        .card { background: white; padding: 15px; border-radius: 12px; border: 1px solid #f3f4f6; font-size: 14px; font-weight: 600; }
 
-        .sale-popup {
-            position: fixed; left: 18px; bottom: 30px; z-index: 999999;
-            display: flex; align-items: center; gap: 10px;
-            background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
-            padding: 10px 14px; border-radius: 999px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            font-size: 13px; font-weight: 600; color: #111;
-            opacity: 0; transform: translateY(20px); transition: all 0.35s ease;
-        }
-        .sale-popup.show { opacity: 1; transform: translateY(0); }
+        .faq-container {
+  max-width: 700px;
+  margin: 25px auto;
+  background: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+  border: 1px solid #eee;
+}
 
-        html, body { overflow-x: hidden; height: 100%; }
-        img { max-width: 100%; height: auto; display: block; transform: translateZ(0); }
+.faq-item {
+  border-bottom: 1px solid #f1f1f1;
+  padding: 15px 0;
+  cursor: pointer;
+}
 
-        .grid-img { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; }
-        .card-img { background: white; border-radius: 15px; padding: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); transition: 0.3s; overflow: hidden; }
-        .card-img:hover { transform: translateY(-5px); }
-        .card-img img { width: 100%; border-radius: 10px; transition: transform 0.4s ease; cursor: pointer; }
-        .card-img:hover img { transform: scale(1.1); }
-        .card-img p { font-size: 13px; font-weight: 600; margin-top: 8px; }
+.faq-item:last-child {
+  border-bottom: none;
+}
 
-        @media (max-width: 768px) {
-            .wrapper { padding: 10px; }
-            .btn, a.btn { width: 90% !important; max-width: 340px !important; margin: 15px auto !important; display: flex !important; justify-content: center; padding: 18px 15px !important; }    
-        }
+.faq-question {
+  font-weight: 700;
+  font-size: 16px;
+  position: relative;
+  padding-right: 25px;
+}
+
+.faq-question::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  font-size: 18px;
+  transition: 0.3s;
+  color: #d4af37;
+}
+
+.faq-item.active .faq-question::after {
+  content: "-";
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.35s ease;
+  font-size: 14px;
+  color: #555;
+  margin-top: 0;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 10px;
+}
+       
+.sale-popup {
+    position: fixed;
+    left: 18px;
+    bottom: 95px;
+    z-index: 999999;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+
+    padding: 10px 14px;
+    border-radius: 999px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.35s ease;
+}
+
+.sale-popup.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.sale-popup::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 0 rgba(34,197,94,0.6);
+    animation: livePulse 2.5s infinite;
+}
+
+@keyframes livePulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+    70% { transform: scale(1.3); box-shadow: 0 0 0 10px rgba(34,197,94,0); }
+    100% { transform: scale(1); }
+}
+        
+       /* WHATSAPP CON TEXTO */
+html, body {
+    overflow-x: hidden;
+    height: 100%;
+}
+        img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transform: translateZ(0);
+}
+
+.whatsapp-container {
+    position: fixed;
+    right: 18px;
+    bottom: 20px;
+    z-index: 999999;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text-decoration: none;
+}
+
+.wa-bubble {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    padding: 8px 14px;
+    border-radius: 999px;
+
+    font-size: 12px;
+    font-weight: 600;
+    color: #111;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+
+    animation: floatW 3s ease-in-out infinite;
+}
+
+.wa-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #25D366;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 10px 25px rgba(37,211,102,0.35);
+
+    animation: pulseW 2s infinite;
+  }
+
+   .wa-icon img {
+    width: 28px;
+ }
+    .wa-icon,
+    .wa-bubble {
+    will-change: transform;
+ }
+
+@keyframes floatW {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes pulseW {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+/* fuerza contexto correcto */
+body {
+    position: relative;
+    overflow-anchor: none;
+}
+.wrapper {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* =========================
+   TEXTOS CENTRADOS
+========================= */
+h1, h2, p {
+    text-align: center;
+}
+
+/* =========================
+   BOTONES PERFECTOS (PC + MÓVIL)
+========================= */
+.btn,
+a.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: fit-content;
+    margin: 15px auto;
+
+    text-align: center;
+}
+
+/* =========================
+   IMÁGENES
+========================= */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* =========================
+   VIDEO
+========================= */
+video {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+/* =========================
+   GRID IMÁGENES (PC BONITO)
+========================= */
+.grid-img {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    justify-items: center;
+}
+
+/* =========================
+   MÓVIL: AJUSTES DE PRECIO Y BOTÓN
+========================= */
+@media (max-width: 768px) {
+
+    .wrapper {
+        padding: 10px;
+    }
+
+    /* Centramos los precios específicamente en móvil */
+    .old, .new {
+        text-align: center !important;
+        display: block !important;
+        width: 100%;
+    }
+
+    .grid-img {
+        grid-template-columns: 1fr;
+    }
+
+    /* Ajuste del botón: Elegante y no tan largo */
+    .btn,
+    a.btn {
+        width: 90% !important; /* Deja un margen a los lados */
+        max-width: 340px !important; /* Evita que se estire demasiado */
+        margin: 15px auto !important; /* Lo mantiene perfectamente centrado */
+        display: flex !important;
+        justify-content: center;
+        padding: 18px 15px !important; /* Ajusta el grosor */
+    }    
+}
+
+  /* CENTRADO PARA LA SECCIÓN DE GARANTÍA EN PC */
+    .bottom-section div, 
+    .bottom-section p {
+        text-align: center !important;
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100%;
+    }
+
     </style>
+    
 </head>
 <body>
 
 <div class="top-bar">🔥 OFERTA DE LANZAMIENTO ACTIVA - DESCUENTO LIMITADO DISPONIBLE AHORA</div>
 
 <div class="wrapper">
+
+  <!-- IMAGEN PRINCIPAL -->
   <div style="margin-bottom:20px;">
     <img src="vela2.jpg" style="width:100%; border-radius:20px;">
   </div>
 
+  <!-- BLOQUE PRO (YA SIN WRAPPER DUPLICADO) -->
   <div style="text-align:center; min-height: 300px;">
-    <h2 style="font-size:24px; font-weight:bold; margin-bottom:10px;">Aprende con una persona que ya vive de esto</h2>
-    <p style="max-width:600px; margin:0 auto 10px;">Este curso fue creado por Yuly Mar Rivas, quien pasó de ser ama de casa a generar ingresos desde casa con velas artesanales.</p>
-    <img src="yuly.jpg" width="220" height="220" loading="lazy" style="border-radius:50%; object-fit:cover;">
+
+    <h2 style="font-size:24px; font-weight:bold; margin-bottom:10px;">
+      Aprende con una persona que ya vive de esto
+    </h2>
+
+    <p style="max-width:600px; margin:0 auto 10px;">
+      Este curso fue creado por Yuly Mar Rivas, quien pasó de ser ama de casa 
+      a generar ingresos desde casa con velas artesanales.
+    </p>
+
+    <p style="max-width:600px; margin:0 auto 20px;">
+      Hoy tú puedes seguir el mismo paso a paso y empezar tu propio negocio desde cero.
+    </p>
+
+    <img src="yuly.jpg"
+         width="220"
+         height="220"
+         loading="lazy"
+         style="border-radius:50%; object-fit:cover;">
+
   </div>
+    
 </div>
 
-<div class="hero reveal">
-    <h1>Únete a más de 1,200 mujeres que ya transformaron su sala en un taller de velas</h1>
-    <video preload="metadata" controls poster="portada.video.jpg" style="width:100%; border-radius:20px;">
-        <source src="condena-video.mp4" type="video/mp4">
-    </video>
-    <div class="old">$74 USD</div>
-    <div class="new">$37 USD</div>
-    <div class="timer">Oferta termina pronto</div>
-    <br>
-    <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">QUIERO EMPEZAR HOY CON EL DESCUENTO</a>
+    <div class="hero reveal">
+        <h1>Únete a más de 1,200 mujeres que ya transformaron su sala en un taller de velas</h1>
+        <p>Mira cómo funciona por dentro</p>
+        <video preload="metadata" controls poster="portada.video.jpg" style="width:100%; border-radius:20px;">
+     <source src="condena-video.mp4" type="video/mp4">
+        </video>
+        
+        <div class="old">$74 USD</div>
+        <div class="new">$37 USD</div>
+        <div class="timer" id="timer1">Oferta termina en: 14:18</div>
+        <br>
+        <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">
+        QUIERO EMPEZAR HOY CON EL DESCUENTO
+       </a>
+
+         <p style="font-size:11px;color:#6b6b6b;margin-top:10px;">
+        💳 Pago único • Se convierte automáticamente a tu moneda local
+     </p>
+
+      <p style="font-size:13px; margin-top:10px; font-weight:600;">
+    🎁 Incluye acceso inmediato al curso completo + actualizaciones
+     </p>
+        
+      <div style="
+  max-width: 700px;
+  margin: 25px auto;
+  background: linear-gradient(135deg, rgba(255,247,237,0.9), rgba(255,255,255,0.8));
+  border: 1px solid rgba(212,175,55,0.2);
+  box-shadow: 0 10px 30px rgba(212,175,55,0.15);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+">
+
+  <h3 style="font-size:20px; margin-bottom:10px;">
+    🎁 BONO EXCLUSIVO PARA TI
+  </h3>
+
+  <p style="font-size:14px; margin-bottom:15px;">
+    Antes de decidir, tendrás acceso a un bono donde verás el paso a paso real para crear tu primera vela de gel.
+  </p>
+
+  <p style="font-size:14px; font-weight:600; margin-bottom:15px;">
+    Esto te permite ver la calidad antes de entrar.
+  </p>
+
+  <a href="gracias.html" style="
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    margin: 15px auto 0;
+    background:#d4af37;
+    color:white;
+    padding:12px 25px;
+    border-radius:50px;
+    font-weight:700;
+    text-decoration:none;
+">
+    🔥 ACCEDER AL BONO
+  </a>
+            
+ <p style="font-size:14px; margin-bottom:15px;">
+    Antes de tu bono, revisa esto primero ↓ 
+  </p>
+            
 </div>
+
+   <h2 style="font-family: 'Playfair Display', serif; font-size:28px; margin-top:30px;">
+¿Esto es para ti?
+</h2>
+
+<ul style="text-align:left; max-width:600px; margin:20px auto; font-size:16px; line-height:1.6;">
+  <li>✔️ Quieres generar ingresos desde casa</li>
+  <li>✔️ No tienes experiencia y no sabes por dónde empezar</li>
+  <li>✔️ Buscas algo rentable y fácil de hacer</li>
+  <li>✔️ Te gustaría vender desde redes sociales</li>
+</ul>
+       <!-- 🔥 SECCIÓN PREMIUM CONTENIDO -->
+<div style="max-width: 1000px; margin: 50px auto; text-align: center;">
+
+  <h2 style="font-family: 'Playfair Display', serif; font-size:32px; margin-bottom:10px;">
+    Todo lo que necesitas para <span style="color:#d4af37;">generar ingresos desde casa</span>
+  </h2>
+
+  <p style="font-size:16px; opacity:0.8; max-width:600px; margin:0 auto 30px;">
+    Un sistema paso a paso para crear, vender y empezar desde cero (aunque no tengas experiencia)
+  </p>
+
+ <div class="grid-img reveal">
+
+    <div class="card-img">
+      <img src="curso-completo.jpg">
+      <p>Curso completo paso a paso</p>
+    </div>
+
+    <div class="card-img">
+      <img src="vela-acuario.jpg">
+      <p>Velas en tendencia</p>
+    </div>
+      
+      <div class="card-img">
+      <img src="esferas-brillantes.jpg">
+      <p>Velas tipo esferas brillantes</p>
+    </div>
+
+    <div class="card-img">
+      <img src="bouquet-velitas.jpg">
+      <p>Bouquet de velas premium</p>
+    </div>
+
+    <div class="card-img">
+      <img src="encapsulado-floral.jpg">
+      <p>Acabados que aumentan el valor</p>
+    </div>
+
+    <div class="card-img">
+      <img src="proveedores-mapa.jpg">
+      <p>Proveedores por país</p>
+    </div>
+
+    <div class="card-img">
+      <img src="clases-vivo.jpg">
+      <p>Clases privadas en vivo al mes</p>
+    </div>
+      
+    <div class="card-img">
+      <img src="certificado.jpg">
+      <p>Certificado al finalizar</p>
+    </div>
+
+    <div class="card-img vip">
+      <img src="grupo-vip.jpg">
+      <p>Acceso a grupo VIP privado + soporte</p>
+    </div>
+
+  </div>
+
+  <p style="margin-top:25px; font-weight:600;">
+    No necesitas experiencia. Solo seguir el paso a paso.
+  </p>
+
+</div>
+
+<style>
+.grid-img {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+}
+    
+.card-img {
+  background: white;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  overflow: hidden; 
+}
+
+.card-img:hover {
+  transform: translateY(-5px);
+}
+
+.card-img img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+}
+
+.card-img:hover img {
+  transform: scale(1.1);
+}
+
+.card-img p {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.vip {
+  border: 2px solid #d4af37;
+  box-shadow: 0 10px 30px rgba(212,175,55,0.25);
+}
+</style>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 30px; text-align:center;">
+Preguntas Frecuentes
+</h2>
+
+<div class="faq-container reveal">
+
+  <div class="faq-item">
+    <div class="faq-question">¿Cómo y cuándo recibiré el curso?</div>
+    <div class="faq-answer">
+      Recibirás acceso inmediato después del pago por correo electrónico. Tendrás acceso de por vida desde cualquier dispositivo.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">¿El pago es seguro?</div>
+    <div class="faq-answer">
+      Sí, el pago es procesado por Hotmart, una plataforma segura a nivel internacional que protege tus datos.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">¿Necesito experiencia previa?</div>
+    <div class="faq-answer">
+      No necesitas experiencia. El curso está diseñado paso a paso desde cero para principiantes.
+    </div>
+  </div>
+
+</div>
+    <div style="text-align:center; margin:40px 0;">
+        <img src="garantia-7-dias.png" 
+             style="width:100%; max-width:420px; border-radius:25px; box-shadow:0 15px 40px rgba(0,0,0,0.12);">
+    </div>
 
 <div class="bottom-section reveal">
-    <div style="font-size: 45px; font-weight: 800; color: #d4af37 !important;">Solo $37 USD</div>
-    <p style="font-weight: 700;">¡ÚLTIMA OPORTUNIDAD PARA UNIRTE CON DESCUENTO!</p>
-    <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">SÍ, QUIERO MI ACCESO AHORA</a>
+       <div style="
+    font-size: 45px;
+    font-weight: 800;
+    color: #d4af37 !important;
+    text-shadow: 0 2px 10px rgba(212,175,55,0.25);
+">
+  Solo $37 USD
+</div>
+        <p style="font-weight: 700;">¡ÚLTIMA OPORTUNIDAD PARA UNIRTE CON DESCUENTO!</p>
+        <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">SÍ, QUIERO MI ACCESO AHORA</a>
+        <p style="font-size: 12px; margin-top: 15px;">🔒 Pago 100% Seguro | Acceso Inmediato</p>
+    </div>
+    <div style="margin:30px 0;">
+  <h2 style="font-family: 'Playfair Display', serif; font-size:28px;">
+Mira lo que están logrando personas que empezaron desde cero 
+</h2>
+
+<p style="text-align:center; font-size:16px; margin-top:10px;">
+Mensajes reales de alumnas que ya están aplicando el método
+</p>
+       <video autoplay loop muted playsinline 
+style="width:100%; max-width:400px; border-radius:20px; margin:20px auto; display:block; box-shadow:0 10px 30px rgba(0,0,0,0.15);">
+  <source src="testimonios.mp4" type="video/mp4">
+</video>
+        <p style="text-align:center; font-size:18px; font-weight:600;">
+Tú podrías ser el siguiente 
+</p>
+    <p style="text-align:center; font-size:18px; margin-top:15px;">
+ ✔️ Pedidos reales desde casa <br>
+ ✔️ Sin experiencia previa <br>
+ ✔️ Personas empezando desde cero
+ </p>
+    
+ <div class="old">$74 USD</div>
+        <div class="new">$37 USD</div>
+        <div class="timer" id="timer2">Oferta termina en: 14:18</div>
+        <br>
+        <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">
+       🚀 QUIERO CAMBIAR MI SITUACIÓN AHORA
+       </a>
+
+         <p style="font-size:11px;color:#6b6b6b;margin-top:10px;">
+        💳 Pago único • Se convierte automáticamente a tu moneda local
+     </p>
+
+      <p style="font-size:13px; margin-top:10px; font-weight:600;">
+    🎁 Incluye acceso inmediato al curso completo + actualizaciones
+     </p>
+        
+
 </div>
 
-<script>
-    // Script para las FAQ (Preguntas frecuentes)
-    document.querySelectorAll('.faq-item').forEach(item => {
-        item.addEventListener('click', () => {
-            item.classList.toggle('active');
-        });
-    });
-</script>
+<div id="sale-popup" class="sale-popup">
+    <p id="sale-text"></p>
+</div>
+<div id="imageModal" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+backdrop-filter: blur(8px);
+justify-content:center;
+align-items:center;
+z-index:9999;
+opacity:0;
+transition: opacity 0.25s ease;
+">
 
+<img id="modalImg" style="
+max-width:92%;
+max-height:92%;
+border-radius:14px;
+transform: scale(0.7);
+transition: transform 0.25s ease;
+box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+">
+
+</div>
+        
+<a class="whatsapp-container" href="https://wa.link/7h1fs9" target="_blank">
+    <div class="wa-bubble">
+        ¿Dudas? Te ayudo aquí
+    </div>
+
+    <div class="wa-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+    </div>
+</a>
+        
+
+<script>
+/* =======================
+   TEMPORIZADOR
+======================= */
+let time = 900;
+
+setInterval(() => {
+    let m = Math.floor(time / 60);
+    let s = time % 60;
+
+    let text = "Oferta termina en: " + m + ":" + String(s).padStart(2,'0');
+
+    const t1 = document.getElementById("timer1");
+    const t2 = document.getElementById("timer2");
+
+    if (t1) t1.innerText = text;
+    if (t2) t2.innerText = text;
+
+    time = time <= 0 ? 900 : time - 1;
+}, 1000);
+
+const names = ["Ana","María","Laura","Sofía","Tamara","Claudia","Anyeline","Marta","Isabel","Carla","Lucía"];
+const countries = ["de México","de Colombia","de Chile","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
+
+function showPopup() {
+    const popup = document.getElementById('sale-popup');
+    if (!popup) return;
+
+    const name = names[Math.floor(Math.random() * names.length)];
+    const country = countries[Math.floor(Math.random() * countries.length)];
+
+    popup.innerHTML = `🔥 <b>${name}</b> ${country} acaba de inscribirse`;
+
+    popup.classList.add('show');
+
+    setTimeout(() => {
+        popup.classList.remove('show');
+    }, 3500);
+}
+
+setTimeout(() => {
+    showPopup();
+    setInterval(showPopup, 8000);
+}, 3000);
+
+
+/* =======================
+   FAQ
+======================= */
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('click', () => {
+
+    document.querySelectorAll('.faq-item').forEach(i => {
+      if (i !== item) i.classList.remove('active');
+    });
+
+    item.classList.toggle('active');
+
+  });
+});
+
+
+/* =======================
+   ANIMACIÓN SCROLL (PRO)
+======================= */
+const reveals = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+    }
+  });
+}, { threshold: 0.15 });
+
+reveals.forEach(el => observer.observe(el));
+    
+</script>
+        
 </body>
 </html>

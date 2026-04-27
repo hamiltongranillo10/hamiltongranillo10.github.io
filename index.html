@@ -256,48 +256,34 @@ html, body {
 }
 
 .whatsapp-container {
-    position: fixed;
-    right: 18px;
-    bottom: 20px;
-    z-index: 999999;
-
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 10px;
-
     text-decoration: none;
+    margin: 20px auto; /* Esto lo separa del botón de arriba */
+    width: fit-content;
 }
 
 .wa-bubble {
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
-    padding: 8px 14px;
-    border-radius: 999px;
-
-    font-size: 12px;
-    font-weight: 600;
-    color: #111;
-
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-
-    animation: floatW 3s ease-in-out infinite;
+    background: #25D366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .wa-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     background: #25D366;
-
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    box-shadow: 0 10px 25px rgba(37,211,102,0.35);
-
-    animation: pulseW 2s infinite;
-  }
-
+}
    .wa-icon img {
     width: 28px;
  }
@@ -426,6 +412,32 @@ video {
         width: 100%;
     }
 
+.btn-soporte-premium {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent; /* Fondo transparente para no competir */
+    color: #b88a2a; /* El color dorado oscuro de tu marca */
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 10px auto;
+    width: fit-content;
+    border: 1px solid #d4af37; /* Borde dorado fino */
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-soporte-premium:hover {
+    background: rgba(212, 175, 55, 0.05); /* Un brillo muy sutil al pasar el mouse */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1);
+}
+
+    
     </style>
     
 </head>
@@ -480,14 +492,18 @@ video {
         <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">
         QUIERO EMPEZAR HOY CON EL DESCUENTO
        </a>
-
-         <p style="font-size:11px;color:#6b6b6b;margin-top:10px;">
+        
+      <p style="font-size:11px;color:#6b6b6b;margin-top:10px;">
         💳 Pago único • Se convierte automáticamente a tu moneda local
      </p>
-
-      <p style="font-size:13px; margin-top:10px; font-weight:600;">
-    🎁 Incluye acceso inmediato al curso completo + actualizaciones
-     </p>
+ 
+     <a href="https://wa.link/7h1fs9" class="btn-soporte-premium" target="_blank">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px; vertical-align: middle;">
+        <path d="M12.012 2c-5.508 0-9.988 4.48-9.988 9.988 0 1.76.46 3.412 1.264 4.852l-1.288 4.712 4.828-1.264c1.396.76 2.988 1.192 4.684 1.192 5.508 0 9.988-4.48 9.988-9.988s-4.48-9.988-9.988-9.988zm0 18.288c-1.544 0-3.004-.412-4.272-1.128l-.308-.184-2.84.744.756-2.768-.204-.324a8.23 8.23 0 0 1-1.268-4.34c0-4.556 3.708-8.264 8.264-8.264 4.556 0 8.264 3.708 8.264 8.264s-3.708 8.264-8.264 8.264z"/>
+    </svg>
+    ¿Tienes dudas? Chat de Soporte VIP
+</a>   
+        
         
       <div style="
   max-width: 700px;
@@ -766,16 +782,6 @@ box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 ">
 
 </div>
-        
-<a class="whatsapp-container" href="https://wa.link/7h1fs9" target="_blank">
-    <div class="wa-bubble">
-        ¿Dudas? Te ayudo aquí
-    </div>
-
-    <div class="wa-icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-    </div>
-</a>
         
 
 <script>

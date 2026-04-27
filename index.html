@@ -322,27 +322,38 @@ body {
 }
 .wrapper {
     max-width: 900px;
+    width: 100%;
     margin: 0 auto;
     padding: 15px;
+    box-sizing: border-box;
     text-align: center;
 }
 
+/* =========================
+   TEXTOS CENTRADOS
+========================= */
 h1, h2, p {
     text-align: center;
 }
 
+/* =========================
+   BOTONES PERFECTOS (PC + MÓVIL)
+========================= */
 .btn,
 a.btn {
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     align-items: center;
+
+    width: fit-content;
     margin: 15px auto;
+
+    text-align: center;
 }
 
-.wrapper .btn {
-    display: inline-flex;
-}
-
+/* =========================
+   IMÁGENES
+========================= */
 img {
     max-width: 100%;
     height: auto;
@@ -350,6 +361,9 @@ img {
     margin: 0 auto;
 }
 
+/* =========================
+   VIDEO
+========================= */
 video {
     width: 100%;
     max-width: 100%;
@@ -358,23 +372,36 @@ video {
     border-radius: 20px;
 }
 
+/* =========================
+   GRID IMÁGENES (PC BONITO)
+========================= */
 .grid-img {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 15px;
+    justify-items: center;
 }
 
+/* =========================
+   MÓVIL: 1 POR FILA + BOTONES PERFECTOS
+========================= */
 @media (max-width: 768px) {
+
+    .wrapper {
+        padding: 10px;
+    }
+
     .grid-img {
         grid-template-columns: 1fr;
     }
 
     .btn,
     a.btn {
+        width: 100%;
         display: flex;
         justify-content: center;
-        width: 100%;
-    }
+    }    
+}
 
     </style>
     

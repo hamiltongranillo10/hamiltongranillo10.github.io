@@ -325,23 +325,27 @@ body {
 .wrapper, .hero, .bottom-section {
     transform: none !important;
 }
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 15px;
 }
 
-.wrapper,
-.hero,
-.bottom-section,
-.faq-container,
-div[style*="max-width"],
-div[style*="margin: 50px auto"],
-div[style*="text-align:center"] {
+/* asegura que todo dentro respete el centro */
+.wrapper > div,
+.wrapper section,
+.wrapper h1,
+.wrapper h2,
+.wrapper p,
+.wrapper video,
+.wrapper img {
     width: 100%;
-    max-width: 900px;
 }
-        
+
+/* evita desbordes laterales */
+body {
+    overflow-x: hidden;
+}
         
     </style>
     

@@ -325,26 +325,32 @@ body {
 .wrapper, .hero, .bottom-section {
     transform: none !important;
 }
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* CONTENEDOR REAL DE CENTRADO */
 .wrapper {
     max-width: 900px;
     margin: 0 auto;
     padding: 15px;
 }
 
-/* asegura que todo dentro respete el centro */
-.wrapper > div,
-.wrapper section,
-.wrapper h1,
-.wrapper h2,
-.wrapper p,
-.wrapper video,
-.wrapper img {
-    width: 100%;
+/* asegura que imágenes no rompan layout */
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* evita desbordes laterales */
-body {
-    overflow-x: hidden;
+/* evita que textos o divs se salgan */
+.wrapper > div {
+    width: 100%;
+    box-sizing: border-box;
 }
         
     </style>

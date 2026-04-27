@@ -325,15 +325,21 @@ body {
 .wrapper, .hero, .bottom-section {
     transform: none !important;
 }
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper,
 .hero,
 .bottom-section,
 .faq-container,
-.grid-img,
-div[style*="margin:30px 0"],
-div[style*="margin: 40px 0"] {
+div[style*="max-width"],
+div[style*="margin: 50px auto"],
+div[style*="text-align:center"] {
+    width: 100%;
     max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
 }
         
         

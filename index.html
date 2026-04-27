@@ -472,6 +472,45 @@ video {
     0%, 100% { transform: translateY(0); opacity: 0.4; }
     50% { transform: translateY(12px); opacity: 1; }
 }
+
+.tarjeta-soporte-hamilton {
+    background: #ffffff;
+    border-radius: 25px; /* Curva suave como tu diseño */
+    padding: 20px;
+    max-width: 400px;
+    margin: 15px auto;
+    border: 2px solid #e9b96e; /* El color dorado de tus botones */
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .cuerpo-reproductor {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .foto-hamilton {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #eee;
+  }
+
+  .texto-soporte {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    color: #444;
+  }
+
+  .audio-estilo {
+    width: 100%;
+    height: 35px;
+  }
+
+
+
     
     </style>
     
@@ -531,6 +570,23 @@ video {
       <p style="font-size:11px;color:#6b6b6b;margin-top:10px;">
         💳 Pago único • Se convierte automáticamente a tu moneda local
      </p>
+
+<div class="tarjeta-soporte-hamilton">
+  <div class="cuerpo-reproductor">
+    <div class="contenedor-foto">
+      <img src="TU_FOTO_AQUI.jpg" alt="Hamilton Soporte" class="foto-hamilton">
+    </div>
+    
+    <div class="info-reproductor">
+      <p class="texto-soporte"><strong>¿Tienes dudas?</strong> Escucha esto de Hamilton:</p>
+      <audio controls class="audio-estilo">
+        <source src="TU_ENLACE_AQUI.mp3" type="audio/mpeg">
+        Tu navegador no soporta este audio.
+      </audio>
+    </div>
+  </div>
+</div>
+        
  
     <div style="text-align: center; width: 100%; margin-top: 10px;">
     <a href="https://wa.link/7h1fs9" class="btn-soporte-premium" target="_blank">

@@ -332,55 +332,14 @@ body {
     text-align: center;
 }
 
-/* ===================== */
-/*        BOTONES        */
-/* ===================== */
-
-/* PC: centrado real */
-@media (min-width: 769px) {
-    .btn {
-        display: block;
-        margin: 20px auto;
-        text-align: center;
-    }
+/* BOTONES SIEMPRE CENTRADOS */
+.btn {
+    display: inline-block;
+    margin: 15px auto;
+    text-align: center;
 }
 
-/* MÓVIL: centrado perfecto */
-@media (max-width: 768px) {
-    .btn {
-        display: block;
-        margin: 15px auto;
-        text-align: center;
-    }
-}
-
-/* ===================== */
-/*      IMÁGENES GRID    */
-/* ===================== */
-
-/* PC: UNA SOLA COLUMNA */
-@media (min-width: 769px) {
-    .grid-img {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* MÓVIL: UNA SOLA COLUMNA TAMBIÉN */
-@media (max-width: 768px) {
-    .grid-img {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ===================== */
-/*   SEGURIDAD GENERAL   */
-/* ===================== */
-
-body {
-    margin: 0;
-    overflow-x: hidden;
-}
-
+/* IMÁGENES SEGURAS */
 img {
     max-width: 100%;
     height: auto;
@@ -388,11 +347,32 @@ img {
     margin: 0 auto;
 }
 
+/* VIDEO */
 video {
     width: 100%;
     display: block;
     margin: 0 auto;
     border-radius: 20px;
+}
+
+/* GRID (ESTABLE) */
+.grid-img {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+/* MÓVIL AJUSTE SOLO VISUAL */
+@media (max-width: 768px) {
+    .grid-img {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* SEGURIDAD */
+body {
+    margin: 0;
+    overflow-x: hidden;
 }
         
     </style>

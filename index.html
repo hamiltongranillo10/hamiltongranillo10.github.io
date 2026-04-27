@@ -55,7 +55,7 @@
     background-size: cover;
 
     color: #2b2b2b;
-    
+    overflow-x: hidden;
 }
 
         .top-bar { background: linear-gradient(90deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 10px; font-size: 12px; font-weight: 800; text-transform: uppercase; }
@@ -195,33 +195,37 @@
   margin-top: 10px;
 }
        
-/* POPUP DE VENTAS - FLOTANTE ARRIBA */
 .sale-popup {
-    position: fixed !important;
-    top: 20px !important;
-    left: 20px !important;
-    z-index: 2147483647 !important;
-    display: flex !important;
+    position: fixed;
+    left: 18px;
+    bottom: 95px;
+    z-index: 999999;
+
+    display: flex;
     align-items: center;
     gap: 10px;
-    background: white !important;
-    padding: 10px 16px;
-    border-radius: 50px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+
+    padding: 10px 14px;
+    border-radius: 999px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+
     font-size: 13px;
+    font-weight: 600;
     color: #111;
-    /* Estado inicial: Invisible */
+
     opacity: 0;
-    visibility: hidden;
-    transform: translateY(-20px);
-    transition: all 0.5s ease;
+    transform: translateY(20px);
+    transition: all 0.35s ease;
 }
 
-/* Clase que activa el JavaScript */
 .sale-popup.show {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
+    opacity: 1;
+    transform: translateY(0);
+}
 
 .sale-popup::before {
     content: "";
@@ -251,18 +255,19 @@ html, body {
   transform: translateZ(0);
 }
 
-/* WHATSAPP - FLOTANTE ABAJO */
 .whatsapp-container {
-    position: fixed !important;
-    bottom: 20px !important;
-    right: 20px !important;
-    z-index: 2147483647 !important;
-    display: flex !important;
+    position: fixed;
+    right: 18px;
+    bottom: 20px;
+    z-index: 999999;
+
+    display: flex;
     align-items: center;
     gap: 10px;
-    text-decoration: none !important;
 
+    text-decoration: none;
 }
+
 .wa-bubble {
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(10px);
@@ -794,7 +799,7 @@ setInterval(() => {
     time = time <= 0 ? 900 : time - 1;
 }, 1000);
 
-const names = ["Ana","María","Laura","Sofía","Tamara","Claudia","Angy","Marta","Isabel","Carla","Lucía"];
+const names = ["Ana","María","Laura","Sofía","Tamara","Claudia","Anyeline","Marta","Isabel","Carla","Lucía"];
 const countries = ["de México","de Colombia","de Chile","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
 
 function showPopup() {

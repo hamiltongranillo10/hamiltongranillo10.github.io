@@ -332,31 +332,55 @@ body {
     text-align: center;
 }
 
-/* SOLO TEXTOS (sin afectar estructura de botones) */
-h1, h2 {
-    text-align: center;
+/* ===================== */
+/*        BOTONES        */
+/* ===================== */
+
+/* PC: centrado real */
+@media (min-width: 769px) {
+    .btn {
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+    }
 }
 
-p {
-    text-align: center;
+/* MÓVIL: centrado perfecto */
+@media (max-width: 768px) {
+    .btn {
+        display: block;
+        margin: 15px auto;
+        text-align: center;
+    }
 }
 
-/* PRECIOS */
-.old,
-.new,
-.timer {
-    display: block;
-    text-align: center;
+/* ===================== */
+/*      IMÁGENES GRID    */
+/* ===================== */
+
+/* PC: UNA SOLA COLUMNA */
+@media (min-width: 769px) {
+    .grid-img {
+        grid-template-columns: 1fr;
+    }
 }
 
-/* BOTONES */
-.btn {
-    display: inline-block;
-    margin: 15px auto;
-    text-align: center;
+/* MÓVIL: UNA SOLA COLUMNA TAMBIÉN */
+@media (max-width: 768px) {
+    .grid-img {
+        grid-template-columns: 1fr;
+    }
 }
 
-/* IMÁGENES */
+/* ===================== */
+/*   SEGURIDAD GENERAL   */
+/* ===================== */
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -364,33 +388,11 @@ img {
     margin: 0 auto;
 }
 
-/* VIDEO */
 video {
     width: 100%;
-    max-width: 100%;
     display: block;
     margin: 0 auto;
     border-radius: 20px;
-}
-
-/* GRID PC (bonito tipo catálogo) */
-.grid-img {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 15px;
-}
-
-/* MÓVIL: 1 POR FILA */
-@media (max-width: 768px) {
-    .grid-img {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* SEGURIDAD */
-body {
-    margin: 0;
-    overflow-x: hidden;
 }
         
     </style>

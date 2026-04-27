@@ -332,14 +332,49 @@ body {
     text-align: center;
 }
 
-/* BOTONES SIEMPRE CENTRADOS */
+/* SOLO TEXTOS (sin afectar estructura de botones) */
+h1, h2 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+/* PRECIOS */
+.old,
+.new,
+.timer {
+    display: block;
+    text-align: center;
+}
+
+/* BOTONES */
 .btn {
     display: inline-block;
     margin: 15px auto;
     text-align: center;
 }
 
-/* IMÁGENES SEGURAS */
+/* 💻 BOTONES CENTRADOS EN PC */
+@media (min-width: 769px) {
+    .btn {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* 📱 BOTONES CENTRADOS EN MÓVIL */
+@media (max-width: 768px) {
+    .btn {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* IMÁGENES */
 img {
     max-width: 100%;
     height: auto;
@@ -350,19 +385,20 @@ img {
 /* VIDEO */
 video {
     width: 100%;
+    max-width: 100%;
     display: block;
     margin: 0 auto;
     border-radius: 20px;
 }
 
-/* GRID (ESTABLE) */
+/* GRID PC (bonito tipo catálogo) */
 .grid-img {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 15px;
 }
 
-/* MÓVIL AJUSTE SOLO VISUAL */
+/* MÓVIL: 1 POR FILA */
 @media (max-width: 768px) {
     .grid-img {
         grid-template-columns: 1fr;

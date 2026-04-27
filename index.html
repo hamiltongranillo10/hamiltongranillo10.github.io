@@ -196,15 +196,14 @@
 }
        
 .sale-popup {
-    position: fixed !important; /* Esto hace que flote siempre */
-    top: 20px;                 /* Distancia desde arriba */
-    left: 20px;                /* Distancia desde la izquierda */
-    z-index: 999999 !important; /* Para que siempre esté por encima de todo */
-    
-    display: flex;
+    position: fixed !important;
+    top: 20px !important;
+    left: 20px !important;
+    z-index: 9999998 !important;
+    display: flex !important;
     align-items: center;
     gap: 10px;
-    background: rgba(255,255,255,0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(12px);
     padding: 10px 16px;
     border-radius: 999px;
@@ -212,11 +211,7 @@
     font-size: 13px;
     font-weight: 600;
     color: #111;
-    
-    /* Animación de entrada */
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: all 0.5s ease;
+    pointer-events: none; /* Para que no estorbe si el usuario quiere hacer clic detrás */
 }
 .sale-popup.show {
     opacity: 1;
@@ -251,16 +246,16 @@ html, body {
   transform: translateZ(0);
 }
 
-/* 2. EL WHATSAPP (ABAJO A LA DERECHA) */
 .whatsapp-container {
     position: fixed !important;
-    right: 20px;
-    bottom: 20px;
-    z-index: 999999 !important;
-    display: flex;
+    right: 20px !important;
+    bottom: 20px !important;
+    z-index: 9999999 !important; /* Un número muy alto para que nada lo tape */
+    display: flex !important;
     align-items: center;
     gap: 10px;
     text-decoration: none;
+    pointer-events: auto !important; /* Asegura que se pueda hacer clic */
 }
 .wa-bubble {
     background: rgba(255,255,255,0.95);

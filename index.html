@@ -195,39 +195,33 @@
   margin-top: 10px;
 }
        
-/* POPUP DE VENTAS - FORZADO */
+/* POPUP DE VENTAS - FLOTANTE ARRIBA */
 .sale-popup {
     position: fixed !important;
     top: 20px !important;
     left: 20px !important;
-    bottom: auto !important; /* Anula cualquier bottom previo */
-    right: auto !important;
-    width: auto !important;
-    max-width: 280px;
-    z-index: 2147483647 !important; /* El máximo número posible de capa */
-    
+    z-index: 2147483647 !important;
     display: flex !important;
     align-items: center;
     gap: 10px;
     background: white !important;
     padding: 10px 16px;
     border-radius: 50px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2) !important;
-    
-    /* Animación */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+    font-size: 13px;
+    color: #111;
+    /* Estado inicial: Invisible */
     opacity: 0;
+    visibility: hidden;
     transform: translateY(-20px);
     transition: all 0.5s ease;
 }
+
+/* Clase que activa el JavaScript */
 .sale-popup.show {
-    visibility: visible !important;
     opacity: 1 !important;
-    transform: translateX(0) !important;
-}
-.sale-popup.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+    visibility: visible !important;
+    transform: translateY(0) !important;
 
 .sale-popup::before {
     content: "";
@@ -257,19 +251,17 @@ html, body {
   transform: translateZ(0);
 }
 
-/* BOTÓN WHATSAPP - FORZADO */
+/* WHATSAPP - FLOTANTE ABAJO */
 .whatsapp-container {
     position: fixed !important;
     bottom: 20px !important;
     right: 20px !important;
-    top: auto !important;
-    left: auto !important;
     z-index: 2147483647 !important;
-    
     display: flex !important;
     align-items: center;
     gap: 10px;
     text-decoration: none !important;
+
 }
 .wa-bubble {
     background: rgba(255,255,255,0.95);

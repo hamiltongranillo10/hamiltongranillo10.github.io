@@ -436,6 +436,42 @@ video {
     transform: scale(1.03); /* Crece un poquito al tocarlo */
 }
 
+.mensaje-guia-vip {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px; /* Un poco más grande para que sea legible */
+    font-weight: 700;
+    color: #b88a2a; /* Dorado oscuro Premium */
+    margin: 25px auto 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.flecha-vip {
+    width: 2px;
+    height: 35px;
+    background: linear-gradient(to bottom, #d4af37, transparent);
+    position: relative;
+    animation: bounceVertical 2s infinite;
+}
+
+.flecha-vip::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #d4af37;
+}
+
+@keyframes bounceVertical {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(12px); opacity: 1; }
+}
     
     </style>
     
@@ -542,10 +578,9 @@ video {
     🔥 ACCEDER AL BONO
   </a>
             
- <p style="font-size:14px; margin-bottom:15px;">
-    Antes de tu bono, revisa esto primero ↓ 
-  </p>
-            
+<div class="mensaje-guia-vip">
+    Antes de tu bono, revisa esto primero
+    <span class="flecha-vip"></span>
 </div>
 
    <h2 style="font-family: 'Playfair Display', serif; font-size:28px; margin-top:30px;">

@@ -74,8 +74,8 @@
         }
 
         h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 5vw, 48px); color: #111827; line-height: 1.2; margin-bottom: 15px; }
-        .old { text-decoration: line-through; color: #9ca3af; font-size: 18px; }
-        .new { font-size: clamp(40px, 8vw, 60px); color: var(--primary); font-weight: 800; display: block; margin: 5px 0; }
+        .old { text-decoration: line-through;  color: #9ca3af;  font-size: 18px;  display: block !important;  text-align: center !important;  margin: 0 auto !important; }
+       .new { font-size: clamp(40px, 8vw, 60px);  color: var(--primary);  font-weight: 800;  display: block !important;  text-align: center !important;  margin: 5px auto !important; }
         
         .btn { 
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); 
@@ -133,8 +133,10 @@
     background: rgba(184, 138, 42, 0.08);
     transform: scale(1.03);
 }
-        .timer { color: var(--accent); font-weight: 700; margin: 15px 0; display: inline-block; padding: 6px 15px; background: #fee2e2; border-radius: 50px; font-size: 14px; }
-        
+     .timer {  color: var(--accent);  font-weight: 700;  padding: 6px 15px;  background: #fee2e2;  border-radius: 50px;  font-size: 14px;  display: table !important; margin: 15px auto !important; 
+    text-align: center !important;
+ }
+    
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin: 30px 0; text-align: left; }
         .card { background: white; padding: 15px; border-radius: 12px; border: 1px solid #f3f4f6; font-size: 14px; font-weight: 600; }
 

@@ -199,19 +199,28 @@
     position: fixed !important;
     top: 20px !important;
     left: 20px !important;
-    z-index: 9999998 !important;
-    display: flex !important;
+    z-index: 9999999 !important;
+    display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.98);
     padding: 10px 16px;
     border-radius: 999px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     font-size: 13px;
     font-weight: 600;
-    color: #111;
-    pointer-events: none; /* Para que no estorbe si el usuario quiere hacer clic detrás */
+    /* Esto controla que aparezca y desaparezca suavemente */
+    visibility: hidden; 
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.5s ease-in-out;
+}
+
+/* Esta clase es la que tu JavaScript debe activar para mostrarlo */
+.sale-popup.show {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
 }
 .sale-popup.show {
     opacity: 1;
@@ -250,12 +259,16 @@ html, body {
     position: fixed !important;
     right: 20px !important;
     bottom: 20px !important;
-    z-index: 9999999 !important; /* Un número muy alto para que nada lo tape */
+    z-index: 9999999 !important;
     display: flex !important;
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    pointer-events: auto !important; /* Asegura que se pueda hacer clic */
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-container:hover {
+    transform: scale(1.1); /* Se agranda un poquito al pasar el mouse */
 }
 .wa-bubble {
     background: rgba(255,255,255,0.95);

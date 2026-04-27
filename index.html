@@ -383,7 +383,7 @@ video {
 }
 
 /* =========================
-   MÓVIL: 1 POR FILA + BOTONES PERFECTOS
+   MÓVIL: AJUSTES DE PRECIO Y BOTÓN
 ========================= */
 @media (max-width: 768px) {
 
@@ -391,18 +391,28 @@ video {
         padding: 10px;
     }
 
+    /* Centramos los precios específicamente en móvil */
+    .old, .new {
+        text-align: center !important;
+        display: block !important;
+        width: 100%;
+    }
+
     .grid-img {
         grid-template-columns: 1fr;
     }
 
+    /* Ajuste del botón: Elegante y no tan largo */
     .btn,
     a.btn {
-        width: 100%;
-        display: flex;
+        width: 90% !important; /* Deja un margen a los lados */
+        max-width: 340px !important; /* Evita que se estire demasiado */
+        margin: 15px auto !important; /* Lo mantiene perfectamente centrado */
+        display: flex !important;
         justify-content: center;
+        padding: 18px 15px !important; /* Ajusta el grosor */
     }    
 }
-
     </style>
     
 </head>

@@ -35,125 +35,84 @@
     <title>Curso Velas Artesanales Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
 
- <style>
+<style>
 :root {
     --primary: #d4af37;
     --primary-dark: #b88a2a;
     --accent: #f43f5e;
-    --glass: rgba(255, 255, 255, 0.65);
 }
 
-/* Base y Fondo */
 body { 
     margin: 0; 
     font-family: 'Montserrat', sans-serif; 
-    background: radial-gradient(circle at top, rgba(255,255,255,0.7), transparent 60%),
-                linear-gradient(135deg, #f7f1e8, #e8dccb);
-    background-size: cover;
+    background: #f7f1e8; 
     color: #2b2b2b;
-    overflow-x: hidden;
-    width: 100%;
+    text-align: center !important; /* Fuerza a que todo se alinee al medio */
 }
 
-/* Estructura Centrada */
-.wrapper { 
-    max-width: 900px; 
-    margin: 0 auto; 
-    padding: 15px; 
-    text-align: center; 
-    box-sizing: border-box;
+/* CONTENEDOR DE LA OFERTA (El cuadrito rosado) */
+.timer-badge {
+    background-color: #ffe4e6 !important; /* Color rosadito */
+    color: #e11d48 !important; /* Color del texto de la oferta */
+    padding: 8px 20px !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    display: inline-block !important; /* Importante para que el margen auto funcione */
+    margin: 10px auto !important;
+    font-size: 16px !important;
 }
 
-.hero, .bottom-section { 
-    background: var(--glass); 
-    backdrop-filter: blur(15px); 
-    -webkit-backdrop-filter: blur(15px); 
-    padding: 40px 20px; 
-    border-radius: 30px; 
-    border: 1px solid rgba(255,255,255,0.6); 
-    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-    margin: 20px auto;
-    max-width: 900px;
+/* PRECIO ANTIGUO ($74) */
+.old-price {
+    display: block !important;
+    color: #a0a0a0 !important;
+    text-decoration: line-through !important;
+    font-size: 22px !important;
+    margin-bottom: -10px !important;
 }
 
-/* Tipografía */
-h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 5vw, 48px); color: #111827; line-height: 1.2; margin-bottom: 15px; text-align: center; }
-.old { text-decoration: line-through; color: #9ca3af; font-size: 18px; display: block; margin: 0 auto; }
-.new { font-size: clamp(40px, 8vw, 60px); color: var(--primary); font-weight: 800; display: block; margin: 5px auto; text-align: center; }
+/* PRECIO NUEVO ($37) */
+.new-price {
+    display: block !important;
+    font-size: clamp(45px, 10vw, 65px) !important;
+    color: var(--primary) !important;
+    font-weight: 800 !important;
+    margin: 0 auto !important;
+}
 
-/* BOTÓN MAESTRO (Arreglado para PC y Móvil) */
+/* SECCIÓN INFERIOR Y BOTÓN */
+.bottom-section {
+    max-width: 900px !important;
+    margin: 40px auto !important;
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* Centra el botón en PC y Móvil */
+}
+
 .btn { 
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); 
-    color: white !important; 
-    padding: 18px 30px; 
-    border-radius: 100px; 
-    text-decoration: none; 
-    font-weight: 800; 
-    display: inline-flex; /* Centra el texto interno */
-    align-items: center;
-    justify-content: center;
-    font-size: clamp(14px, 4.5vw, 18px);
-    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4); 
-    transition: 0.3s; 
-    cursor: pointer; 
-    border: none;
-    position: relative;
-    overflow: hidden; 
-    margin: 15px auto;
-    animation: pulseSoft 2.5s ease-in-out infinite;
-    max-width: 90%; /* Evita que sea gigante en móvil */
+    display: inline-flex !important; 
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 25px auto !important;
+    width: 100% !important;
+    max-width: 450px !important; /* Para que en PC no sea gigante */
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+    color: white !important;
+    border-radius: 100px !important;
+    padding: 20px 30px !important;
+    font-weight: 800 !important;
+    text-decoration: none !important;
+    box-shadow: 0 10px 25px rgba(212,175,55,0.3) !important;
+    animation: pulseSoft 2.5s infinite !important;
 }
 
-/* Efecto de Brillo */
-.btn::after {
-    content: "";
-    position: absolute;
-    top: -50%; left: -100%; width: 50%; height: 200%;
-    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
-    transform: rotate(25deg);
-    animation: glassShine 4s infinite;
-}
+@keyframes pulseSoft { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-/* Grid de Imágenes */
-.grid-img {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 15px;
-    justify-content: center;
-    margin: 30px auto;
-}
-
-.card-img {
-    background: white;
-    border-radius: 15px;
-    padding: 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    transition: 0.3s;
-}
-
-/* FAQ y Extras */
-.faq-container { max-width: 700px; margin: 25px auto; background: white; border-radius: 20px; padding: 10px 20px; text-align: left; }
-.faq-item { border-bottom: 1px solid #f1f1f1; padding: 15px 0; cursor: pointer; }
-.faq-question { font-weight: 700; position: relative; padding-right: 25px; }
-.faq-answer { max-height: 0; overflow: hidden; opacity: 0; transition: all 0.35s ease; font-size: 14px; }
-.faq-item.active .faq-answer { max-height: 200px; opacity: 1; margin-top: 10px; }
-
-/* Animaciones */
-@keyframes pulseSoft { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
-@keyframes glassShine { 0% { left: -120%; } 15% { left: 150%; } 100% { left: 150%; } }
-
-/* Ajustes Móvil */
+/* AJUSTE PARA MÓVIL */
 @media (max-width: 768px) {
-    .btn { width: auto; min-width: 280px; display: flex; }
-    .grid-img { grid-template-columns: 1fr 1fr; } /* 2 por fila en móvil se ve mejor */
-    .hero, .bottom-section { width: 92%; padding: 25px 15px; }
+    .btn { width: 95% !important; font-size: 16px !important; }
 }
-
-/* Popups y WhatsApp */
-.sale-popup { position: fixed; left: 18px; bottom: 95px; z-index: 999; display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.92); padding: 10px 14px; border-radius: 999px; box-shadow: 0 10px 30px rgba(0,0,0,0.12); opacity: 0; transform: translateY(20px); transition: 0.35s; }
-.sale-popup.show { opacity: 1; transform: translateY(0); }
-.whatsapp-container { position: fixed; right: 18px; bottom: 20px; z-index: 999; display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.wa-icon { width: 52px; height: 52px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; }
 </style>
     
 </head>

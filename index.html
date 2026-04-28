@@ -563,8 +563,9 @@ video {
         <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">
         QUIERO EMPEZAR HOY CON EL DESCUENTO
        </a>
-     <div id="mensaje-descuento-1" style="font-weight: bold; color: #d9534f; margin: 10px 0; text-align: center; font-size: 0.9em;"></div>
-   
+        
+       <div id="mensaje-descuento-1" style="font-weight: bold; color: #b8860b; margin: 10px 0; text-align: center; font-size: 0.9em; font-style: italic;"></div>
+        
         <div class="tarjeta-soporte-hamilton">
         <div class="cuerpo-reproductor">
         <div class="contenedor-foto">
@@ -799,8 +800,9 @@ Preguntas Frecuentes
         <p style="font-weight: 700;">¡ÚLTIMA OPORTUNIDAD PARA UNIRTE CON DESCUENTO!</p>
         <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">SÍ, QUIERO MI ACCESO AHORA</a>
         <p style="font-size: 12px; margin-top: 15px;">🔒 Pago 100% Seguro | Acceso Inmediato</p>
-        <div id="mensaje-descuento-2" style="font-weight: bold; color: #d9534f; margin: 10px 0; text-align: center; font-size: 0.9em;"></div>
     
+        <div id="mensaje-descuento-2" style="font-weight: bold; color: #b8860b; margin: 10px 0; text-align: center; font-size: 0.9em; font-style: italic;"></div>
+            
     </div>
     <div style="margin:30px 0;">
   <h2 style="font-family: 'Playfair Display', serif; font-size:28px;">
@@ -831,8 +833,8 @@ Tú podrías ser el siguiente
        🚀 QUIERO CAMBIAR MI SITUACIÓN AHORA
        </a>
         
-      <div id="mensaje-descuento-3" style="font-weight: bold; color: #d9534f; margin: 10px 0; text-align: center; font-size: 0.9em;"></div>
-        
+      <div id="mensaje-descuento-3" style="font-weight: bold; color: #b8860b; margin: 10px 0; text-align: center; font-size: 0.9em; font-style: italic;"></div>
+          
    <div style="text-align: center; width: 100%; margin-top: 10px; margin-bottom: 30px;">
     <a href="https://wa.link/7h1fs9" class="btn-soporte-premium" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="18" height="18" style="display: inline-block; vertical-align: middle; margin-right: 8px; margin-top: -3px;">
@@ -977,14 +979,14 @@ async function convertirPrecios() {
                     const usd = el.getAttribute('data-usd');
                     let margen;
 
-                    // LÓGICA DE PRECIOS POR PAÍS
+                    // --- LÓGICA DE PRECIOS POR PAÍS ---
                     if (monedaLocal === 'USD') {
-                        margen = 1.0;  // Ecuador y USA: $37 exactos
+                        margen = 1.0;  // ECUADOR Y USA: $37 exactos
                     } else if (monedaLocal === 'MXN') {
-                        margen = 1.22; // México: Precio real Hotmart (~$787)
+                        margen = 1.23; // MÉXICO: Ajuste para clavar los $787 - $790
                     } else {
-                        margen = 1.25; // Otros países: Precio con margen para el gancho
-                        mostrarMensaje = true; // Activa el texto de regalo
+                        margen = 1.25; // RESTO DEL MUNDO: Margen para el bono
+                        mostrarMensaje = true; 
                     }
 
                     let precioConMargen = usd * tasa * margen; 
@@ -1005,7 +1007,7 @@ async function convertirPrecios() {
                 }
             });
 
-            // CONTROL DEL MENSAJE DE DESCUENTO
+            // --- LÓGICA DEL MENSAJE DORADO ---
             if (mostrarMensaje) {
                 const idsMensajes = ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3'];
                 idsMensajes.forEach(idMsg => {
@@ -1021,6 +1023,7 @@ async function convertirPrecios() {
     }
 }
 convertirPrecios();
+    
 </script>
         
 </body>

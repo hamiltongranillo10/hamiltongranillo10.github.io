@@ -947,7 +947,7 @@ const observer = new IntersectionObserver(entries => {
 
 reveals.forEach(el => observer.observe(el));
 
-    async function convertirPrecios() {
+   async function convertirPrecios() {
         try {
             const ipRes = await fetch('https://ipapi.co/json/');
             const ipData = await ipRes.json();
@@ -958,24 +958,37 @@ reveals.forEach(el => observer.observe(el));
             const tasa = exchangeData.rates[monedaLocal];
 
             if (tasa && monedaLocal !== 'USD') {
-                // AQUÍ AGREGAMOS LOS 6 IDs (2 por cada sección de la página)
+                // Lista de todos tus IDs (Asegúrate de que en el HTML tengas los 6)
                 const elementos = [
                     'precio-tachado', 'precio-oferta', 
                     'precio-tachado-2', 'precio-oferta-2', 
                     'precio-tachado-3', 'precio-oferta-3'
                 ];
 
-                elementos.forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el) {
-                        const usd = el.getAttribute('data-usd');
-                        const precioConvertido = Math.round(usd * tasa);
-                        el.innerText = `${simboloMoneda}${precioConvertido.toLocaleString()} ${monedaLocal}`;
-                    }
-                });
+               elementos.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            const usd = el.getAttribute('data-usd');
+            
+            // 1. Margen del 7.5% para TODOS los países
+            let precioBase = usd * tasa * 1.075; 
+            
+            let precioFinal;
+            // 2. Si el precio es mayor a 10,000 (como en Colombia o Chile), redondea a miles
+            if (precioBase > 10000) {
+                precioFinal = Math.ceil(precioBase / 1000) * 1000;
+            } 
+            // 3. Si el precio es bajo (como México, USD o Soles), redondea al número entero
+            else {
+                precioFinal = Math.round(precioBase);
+            }
+
+            el.innerText = `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
+        }
+    });
             }
         } catch (error) { 
-            console.log("Error al convertir precios"); 
+            console.log("Error en conversión"); 
         }
     }
     convertirPrecios();

@@ -981,9 +981,10 @@ async function convertirPrecios() {
 
                     // --- LÓGICA DE PRECIOS POR PAÍS ---
                     if (monedaLocal === 'USD') {
-                        margen = 1.0;  // ECUADOR Y USA: $37 exactos
+                        margen = 1.0;  // ECUADOR Y USA: $37 exactos (Sin mensaje)
                     } else if (monedaLocal === 'MXN') {
-                        margen = 1.23; // MÉXICO: Ajuste para clavar los $787 - $790
+                        margen = 1.23; // MÉXICO: ~$791
+                        mostrarMensaje = true; // <--- AHORA MÉXICO TAMBIÉN VE EL MENSAJE
                     } else {
                         margen = 1.25; // RESTO DEL MUNDO: Margen para el bono
                         mostrarMensaje = true; 
@@ -998,7 +999,6 @@ async function convertirPrecios() {
                         precioFinal = Math.ceil(precioConMargen);
                     }
 
-                    // Formato de visualización
                     if (monedaLocal === 'USD') {
                         el.innerText = `${simboloMoneda}${precioFinal}`;
                     } else {

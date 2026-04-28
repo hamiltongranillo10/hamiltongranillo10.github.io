@@ -969,14 +969,18 @@ reveals.forEach(el => observer.observe(el));
                     const el = document.getElementById(id);
                     if (el) {
                         const usd = el.getAttribute('data-usd');
-                        // Usamos 1.20 para cubrir IVA y tasas de Hotmart
-                        let precioBase = usd * tasa * 1.20; 
+                        
+                        // USAMOS 1.14 (14%) - Es el promedio ideal según tus datos
+                        let precioConMargen = usd * tasa * 1.14; 
                         
                         let precioFinal;
-                        if (precioBase > 10000) {
-                            precioFinal = Math.ceil(precioBase / 1000) * 1000;
+                        // Redondeo inteligente para que se vea profesional
+                        if (monedaLocal === 'COP' || monedaLocal === 'CLP') {
+                            // Colombia y Chile: Redondeo al mil para evitar números "sucios"
+                            precioFinal = Math.round(precioConMargen / 1000) * 1000;
                         } else {
-                            precioFinal = Math.ceil(precioBase);
+                            // México, Brasil, Europa, etc: Redondeo al entero
+                            precioFinal = Math.round(precioConMargen);
                         }
 
                         el.innerText = `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;

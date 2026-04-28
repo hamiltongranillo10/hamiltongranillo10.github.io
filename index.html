@@ -970,17 +970,18 @@ reveals.forEach(el => observer.observe(el));
                     if (el) {
                         const usd = el.getAttribute('data-usd');
                         
-                        // USAMOS 1.14 (14%) - Es el promedio ideal según tus datos
-                        let precioConMargen = usd * tasa * 1.14; 
+                        // CAMBIO 1: Subimos a 1.15 para cubrir el IVA de México (16%) y otros países
+                        let precioConMargen = usd * tasa * 1.15; 
                         
                         let precioFinal;
-                        // Redondeo inteligente para que se vea profesional
+                        // Redondeo inteligente
                         if (monedaLocal === 'COP' || monedaLocal === 'CLP') {
-                            // Colombia y Chile: Redondeo al mil para evitar números "sucios"
-                            precioFinal = Math.round(precioConMargen / 1000) * 1000;
+                            // Para Colombia y Chile usamos Math.ceil para redondear al millar superior
+                            precioFinal = Math.ceil(precioConMargen / 1000) * 1000;
                         } else {
-                            // México, Brasil, Europa, etc: Redondeo al entero
-                            precioFinal = Math.round(precioConMargen);
+                            // CAMBIO 2: Usamos Math.ceil para que en México y el resto SIEMPRE 
+                            // redondee hacia arriba al entero más cercano (de 787.2 a 788)
+                            precioFinal = Math.ceil(precioConMargen);
                         }
 
                         el.innerText = `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;

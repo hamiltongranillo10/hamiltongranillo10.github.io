@@ -508,9 +508,6 @@ video {
     width: 100%;
     height: 35px;
   }
-
-
-
     
     </style>
     
@@ -559,9 +556,9 @@ video {
      <source src="condena-video.mp4" type="video/mp4">
         </video>
         
-        <div class="old">$74 USD</div>
-        <div class="new">$37 USD</div>
-        <div class="timer" id="timer1">Oferta termina en: 14:18</div>
+       <div class="old" id="precio-tachado" data-usd="74">$74 USD</div>
+       <div class="new" id="precio-oferta" data-usd="37">$37 USD</div>
+       <div class="timer" id="timer1">Oferta termina en: 14:18</div>
         <br>
         <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">
         QUIERO EMPEZAR HOY CON EL DESCUENTO
@@ -953,6 +950,30 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.15 });
 
 reveals.forEach(el => observer.observe(el));
+
+    async function convertirPrecios() {
+    try {
+        const ipRes = await fetch('https://ipapi.co/json/');
+        const ipData = await ipRes.json();
+        const monedaLocal = ipData.currency;
+        const simboloMoneda = ipData.currency_symbol || '$';
+        const exchangeRes = await fetch(`https://open.er-api.com/v6/latest/USD`);
+        const exchangeData = await exchangeRes.json();
+        const tasa = exchangeData.rates[monedaLocal];
+        if (tasa && monedaLocal !== 'USD') {
+            const elementos = ['precio-tachado', 'precio-oferta'];
+            elementos.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    const usd = el.getAttribute('data-usd');
+                    const precioConvertido = Math.round(usd * tasa);
+                    el.innerText = `${simboloMoneda}${precioConvertido.toLocaleString()} ${monedaLocal}`;
+                }
+            });
+        }
+    } catch (error) { console.log("Error API"); }
+}
+convertirPrecios();
     
 </script>
         

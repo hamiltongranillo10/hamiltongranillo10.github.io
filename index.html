@@ -563,12 +563,13 @@ video {
         <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">
         QUIERO EMPEZAR HOY CON EL DESCUENTO
        </a>
-
-<div class="tarjeta-soporte-hamilton">
-  <div class="cuerpo-reproductor">
-    <div class="contenedor-foto">
-      <img src="HAMILTON_AUDIO.jpg" alt="Hamilton Soporte" class="foto-hamilton">
-    </div>
+     <div id="mensaje-descuento-1" style="font-weight: bold; color: #d9534f; margin: 10px 0; text-align: center; font-size: 0.9em;"></div>
+   
+        <div class="tarjeta-soporte-hamilton">
+        <div class="cuerpo-reproductor">
+        <div class="contenedor-foto">
+       <img src="HAMILTON_AUDIO.jpg" alt="Hamilton Soporte" class="foto-hamilton">
+ </div>
     
   <div class="info-reproductor">
       <p class="texto-soporte"><strong>¿Tienes dudas?</strong> Escucha esto de Hamilton:</p>
@@ -798,6 +799,8 @@ Preguntas Frecuentes
         <p style="font-weight: 700;">¡ÚLTIMA OPORTUNIDAD PARA UNIRTE CON DESCUENTO!</p>
         <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">SÍ, QUIERO MI ACCESO AHORA</a>
         <p style="font-size: 12px; margin-top: 15px;">🔒 Pago 100% Seguro | Acceso Inmediato</p>
+        <div id="mensaje-descuento-2" style="font-weight: bold; color: #d9534f; margin: 10px 0; text-align: center; font-size: 0.9em;"></div>
+    
     </div>
     <div style="margin:30px 0;">
   <h2 style="font-family: 'Playfair Display', serif; font-size:28px;">
@@ -827,7 +830,8 @@ Tú podrías ser el siguiente
         <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">
        🚀 QUIERO CAMBIAR MI SITUACIÓN AHORA
        </a>
-
+        
+      <div id="mensaje-descuento-3" style="font-weight: bold; color: #d9534f; margin: 10px 0; text-align: center; font-size: 0.9em;"></div>
         
    <div style="text-align: center; width: 100%; margin-top: 10px; margin-bottom: 30px;">
     <a href="https://wa.link/7h1fs9" class="btn-soporte-premium" target="_blank">
@@ -947,53 +951,76 @@ const observer = new IntersectionObserver(entries => {
 
 reveals.forEach(el => observer.observe(el));
 
- async function convertirPrecios() {
-        try {
-            const ipRes = await fetch('https://ipapi.co/json/');
-            const ipData = await ipRes.json();
-            const monedaLocal = ipData.currency;
-            const simboloMoneda = ipData.currency_symbol || '$';
-            
-            const exchangeRes = await fetch('https://open.er-api.com/v6/latest/USD');
-            const exchangeData = await exchangeRes.json();
-            const tasa = exchangeData.rates[monedaLocal];
+async function convertirPrecios() {
+    try {
+        const ipRes = await fetch('https://ipapi.co/json/');
+        const ipData = await ipRes.json();
+        const monedaLocal = ipData.currency;
+        const simboloMoneda = ipData.currency_symbol || '$';
+        
+        const exchangeRes = await fetch('https://open.er-api.com/v6/latest/USD');
+        const exchangeData = await exchangeRes.json();
+        const tasa = exchangeData.rates[monedaLocal];
 
-            if (tasa && monedaLocal !== 'USD') {
-                const elementos = [
-                    'precio-tachado', 'precio-oferta', 
-                    'precio-tachado-2', 'precio-oferta-2', 
-                    'precio-tachado-3', 'precio-oferta-3'
-                ];
+        if (tasa) {
+            const elementos = [
+                'precio-tachado', 'precio-oferta', 
+                'precio-tachado-2', 'precio-oferta-2', 
+                'precio-tachado-3', 'precio-oferta-3'
+            ];
 
-                elementos.forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el) {
-                        const usd = el.getAttribute('data-usd');
-                        
-                        // CAMBIO 1: Subimos a 1.15 para cubrir el IVA de México (16%) y otros países
-                        let precioConMargen = usd * tasa * 1.15; 
-                        
-                        let precioFinal;
-                        // Redondeo inteligente
-                        if (monedaLocal === 'COP' || monedaLocal === 'CLP') {
-                            // Para Colombia y Chile usamos Math.ceil para redondear al millar superior
-                            precioFinal = Math.ceil(precioConMargen / 1000) * 1000;
-                        } else {
-                            // CAMBIO 2: Usamos Math.ceil para que en México y el resto SIEMPRE 
-                            // redondee hacia arriba al entero más cercano (de 787.2 a 788)
-                            precioFinal = Math.ceil(precioConMargen);
-                        }
+            let mostrarMensaje = false;
 
+            elementos.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    const usd = el.getAttribute('data-usd');
+                    let margen;
+
+                    // LÓGICA DE PRECIOS POR PAÍS
+                    if (monedaLocal === 'USD') {
+                        margen = 1.0;  // Ecuador y USA: $37 exactos
+                    } else if (monedaLocal === 'MXN') {
+                        margen = 1.22; // México: Precio real Hotmart (~$787)
+                    } else {
+                        margen = 1.25; // Otros países: Precio con margen para el gancho
+                        mostrarMensaje = true; // Activa el texto de regalo
+                    }
+
+                    let precioConMargen = usd * tasa * margen; 
+                    
+                    let precioFinal;
+                    if (monedaLocal === 'COP' || monedaLocal === 'CLP') {
+                        precioFinal = Math.ceil(precioConMargen / 1000) * 1000;
+                    } else {
+                        precioFinal = Math.ceil(precioConMargen);
+                    }
+
+                    // Formato de visualización
+                    if (monedaLocal === 'USD') {
+                        el.innerText = `${simboloMoneda}${precioFinal}`;
+                    } else {
                         el.innerText = `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
+                    }
+                }
+            });
+
+            // CONTROL DEL MENSAJE DE DESCUENTO
+            if (mostrarMensaje) {
+                const idsMensajes = ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3'];
+                idsMensajes.forEach(idMsg => {
+                    const contenedor = document.getElementById(idMsg);
+                    if (contenedor) {
+                        contenedor.innerText = "¡Haz clic en el botón para aplicar un bono de descuento extra disponible en tu país! 🎁";
                     }
                 });
             }
-        } catch (error) { 
-            console.error("Error en la conversión:", error); 
         }
+    } catch (error) { 
+        console.error("Error en la conversión:", error); 
     }
-    convertirPrecios();
-    
+}
+convertirPrecios();
 </script>
         
 </body>

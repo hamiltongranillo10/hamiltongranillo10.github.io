@@ -979,35 +979,30 @@ async function convertirPrecios() {
                     const usd = el.getAttribute('data-usd');
                     let margen;
 
-                    // --- LÓGICA DE PRECIOS POR PAÍS ---
                     if (monedaLocal === 'USD') {
-                        margen = 1.0;  // ECUADOR Y USA: $37 exactos (Sin mensaje)
+                        margen = 1.0; 
                     } else if (monedaLocal === 'MXN') {
-                        margen = 1.23; // MÉXICO: ~$791
-                        mostrarMensaje = true; // <--- AHORA MÉXICO TAMBIÉN VE EL MENSAJE
+                        margen = 1.23; 
+                        mostrarMensaje = true; 
                     } else {
-                        margen = 1.25; // RESTO DEL MUNDO: Margen para el bono
+                        margen = 1.25; 
                         mostrarMensaje = true; 
                     }
 
                     let precioConMargen = usd * tasa * margen; 
-                    
-                    let precioFinal;
-                    if (monedaLocal === 'COP' || monedaLocal === 'CLP') {
-                        precioFinal = Math.ceil(precioConMargen / 1000) * 1000;
-                    } else {
-                        precioFinal = Math.ceil(precioConMargen);
-                    }
+                    let precioFinal = (monedaLocal === 'COP' || monedaLocal === 'CLP') 
+                        ? Math.ceil(precioConMargen / 1000) * 1000 
+                        : Math.ceil(precioConMargen);
 
+                    // --- AQUÍ ESTÁ EL ARREGLO DEL USD ---
                     if (monedaLocal === 'USD') {
-                        el.innerText = `${simboloMoneda}${precioFinal}`;
+                        el.innerText = `${simboloMoneda}${precioFinal} USD`; // Volvimos a poner USD
                     } else {
                         el.innerText = `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
                     }
                 }
             });
 
-            // --- LÓGICA DEL MENSAJE DORADO ---
             if (mostrarMensaje) {
                 const idsMensajes = ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3'];
                 idsMensajes.forEach(idMsg => {

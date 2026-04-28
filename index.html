@@ -508,6 +508,38 @@ video {
     width: 100%;
     height: 35px;
   }
+
+/* === ESTILOS PARA RESALTAR PRECIOS === */
+#precio-tachado, #precio-tachado-2, #precio-tachado-3 {
+    font-size: 1.1rem !important;
+    text-decoration: line-through;
+    opacity: 0.6;
+    display: block;
+    color: #444;
+    margin-bottom: -5px;
+    text-align: center;
+}
+
+#precio-oferta, #precio-oferta-2, #precio-oferta-3 {
+    font-size: 3.5rem !important; 
+    font-weight: 900 !important;
+    display: block;
+    margin: 5px 0;
+    color: #e9b96e; /* Usé el dorado de tu tarjeta de soporte */
+    text-align: center;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+    #precio-oferta, #precio-oferta-2, #precio-oferta-3 {
+        font-size: 2.8rem !important; 
+    }
+    #precio-tachado, #precio-tachado-2, #precio-tachado-3 {
+        font-size: 1rem !important;
+    }
+}
+
+    
     
     </style>
     

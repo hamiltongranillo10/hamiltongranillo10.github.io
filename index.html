@@ -965,33 +965,27 @@ reveals.forEach(el => observer.observe(el));
                     'precio-tachado-3', 'precio-oferta-3'
                 ];
 
-               elementos.forEach(id => {
+             elementos.forEach(id => {
         const el = document.getElementById(id);
         if (el) {
             const usd = el.getAttribute('data-usd');
             
-            // 1. Margen del 7.5% para TODOS los países
-            let precioBase = usd * tasa * 1.075; 
+            // 1. Margen del 20% (Cubre IVA del 16-19% + tasa de cambio de Hotmart)
+            let precioConImpuestos = usd * tasa * 1.20; 
             
             let precioFinal;
-            // 2. Si el precio es mayor a 10,000 (como en Colombia o Chile), redondea a miles
-            if (precioBase > 10000) {
-                precioFinal = Math.ceil(precioBase / 1000) * 1000;
-            } 
-            // 3. Si el precio es bajo (como México, USD o Soles), redondea al número entero
-            else {
-                precioFinal = Math.round(precioBase);
+            // 2. Redondeo inteligente
+            if (precioConImpuestos > 10000) {
+                // Para Colombia/Chile: Redondea al millar para que se vea limpio
+                precioFinal = Math.ceil(precioConImpuestos / 1000) * 1000;
+            } else {
+                // Para México/Brasil/España: Redondea al entero
+                precioFinal = Math.ceil(precioConImpuestos);
             }
 
             el.innerText = `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
         }
     });
-            }
-        } catch (error) { 
-            console.log("Error en conversión"); 
-        }
-    }
-    convertirPrecios();
     
 </script>
         

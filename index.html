@@ -947,45 +947,47 @@ const observer = new IntersectionObserver(entries => {
 
 reveals.forEach(el => observer.observe(el));
 
-   async function convertirPrecios() {
+ async function convertirPrecios() {
         try {
             const ipRes = await fetch('https://ipapi.co/json/');
             const ipData = await ipRes.json();
             const monedaLocal = ipData.currency;
             const simboloMoneda = ipData.currency_symbol || '$';
-            const exchangeRes = await fetch(`https://open.er-api.com/v6/latest/USD`);
+            
+            const exchangeRes = await fetch('https://open.er-api.com/v6/latest/USD');
             const exchangeData = await exchangeRes.json();
             const tasa = exchangeData.rates[monedaLocal];
 
             if (tasa && monedaLocal !== 'USD') {
-                // Lista de todos tus IDs (Asegúrate de que en el HTML tengas los 6)
                 const elementos = [
                     'precio-tachado', 'precio-oferta', 
                     'precio-tachado-2', 'precio-oferta-2', 
                     'precio-tachado-3', 'precio-oferta-3'
                 ];
 
-             elementos.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            const usd = el.getAttribute('data-usd');
-            
-            // 1. Margen del 20% (Cubre IVA del 16-19% + tasa de cambio de Hotmart)
-            let precioConImpuestos = usd * tasa * 1.20; 
-            
-            let precioFinal;
-            // 2. Redondeo inteligente
-            if (precioConImpuestos > 10000) {
-                // Para Colombia/Chile: Redondea al millar para que se vea limpio
-                precioFinal = Math.ceil(precioConImpuestos / 1000) * 1000;
-            } else {
-                // Para México/Brasil/España: Redondea al entero
-                precioFinal = Math.ceil(precioConImpuestos);
-            }
+                elementos.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        const usd = el.getAttribute('data-usd');
+                        // Usamos 1.20 para cubrir IVA y tasas de Hotmart
+                        let precioBase = usd * tasa * 1.20; 
+                        
+                        let precioFinal;
+                        if (precioBase > 10000) {
+                            precioFinal = Math.ceil(precioBase / 1000) * 1000;
+                        } else {
+                            precioFinal = Math.ceil(precioBase);
+                        }
 
-            el.innerText = `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
+                        el.innerText = `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
+                    }
+                });
+            }
+        } catch (error) { 
+            console.error("Error en la conversión:", error); 
         }
-    });
+    }
+    convertirPrecios();
     
 </script>
         

@@ -948,28 +948,37 @@ const observer = new IntersectionObserver(entries => {
 reveals.forEach(el => observer.observe(el));
 
     async function convertirPrecios() {
-    try {
-        const ipRes = await fetch('https://ipapi.co/json/');
-        const ipData = await ipRes.json();
-        const monedaLocal = ipData.currency;
-        const simboloMoneda = ipData.currency_symbol || '$';
-        const exchangeRes = await fetch(`https://open.er-api.com/v6/latest/USD`);
-        const exchangeData = await exchangeRes.json();
-        const tasa = exchangeData.rates[monedaLocal];
-        if (tasa && monedaLocal !== 'USD') {
-            const elementos = ['precio-tachado', 'precio-oferta'];
-            elementos.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) {
-                    const usd = el.getAttribute('data-usd');
-                    const precioConvertido = Math.round(usd * tasa);
-                    el.innerText = `${simboloMoneda}${precioConvertido.toLocaleString()} ${monedaLocal}`;
-                }
-            });
+        try {
+            const ipRes = await fetch('https://ipapi.co/json/');
+            const ipData = await ipRes.json();
+            const monedaLocal = ipData.currency;
+            const simboloMoneda = ipData.currency_symbol || '$';
+            const exchangeRes = await fetch(`https://open.er-api.com/v6/latest/USD`);
+            const exchangeData = await exchangeRes.json();
+            const tasa = exchangeData.rates[monedaLocal];
+
+            if (tasa && monedaLocal !== 'USD') {
+                // AQUÍ AGREGAMOS LOS 6 IDs (2 por cada sección de la página)
+                const elementos = [
+                    'precio-tachado', 'precio-oferta', 
+                    'precio-tachado-2', 'precio-oferta-2', 
+                    'precio-tachado-3', 'precio-oferta-3'
+                ];
+
+                elementos.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        const usd = el.getAttribute('data-usd');
+                        const precioConvertido = Math.round(usd * tasa);
+                        el.innerText = `${simboloMoneda}${precioConvertido.toLocaleString()} ${monedaLocal}`;
+                    }
+                });
+            }
+        } catch (error) { 
+            console.log("Error al convertir precios"); 
         }
-    } catch (error) { console.log("Error API"); }
-}
-convertirPrecios();
+    }
+    convertirPrecios();
     
 </script>
         

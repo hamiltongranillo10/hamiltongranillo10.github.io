@@ -133,9 +133,11 @@
     background: rgba(184, 138, 42, 0.08);
     transform: scale(1.03);
 }
-     .timer {  color: var(--accent);  font-weight: 700;  padding: 6px 15px;  background: #fee2e2;  border-radius: 50px;  font-size: 14px;  display: table !important; margin: 15px auto !important; 
-    text-align: center !important;
- }
+    
+    .timer, #timer1, #timer2 { color: #b88a2a !important;  font-weight: 700 !important; padding: 10px 25px !important; background: rgba(212, 175, 55, 0.1) !important;  border: 1px solid rgba(212, 175, 55, 0.3) !important; 
+    border-radius: 50px !important;  font-size: 14px !important; display: table !important; margin: 20px auto !important;text-transform: uppercase !important; letter-spacing: 1px !important; font-family: 'Montserrat', sans-serif !important; text-align: center !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+}
     
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin: 30px 0; text-align: left; }
         .card { background: white; padding: 15px; border-radius: 12px; border: 1px solid #f3f4f6; font-size: 14px; font-weight: 600; }
@@ -877,16 +879,17 @@ box-shadow: 0 20px 60px rgba(0,0,0,0.4);
         
 
 <script>
-/* =======================
-   TEMPORIZADOR
-======================= */
-let time = 900;
+/* ========================
+   TEMPORIZADOR PERSISTENTE
+   ======================== */
+// Intentamos recuperar el tiempo guardado, si no, empezamos en 900
+let time = localStorage.getItem('tiempo_restante') ? parseInt(localStorage.getItem('tiempo_restante')) : 900;
 
 setInterval(() => {
     let m = Math.floor(time / 60);
     let s = time % 60;
 
-    let text = "Oferta termina en: " + m + ":" + String(s).padStart(2,'0');
+    let text = "Oferta termina en: " + m + ":" + String(s).padStart(2, '0');
 
     const t1 = document.getElementById("timer1");
     const t2 = document.getElementById("timer2");
@@ -894,10 +897,14 @@ setInterval(() => {
     if (t1) t1.innerText = text;
     if (t2) t2.innerText = text;
 
+    // Guardamos el segundo actual en la memoria del navegador
+    localStorage.setItem('tiempo_restante', time);
+
+    // Si llega a 0, reinicia a 900 (o déjalo en 0 si prefieres)
     time = time <= 0 ? 900 : time - 1;
 }, 1000);
 
-const names = ["Ana","María","Laura","Sofía","Tamara","Claudia","Anyeline","Marta","Isabel","Carla","Lucía"];
+const names = ["Ana","María","Laura","Sofía","Tamara","Claudia","Dana","Marta","Isabel","Carla","Lucía"];
 const countries = ["de México","de Colombia","de Chile","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
 
 function showPopup() {

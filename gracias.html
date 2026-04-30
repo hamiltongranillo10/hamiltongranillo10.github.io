@@ -168,7 +168,7 @@ font-family:'Playfair Display', serif;
 
 <div class="container">
 
-<h1>🎉 Felicidades Tu bono ya está listo</h1>
+<h1 id="tituloPrincipal">🎉 Felicidades Tu bono ya está listo</h1>
 
 <p>
 Ya diste el primer paso para crear <span class="highlight">velas de gel desde cero</span>
@@ -261,11 +261,17 @@ Aprende el proceso completo paso a paso para crear velas más profesionales.
    
 <script>
 function abrirGuia() {
+    // Esto cambia el texto del título arriba
+    document.getElementById("tituloPrincipal").innerText = "📖 Guía paso a paso";
+    
     document.getElementById("modalGuia").style.display = "flex";
     document.body.style.overflow = "hidden"; 
 }
 
 function cerrarGuia() {
+    // Esto regresa el título a su estado original
+    document.getElementById("tituloPrincipal").innerText = "🎉 Felicidades Tu bono ya está listo";
+    
     document.getElementById("modalGuia").style.display = "none";
     document.body.style.overflow = "auto"; 
 }

@@ -264,8 +264,8 @@ function abrirGuia() {
     // Cambia el título
     document.getElementById("tituloPrincipal").innerText = "📖 Guía paso a paso";
     
-    // ESCONDE el texto que se corta en celular
-    document.getElementById("textoSecundario").style.display = "none";
+    // Lo hace invisible pero mantiene el espacio (para que no se suba en PC)
+    document.getElementById("textoSecundario").style.visibility = "hidden";
     
     document.getElementById("modalGuia").style.display = "flex";
     document.body.style.overflow = "hidden"; 
@@ -275,8 +275,8 @@ function cerrarGuia() {
     // Regresa el título original
     document.getElementById("tituloPrincipal").innerText = "🎉 Felicidades Tu bono ya está listo";
     
-    // MUESTRA el texto de nuevo
-    document.getElementById("textoSecundario").style.display = "block";
+    // Lo vuelve a mostrar
+    document.getElementById("textoSecundario").style.visibility = "visible";
     
     document.getElementById("modalGuia").style.display = "none";
     document.body.style.overflow = "auto"; 

@@ -136,6 +136,7 @@ font-family:'Playfair Display', serif;
     padding: 20px;
     display: flex;
     flex-direction: column;
+    margin-top: 50px;
 }
 
 .close-btn {
@@ -261,23 +262,25 @@ Aprende el proceso completo paso a paso para crear velas más profesionales.
    
 <script>
 function abrirGuia() {
-    // Cambia el título
+    // 1. Cambiamos el título
     document.getElementById("tituloPrincipal").innerText = "📖 Guía paso a paso";
     
-    // Lo hace invisible pero mantiene el espacio (para que no se suba en PC)
-    document.getElementById("textoSecundario").style.visibility = "hidden";
+    // 2. Quitamos el texto secundario para que no estorbe en móvil
+    document.getElementById("textoSecundario").style.display = "none";
     
+    // 3. Abrimos la guía
     document.getElementById("modalGuia").style.display = "flex";
     document.body.style.overflow = "hidden"; 
 }
 
 function cerrarGuia() {
-    // Regresa el título original
+    // 1. Volvemos al título original
     document.getElementById("tituloPrincipal").innerText = "🎉 Felicidades Tu bono ya está listo";
     
-    // Lo vuelve a mostrar
-    document.getElementById("textoSecundario").style.visibility = "visible";
+    // 2. Aparecemos el texto secundario de nuevo
+    document.getElementById("textoSecundario").style.display = "block";
     
+    // 3. Cerramos la guía
     document.getElementById("modalGuia").style.display = "none";
     document.body.style.overflow = "auto"; 
 }

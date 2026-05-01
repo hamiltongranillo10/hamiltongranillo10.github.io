@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Gracias por tu guía | Academia de Velas</title>
+<title>Gracias por tu guía</title>
 
 <script>
 !function(f,b,e,v,n,t,s)
@@ -14,7 +14,6 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-
 fbq('init', '1274753604821165');
 fbq('track', 'PageView');
 </script>
@@ -22,102 +21,26 @@ fbq('track', 'PageView');
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-    body {
-        margin: 0;
-        font-family: 'Montserrat', sans-serif;
-        background: linear-gradient(135deg,#f7f1e8,#e8dccb);
-        color: #2b2b2b;
-    }
+    body{ margin:0; font-family:'Montserrat', sans-serif; background: linear-gradient(135deg,#f7f1e8,#e8dccb); color:#2b2b2b; }
+    .container{ max-width:800px; margin:auto; padding:40px 20px; text-align:center; }
+    h1{ font-family:'Playfair Display', serif; font-size:34px; margin-bottom:10px; }
+    h2{ font-family:'Playfair Display', serif; }
+    .highlight{ color:#b88a2a; font-weight:800; }
+    .box{ background: rgba(255,255,255,0.75); backdrop-filter: blur(10px); border-radius:25px; padding:30px; margin-top:25px; box-shadow:0 20px 50px rgba(0,0,0,0.08); border:1px solid rgba(255,255,255,0.6); }
+    
+    .btn{ display:inline-block; margin-top:20px; padding:18px 30px; border-radius:100px; text-decoration:none; font-weight:800; font-size:16px; color:white; background: linear-gradient(135deg, #d4af37, #b88a2a); box-shadow:0 10px 25px rgba(212,175,55,0.35); transition:0.3s; border:none; cursor:pointer; position:relative; overflow:hidden; }
+    .btn:hover{ transform:scale(1.05); }
 
-    .container {
-        max-width: 800px;
-        margin: auto;
-        padding: 40px 20px;
-        text-align: center;
-    }
+    /* MODALES */
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 9999; display: none; justify-content: center; align-items: center; }
+    .modal-content { background: #f4f1ea; width: 90%; max-width: 500px; height: 85vh; border-radius: 20px; position: relative; padding: 20px; display: flex; flex-direction: column; margin: 0; }
+    .close-btn { position: absolute; top: -35px; right: 0; color: white; font-size: 12px; letter-spacing: 2px; cursor: pointer; font-weight: bold; text-transform: uppercase; }
 
-    h1 { font-family: 'Playfair Display', serif; font-size: 34px; margin-bottom: 10px; }
-    h2 { font-family: 'Playfair Display', serif; }
-    p { font-size: 18px; line-height: 1.6; }
-    .highlight { color: #b88a2a; font-weight: 800; }
+    .modal-body { overflow-y: auto; margin-top: 10px; }
+    .modal-body img { width: 100%; margin-bottom: 15px; border-radius: 10px; }
 
-    .box {
-        background: rgba(255,255,255,0.75);
-        backdrop-filter: blur(10px);
-        border-radius: 25px;
-        padding: 30px;
-        margin-top: 25px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-        border: 1px solid rgba(255,255,255,0.6);
-    }
-
-    /* BOTONES PREMIUM */
-    .btn {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 18px 30px;
-        border-radius: 100px;
-        text-decoration: none;
-        font-weight: 800;
-        font-size: 16px;
-        color: white;
-        background: linear-gradient(135deg, #d4af37, #b88a2a);
-        box-shadow: 0 10px 25px rgba(212,175,55,0.35);
-        transition: 0.3s;
-        position: relative;
-        overflow: hidden;
-        border: none;
-        cursor: pointer;
-    }
-
-    .btn:hover { transform: scale(1.05); }
-
-    /* ESTILO DEL MODAL (REVISADO) */
-    .modal-overlay {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 9999;
-        display: none;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .modal-content {
-        background: #f4f1ea;
-        width: 90%;
-        max-width: 450px;
-        border-radius: 20px;
-        position: relative;
-        padding: 40px 25px;
-        text-align: center;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-    }
-
-    /* LA "X" ESTILO LUXURY */
-    .close-btn {
-        position: absolute;
-        top: -40px;
-        right: 0;
-        color: white;
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        cursor: pointer;
-    }
-
-    /* FORMULARIO DENTRO DEL MODAL */
-    .input-mail {
-        width: 100%;
-        padding: 15px;
-        margin-top: 15px;
-        border-radius: 10px;
-        border: 1px solid #ddd;
-        font-family: 'Montserrat', sans-serif;
-        box-sizing: border-box;
-    }
-
+    /* INPUTS */
+    .input-mail { width: 100%; padding: 15px; margin: 20px 0 10px; border-radius: 10px; border: 1px solid #ddd; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
     .small { font-size: 13px; opacity: 0.8; margin-top: 15px; }
 </style>
 </head>
@@ -125,63 +48,81 @@ fbq('track', 'PageView');
 <body>
 
 <div class="container">
-    <h1 id="tituloPrincipal">🎉 ¡Tu regalo está listo!</h1>
+    <h1 id="tituloPrincipal">🎉 Felicidades Tu bono ya está listo</h1>
     <p id="textoSecundario">Ya diste el primer paso para crear <span class="highlight">velas de gel desde cero</span></p>
 
     <div class="box">
-        <p>Para desbloquear el acceso a la guía paso a paso, haz clic abajo:</p>
-        <button onclick="abrirModal()" class="btn">📥 DESBLOQUEAR GUÍA GRATIS</button>
+        <p>Aquí tienes tu guía gratuita con materiales exactos y paso a paso real.</p>
+        <button onclick="abrirRegistro()" class="btn">📥 LEER MI GUÍA GRATIS</button>
+        <p style="margin-top:15px;">Pero lo más importante no es hacer velas…</p>
+        <p class="highlight">Es saber cómo convertirlas en ingresos reales.</p>
+        <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">🔥 QUIERO APRENDER A VENDER MIS VELAS</a>
+        <p class="small">Este es el siguiente paso si quieres resultados reales</p>
     </div>
 
     <div class="box">
-        <h2>🚀 ¿Quieres resultados reales?</h2>
-        <p>Hacer velas es el hobby, <span class="highlight">venderlas es el negocio.</span></p>
-        <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">🔥 APRENDER A VENDER MIS VELAS</a>
+        <h2>✨ ¿Quieres ir más allá?</h2>
+        <p>Si te gustó la guía gratuita, este es el siguiente nivel.</p>
+        <p class="highlight">Guía Práctica: Diseña y Crea Velas Artesanales desde Cero</p>
+        <p>Aprende el proceso completo paso a paso para crear velas más profesionales.</p>
+        <a class="btn" href="https://go.hotmart.com/G105542674I?ap=5742" target="_blank">🔥 ACCEDER A LA GUÍA COMPLETA</a>
+    </div>
+
+    <div class="box">
+        <h2>🚀 Antes de empezar</h2>
+        <p>Hacer velas es fácil. Lo difícil es venderlas.</p>
+        <p class="highlight">Ahí está el dinero real.</p>
+        <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">🔥 QUIERO APRENDER A VENDER MIS VELAS</a>
     </div>
 </div>
 
-<div id="modalCorreo" class="modal-overlay">
-    <div class="modal-content">
-        <span class="close-btn" onclick="cerrarModal()">✕ CERRAR</span>
-        <h2 style="margin:0;">¿A dónde te enviamos la Guía?</h2>
-        <p style="font-size:14px;">Ingresa tu correo para recibir el PDF y consejos exclusivos para tu negocio.</p>
-        
-        <form id="emailForm">
-            <input type="email" class="input-mail" placeholder="Tu mejor correo electrónico" required>
-            <button type="submit" class="btn" style="width:100%;">📬 ENVIAR GUÍA AHORA</button>
+<div id="modalRegistro" class="modal-overlay">
+    <div class="modal-content" style="height: auto;">
+        <span class="close-btn" onclick="cerrarModales()">✕ CERRAR</span>
+        <h2>¿A dónde enviamos tus consejos?</h2>
+        <p style="font-size: 14px;">Ingresa tu email para desbloquear la guía y recibir tips exclusivos de velas.</p>
+        <form id="formRegistro">
+            <input type="email" id="userEmail" class="input-mail" placeholder="Tu mejor correo electrónico" required>
+            <button type="submit" class="btn" style="width:100%;">DESBLOQUEAR Y LEER AHORA</button>
         </form>
-        
-        <p class="small">🔒 Odiamos el spam tanto como tú. Tus datos están seguros.</p>
+    </div>
+</div>
+
+<div id="modalGuia" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn" onclick="cerrarModales()">✕ CERRAR GUÍA</span>
+        <div class="modal-body">
+            <img src="guia1.jpg" alt="Pág 1">
+            <img src="guia2.jpg" alt="Pág 2">
+            <img src="guia3.jpg" alt="Pág 3">
+            <img src="guia4.jpg" alt="Pág 4">
+            <img src="guia5.jpg" alt="Pág 5">
+            <img src="guia6.jpg" alt="Pág 6">
+        </div>
     </div>
 </div>
 
 <script>
-    const modal = document.getElementById("modalCorreo");
+function abrirRegistro() {
+    window.scrollTo(0, 0);
+    document.getElementById("modalRegistro").style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
 
-    function abrirModal() {
-        window.scrollTo(0, 0); // Nos asegura que el modal abra centrado
-        modal.style.display = "flex";
-        document.body.style.overflow = "hidden"; // Bloquea el scroll de atrás
-    }
+document.getElementById("formRegistro").onsubmit = function(e) {
+    e.preventDefault();
+    fbq('track', 'Lead');
+    document.getElementById("modalRegistro").style.display = "none";
+    document.getElementById("modalGuia").style.display = "flex";
+    document.getElementById("tituloPrincipal").innerText = "📖 Disfruta tu guía";
+    document.getElementById("textoSecundario").style.display = "none";
+};
 
-    function cerrarModal() {
-        modal.style.display = "none";
-        document.body.style.overflow = "auto"; // Devuelve el scroll
-    }
-
-    // SIMULACIÓN DE ENVÍO Y RASTREO
-    document.getElementById("emailForm").onsubmit = function(e) {
-        e.preventDefault();
-        
-        // 1. Aquí se dispara el evento Lead de Facebook
-        fbq('track', 'Lead');
-        
-        alert("¡Registro exitoso! Revisa tu bandeja de entrada (y la carpeta de spam).");
-        
-        // 2. Aquí podrías redirigirlos a la guía real o cerrar y mostrar éxito
-        cerrarModal();
-        window.location.href = "guia-velas-gel.pdf"; // Pon aquí el link de tu PDF
-    };
+function cerrarModales() {
+    document.getElementById("modalRegistro").style.display = "none";
+    document.getElementById("modalGuia").style.display = "none";
+    document.body.style.overflow = "auto";
+}
 </script>
 
 </body>

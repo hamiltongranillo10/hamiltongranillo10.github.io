@@ -87,7 +87,7 @@ fbq('track', 'PageView');
         </p>
 
         <form id="formRegistro">
-            <input type="email" id="userEmail" class="input-mail" placeholder="Tu mejor correo electrónico" required>
+            <input type="email" name="email" id="userEmail" class="input-mail" placeholder="Tu mejor correo electrónico" required>
             <button type="submit" class="btn" style="width:100%;">🔓 DESBLOQUEAR Y LEER AHORA</button>
         </form>
 
@@ -110,26 +110,43 @@ fbq('track', 'PageView');
 </div>
 
 <script>
-function abrirRegistro() {
-    window.scrollTo(0, 0);
-    document.getElementById("modalRegistro").style.display = "flex";
-    document.body.style.overflow = "hidden";
-}
+    function abrirRegistro() {
+        window.scrollTo(0, 0);
+        document.getElementById("modalRegistro").style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }
 
-document.getElementById("formRegistro").onsubmit = function(e) {
-    e.preventDefault();
-    fbq('track', 'Lead');
-    document.getElementById("modalRegistro").style.display = "none";
-    document.getElementById("modalGuia").style.display = "flex";
-    document.getElementById("tituloPrincipal").innerText = "📖 Disfruta tu guía";
-    document.getElementById("textoSecundario").style.display = "none";
-};
+    document.getElementById("formRegistro").onsubmit = function(e) {
+        e.preventDefault();
+        
+        // CORREGIDO: Ahora tiene comillas al principio y al final
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzgAv-69VPSR917N60BmbBzT1eE2557ma6aAfZC-VgKSLS9RcFlBI7tCtbjIC8LmbPvbg/exec';
+        const form = document.getElementById('formRegistro');
 
-function cerrarModales() {
-    document.getElementById("modalRegistro").style.display = "none";
-    document.getElementById("modalGuia").style.display = "none";
-    document.body.style.overflow = "auto";
-}
+        // Enviamos el correo a Google Sheets
+        fetch(scriptURL, { 
+            method: 'POST', 
+            body: new FormData(form),
+            mode: 'no-cors' 
+        })
+        .then(() => console.log('Registrado en Excel'))
+        .catch(error => console.error('Error!', error.message));
+
+        // Enviamos el evento a Facebook
+        fbq('track', 'Lead');
+        
+        // Cerramos registro y abrimos la guía
+        document.getElementById("modalRegistro").style.display = "none";
+        document.getElementById("modalGuia").style.display = "flex";
+        document.getElementById("tituloPrincipal").innerText = "📖 Disfruta tu guía";
+        document.getElementById("textoSecundario").style.display = "none";
+    };
+
+    function cerrarModales() {
+        document.getElementById("modalRegistro").style.display = "none";
+        document.getElementById("modalGuia").style.display = "none";
+        document.body.style.overflow = "auto";
+    }
 </script>
 
 </body>

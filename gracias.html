@@ -286,45 +286,61 @@ Aprende el proceso completo paso a paso para crear velas más profesionales.
    
 <script>
 // --- CONEXIÓN CON GOOGLE ---
-const scriptURL = 'https://script.google.com/macros/s/AKfycbyVLg_0cl3y5UKqRYRw71aUcvXmFXBdXDc0CSP1io2IFng6462-GS9KIkgWYTaJDo0yPQ/exec'; // <--- PEGA TU LINK AQUÍ
+const scriptURL = 'TU_URL_DE_APPS_SCRIPT'; 
 const form = document.getElementById('formEmails');
+let registroCompletado = false; // Variable para saber si ya puso el correo
 
 function abrirRegistro() {
-    document.getElementById("modalRegistro").style.display = "flex";
+    // Si ya se registró antes, abre la guía directo
+    if (registroCompletado) {
+        abrirGuiaFinal();
+    } else {
+        document.getElementById("modalRegistro").style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }
+}
+
+function abrirGuiaFinal() {
+    document.getElementById("modalRegistro").style.display = "none";
+    document.getElementById("modalGuia").style.display = "flex";
+    document.getElementById("tituloPrincipal").innerText = "📖 Guía paso a paso";
+    document.getElementById("textoSecundario").style.display = "none";
     document.body.style.overflow = "hidden";
 }
 
-function abrirGuia() {
-    // Cerramos el registro y abrimos la guía
-    document.getElementById("modalRegistro").style.display = "none";
-    document.getElementById("tituloPrincipal").innerText = "📖 Guía paso a paso";
-    document.getElementById("textoSecundario").style.display = "none";
-    document.getElementById("modalGuia").style.display = "flex";
-    document.body.style.overflow = "hidden"; 
-}
-
 function cerrarTodo() {
-    document.getElementById("tituloPrincipal").innerText = "🎉 Felicidades Tu bono ya está listo";
-    document.getElementById("textoSecundario").style.display = "block";
     document.getElementById("modalRegistro").style.display = "none";
     document.getElementById("modalGuia").style.display = "none";
-    document.body.style.overflow = "auto"; 
+    document.body.style.overflow = "auto";
+    
+    // Si no ha terminado el registro, regresamos el título original
+    if (!registroCompletado) {
+        document.getElementById("tituloPrincipal").innerText = "🎉 Felicidades Tu bono ya está listo";
+        document.getElementById("textoSecundario").style.display = "block";
+    }
 }
 
-// Función para enviar a Google y luego abrir la guía
 form.addEventListener('submit', e => {
     e.preventDefault();
-    const btnEnvio = form.querySelector('button');
-    btnEnvio.innerText = "Cargando guía...";
-    btnEnvio.disabled = true;
+    const btn = form.querySelector('button');
+    const textoOriginal = btn.innerText;
+    
+    btn.innerText = "Cargando guía...";
+    btn.disabled = true;
 
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    .then(response => {
-        abrirGuia();
+    .then(response => { 
+        registroCompletado = true; // Marcamos como listo
+        abrirGuiaFinal(); 
+        btn.innerText = textoOriginal; // Restauramos el botón por si acaso
+        btn.disabled = false;
     })
-    .catch(error => {
-        // Si falla internet, abrimos la guía igual para no perder al cliente
-        abrirGuia();
+    .catch(error => { 
+        // Abrimos la guía aunque falle para no perder al cliente
+        registroCompletado = true; 
+        abrirGuiaFinal();
+        btn.innerText = textoOriginal;
+        btn.disabled = false;
     });
 });
 </script>

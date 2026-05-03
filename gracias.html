@@ -22,7 +22,6 @@ fbq('track', 'Lead');
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-/* USAMOS TUS ESTILOS EXACTOS */
 body{ margin:0; font-family:'Montserrat', sans-serif; background: linear-gradient(135deg,#f7f1e8,#e8dccb); color:#2b2b2b; }
 .container{ max-width:800px; margin:auto; padding:40px 20px; text-align:center; }
 h1{ font-family:'Playfair Display', serif; font-size:34px; margin-bottom:10px; }
@@ -36,13 +35,13 @@ p{ font-size:18px; line-height:1.6; }
 .small{ font-size:13px; opacity:0.8; margin-top:15px; }
 h2{ font-family:'Playfair Display', serif; }
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 9999; display: flex; justify-content: center; align-items: center; }
-.modal-content { background: #f4f1ea; width: 90%; max-width: 500px; height: auto; max-height: 80vh; border-radius: 20px; position: relative; padding: 20px; display: flex; flex-direction: column; }
+.modal-content { background: #f4f1ea; width: 90%; max-width: 500px; height: 80vh; border-radius: 20px; position: relative; padding: 20px; display: flex; flex-direction: column; margin-top: 50px; }
 .close-btn { position: absolute; top: 10px; right: 20px; font-size: 20px; color: #b88a2a; font-weight: bold; cursor: pointer; z-index: 10; }
 .modal-body { overflow-y: auto; margin-top: 20px; }
 .modal-body img { width: 100%; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-/* NUEVO ESTILO PARA EL INPUT */
-.input-email { width: 100%; padding: 15px; margin-top: 15px; border-radius: 10px; border: 1px solid #d4af37; font-size: 16px; box-sizing: border-box; text-align: center; font-family: 'Montserrat', sans-serif; }
+/* Estilo del input integrado */
+.input-email { width: 100%; padding: 15px; margin-top: 15px; border-radius: 100px; border: 1px solid #d4af37; font-family: 'Montserrat', sans-serif; font-size: 16px; box-sizing: border-box; text-align: center; }
 </style>
 </head>
 
@@ -58,19 +57,21 @@ h2{ font-family:'Playfair Display', serif; }
 <button onclick="abrirRegistro()" class="btn">📥 LEER MI GUÍA GRATIS</button>
 
 <div id="modalRegistro" class="modal-overlay" style="display:none;">
-    <div class="modal-content">
-        <span class="close-btn" onclick="cerrarTodo()">&times;</span>
-        <h2>¡Excelente!</h2>
-        <p style="font-size: 16px;">Ingresa tu email para desbloquear la guía y recibir tu <b>Manual de Regalo</b> por correo.</p>
-        <form id="formEmails">
-            <input type="email" name="email" class="input-email" placeholder="Tu correo principal aquí" required>
-            <button type="submit" class="btn" style="width:100%;">DESBLOQUEAR AHORA</button>
-        </form>
+    <div class="modal-content" style="height: auto; min-height: 300px;">
+        <span class="close-btn" onclick="cerrarTodo()">&times; Cerrar</span>
+        <div class="modal-body">
+            <h2 style="margin-top:0;">✨ ¡Casi listo!</h2>
+            <p>Ingresa tu email para desbloquear la guía y recibir tu <b>Manual de Regalo</b>.</p>
+            <form id="formEmails">
+                <input type="email" name="email" class="input-email" placeholder="Tu mejor correo aquí" required>
+                <button type="submit" class="btn" style="width:100%;">DESBLOQUEAR AHORA</button>
+            </form>
+        </div>
     </div>
 </div>
 
 <div id="modalGuia" class="modal-overlay" style="display:none;">
-    <div class="modal-content" style="height: 80vh;">
+    <div class="modal-content">
         <span class="close-btn" onclick="cerrarTodo()">&times; Cerrar</span>
         <div class="modal-body">
             <img src="guia1.jpg" alt="Pág 1">
@@ -104,8 +105,8 @@ h2{ font-family:'Playfair Display', serif; }
 </div>
 
 <script>
-// --- CONFIGURACIÓN ---
-const scriptURL = 'https://script.google.com/macros/s/AKfycbz1TvA9MkY3tCT98zCuyD1kwOJf_6Op4TlZxzWBGE7pyiZ1YRfkC0lOUG8HN-tn9dKY-A/exec'; 
+// PEGA TU URL DE GOOGLE AQUÍ ABAJO
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyFM6_vuSefriup4xUFpdGwMnbeWiTJa3u6heIE1FZuwJSBcMYy0uY7pprpFo__vJzx8g/exec'; 
 const form = document.getElementById('formEmails');
 
 function abrirRegistro() {
@@ -113,41 +114,31 @@ function abrirRegistro() {
     document.body.style.overflow = "hidden";
 }
 
-function cerrarTodo() {
-    document.getElementById("modalRegistro").style.display = "none";
-    document.getElementById("modalGuia").style.display = "none";
-    document.body.style.overflow = "auto";
-    // Volvemos a los títulos originales
-    document.getElementById("tituloPrincipal").innerText = "🎉 Felicidades Tu bono ya está listo";
-    document.getElementById("textoSecundario").style.display = "block";
-}
-
-// MANEJO DEL ENVÍO
-form.addEventListener('submit', e => {
-    e.preventDefault();
-    const btn = form.querySelector('button');
-    btn.innerText = "Cargando guía...";
-    btn.disabled = true;
-
-    // Enviamos a Google
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    .then(response => {
-        mostrarGuiaFinal();
-    })
-    .catch(error => {
-        console.error('Error!', error.message);
-        // Si falla internet, abrimos la guía igual para no perder al cliente
-        mostrarGuiaFinal();
-    });
-});
-
 function mostrarGuiaFinal() {
     document.getElementById("modalRegistro").style.display = "none";
     document.getElementById("modalGuia").style.display = "flex";
     document.getElementById("tituloPrincipal").innerText = "📖 Guía paso a paso";
     document.getElementById("textoSecundario").style.display = "none";
 }
-</script>
 
+function cerrarTodo() {
+    document.getElementById("modalRegistro").style.display = "none";
+    document.getElementById("modalGuia").style.display = "none";
+    document.body.style.overflow = "auto";
+    document.getElementById("tituloPrincipal").innerText = "🎉 Felicidades Tu bono ya está listo";
+    document.getElementById("textoSecundario").style.display = "block";
+}
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = form.querySelector('button');
+    btn.innerText = "Cargando guía...";
+    btn.disabled = true;
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(response => { mostrarGuiaFinal(); })
+    .catch(error => { mostrarGuiaFinal(); }); // Abre la guía aunque falle internet
+});
+</script>
 </body>
 </html>

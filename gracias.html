@@ -24,122 +24,120 @@ fbq('track', 'Lead');
 
 <style>
 /* --- ESTILOS GENERALES --- */
-body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg,#f7f1e8,#e8dccb);
-    color: #2b2b2b;
+body{
+margin:0;
+font-family:'Montserrat', sans-serif;
+background: linear-gradient(135deg,#f7f1e8,#e8dccb);
+color:#2b2b2b;
 }
 
-.container {
-    max-width: 800px;
-    margin: auto;
-    padding: 80px 20px 40px 20px; /* Espacio extra para la flecha superior */
-    text-align: center;
+.container{
+max-width:800px;
+margin:auto;
+padding:40px 20px;
+text-align:center;
+position: relative;
 }
 
-h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 34px;
-    margin-bottom: 10px;
+h1{
+font-family:'Playfair Display', serif;
+font-size:34px;
+margin-bottom:10px;
+margin-top: 60px;
 }
 
-p {
-    font-size: 18px;
-    line-height: 1.6;
+p{
+font-size:18px;
+line-height:1.6;
 }
 
-.highlight {
-    color: #b88a2a;
-    font-weight: 800;
+.highlight{
+color:#b88a2a;
+font-weight:800;
 }
 
-.box {
-    background: rgba(255,255,255,0.75);
-    backdrop-filter: blur(10px);
-    border-radius: 25px;
-    padding: 30px;
-    margin-top: 25px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-    border: 1px solid rgba(255,255,255,0.6);
+.box{
+background: rgba(255,255,255,0.75);
+backdrop-filter: blur(10px);
+border-radius:25px;
+padding:30px;
+margin-top:25px;
+box-shadow:0 20px 50px rgba(0,0,0,0.08);
+border:1px solid rgba(255,255,255,0.6);
 }
 
-.btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 18px 30px;
-    border-radius: 100px;
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 16px;
-    color: white;
-    background: linear-gradient(135deg, #d4af37, #b88a2a);
-    box-shadow: 0 10px 25px rgba(212,175,55,0.35);
-    transition: 0.3s;
-    position: relative;
-    overflow: hidden;
-    border: none;
-    cursor: pointer;
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:18px 30px;
+border-radius:100px;
+text-decoration:none;
+font-weight:800;
+font-size:16px;
+color:white;
+background: linear-gradient(135deg, #d4af37, #b88a2a);
+box-shadow:0 10px 25px rgba(212,175,55,0.35);
+transition:0.3s;
+position:relative;
+overflow:hidden;
+border:none;
+cursor:pointer;
 }
 
-.btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 35px rgba(212,175,55,0.45);
+.btn:hover{
+transform:scale(1.05);
+box-shadow:0 15px 35px rgba(212,175,55,0.45);
 }
 
-.btn::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -100%;
-    width: 50%;
-    height: 200%;
-    background: rgba(255,255,255,0.4);
-    transform: rotate(25deg);
-    animation: shine 3s infinite;
+.btn::after{
+content:"";
+position:absolute;
+top:-50%;
+left:-100%;
+width:50%;
+height:200%;
+background:rgba(255,255,255,0.4);
+transform:rotate(25deg);
+animation:shine 3s infinite;
 }
 
-@keyframes shine {
-    0% { left: -120%; }
-    100% { left: 150%; }
+@keyframes shine{
+0%{left:-120%;}
+100%{left:150%;}
 }
 
-.small {
-    font-size: 13px;
-    opacity: 0.8;
-    margin-top: 15px;
+.small{
+font-size:13px;
+opacity:0.8;
+margin-top:15px;
 }
 
-h2 {
-    font-family: 'Playfair Display', serif;
+h2{
+font-family:'Playfair Display', serif;
 }
 
 /* FLECHA DE INICIO (PÁGINA PRINCIPAL) */
-.back-btn-main {
+.back-btn-inicio {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    left: 10px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
-    z-index: 1001;
-    padding: 8px 12px;
-    border-radius: 100px;
-    background: rgba(212, 175, 55, 0.1);
-    transition: 0.3s;
+    gap: 5px;
+    z-index: 10;
 }
 
-.back-btn-main svg {
+.back-btn-inicio svg {
     width: 45px;
     height: auto;
     fill: none;
     stroke: #b88a2a;
-    stroke-width: 2.5;
+    stroke-width: 2;
     transform: rotate(-10deg);
 }
 
-.back-btn-main span {
+.back-btn-inicio span {
     font-size: 16px;
     font-weight: 700;
     color: #b88a2a;
@@ -151,34 +149,51 @@ h2 {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: #000000; 
+    background: rgba(0, 0, 0, 0.9); 
     z-index: 99999;
     display: none;
     justify-content: center;
-    align-items: flex-start;
-    overflow-y: auto;
+    align-items: center;
 }
 
 .modal-content {
     background: #f4f1ea;
     width: 95%;
     max-width: 500px;
-    margin: 40px auto;
     border-radius: 20px;
     position: relative;
-    padding: 30px 20px;
+    padding: 20px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
 }
 
-/* LA X PARA EL REGISTRO Y GUÍA */
-.close-x {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 30px;
+/* HEADER DEL BOTÓN CERRAR QUE TE SIGUE */
+.close-header {
+    position: sticky;
+    top: -20px;
+    background: #f4f1ea;
+    padding: 10px 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid rgba(184, 138, 42, 0.1);
+    margin: -20px -20px 10px -20px;
+    padding-right: 20px;
+    border-radius: 20px 20px 0 0;
+}
+
+.close-btn {
+    font-size: 18px;
     color: #b88a2a;
-    cursor: pointer;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .modal-body img {
@@ -209,17 +224,17 @@ h2 {
 
 <body>
 
-<div id="main-site" style="position: relative;">
-    <div class="back-btn-main" onclick="window.location.href='https://hamiltongranillo10.github.io/'">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M19 12H5M11 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M19 12c-1.5 0-3-.5-4-1.5S12.5 8 11 6" stroke-width="1" opacity="0.5"/>
-            <path d="M11 18c1.5 0 3 .5 4 1.5s2.5 2.5 4 4" stroke-width="1" opacity="0.5"/>
-        </svg>
-        <span>Inicio</span>
-    </div>
-
+<div id="main-site">
     <div class="container">
+        <div class="back-btn-inicio" onclick="window.location.href='https://hamiltongranillo10.github.io/'">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5M11 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 12c-1.5 0-3-.5-4-1.5S12.5 8 11 6" stroke-width="1" opacity="0.5"/>
+                <path d="M11 18c1.5 0 3 .5 4 1.5s2.5 2.5 4 4" stroke-width="1" opacity="0.5"/>
+            </svg>
+            <span>Inicio</span>
+        </div>
+
         <h1 id="tituloPrincipal">🎉 Felicidades Tu bono ya está listo</h1>
         <p id="textoSecundario">Ya diste el primer paso para crear <span class="highlight">velas de gel desde cero</span></p>
 
@@ -251,12 +266,14 @@ h2 {
 </div>
 
 <div id="modalRegistro" class="modal-overlay">
-    <div class="modal-content">
-        <span class="close-x" onclick="cerrarTodo()">&times;</span>
-        <div class="modal-body" style="text-align: center;">
-            <h2 style="margin-top:0;">✨ ¡Casi listo!</h2>
-            <p>Ingresa tu email para desbloquear la guía y recibir tu <b>Manual de Regalo</b>.</p>
-            <p style="font-size: 14px; color: #b88a2a; font-weight: 500; margin-top: 0;">
+    <div class="modal-content" style="height: auto;">
+        <div class="close-header">
+            <span class="close-btn" onclick="cerrarTodo()">&times;</span>
+        </div>
+        <div class="modal-body" style="overflow: visible;">
+            <h2 style="margin-top:0; text-align:center;">✨ ¡Casi listo!</h2>
+            <p style="text-align:center; margin-bottom: 5px;">Ingresa tu email para desbloquear la guía y recibir tu <b>Manual de Regalo</b>.</p>
+            <p style="text-align:center; font-size: 14px; color: #b88a2a; font-weight: 500; margin-top: 0;">
                 (Tu manual de regalo lo podrás ver en tu correo)
             </p>
             <form id="formEmails">
@@ -268,8 +285,10 @@ h2 {
 </div>
 
 <div id="modalGuia" class="modal-overlay">
-    <div class="modal-content" style="max-width: 600px;">
-        <span class="close-x" onclick="cerrarTodo()" style="background: white; border-radius: 50%; padding: 0 10px; line-height: 1.2;">&times;</span>
+    <div class="modal-content">
+        <div class="close-header">
+            <span class="close-btn" onclick="cerrarTodo()">&times; Cerrar Guía</span>
+        </div>
         <div class="modal-body">
             <img src="guia1.jpg" alt="Pág 1">
             <img src="guia2.jpg" alt="Pág 2">
@@ -282,8 +301,7 @@ h2 {
 </div>
 
 <script>
-// URL de tu Script de Google (Pon la tuya aquí)
-const scriptURL = 'https://script.google.com/macros/s/AKfycbztnNLZDTqk610isbcK8d5yxmivB6Dgdfrpfz3RVhmGs3M-DoQMm8l27uvn-BV6wMZ74A/exec'; 
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyRjj6T0uxc_yZ43ScUq_KD20C8uO3qI5RSWzxSZIw4W-qqoBXRGcNdRvSDoF2d74t9mQ/exec'; 
 const form = document.getElementById('formEmails');
 
 function abrirRegistro() {
@@ -300,12 +318,16 @@ function mostrarGuiaFinal() {
     document.getElementById("modalGuia").style.display = "flex";
     document.body.classList.add("stop-scrolling");
     window.scrollTo(0,0);
+    document.getElementById("tituloPrincipal").innerText = "📖 Tu Guía Gratuita";
+    document.getElementById("textoSecundario").style.display = "none";
 }
 
 function cerrarTodo() {
     document.getElementById("modalRegistro").style.display = "none";
     document.getElementById("modalGuia").style.display = "none";
     document.body.classList.remove("stop-scrolling");
+    document.getElementById("tituloPrincipal").innerText = "🎉 Felicidades Tu bono ya está listo";
+    document.getElementById("textoSecundario").style.display = "block";
 }
 
 form.addEventListener('submit', e => {

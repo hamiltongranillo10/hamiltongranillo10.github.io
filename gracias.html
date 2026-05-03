@@ -293,13 +293,13 @@ font-family:'Playfair Display', serif;
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxpqNQOXaZBX23lhTR2kFg0o-iZkEwURcoBE3a71AOUzjrQUtYH5BhRj9Y0xPo3AKF0pQ/exec'; 
 const form = document.getElementById('formEmails');
 
-// 1. Esta función ahora decide si pedir correo o mostrar la guía
+// 1. EL BOTÓN AHORA ES EL QUE DECIDE
 function abrirRegistro() {
-    // Si el navegador recuerda que el usuario ya se registró
+    // Si el navegador tiene guardado que ya se registró antes
     if (localStorage.getItem('registroHecho') === 'true') {
-        mostrarGuiaFinal(); 
+        mostrarGuiaFinal(); // Abre la guía directamente al tocar el botón
     } else {
-        // Si es la primera vez, muestra el formulario de registro
+        // Si no se ha registrado, muestra el modal para pedir el correo
         document.getElementById("modalRegistro").style.display = "flex";
         document.getElementById("main-site").style.display = "none"; 
         document.body.classList.add("stop-scrolling");
@@ -313,7 +313,7 @@ function mostrarGuiaFinal() {
     document.body.classList.add("stop-scrolling");
     window.scrollTo(0,0);
     
-    // Cambia los textos de fondo por si el usuario cierra el modal
+    // Cambiamos el título de fondo por si cierran el manual
     document.getElementById("tituloPrincipal").innerText = "📖 Guía paso a paso";
     if(document.getElementById("textoSecundario")) {
         document.getElementById("textoSecundario").style.display = "none";
@@ -335,12 +335,12 @@ form.addEventListener('submit', e => {
 
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
     .then(response => { 
-        // 2. Aquí guardamos el "sello" de que ya se registró para la próxima vez
+        // 2. AQUÍ SE GUARDA LA MEMORIA PARA LA PRÓXIMA VISITA
         localStorage.setItem('registroHecho', 'true');
         mostrarGuiaFinal(); 
     })
     .catch(error => { 
-        // Guardamos también en caso de error para no bloquear al alumno
+        // Guardamos también en caso de error para no frustrar al usuario
         localStorage.setItem('registroHecho', 'true');
         mostrarGuiaFinal();
     });

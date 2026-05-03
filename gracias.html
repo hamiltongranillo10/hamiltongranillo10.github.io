@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title>Gracias por tu guía</title>
 
 <script>
@@ -23,107 +23,107 @@ fbq('track', 'Lead');
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-body{ margin:0; font-family:'Montserrat', sans-serif; background: linear-gradient(135deg,#f7f1e8,#e8dccb); color:#2b2b2b; }
-.container{ max-width:800px; margin:auto; padding:40px 20px; text-align:center; }
-h1{ font-family:'Playfair Display', serif; font-size:34px; margin-bottom:10px; }
-p{ font-size:18px; line-height:1.6; }
-.highlight{ color:#b88a2a; font-weight:800; }
-.box{ background: rgba(255,255,255,0.75); backdrop-filter: blur(10px); border-radius:25px; padding:30px; margin-top:25px; box-shadow:0 20px 50px rgba(0,0,0,0.08); border:1px solid rgba(255,255,255,0.6); }
+body { margin:0; font-family:'Montserrat', sans-serif; background: linear-gradient(135deg,#f7f1e8,#e8dccb); color:#2b2b2b; }
+.container { max-width:800px; margin:auto; padding:40px 20px; text-align:center; }
+h1 { font-family:'Playfair Display', serif; font-size:34px; margin-bottom:10px; }
+p { font-size:18px; line-height:1.6; }
+.highlight { color:#b88a2a; font-weight:800; }
+.box { background: rgba(255,255,255,0.75); backdrop-filter: blur(10px); border-radius:25px; padding:30px; margin-top:25px; box-shadow:0 20px 50px rgba(0,0,0,0.08); border:1px solid rgba(255,255,255,0.6); }
 
-/* BOTÓN ORIGINAL CON BRILLO */
-.btn{ display:inline-block; margin-top:20px; padding:18px 30px; border-radius:100px; text-decoration:none; font-weight:800; font-size:16px; color:white; background: linear-gradient(135deg, #d4af37, #b88a2a); box-shadow:0 10px 25px rgba(212,175,55,0.35); transition:0.3s; position:relative; overflow:hidden; }
-.btn:hover{ transform:scale(1.05); box-shadow:0 15px 35px rgba(212,175,55,0.45); }
-.btn::after{ content:""; position:absolute; top:-50%; left:-100%; width:50%; height:200%; background:rgba(255,255,255,0.4); transform:rotate(25deg); animation:shine 3s infinite; }
-@keyframes shine{ 0%{left:-120%;} 100%{left:150%;} }
+/* BOTÓN */
+.btn { display:inline-block; margin-top:20px; padding:18px 30px; border-radius:100px; text-decoration:none; font-weight:800; font-size:16px; color:white; background: linear-gradient(135deg, #d4af37, #b88a2a); box-shadow:0 10px 25px rgba(212,175,55,0.35); transition:0.3s; position:relative; overflow:hidden; border:none; cursor:pointer; }
+.btn:hover { transform:scale(1.05); box-shadow:0 15px 35px rgba(212,175,55,0.45); }
+.btn::after { content:""; position:absolute; top:-50%; left:-100%; width:50%; height:200%; background:rgba(255,255,255,0.4); transform:rotate(25deg); animation:shine 3s infinite; }
+@keyframes shine { 0%{left:-120%;} 100%{left:150%;} }
 
-.small{ font-size:13px; opacity:0.8; margin-top:15px; }
-h2{ font-family:'Playfair Display', serif; }
-
-/* --- MODAL ORIGINAL CON FONDO NEGRO SEMITRANSPARENTE --- */
+/* --- EL MODAL CORREGIDO (FONDO NEGRO PURO) --- */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    /* Mantenemos tu fondo negro original con transparencia */
-    background: rgba(0, 0, 0, 0.85); 
-    z-index: 99999; /* Prioridad máxima */
-    display: none; /* Se activa por JS */
+    background: #000000; /* Negro total para que no se trasluzca nada */
+    z-index: 99999;
+    display: none;
     justify-content: center;
-    align-items: center; /* Centrado perfecto */
+    align-items: flex-start; /* Permite scroll natural desde arriba */
+    overflow-y: auto; /* El scroll ahora vive aquí y no en la página */
+    -webkit-overflow-scrolling: touch;
 }
 
 .modal-content {
     background: #f4f1ea;
-    width: 90%;
-    max-width: 500px;
-    height: 80vh; /* Altura original del 80% de la pantalla */
+    width: 95%;
+    max-width: 550px;
+    margin: 40px auto; /* Espacio para que no pegue a los bordes */
     border-radius: 20px;
     position: relative;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
 .close-btn {
-    position: absolute;
-    top: 10px; right: 20px;
-    font-size: 20px;
+    position: sticky; /* Se queda arriba mientras bajas la guía */
+    top: 0;
+    float: right;
+    background: #f4f1ea;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
     color: #b88a2a;
     font-weight: bold;
     cursor: pointer;
-    z-index: 100;
-}
-
-.modal-body {
-    overflow-y: auto; /* Scroll interno en la cajita blanca, como el original */
-    margin-top: 20px;
+    z-index: 1000;
 }
 
 .modal-body img {
     width: 100%;
+    display: block;
     margin-bottom: 15px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Estilo para el input del correo */
-.input-email {
-    width: 100%;
-    padding: 15px;
-    margin-top: 15px;
-    border-radius: 100px;
-    border: 1px solid #d4af37;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    box-sizing: border-box;
-    text-align: center;
+.input-email { width: 100%; padding: 15px; margin-top: 15px; border-radius: 100px; border: 1px solid #d4af37; font-family: 'Montserrat', sans-serif; font-size: 16px; box-sizing: border-box; text-align: center; }
+
+/* Clase para congelar la web de fondo */
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden !important;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-<h1 id="tituloPrincipal">🎉 Felicidades Tu bono ya está listo</h1>
-<p id="textoSecundario">Ya diste el primer paso para crear <span class="highlight">velas de gel desde cero</span></p>
+<div id="main-site">
+    <div class="container">
+        <h1 id="tituloPrincipal">🎉 Felicidades Tu bono ya está listo</h1>
+        <p id="textoSecundario">Ya diste el primer paso para crear <span class="highlight">velas de gel desde cero</span></p>
 
-<div class="box">
-<p>Aquí tienes tu guía gratuita con materiales exactos y paso a paso real.</p>
+        <div class="box">
+            <p>Aquí tienes tu guía gratuita con materiales exactos y paso a paso real.</p>
+            <button onclick="abrirRegistro()" class="btn">📥 LEER MI GUÍA GRATIS</button>
+            <p style="margin-top:15px;">Pero lo más importante no es hacer velas…</p>
+            <p class="highlight">Es saber cómo convertirlas en ingresos reales.</p>
+            <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">🔥 QUIERO APRENDER A VENDER MIS VELAS</a>
+        </div>
 
-<button onclick="abrirRegistro()" class="btn" style="cursor:pointer; border:none;">
-   📥 LEER MI GUÍA GRATIS
-</button>
+        <div class="box">
+            <h2>✨ ¿Quieres ir más allá?</h2>
+            <p class="highlight">Guía Práctica: Diseña y Crea Velas Artesanales desde Cero</p>
+            <a class="btn" href="https://go.hotmart.com/G105542674I?ap=5742" target="_blank">🔥 ACCEDER A LA GUÍA COMPLETA</a>
+        </div>
+    </div>
+</div>
 
 <div id="modalRegistro" class="modal-overlay">
-    <div class="modal-content" style="height: auto; min-height: 320px; justify-content: center;">
-        <span class="close-btn" onclick="cerrarTodo()">&times; Cerrar</span>
-        <div class="modal-body" style="overflow: visible;">
-            <h2 style="margin-top:0;">✨ ¡Casi listo!</h2>
-            <p>Ingresa tu email para desbloquear la guía y recibir tu <b>Manual de Regalo</b>.</p>
+    <div class="modal-content">
+        <span class="close-btn" onclick="cerrarTodo()">× Cerrar</span>
+        <div class="modal-body">
+            <h2 style="text-align:center; font-family:'Playfair Display', serif;">✨ ¡Casi listo!</h2>
+            <p style="text-align:center;">Ingresa tu email para desbloquear la guía y recibir tu Manual de Regalo.</p>
             <form id="formEmails">
                 <input type="email" name="email" class="input-email" placeholder="Tu mejor correo aquí" required>
-                <button type="submit" class="btn" style="width:100%; border:none; cursor:pointer; animation:none;">DESBLOQUEAR AHORA</button>
+                <button type="submit" class="btn" style="width:100%;">DESBLOQUEAR AHORA</button>
             </form>
         </div>
     </div>
@@ -131,99 +131,54 @@ h2{ font-family:'Playfair Display', serif; }
 
 <div id="modalGuia" class="modal-overlay">
     <div class="modal-content">
-        <span class="close-btn" onclick="cerrarTodo()">&times; Cerrar</span>
+        <span class="close-btn" onclick="cerrarTodo()">× Cerrar Guía</span>
         <div class="modal-body">
-            <img src="guia1.jpg" alt="Pág 1">
-            <img src="guia2.jpg" alt="Pág 2">
-            <img src="guia3.jpg" alt="Pág 3">
-            <img src="guia4.jpg" alt="Pág 4">
-            <img src="guia5.jpg" alt="Pág 5">
-            <img src="guia6.jpg" alt="Pág 6">
+            <img src="guia1.jpg" alt="1">
+            <img src="guia2.jpg" alt="2">
+            <img src="guia3.jpg" alt="3">
+            <img src="guia4.jpg" alt="4">
+            <img src="guia5.jpg" alt="5">
+            <img src="guia6.jpg" alt="6">
         </div>
     </div>
 </div>
 
-<p style="margin-top:15px;">Pero lo más importante no es hacer velas…</p>
-<p class="highlight">Es saber cómo convertirlas en ingresos reales.</p>
-<a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">🔥 QUIERO APRENDER A VENDER MIS VELAS</a>
-<p class="small">Este es el siguiente paso si quieres resultados reales</p>
-</div>
-
-<div class="box">
-<h2>✨ ¿Quieres ir más allá?</h2>
-<p>Si te gustó la guía gratuita, este es el siguiente nivel.</p>
-<p class="highlight">Guía Práctica: Diseña y Crea Velas Artesanales desde Cero</p>
-<p>Aprende el proceso completo paso a paso para crear velas más profesionales.</p>
-<a class="btn" href="https://go.hotmart.com/G105542674I?ap=5742" target="_blank">🔥 ACCEDER A LA GUÍA COMPLETA</a>
-</div>
-
-<div class="box">
-<h2>🚀 Antes de empezar</h2>
-<p>Hacer velas es fácil.</p>
-<p>Lo difícil es venderlas.</p>
-<p class="highlight">Ahí está el dinero real.</p>
-<a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">🔥 QUIERO APRENDER A VENDER MIS VELAS</a>
-</div>
-</div>
-
 <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwfg6MoNm7PT4HADl52a-u8Z9bPEkeTyHiXdGTVZikwCAOyhL1XzAu-Z2SwVbhRvOD4dA/exec'; 
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwxauxfA9qcU0Ca4Rc_GIF3FSHGWH_2QVv9hbsdYQhd3Vfnscwb7CibDUBisAFTxwU_/exec'; 
 const form = document.getElementById('formEmails');
-let registroCompletado = false;
+let registrado = false;
 
 function abrirRegistro() {
-    if (registroCompletado) {
-        mostrarGuiaFinal();
-    } else {
+    if(registrado) { mostrarGuia(); } 
+    else {
         document.getElementById("modalRegistro").style.display = "flex";
-        // CONGELAR FONDO: Evita que la página de atrás se mueva en PC y Móvil
-        document.body.style.overflow = "hidden";
-        document.documentElement.style.overflow = "hidden"; 
+        document.body.classList.add("stop-scrolling");
+        document.getElementById("main-site").style.display = "none"; // OCULTA la web para fondo NEGRO PURO
     }
 }
 
-function mostrarGuiaFinal() {
+function mostrarGuia() {
     document.getElementById("modalRegistro").style.display = "none";
     document.getElementById("modalGuia").style.display = "flex";
-    
-    // REFUERZO DE CONGELADO: Asegura que al cambiar de modal siga congelado
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-
-    document.getElementById("tituloPrincipal").innerText = "📖 Guía paso a paso";
-    document.getElementById("textoSecundario").style.display = "none";
+    document.getElementById("main-site").style.display = "none";
+    document.body.classList.add("stop-scrolling");
+    window.scrollTo(0,0);
 }
 
 function cerrarTodo() {
     document.getElementById("modalRegistro").style.display = "none";
     document.getElementById("modalGuia").style.display = "none";
-    
-    // DEVOLVER SCROLL: La página vuelve a la normalidad al cerrar
-    document.body.style.overflow = "auto";
-    document.documentElement.style.overflow = "auto"; 
-
-    if (!registroCompletado) {
-        document.getElementById("tituloPrincipal").innerText = "🎉 Felicidades Tu bono ya está listo";
-        document.getElementById("textoSecundario").style.display = "block";
-    }
+    document.getElementById("main-site").style.display = "block"; // VUELVE a mostrar la web
+    document.body.classList.remove("stop-scrolling");
 }
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-    const btn = form.querySelector('button');
-    btn.innerText = "Cargando guía...";
-    btn.disabled = true;
-
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    .then(response => { 
-        registroCompletado = true;
-        mostrarGuiaFinal(); 
-    })
-    .catch(error => { 
-        registroCompletado = true;
-        mostrarGuiaFinal();
-    });
+    registrado = true;
+    mostrarGuia();
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)});
 });
 </script>
+
 </body>
 </html>

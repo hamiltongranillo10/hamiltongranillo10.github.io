@@ -1,157 +1,153 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Gracias por tu guía</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gracias por tu guía</title>
 
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1274753604821165');
-    fbq('track', 'PageView');
-    fbq('track', 'Lead');
-    </script>
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1274753604821165');
+fbq('track', 'PageView');
+fbq('track', 'Lead');
+</script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* Mantenemos tus estilos originales */
-        body{ margin:0; font-family:'Montserrat', sans-serif; background: linear-gradient(135deg,#f7f1e8,#e8dccb); color:#2b2b2b; }
-        .container{ max-width:800px; margin:auto; padding:40px 20px; text-align:center; }
-        h1{ font-family:'Playfair Display', serif; font-size:34px; margin-bottom:10px; }
-        p{ font-size:18px; line-height:1.6; }
-        .highlight{ color:#b88a2a; font-weight:800; }
-        .box{ background: rgba(255,255,255,0.75); backdrop-filter: blur(10px); border-radius:25px; padding:30px; margin-top:25px; box-shadow:0 20px 50px rgba(0,0,0,0.08); border:1px solid rgba(255,255,255,0.6); }
-        .btn{ display:inline-block; margin-top:20px; padding:18px 30px; border-radius:100px; text-decoration:none; font-weight:800; font-size:16px; color:white; background: linear-gradient(135deg, #d4af37, #b88a2a); box-shadow:0 10px 25px rgba(212,175,55,0.35); transition:0.3s; position:relative; overflow:hidden; border:none; cursor:pointer; }
-        .btn:hover{ transform:scale(1.05); }
-        
-        /* Estilos para el formulario */
-        .input-correo {
-            width: 80%;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 10px;
-            border: 1px solid #d4af37;
-            font-size: 16px;
-            text-align: center;
-        }
+<style>
+/* USAMOS TUS ESTILOS EXACTOS */
+body{ margin:0; font-family:'Montserrat', sans-serif; background: linear-gradient(135deg,#f7f1e8,#e8dccb); color:#2b2b2b; }
+.container{ max-width:800px; margin:auto; padding:40px 20px; text-align:center; }
+h1{ font-family:'Playfair Display', serif; font-size:34px; margin-bottom:10px; }
+p{ font-size:18px; line-height:1.6; }
+.highlight{ color:#b88a2a; font-weight:800; }
+.box{ background: rgba(255,255,255,0.75); backdrop-filter: blur(10px); border-radius:25px; padding:30px; margin-top:25px; box-shadow:0 20px 50px rgba(0,0,0,0.08); border:1px solid rgba(255,255,255,0.6); }
+.btn{ display:inline-block; margin-top:20px; padding:18px 30px; border-radius:100px; text-decoration:none; font-weight:800; font-size:16px; color:white; background: linear-gradient(135deg, #d4af37, #b88a2a); box-shadow:0 10px 25px rgba(212,175,55,0.35); transition:0.3s; position:relative; overflow:hidden; border:none; cursor:pointer; }
+.btn:hover{ transform:scale(1.05); box-shadow:0 15px 35px rgba(212,175,55,0.45); }
+.btn::after{ content:""; position:absolute; top:-50%; left:-100%; width:50%; height:200%; background:rgba(255,255,255,0.4); transform:rotate(25deg); animation:shine 3s infinite; }
+@keyframes shine{ 0%{left:-120%;} 100%{left:150%;} }
+.small{ font-size:13px; opacity:0.8; margin-top:15px; }
+h2{ font-family:'Playfair Display', serif; }
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 9999; display: flex; justify-content: center; align-items: center; }
+.modal-content { background: #f4f1ea; width: 90%; max-width: 500px; height: auto; max-height: 80vh; border-radius: 20px; position: relative; padding: 20px; display: flex; flex-direction: column; }
+.close-btn { position: absolute; top: 10px; right: 20px; font-size: 20px; color: #b88a2a; font-weight: bold; cursor: pointer; z-index: 10; }
+.modal-body { overflow-y: auto; margin-top: 20px; }
+.modal-body img { width: 100%; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-        /* Estilos de Modales */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 9999; display: flex; justify-content: center; align-items: center; }
-        .modal-content { background: #f4f1ea; width: 90%; max-width: 500px; height: auto; max-height: 85vh; border-radius: 20px; position: relative; padding: 25px; display: flex; flex-direction: column; overflow: hidden; }
-        .close-btn { position: absolute; top: 10px; right: 20px; font-size: 20px; color: #b88a2a; font-weight: bold; cursor: pointer; z-index: 10; }
-        .modal-body { overflow-y: auto; margin-top: 10px; }
-        .modal-body img { width: 100%; margin-bottom: 15px; border-radius: 10px; }
-    </style>
+/* NUEVO ESTILO PARA EL INPUT */
+.input-email { width: 100%; padding: 15px; margin-top: 15px; border-radius: 10px; border: 1px solid #d4af37; font-size: 16px; box-sizing: border-box; text-align: center; font-family: 'Montserrat', sans-serif; }
+</style>
 </head>
 
 <body>
 
 <div class="container">
-    <h1 id="tituloPrincipal">🎉 Felicidades Tu bono ya está listo</h1>
-    <p id="textoSecundario">Ya diste el primer paso para crear <span class="highlight">velas de gel desde cero</span></p>
+<h1 id="tituloPrincipal">🎉 Felicidades Tu bono ya está listo</h1>
+<p id="textoSecundario">Ya diste el primer paso para crear <span class="highlight">velas de gel desde cero</span></p>
 
-    <div class="box">
-        <p>Aquí tienes tu guía gratuita con materiales exactos y paso a paso real.</p>
-        
-        <button onclick="abrirRegistro()" class="btn">📥 LEER MI GUÍA GRATIS</button>
+<div class="box">
+<p>Aquí tienes tu guía gratuita con materiales exactos y paso a paso real.</p>
 
-        <div id="modalRegistro" class="modal-overlay" style="display:none;">
-    <div class="modal-content" style="height: auto;">
-        <span class="close-btn" onclick="cerrarModales()">&times; CERRAR</span>
-        
-        <h2 style="margin:0;">✨ ¡Casi listo!</h2>
-        
-        <p style="font-size: 14px; margin-top: 10px;">
-            Ingresa tu email para **desbloquear el acceso** a la guía de materiales y al procedimiento de elaboración.
-        </p>
-        
-        <form id="formRegistro">
-            <input type="email" name="email" id="userEmail" class="input-mail" placeholder="Tu mejor correo electrónico" required 
-                   style="width: 100%; padding: 12px; margin-top: 10px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box;">
-            
-            <button type="submit" class="btn" style="width:100%; margin-top: 15px; cursor: pointer;">
-                📂 DESBLOQUEAR Y LEER AHORA
-            </button>
+<button onclick="abrirRegistro()" class="btn">📥 LEER MI GUÍA GRATIS</button>
+
+<div id="modalRegistro" class="modal-overlay" style="display:none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="cerrarTodo()">&times;</span>
+        <h2>¡Excelente!</h2>
+        <p style="font-size: 16px;">Ingresa tu email para desbloquear la guía y recibir tu <b>Manual de Regalo</b> por correo.</p>
+        <form id="formEmails">
+            <input type="email" name="email" class="input-email" placeholder="Tu correo principal aquí" required>
+            <button type="submit" class="btn" style="width:100%;">DESBLOQUEAR AHORA</button>
         </form>
-        
-        </div>
+    </div>
 </div>
 
-        <div id="modalGuia" class="modal-overlay" style="display:none;">
-            <div class="modal-content">
-                <span class="close-btn" onclick="cerrarModales()">&times; Cerrar</span>
-                <div class="modal-body">
-                    <img src="guia1.jpg" alt="Pág 1">
-                    <img src="guia2.jpg" alt="Pág 2">
-                    <img src="guia3.jpg" alt="Pág 3">
-                    <img src="guia4.jpg" alt="Pág 4">
-                    <img src="guia5.jpg" alt="Pág 5">
-                    <img src="guia6.jpg" alt="Pág 6">
-                </div>
-            </div>
+<div id="modalGuia" class="modal-overlay" style="display:none;">
+    <div class="modal-content" style="height: 80vh;">
+        <span class="close-btn" onclick="cerrarTodo()">&times; Cerrar</span>
+        <div class="modal-body">
+            <img src="guia1.jpg" alt="Pág 1">
+            <img src="guia2.jpg" alt="Pág 2">
+            <img src="guia3.jpg" alt="Pág 3">
+            <img src="guia4.jpg" alt="Pág 4">
+            <img src="guia5.jpg" alt="Pág 5">
+            <img src="guia6.jpg" alt="Pág 6">
         </div>
-
-        <p style="margin-top:15px;">Pero lo más importante no es hacer velas…</p>
-        <p class="highlight">Es saber cómo convertirlas en ingresos reales.</p>
-        <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">🔥 QUIERO APRENDER A VENDER MIS VELAS</a>
     </div>
+</div>
 
-    </div>
+<p style="margin-top:15px;">Pero lo más importante no es hacer velas…</p>
+<p class="highlight">Es saber cómo convertirlas en ingresos reales.</p>
+<a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">🔥 QUIERO APRENDER A VENDER MIS VELAS</a>
+</div>
+
+<div class="box">
+<h2>✨ ¿Quieres ir más allá?</h2>
+<p>Si te gustó la guía gratuita, este es el siguiente nivel.</p>
+<p class="highlight">Guía Práctica: Diseña y Crea Velas Artesanales desde Cero</p>
+<a class="btn" href="https://go.hotmart.com/G105542674I?ap=5742" target="_blank">🔥 ACCEDER A LA GUÍA COMPLETA</a>
+</div>
+
+<div class="box">
+<h2>🚀 Antes de empezar</h2>
+<p>Hacer velas es fácil. Lo difícil es venderlas.</p>
+<p class="highlight">Ahí está el dinero real.</p>
+<a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">🔥 QUIERO APRENDER A VENDER MIS VELAS</a>
+</div>
+</div>
 
 <script>
-    // PEGA AQUÍ LA URL QUE TE DIO GOOGLE APPS SCRIPT
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwFQbiaWiv80XRy4EoqbSVEJEBozCFF_-P21MZYo9Zp4Ma5e0kGZw1RrNxn3Ffrvcbwsw/exec'; 
-    const form = document.getElementById('formEmails');
+// --- CONFIGURACIÓN ---
+const scriptURL = 'TU_URL_DE_GOOGLE_AQUI'; // <--- PEGA TU LINK DE GOOGLE AQUÍ
+const form = document.getElementById('formEmails');
 
-    function abrirRegistro() {
-        document.getElementById("modalRegistro").style.display = "flex";
-        document.body.style.overflow = "hidden";
-    }
+function abrirRegistro() {
+    document.getElementById("modalRegistro").style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
 
-    function cerrarModales() {
-        document.getElementById("modalRegistro").style.display = "none";
-        document.getElementById("modalGuia").style.display = "none";
-        document.body.style.overflow = "auto";
-        document.getElementById("tituloPrincipal").innerText = "🎉 Felicidades Tu bono ya está listo";
-        document.getElementById("textoSecundario").style.display = "block";
-    }
+function cerrarTodo() {
+    document.getElementById("modalRegistro").style.display = "none";
+    document.getElementById("modalGuia").style.display = "none";
+    document.body.style.overflow = "auto";
+    // Volvemos a los títulos originales
+    document.getElementById("tituloPrincipal").innerText = "🎉 Felicidades Tu bono ya está listo";
+    document.getElementById("textoSecundario").style.display = "block";
+}
 
-    // MANEJO DEL ENVÍO DEL FORMULARIO
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        const btnEnvio = form.querySelector('button');
-        btnEnvio.innerText = "Cargando guía...";
-        btnEnvio.disabled = true;
+// MANEJO DEL ENVÍO
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = form.querySelector('button');
+    btn.innerText = "Cargando guía...";
+    btn.disabled = true;
 
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-            // 1. Escondemos el modal de registro
-            document.getElementById("modalRegistro").style.display = "none";
-            
-            // 2. Cambiamos los textos de la página
-            document.getElementById("tituloPrincipal").innerText = "📖 Guía paso a paso";
-            document.getElementById("textoSecundario").style.display = "none";
-            
-            // 3. Abrimos la guía real
-            document.getElementById("modalGuia").style.display = "flex";
-            
-            alert("¡Correo registrado! El manual de regalo va en camino a tu bandeja de entrada.");
-        })
-        .catch(error => {
-            console.error('Error!', error.message);
-            alert("Hubo un error. Revisa tu conexión.");
-            btnEnvio.innerText = "DESBLOQUEAR GUÍA AHORA";
-            btnEnvio.disabled = false;
-        });
+    // Enviamos a Google
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(response => {
+        mostrarGuiaFinal();
+    })
+    .catch(error => {
+        console.error('Error!', error.message);
+        // Si falla internet, abrimos la guía igual para no perder al cliente
+        mostrarGuiaFinal();
     });
+});
+
+function mostrarGuiaFinal() {
+    document.getElementById("modalRegistro").style.display = "none";
+    document.getElementById("modalGuia").style.display = "flex";
+    document.getElementById("tituloPrincipal").innerText = "📖 Guía paso a paso";
+    document.getElementById("textoSecundario").style.display = "none";
+}
 </script>
+
 </body>
 </html>

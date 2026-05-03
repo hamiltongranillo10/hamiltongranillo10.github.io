@@ -292,10 +292,16 @@ font-family:'Playfair Display', serif;
 <script>
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxpqNQOXaZBX23lhTR2kFg0o-iZkEwURcoBE3a71AOUzjrQUtYH5BhRj9Y0xPo3AKF0pQ/exec'; 
 const form = document.getElementById('formEmails');
-let registroHecho = false;
+
+// Verifica si ya se registró al cargar la página
+window.onload = function() {
+    if (localStorage.getItem('registroHecho') === 'true') {
+        mostrarGuiaFinal();
+    }
+};
 
 function abrirRegistro() {
-    if (registroHecho) {
+    if (localStorage.getItem('registroHecho') === 'true') {
         mostrarGuiaFinal();
     } else {
         document.getElementById("modalRegistro").style.display = "flex";
@@ -319,11 +325,6 @@ function cerrarTodo() {
     document.getElementById("modalGuia").style.display = "none";
     document.getElementById("main-site").style.display = "block"; 
     document.body.classList.remove("stop-scrolling");
-
-    if (!registroHecho) {
-        document.getElementById("tituloPrincipal").innerText = "🎉 Felicidades Tu bono ya está listo";
-        document.getElementById("textoSecundario").style.display = "block";
-    }
 }
 
 form.addEventListener('submit', e => {
@@ -334,11 +335,11 @@ form.addEventListener('submit', e => {
 
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
     .then(response => { 
-        registroHecho = true;
+        localStorage.setItem('registroHecho', 'true'); 
         mostrarGuiaFinal(); 
     })
     .catch(error => { 
-        registroHecho = true;
+        localStorage.setItem('registroHecho', 'true'); 
         mostrarGuiaFinal();
     });
 });

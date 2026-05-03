@@ -293,17 +293,13 @@ font-family:'Playfair Display', serif;
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxpqNQOXaZBX23lhTR2kFg0o-iZkEwURcoBE3a71AOUzjrQUtYH5BhRj9Y0xPo3AKF0pQ/exec'; 
 const form = document.getElementById('formEmails');
 
-// Verifica si ya se registró al cargar la página
-window.onload = function() {
-    if (localStorage.getItem('registroHecho') === 'true') {
-        mostrarGuiaFinal();
-    }
-};
-
+// 1. Esta función ahora decide si pedir correo o mostrar la guía
 function abrirRegistro() {
+    // Si el navegador recuerda que el usuario ya se registró
     if (localStorage.getItem('registroHecho') === 'true') {
-        mostrarGuiaFinal();
+        mostrarGuiaFinal(); 
     } else {
+        // Si es la primera vez, muestra el formulario de registro
         document.getElementById("modalRegistro").style.display = "flex";
         document.getElementById("main-site").style.display = "none"; 
         document.body.classList.add("stop-scrolling");
@@ -316,8 +312,12 @@ function mostrarGuiaFinal() {
     document.getElementById("main-site").style.display = "none";
     document.body.classList.add("stop-scrolling");
     window.scrollTo(0,0);
+    
+    // Cambia los textos de fondo por si el usuario cierra el modal
     document.getElementById("tituloPrincipal").innerText = "📖 Guía paso a paso";
-    document.getElementById("textoSecundario").style.display = "none";
+    if(document.getElementById("textoSecundario")) {
+        document.getElementById("textoSecundario").style.display = "none";
+    }
 }
 
 function cerrarTodo() {
@@ -335,15 +335,16 @@ form.addEventListener('submit', e => {
 
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
     .then(response => { 
-        localStorage.setItem('registroHecho', 'true'); 
+        // 2. Aquí guardamos el "sello" de que ya se registró para la próxima vez
+        localStorage.setItem('registroHecho', 'true');
         mostrarGuiaFinal(); 
     })
     .catch(error => { 
-        localStorage.setItem('registroHecho', 'true'); 
+        // Guardamos también en caso de error para no bloquear al alumno
+        localStorage.setItem('registroHecho', 'true');
         mostrarGuiaFinal();
     });
 });
 </script>
-
 </body>
 </html>

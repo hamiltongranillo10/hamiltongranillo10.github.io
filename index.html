@@ -55,7 +55,7 @@
         position: relative;
     }
 
-    .top-bar { background: linear-gradient(90deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 10px; font-size: 12px; font-weight: 800; text-transform: uppercase; }
+    .top-bar { background: linear-gradient(90deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 10px; font-size: 12px; font-weight: 800; text-transform: uppercase; min-height: 15px; }
     .wrapper { max-width: 900px; width: 100%; margin: 0 auto; padding: 15px; box-sizing: border-box; text-align: center; }
         
     .hero, .bottom-section { 
@@ -70,8 +70,8 @@
 
     h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 5vw, 48px); color: #111827; line-height: 1.2; margin-bottom: 15px; }
 
-    .old { text-decoration: line-through; color: #bfa888; font-size: clamp(32px, 5vw, 50px) !important; font-weight: 300; display: block; margin-bottom: -15px; opacity: 0.6; }
-    .new { font-size: clamp(55px, 10vw, 100px) !important; color: var(--primary); font-weight: 800; display: block; margin-bottom: 20px; line-height: 1; }
+    .old { text-decoration: line-through; color: #bfa888; font-size: clamp(32px, 5vw, 50px) !important; font-weight: 300; display: block; margin: 0 auto -15px; opacity: 0.6; min-height: 40px; }
+    .new { font-size: clamp(55px, 10vw, 100px) !important; color: var(--primary); font-weight: 800; display: block; margin: 5px auto 20px; line-height: 1; min-height: 80px; }
    
     .btn { 
         background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); 
@@ -88,6 +88,8 @@
         font-size: clamp(14px, 4.5vw, 18px);
         box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4); 
         animation: pulseSoft 2.5s ease-in-out infinite;
+        cursor: pointer;
+        border: none;
     }
 
     @keyframes pulseSoft { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
@@ -95,16 +97,18 @@
     .timer { 
         color: #b88a2a; font-weight: 700; padding: 10px 25px; 
         background: rgba(212, 175, 55, 0.1); border-radius: 50px; 
-        display: inline-block; margin: 20px auto; font-size: 14px;
+        display: table; margin: 20px auto; font-size: 14px;
+        text-transform: uppercase; letter-spacing: 1px;
     }
     
     .faq-container { max-width: 700px; margin: 25px auto; background: white; border-radius: 20px; padding: 20px; border: 1px solid #eee; }
     .faq-item { border-bottom: 1px solid #f1f1f1; padding: 15px 0; cursor: pointer; text-align: left; }
-    .faq-question { font-weight: 700; }
-    .faq-answer { max-height: 0; overflow: hidden; opacity: 0; transition: 0.3s; color: #555; }
+    .faq-question { font-weight: 700; position: relative; padding-right: 25px; }
+    .faq-question::after { content: "+"; position: absolute; right: 0; color: var(--primary); }
+    .faq-answer { max-height: 0; overflow: hidden; opacity: 0; transition: 0.35s all; color: #555; font-size: 14px; }
     .faq-item.active .faq-answer { max-height: 200px; opacity: 1; margin-top: 10px; }
 
-    /* ANIMACION DE NOTIFICACIONES (LA QUE FALTABA) */
+    /* ANIMACION DE INSCRIPCIONES (RESTAURADA) */
     .sale-popup {
         position: fixed; left: 18px; bottom: 100px; z-index: 999999;
         display: flex; align-items: center; gap: 10px;
@@ -115,26 +119,51 @@
         opacity: 0; transform: translateY(20px); transition: 0.5s all ease;
     }
     .sale-popup.show { opacity: 1; transform: translateY(0); }
-    .sale-popup::before { content: ""; width: 10px; height: 10px; background: #22c55e; border-radius: 50%; }
+    .sale-popup::before { 
+        content: ""; width: 10px; height: 10px; background: #22c55e; border-radius: 50%; 
+        animation: livePulse 2s infinite;
+    }
+    @keyframes livePulse { 0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
 
-    img { max-width: 100%; height: auto; border-radius: 10px; }
-    .tarjeta-soporte-hamilton { background: white; border-radius: 25px; padding: 20px; max-width: 400px; margin: 20px auto; border: 2px solid #e9b96e; }
-    .btn-soporte-premium { display: flex; align-items: center; justify-content: center; background: #fffcf5; color: #8c6a1a; padding: 12px 25px; border-radius: 100px; font-weight: 700; text-decoration: none; border: 2px solid #d4af37; margin: 10px auto; width: fit-content; }
+    /* IMAGENES Y VIDEO CON MEDIDAS (Punto 1 CLS) */
+    img { max-width: 100%; height: auto; display: block; margin: 0 auto; content-visibility: auto; }
+    video { background: #000; border-radius: 20px; }
+
+    .tarjeta-soporte-hamilton { background: white; border-radius: 25px; padding: 20px; max-width: 400px; margin: 20px auto; border: 2px solid #e9b96e; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    .btn-soporte-premium { display: flex; align-items: center; justify-content: center; background: #fffcf5; color: #8c6a1a; padding: 12px 25px; border-radius: 100px; font-weight: 700; text-decoration: none; border: 2px solid #d4af37; margin: 15px auto; width: fit-content; font-size: 13px; text-transform: uppercase; }
 
     .grid-img { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin: 30px 0; }
-    .card-img { background: white; border-radius: 15px; padding: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+    .card-img { background: white; border-radius: 15px; padding: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); text-align: center; }
+    .card-img img { border-radius: 10px; margin-bottom: 8px; width: 100%; height: auto; background: #f0f0f0; }
+    .card-img p { font-size: 13px; font-weight: 600; margin: 5px 0; }
+
+    .mensaje-guia-vip { color: #b88a2a; font-weight: 700; margin: 20px 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .flecha-vip { width: 2px; height: 30px; background: #d4af37; animation: bounce 2s infinite; position: relative; }
+    .flecha-vip::after { content: ""; position: absolute; bottom: -5px; left: -4px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid #d4af37; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+
+    @media (max-width: 768px) {
+        .grid-img { grid-template-columns: 1fr; }
+        .btn { width: 90% !important; }
+    }
 </style>
 </head>
 <body>
 
-<div class="top-bar">🔥 OFERTA DE LANZAMIENTO ACTIVA - DESCUENTO LIMITADO</div>
+<div class="top-bar">🔥 OFERTA DE LANZAMIENTO ACTIVA - DESCUENTO LIMITADO DISPONIBLE AHORA</div>
 
 <div class="wrapper">
-    <img src="vela2.jpg" width="900" height="500" style="margin-bottom:20px; border-radius:20px;">
+    <!-- IMAGEN CABECERA -->
+    <div style="margin-bottom:20px;">
+        <img src="vela2.jpg" width="900" height="500" alt="Velas Artesanales Premium">
+    </div>
 
     <div class="hero">
         <h1>Únete a más de 1,200 mujeres que ya transformaron su sala en un taller de velas</h1>
-        <video width="640" height="360" controls poster="portada.video.jpg" style="width:100%; border-radius:20px; aspect-ratio: 16/9; background:#000;">
+        <p>Mira cómo funciona por dentro</p>
+        
+        <!-- VIDEO PRINCIPAL -->
+        <video width="640" height="360" controls poster="portada.video.jpg" style="width:100%; height:auto; aspect-ratio: 16/9;">
             <source src="condena-video.mp4" type="video/mp4">
         </video>
         
@@ -142,105 +171,152 @@
         <div class="new" id="precio-oferta" data-usd="37">$37 USD</div>
         <div class="timer" id="timer1">Oferta termina en: 15:00</div>
         
-        <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">QUIERO EMPEZAR HOY CON EL DESCUENTO</a>
+        <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">
+            QUIERO EMPEZAR HOY CON EL DESCUENTO
+        </a>
         
+        <!-- SOPORTE HAMILTON -->
         <div class="tarjeta-soporte-hamilton">
             <div style="display:flex; align-items:center; gap:15px;">
-                <img src="HAMILTON_AUDIO.jpg" width="70" height="70" style="border-radius:50%;">
+                <img src="HAMILTON_AUDIO.jpg" width="70" height="70" style="border-radius:50%;" alt="Hamilton">
                 <div style="text-align:left;">
-                    <p style="margin:0; font-size:14px;"><strong>¿Tienes dudas?</strong> Escucha esto:</p>
-                    <audio controls style="width:100%; height:30px; margin-top:5px;">
+                    <p style="margin:0; font-size:14px;"><strong>¿Tienes dudas?</strong> Escucha esto de Hamilton:</p>
+                    <audio controls style="width:100%; height:32px; margin-top:8px;">
                         <source src="https://hamiltongranillo10.github.io/tu-audio.mp3" type="audio/mpeg">
                     </audio>
                 </div>
             </div>
         </div>
         
-        <a href="https://wa.link/jotwfj" class="btn-soporte-premium" target="_blank">CHATEAR CON HAMILTON (SOPORTE VIP)</a>
+        <a href="https://wa.link/jotwfj" class="btn-soporte-premium" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="18" height="18" style="margin-right:8px;">
+            CHATEAR CON HAMILTON (SOPORTE VIP)
+        </a>
     </div>
 
-    <!-- SECCIÓN YULY -->
-    <div style="margin:50px 0;">
-        <h2 style="font-family:'Playfair Display';">Aprende con una persona que ya vive de esto</h2>
-        <p>Yuly Mar Rivas pasó de ser ama de casa a vivir de su pasión.</p>
-        <img src="yuly.jpg" width="220" height="220" style="border-radius:50%; margin-top:20px;">
+    <!-- SECCIÓN YULY MAR -->
+    <div style="margin:60px 0;">
+        <h2 style="font-family:'Playfair Display'; font-size:28px;">Aprende con una persona que ya vive de esto</h2>
+        <p style="max-width:600px; margin:20px auto;">Este curso fue creado por Yuly Mar Rivas, quien pasó de ser ama de casa a generar ingresos reales desde casa con velas artesanales.</p>
+        <img src="yuly.jpg" width="220" height="220" style="border-radius:50%; margin:20px auto;" alt="Yuly Mar Rivas">
     </div>
 
-    <!-- GRID -->
+    <!-- BONO EXCLUSIVO -->
+    <div style="max-width: 700px; margin: 40px auto; background: white; padding: 30px; border-radius: 20px; border: 1px solid #d4af37; box-shadow: 0 10px 30px rgba(212,175,55,0.1);">
+        <h3 style="margin-top:0;">🎁 BONO EXCLUSIVO PARA TI</h3>
+        <p>Antes de decidir, tendrás acceso a un bono donde verás el paso a paso real para crear tu primera vela de gel. Esto te permite ver la calidad antes de entrar.</p>
+        <a href="gracias.html" style="background:#d4af37; color:white; padding:12px 30px; border-radius:50px; text-decoration:none; font-weight:800; display:inline-block; margin-top:10px;">🔥 ACCEDER AL BONO</a>
+    </div>
+
+    <div class="mensaje-guia-vip">
+        Antes de tu bono, revisa esto primero
+        <span class="flecha-vip"></span>
+    </div>
+
+    <!-- GRID DE LOGROS -->
+    <h2 style="font-family:'Playfair Display'; font-size:30px; margin:40px 0;">Todo lo que vas a lograr</h2>
     <div class="grid-img">
-        <div class="card-img"><img src="curso-completo.jpg" width="200" height="200"><p>Paso a paso</p></div>
-        <div class="card-img"><img src="vela-acuario.jpg" width="200" height="200"><p>Tendencias</p></div>
-        <div class="card-img"><img src="esferas-brillantes.jpg" width="200" height="200"><p>Técnicas PRO</p></div>
-        <div class="card-img"><img src="certificado.jpg" width="200" height="200"><p>Certificación</p></div>
+        <div class="card-img"><img src="curso-completo.jpg" width="200" height="200"><p>Curso completo paso a paso</p></div>
+        <div class="card-img"><img src="vela-acuario.jpg" width="200" height="200"><p>Velas en tendencia</p></div>
+        <div class="card-img"><img src="esferas-brillantes.jpg" width="200" height="200"><p>Esferas brillantes</p></div>
+        <div class="card-img"><img src="bouquet-velitas.jpg" width="200" height="200"><p>Bouquet premium</p></div>
+        <div class="card-img"><img src="certificado.jpg" width="200" height="200"><p>Certificado oficial</p></div>
+        <div class="card-img" style="border:2px solid #d4af37;"><img src="grupo-vip.jpg" width="200" height="200"><p>Grupo VIP Soporte</p></div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-container">
+        <h2 style="font-family:'Playfair Display';">Preguntas Frecuentes</h2>
+        <div class="faq-item">
+            <div class="faq-question">¿Cómo recibo el curso?</div>
+            <div class="faq-answer">Recibes el acceso en tu correo inmediatamente después del pago. Acceso de por vida.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">¿Es seguro el pago?</div>
+            <div class="faq-answer">Sí, usamos Hotmart, la plataforma más segura del mundo para cursos online.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">¿Tengo garantía?</div>
+            <div class="faq-answer">Tienes 7 días de garantía total. Si no te gusta, te devolvemos el 100%.</div>
+        </div>
     </div>
 
     <!-- TESTIMONIOS -->
     <div style="margin:50px 0;">
-        <h2 style="font-family:'Playfair Display';">Resultados reales</h2>
-        <video autoplay loop muted playsinline width="400" height="700" style="width:100%; max-width:350px; border-radius:20px;">
+        <h2 style="font-family:'Playfair Display';">Resultados reales de alumnas</h2>
+        <video autoplay loop muted playsinline width="400" height="700" style="width:100%; max-width:380px; border-radius:25px;">
             <source src="testimonios.mp4" type="video/mp4">
         </video>
+        <p style="font-weight:700; margin-top:20px;">Tú también puedes lograrlo</p>
     </div>
 
+    <!-- CIERRE -->
     <div class="bottom-section">
-        <img src="garantia-7-dias.jpg" width="300" height="180" style="margin-bottom:20px;">
-        <div class="new">$37 USD</div>
-        <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">SÍ, QUIERO ACCESO INMEDIATO</a>
+        <img src="garantia-7-dias.jpg" width="420" height="250" style="max-width:300px; margin-bottom:20px;" alt="Garantía">
+        <div class="old" id="precio-tachado-2" data-usd="74">$74 USD</div>
+        <div class="new" id="precio-oferta-2" data-usd="37">$37 USD</div>
+        <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">SÍ, QUIERO MI ACCESO AHORA</a>
+        
+        <a href="https://wa.link/7h1fs9" class="btn-soporte-premium" target="_blank" style="margin-top:20px;">
+            ¿DUDAS CON LA INSCRIPCIÓN? ESCRÍBEME
+        </a>
     </div>
 </div>
 
-<!-- POPUP DE VENTAS -->
+<!-- SISTEMA DE NOTIFICACIONES DINAMICAS (LA QUE FALTABA) -->
 <div id="sale-popup" class="sale-popup"></div>
 
 <script>
-// SISTEMA DE NOTIFICACIONES DE VENTAS
-const names = ["Maria", "Elena", "Claudia", "Adriana", "Lucia", "Sofia", "Isabel", "Marta", "Patricia", "Raquel"];
-const cities = ["Mexico", "Colombia", "Chile", "Ecuador", "Peru", "España", "Argentina"];
+// NOTIFICACIONES DE INSCRIPCIONES
+const nombres = ["Mariana", "Lucía", "Beatriz", "Gabriela", "Carmen", "Sofía", "Paola", "Valentina", "Ximena", "Lorena"];
+const paises = ["de México", "de Colombia", "de Chile", "de Perú", "de Ecuador", "de España", "de Argentina"];
 const popup = document.getElementById('sale-popup');
 
-function showSale() {
-    const name = names[Math.floor(Math.random() * names.length)];
-    const city = cities[Math.floor(Math.random() * cities.length)];
-    popup.innerText = `${name} de ${city} se acaba de inscribir ✅`;
+function lanzarVenta() {
+    const n = nombres[Math.floor(Math.random() * nombres.length)];
+    const p = paises[Math.floor(Math.random() * paises.length)];
+    popup.innerText = `${n} ${p} se acaba de inscribir ✅`;
     popup.classList.add('show');
-    setTimeout(() => popup.classList.remove('show'), 4000);
+    setTimeout(() => popup.classList.remove('show'), 5000);
 }
-setInterval(showSale, 8000);
-setTimeout(showSale, 3000);
+setInterval(lanzarVenta, 9000);
+setTimeout(lanzarVenta, 3000);
 
 // TEMPORIZADOR
-let time = 900;
+let segs = 900;
 setInterval(() => {
-    let m = Math.floor(time / 60);
-    let s = time % 60;
-    document.getElementById("timer1").innerText = `Oferta termina en: ${m}:${String(s).padStart(2, '0')}`;
-    time = time <= 0 ? 900 : time - 1;
+    let m = Math.floor(segs / 60);
+    let s = segs % 60;
+    let t = "Oferta termina en: " + m + ":" + String(s).padStart(2, '0');
+    document.getElementById("timer1").innerText = t;
+    segs = segs <= 0 ? 900 : segs - 1;
 }, 1000);
 
-// PRECIOS DINÁMICOS
-async function convertirPrecios() {
+// FAQ
+document.querySelectorAll('.faq-item').forEach(i => {
+    i.onclick = () => i.classList.toggle('active');
+});
+
+// CONVERSIÓN DE PRECIOS
+async function convertir() {
     try {
-        const ipRes = await fetch('https://ipapi.co/json/');
-        const ipData = await ipRes.json();
-        const moneda = ipData.currency;
-        const exRes = await fetch('https://open.er-api.com/v6/latest/USD');
-        const exData = await exRes.json();
-        const tasa = exData.rates[moneda];
+        const r1 = await fetch('https://ipapi.co/json/');
+        const d1 = await r1.json();
+        const mon = d1.currency;
+        const r2 = await fetch('https://open.er-api.com/v6/latest/USD');
+        const d2 = await r2.json();
+        const tasa = d2.rates[mon];
         if (tasa) {
             document.querySelectorAll('[data-usd]').forEach(el => {
                 const usd = el.getAttribute('data-usd');
-                let p = Math.ceil(usd * tasa * (moneda === 'USD' ? 1 : 1.2));
-                el.innerText = `${moneda} ${p.toLocaleString()}`;
+                let fin = Math.ceil(usd * tasa * (mon === 'USD' ? 1 : 1.25));
+                el.innerText = `${mon} ${fin.toLocaleString()}`;
             });
         }
     } catch (e) {}
 }
-convertirPrecios();
-
-// FAQ
-document.querySelectorAll('.faq-item').forEach(item => {
-    item.onclick = () => item.classList.toggle('active');
-});
+convertir();
 </script>
+
 </body>
 </html>

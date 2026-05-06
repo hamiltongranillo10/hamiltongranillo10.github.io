@@ -33,6 +33,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Curso Velas Artesanales Premium</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
@@ -269,8 +270,16 @@
         .btn { width: 90% !important; max-width: 340px !important; padding: 18px 15px !important; }
     }
 
-    /* FIX CLS IMÁGENES */
+ 
     img { aspect-ratio: auto attr(width) / attr(height); content-visibility: auto; }
+
+  
+    #mensaje-descuento-1, #mensaje-descuento-2, #mensaje-descuento-3 {
+        min-height: 40px;  display: block; margin: 10px 0; text-align: center;
+    }
+
+    .old, .new { min-height: 1.2em; contain: layout;
+    }
 
 </style>
 </head>
@@ -282,8 +291,8 @@
 
     <!-- IMAGEN PRINCIPAL -->
     <div style="margin-bottom:20px;">
-        <img src="vela2.jpg" width="900" height="500" style="width:100%; height:auto; border-radius:20px;" alt="Velas Artesanales">
-    </div>
+    <img src="vela2.jpg" width="900" height="500" style="width:100%; height:auto; aspect-ratio: 900 / 500; border-radius:20px;" alt="Velas Artesanales">
+   </div>
 
     <!-- BLOQUE HERO (MOVIDO ARRIBA PARA MEJOR CONVERSIÓN) -->
     <div class="hero reveal">

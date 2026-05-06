@@ -255,6 +255,7 @@
     .texto-soporte { margin: 0 0 8px 0; font-size: 14px; color: #444; text-align: left; }
     .audio-estilo { width: 100%; height: 35px; }
 
+    /* GRID IMÁGENES */
     .grid-img { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin: 30px 0; }
     .card-img { background: white; border-radius: 15px; padding: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); transition: 0.3s; overflow: hidden; }
     .card-img:hover { transform: translateY(-5px); }
@@ -284,11 +285,11 @@
         <img src="vela2.jpg" width="900" height="500" style="width:100%; height:auto; border-radius:20px;" alt="Velas Artesanales">
     </div>
 
-    <!-- BLOQUE HERO (TODO TU CONTENIDO ORIGINAL) -->
-    <div class="hero">
+    <!-- BLOQUE HERO (MOVIDO ARRIBA PARA MEJOR CONVERSIÓN) -->
+    <div class="hero reveal">
         <h1>Únete a más de 1,200 mujeres que ya transformaron su sala en un taller de velas</h1>
         <p style="text-align:center;">Mira cómo funciona por dentro</p>
-        <video width="640" height="360" preload="metadata" controls poster="portada.video.jpg" style="width:100%; height:auto; border-radius:20px; aspect-ratio: 16/9; background: #eee;">
+        <video width="640" height="360" preload="metadata" controls poster="portada.video.jpg" style="width:100%; height:auto; border-radius:20px;">
             <source src="condena-video.mp4" type="video/mp4">
         </video>
         
@@ -324,7 +325,7 @@
         </div>
     </div>
 
-    <!-- SECCIÓN YULY -->
+    <!-- HISTORIA DE LA CREADORA (YULY) -->
     <div style="text-align:center; min-height: 300px; margin-top: 50px;">
         <h2 style="font-size:24px; font-weight:bold; margin-bottom:10px; font-family: 'Playfair Display', serif;">
           Aprende con una persona que ya vive de esto
@@ -362,10 +363,12 @@
         <li>✔️ Te gustaría vender desde redes sociales</li>
     </ul>
 
-    <!-- GRID PREMIUM -->
+    <!-- SECCIÓN PREMIUM CONTENIDO -->
     <div style="max-width: 1000px; margin: 50px auto; text-align: center;">
         <h2 style="font-family: 'Playfair Display', serif; font-size:32px; margin-bottom:10px;">Todo lo que necesitas para <span style="color:#d4af37;">generar ingresos desde casa</span></h2>
-        <div class="grid-img">
+        <p style="font-size:16px; opacity:0.8; max-width:600px; margin:0 auto 30px;">Un sistema paso a paso para crear, vender y empezar desde cero</p>
+
+        <div class="grid-img reveal">
             <div class="card-img"><img src="curso-completo.jpg" width="200" height="200"><p>Curso completo paso a paso</p></div>
             <div class="card-img"><img src="vela-acuario.jpg" width="200" height="200"><p>Velas en tendencia</p></div>
             <div class="card-img"><img src="esferas-brillantes.jpg" width="200" height="200"><p>Velas tipo esferas brillantes</p></div>
@@ -376,11 +379,12 @@
             <div class="card-img"><img src="certificado.jpg" width="200" height="200"><p>Certificado al finalizar</p></div>
             <div class="card-img vip"><img src="grupo-vip.jpg" width="200" height="200"><p>Acceso a grupo VIP privado + soporte</p></div>
         </div>
+        <p style="margin-top:25px; font-weight:600;">No necesitas experiencia. Solo seguir el paso a paso.</p>
     </div>
 
     <!-- PREGUNTAS FRECUENTES -->
     <h2 style="font-family: 'Playfair Display', serif; font-size: 30px; text-align:center;">Preguntas Frecuentes</h2>
-    <div class="faq-container">
+    <div class="faq-container reveal">
         <div class="faq-item">
             <div class="faq-question">¿Cómo y cuándo recibiré el curso?</div>
             <div class="faq-answer">Recibirás acceso inmediato después del pago por correo electrónico. Tendrás acceso de por vida desde cualquier dispositivo.</div>
@@ -396,25 +400,32 @@
     </div>
 
     <div style="text-align:center; margin:40px 0;">
-        <img src="garantia-7-dias.jpg" width="420" height="250" style="width:100%; max-width:420px; border-radius:25px;">
+        <img src="garantia-7-dias.jpg" width="420" height="250" style="width:100%; max-width:420px; border-radius:25px; box-shadow:0 15px 40px rgba(0,0,0,0.12);">
     </div>
 
-    <!-- SECCIÓN FINAL -->
-    <div class="bottom-section">
+    <!-- SECCIÓN FINAL DE COMPRA -->
+    <div class="bottom-section reveal">
         <div class="old" id="precio-tachado-2" data-usd="74">$74 USD</div>
         <div class="new" id="precio-oferta-2" data-usd="37">$37 USD</div>
         <p style="font-weight: 700; text-align:center;">¡ÚLTIMA OPORTUNIDAD PARA UNIRTE CON DESCUENTO!</p>
         <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">SÍ, QUIERO MI ACCESO AHORA</a>
+        <p style="font-size: 12px; margin-top: 15px; text-align:center;">🔒 Pago 100% Seguro | Acceso Inmediato</p>
         <div id="mensaje-descuento-2" style="font-weight: bold; color: #b8860b; margin: 10px 0; text-align: center; font-size: 0.9em; font-style: italic;"></div>
     </div>
 
-    <!-- TESTIMONIOS (SIN RESUMIR) -->
+    <!-- TESTIMONIOS -->
     <div style="margin:50px 0;">
         <h2 style="font-family: 'Playfair Display', serif; font-size:28px; text-align:center;">Mira lo que están logrando personas que empezaron desde cero</h2>
-        <video autoplay loop muted playsinline width="400" height="700" style="width:100%; max-width:400px; border-radius:20px; margin:20px auto; display:block;">
+        <p style="text-align:center; font-size:16px; margin-top:10px; color: #6b6b6b; font-style: italic;">Resultados compartidos dentro de nuestra comunidad privada</p>
+        <video autoplay loop muted playsinline width="400" height="700" style="width:100%; max-width:400px; border-radius:20px; margin:20px auto; display:block; box-shadow:0 10px 30px rgba(0,0,0,0.15);">
             <source src="testimonios.mp4" type="video/mp4">
         </video>
         <p style="text-align:center; font-size:18px; font-weight:600;">Tú podrías ser el siguiente</p>
+        <p style="text-align:center; font-size:18px; margin-top:15px;">
+            ✔️ Pedidos reales desde casa <br>
+            ✔️ Sin experiencia previa <br>
+            ✔️ Personas empezando desde cero
+        </p>
         
         <div class="old" id="precio-tachado-3" data-usd="74">$74 USD</div>
         <div class="new" id="precio-oferta-3" data-usd="37">$37 USD</div>
@@ -436,46 +447,85 @@
 
 </div> <!-- Fin Wrapper -->
 
-<div id="sale-popup" class="sale-popup"></div>
+<div id="sale-popup" class="sale-popup"><p id="sale-text"></p></div>
 
 <script>
-// SCRIPTS ORIGINALES SIN CAMBIOS
-let time = 900;
+// TEMPORIZADOR
+let time = localStorage.getItem('tiempo_restante') ? parseInt(localStorage.getItem('tiempo_restante')) : 900;
 setInterval(() => {
     let m = Math.floor(time / 60);
     let s = time % 60;
     let text = "Oferta termina en: " + m + ":" + String(s).padStart(2, '0');
-    if (document.getElementById("timer1")) document.getElementById("timer1").innerText = text;
-    if (document.getElementById("timer2")) document.getElementById("timer2").innerText = text;
+    const t1 = document.getElementById("timer1");
+    const t2 = document.getElementById("timer2");
+    if (t1) t1.innerText = text;
+    if (t2) t2.innerText = text;
+    localStorage.setItem('tiempo_restante', time);
     time = time <= 0 ? 900 : time - 1;
 }, 1000);
 
+// POPUPS DE VENTA
+const names = ["Ana","María","Laura","Sofía","Tamara","Claudia","Dana","Marta","Isabel","Carla","Lucía"];
+const countries = ["de México","de Colombia","de Chile","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
+function showPopup() {
+    const popup = document.getElementById('sale-popup');
+    if (!popup) return;
+    const name = names[Math.floor(Math.random() * names.length)];
+    const country = countries[Math.floor(Math.random() * countries.length)];
+    popup.innerHTML = `🔥 <b>${name}</b> ${country} acaba de inscribirse`;
+    popup.classList.add('show');
+    setTimeout(() => popup.classList.remove('show'), 3500);
+}
+setTimeout(() => { showPopup(); setInterval(showPopup, 8000); }, 3000);
+
+// FAQ
 document.querySelectorAll('.faq-item').forEach(item => {
   item.addEventListener('click', () => {
+    document.querySelectorAll('.faq-item').forEach(i => { if (i !== item) i.classList.remove('active'); });
     item.classList.toggle('active');
   });
 });
 
+// REVEAL ANIMATION
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+}, { threshold: 0.15 });
+reveals.forEach(el => observer.observe(el));
+
+// CONVERSIÓN DE PRECIOS
 async function convertirPrecios() {
     try {
         const ipRes = await fetch('https://ipapi.co/json/');
         const ipData = await ipRes.json();
         const monedaLocal = ipData.currency;
+        const simboloMoneda = ipData.currency_symbol || '$';
         const exchangeRes = await fetch('https://open.er-api.com/v6/latest/USD');
         const exchangeData = await exchangeRes.json();
         const tasa = exchangeData.rates[monedaLocal];
         if (tasa) {
-            const ids = ['precio-tachado', 'precio-oferta', 'precio-tachado-2', 'precio-oferta-2', 'precio-tachado-3', 'precio-oferta-3'];
-            ids.forEach(id => {
+            const elementos = ['precio-tachado', 'precio-oferta', 'precio-tachado-2', 'precio-oferta-2', 'precio-tachado-3', 'precio-oferta-3'];
+            let mostrarMensaje = false;
+            elementos.forEach(id => {
                 const el = document.getElementById(id);
                 if (el) {
                     const usd = el.getAttribute('data-usd');
-                    let p = Math.ceil(usd * tasa * (monedaLocal === 'USD' ? 1 : 1.25));
-                    el.innerText = monedaLocal + " " + p.toLocaleString();
+                    let margen = (monedaLocal === 'USD') ? 1.0 : (monedaLocal === 'MXN' ? 1.23 : 1.25);
+                    if (monedaLocal !== 'USD') mostrarMensaje = true;
+                    let precioFinal = (monedaLocal === 'COP' || monedaLocal === 'CLP') 
+                        ? Math.ceil((usd * tasa * margen) / 1000) * 1000 
+                        : Math.ceil(usd * tasa * margen);
+                    el.innerText = (monedaLocal === 'USD') ? `${simboloMoneda}${precioFinal} USD` : `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
                 }
             });
+            if (mostrarMensaje) {
+                ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3'].forEach(idMsg => {
+                    const c = document.getElementById(idMsg);
+                    if (c) c.innerText = "¡Haz clic en el botón para aplicar un bono de descuento extra disponible en tu país! 🎁";
+                });
+            }
         }
-    } catch (e) {}
+    } catch (e) { console.error(e); }
 }
 convertirPrecios();
 </script>

@@ -53,7 +53,6 @@
         color: #2b2b2b;
         overflow-x: hidden;
         position: relative;
-        overflow-anchor: none;
     }
 
     .top-bar { background: linear-gradient(90deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 10px; font-size: 12px; font-weight: 800; text-transform: uppercase; }
@@ -66,46 +65,13 @@
         padding: 40px 20px; 
         border-radius: 30px; 
         border: 1px solid rgba(255,255,255,0.6); 
-        box-shadow: 
-        0 20px 50px rgba(0,0,0,0.08),
-        0 2px 10px rgba(0,0,0,0.04);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.08);
     }
 
-    h1 { 
-        font-family: 'Playfair Display', serif; 
-        font-size: clamp(26px, 5vw, 48px); 
-        color: #111827; 
-        line-height: 1.2em; 
-        margin-bottom: 15px; 
-        text-align: center;
-        min-height: 1.2em;
-    }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 5vw, 48px); color: #111827; line-height: 1.2; margin-bottom: 15px; }
 
-    .old {
-        text-decoration: line-through;
-        color: #bfa888; 
-        font-size: clamp(32px, 5vw, 50px) !important;  
-        font-weight: 300;
-        display: block !important; 
-        text-align: center !important; 
-        margin: 0 auto -15px !important;
-        opacity: 0.6; 
-        letter-spacing: 2px; 
-        font-family: 'Montserrat', sans-serif !important;
-        min-height: 1.2em;
-    }
-
-    .new { 
-        font-size: clamp(55px, 10vw, 100px) !important; 
-        color: var(--primary); 
-        font-weight: 800;
-        display: block !important; 
-        text-align: center !important; 
-        margin: 5px auto 20px !important; 
-        line-height: 1; 
-        letter-spacing: -1px; 
-        min-height: 1.2em;
-    }
+    .old { text-decoration: line-through; color: #bfa888; font-size: clamp(32px, 5vw, 50px) !important; font-weight: 300; display: block; margin-bottom: -15px; opacity: 0.6; }
+    .new { font-size: clamp(55px, 10vw, 100px) !important; color: var(--primary); font-weight: 800; display: block; margin-bottom: 20px; line-height: 1; }
    
     .btn { 
         background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); 
@@ -120,364 +86,161 @@
         width: fit-content;
         margin: 15px auto;
         font-size: clamp(14px, 4.5vw, 18px);
-        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4); 
-        transition: 0.3s; 
-        cursor: pointer; 
-        border: none;
-        position: relative;
-        overflow: hidden; 
+        box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4); 
         animation: pulseSoft 2.5s ease-in-out infinite;
-        text-align: center;
     }
 
-    @keyframes pulseSoft {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.02); }
-    }
+    @keyframes pulseSoft { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
 
-    .btn::after {
-        content: "";
-        position: absolute;
-        top: -50%; left: -100%; width: 50%; height: 200%;
-        background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
-        transform: rotate(25deg);
-        animation: glassShine 4s infinite;
-    }
-
-    @keyframes glassShine { 0% { left: -120%; } 15% { left: 150%; } 100% { left: 150%; } }
-
-    .btn-temario {
-        background: transparent;
-        color: #b88a2a;
-        border: 2px solid #b88a2a;
-        padding: 12px 25px;
-        border-radius: 100px;
-        text-decoration: none;
-        font-weight: 600;
-        display: inline-block;
-        font-size: 14px;
-        margin-top: 15px;
-        transition: 0.3s;
-    }
-
-    .btn-temario:hover {
-        background: rgba(184, 138, 42, 0.08);
-        transform: scale(1.03);
+    .timer { 
+        color: #b88a2a; font-weight: 700; padding: 10px 25px; 
+        background: rgba(212, 175, 55, 0.1); border-radius: 50px; 
+        display: inline-block; margin: 20px auto; font-size: 14px;
     }
     
-    .timer, #timer1, #timer2 { 
-        color: #b88a2a !important;  
-        font-weight: 700 !important; 
-        padding: 10px 25px !important; 
-        background: rgba(212, 175, 55, 0.1) !important;  
-        border: 1px solid rgba(212, 175, 55, 0.3) !important;  
-        border-radius: 50px !important;  
-        font-size: 14px !important; 
-        display: table !important; 
-        margin: 20px auto !important;
-        text-transform: uppercase !important; 
-        letter-spacing: 1px !important; 
-        font-family: 'Montserrat', sans-serif !important; 
-        text-align: center !important;
-        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
-    }
-    
-    .faq-container { max-width: 700px; margin: 25px auto; background: white; border-radius: 20px; padding: 10px 20px; border: 1px solid #eee; }
-    .faq-item { border-bottom: 1px solid #f1f1f1; padding: 15px 0; cursor: pointer; }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-question { font-weight: 700; font-size: 16px; position: relative; padding-right: 25px; text-align: left; }
-    .faq-question::after { content: "+"; position: absolute; right: 0; font-size: 18px; transition: 0.3s; color: #d4af37; }
-    .faq-item.active .faq-question::after { content: "-"; }
-    .faq-answer { max-height: 0; overflow: hidden; opacity: 0; transition: all 0.35s ease; font-size: 14px; color: #555; margin-top: 0; text-align: left; }
+    .faq-container { max-width: 700px; margin: 25px auto; background: white; border-radius: 20px; padding: 20px; border: 1px solid #eee; }
+    .faq-item { border-bottom: 1px solid #f1f1f1; padding: 15px 0; cursor: pointer; text-align: left; }
+    .faq-question { font-weight: 700; }
+    .faq-answer { max-height: 0; overflow: hidden; opacity: 0; transition: 0.3s; color: #555; }
     .faq-item.active .faq-answer { max-height: 200px; opacity: 1; margin-top: 10px; }
 
+    /* ANIMACION DE NOTIFICACIONES (LA QUE FALTABA) */
     .sale-popup {
-        position: fixed; left: 18px; bottom: 95px; z-index: 999999;
+        position: fixed; left: 18px; bottom: 100px; z-index: 999999;
         display: flex; align-items: center; gap: 10px;
-        background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
-        padding: 10px 14px; border-radius: 999px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+        padding: 10px 18px; border-radius: 999px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         font-size: 13px; font-weight: 600; color: #111;
-        opacity: 0; transform: translateY(20px); transition: all 0.35s ease;
+        opacity: 0; transform: translateY(20px); transition: 0.5s all ease;
     }
-
     .sale-popup.show { opacity: 1; transform: translateY(0); }
-    .sale-popup::before {
-        content: ""; width: 10px; height: 10px; background: #22c55e; border-radius: 50%;
-        animation: livePulse 2.5s infinite;
-    }
+    .sale-popup::before { content: ""; width: 10px; height: 10px; background: #22c55e; border-radius: 50%; }
 
-    @keyframes livePulse {
-        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
-        70% { transform: scale(1.3); box-shadow: 0 0 0 10px rgba(34,197,94,0); }
-        100% { transform: scale(1); }
-    }
-
-    img { max-width: 100%; height: auto; display: block; margin: 0 auto; transform: translateZ(0); }
-
-    .btn-soporte-premium {
-        display: flex !important; align-items: center; justify-content: center;
-        background: rgba(212, 175, 55, 0.03); color: #8c6a1a;
-        text-decoration: none; padding: 12px 28px; border-radius: 100px;
-        font-weight: 700; font-size: 13px; margin: 15px auto !important;
-        width: fit-content !important; border: 2px solid #d4af37;
-        transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
-    }
-
-    .mensaje-guia-vip {
-        font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
-        color: #b88a2a; margin: 25px auto 10px; display: flex;
-        flex-direction: column; align-items: center; gap: 12px; text-align: center;
-    }
-
-    .flecha-vip {
-        width: 2px; height: 35px; background: linear-gradient(to bottom, #d4af37, transparent);
-        position: relative; animation: bounceVertical 2s infinite;
-    }
-    .flecha-vip::after {
-        content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
-        border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #d4af37;
-    }
-
-    @keyframes bounceVertical {
-        0%, 100% { transform: translateY(0); opacity: 0.4; }
-        50% { transform: translateY(12px); opacity: 1; }
-    }
-
-    .tarjeta-soporte-hamilton {
-        background: #ffffff; border-radius: 25px; padding: 20px;
-        max-width: 400px; margin: 15px auto; border: 2px solid #e9b96e;
-        box-shadow: 0px 10px 20px rgba(0,0,0,0.05);
-    }
-
-    .cuerpo-reproductor { display: flex; align-items: center; gap: 15px; }
-    .foto-hamilton { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; }
-    .texto-soporte { margin: 0 0 8px 0; font-size: 14px; color: #444; text-align: left; }
-    .audio-estilo { width: 100%; height: 35px; }
+    img { max-width: 100%; height: auto; border-radius: 10px; }
+    .tarjeta-soporte-hamilton { background: white; border-radius: 25px; padding: 20px; max-width: 400px; margin: 20px auto; border: 2px solid #e9b96e; }
+    .btn-soporte-premium { display: flex; align-items: center; justify-content: center; background: #fffcf5; color: #8c6a1a; padding: 12px 25px; border-radius: 100px; font-weight: 700; text-decoration: none; border: 2px solid #d4af37; margin: 10px auto; width: fit-content; }
 
     .grid-img { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin: 30px 0; }
-    .card-img { background: white; border-radius: 15px; padding: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); transition: 0.3s; overflow: hidden; }
-    .card-img:hover { transform: translateY(-5px); }
-    .card-img img { width: 100%; border-radius: 10px; transition: transform 0.4s ease; cursor: pointer; min-height: 150px; background: #f0f0f0; }
-    .card-img p { font-size: 13px; font-weight: 600; margin-top: 8px; text-align: center; }
-    .vip { border: 2px solid #d4af37; box-shadow: 0 10px 30px rgba(212,175,55,0.25); }
-
-    @media (max-width: 768px) {
-        .wrapper { padding: 10px; }
-        .grid-img { grid-template-columns: 1fr; }
-        .btn { width: 90% !important; max-width: 340px !important; padding: 18px 15px !important; }
-    }
-
-    /* FIX CLS IMÁGENES */
-    img { aspect-ratio: auto attr(width) / attr(height); content-visibility: auto; }
-
+    .card-img { background: white; border-radius: 15px; padding: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
 </style>
 </head>
 <body>
 
-<div class="top-bar">🔥 OFERTA DE LANZAMIENTO ACTIVA - DESCUENTO LIMITADO DISPONIBLE AHORA</div>
+<div class="top-bar">🔥 OFERTA DE LANZAMIENTO ACTIVA - DESCUENTO LIMITADO</div>
 
 <div class="wrapper">
+    <img src="vela2.jpg" width="900" height="500" style="margin-bottom:20px; border-radius:20px;">
 
-    <!-- IMAGEN PRINCIPAL -->
-    <div style="margin-bottom:20px;">
-        <img src="vela2.jpg" width="900" height="500" style="width:100%; height:auto; border-radius:20px;" alt="Velas Artesanales">
-    </div>
-
-    <!-- BLOQUE HERO (TODO TU CONTENIDO ORIGINAL) -->
     <div class="hero">
         <h1>Únete a más de 1,200 mujeres que ya transformaron su sala en un taller de velas</h1>
-        <p style="text-align:center;">Mira cómo funciona por dentro</p>
-        <video width="640" height="360" preload="metadata" controls poster="portada.video.jpg" style="width:100%; height:auto; border-radius:20px; aspect-ratio: 16/9; background: #eee;">
+        <video width="640" height="360" controls poster="portada.video.jpg" style="width:100%; border-radius:20px; aspect-ratio: 16/9; background:#000;">
             <source src="condena-video.mp4" type="video/mp4">
         </video>
         
         <div class="old" id="precio-tachado" data-usd="74">$74 USD</div>
         <div class="new" id="precio-oferta" data-usd="37">$37 USD</div>
-        <div class="timer" id="timer1">Oferta termina en: 14:18</div>
-        <br>
-        <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">
-            QUIERO EMPEZAR HOY CON EL DESCUENTO
-        </a>
+        <div class="timer" id="timer1">Oferta termina en: 15:00</div>
         
-        <div id="mensaje-descuento-1" style="font-weight: bold; color: #b8860b; margin: 10px 0; text-align: center; font-size: 0.9em; font-style: italic;"></div>
+        <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">QUIERO EMPEZAR HOY CON EL DESCUENTO</a>
         
         <div class="tarjeta-soporte-hamilton">
-            <div class="cuerpo-reproductor">
-                <div class="contenedor-foto">
-                    <img src="HAMILTON_AUDIO.jpg" width="70" height="70" alt="Hamilton Soporte" class="foto-hamilton">
-                </div>
-                <div class="info-reproductor">
-                    <p class="texto-soporte"><strong>¿Tienes dudas?</strong> Escucha esto de Hamilton:</p>
-                    <audio controls class="audio-estilo">
+            <div style="display:flex; align-items:center; gap:15px;">
+                <img src="HAMILTON_AUDIO.jpg" width="70" height="70" style="border-radius:50%;">
+                <div style="text-align:left;">
+                    <p style="margin:0; font-size:14px;"><strong>¿Tienes dudas?</strong> Escucha esto:</p>
+                    <audio controls style="width:100%; height:30px; margin-top:5px;">
                         <source src="https://hamiltongranillo10.github.io/tu-audio.mp3" type="audio/mpeg">
                     </audio>
                 </div>
             </div>
         </div>
         
-        <div style="text-align: center; width: 100%; margin-top: 10px;">
-            <a href="https://wa.link/jotwfj" class="btn-soporte-premium" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="18" height="18" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
-                CHATEAR CON HAMILTON (SOPORTE VIP)
-            </a>
-        </div>
+        <a href="https://wa.link/jotwfj" class="btn-soporte-premium" target="_blank">CHATEAR CON HAMILTON (SOPORTE VIP)</a>
     </div>
 
     <!-- SECCIÓN YULY -->
-    <div style="text-align:center; min-height: 300px; margin-top: 50px;">
-        <h2 style="font-size:24px; font-weight:bold; margin-bottom:10px; font-family: 'Playfair Display', serif;">
-          Aprende con una persona que ya vive de esto
-        </h2>
-        <p style="max-width:600px; margin:0 auto 10px;">
-          Este curso fue creado por Yuly Mar Rivas, quien pasó de ser ama de casa 
-          a generar ingresos desde casa con velas artesanales.
-        </p>
-        <p style="max-width:600px; margin:0 auto 20px;">
-          Hoy tú puedes seguir el mismo paso a paso y empezar tu propio negocio desde cero.
-        </p>
-        <img src="yuly.jpg" width="220" height="220" loading="lazy" style="border-radius:50%; object-fit:cover; margin: 0 auto;">
-    </div>
-
-    <!-- BONO EXCLUSIVO -->
-    <div style="max-width: 700px; margin: 40px auto; background: linear-gradient(135deg, rgba(255,247,237,0.9), rgba(255,255,255,0.8)); border: 1px solid rgba(212,175,55,0.2); box-shadow: 0 10px 30px rgba(212,175,55,0.15); padding: 20px; border-radius: 15px; text-align: center;">
-        <h3 style="font-size:20px; margin-bottom:10px;">🎁 BONO EXCLUSIVO PARA TI</h3>
-        <p style="font-size:14px; margin-bottom:15px;">Antes de decidir, tendrás acceso a un bono donde verás el paso a paso real para crear tu primera vela de gel.</p>
-        <p style="font-size:14px; font-weight:600; margin-bottom:15px;">Esto te permite ver la calidad antes de entrar.</p>
-        <a href="gracias.html" style="display:inline-flex; justify-content:center; align-items:center; background:#d4af37; color:white; padding:12px 25px; border-radius:50px; font-weight:700; text-decoration:none;">
-            🔥 ACCEDER AL BONO
-        </a>
-    </div>
-
-    <div class="mensaje-guia-vip">
-        Antes de tu bono, revisa esto primero
-        <span class="flecha-vip"></span>
-    </div>
-
-    <h2 style="font-family: 'Playfair Display', serif; font-size:28px; margin-top:30px; text-align:center;">¿Esto es para ti?</h2>
-    <ul style="text-align:left; max-width:600px; margin:20px auto; font-size:16px; line-height:1.6; list-style: none;">
-        <li>✔️ Quieres generar ingresos desde casa</li>
-        <li>✔️ No tienes experiencia y no sabes por dónde empezar</li>
-        <li>✔️ Buscas algo rentable y fácil de hacer</li>
-        <li>✔️ Te gustaría vender desde redes sociales</li>
-    </ul>
-
-    <!-- GRID PREMIUM -->
-    <div style="max-width: 1000px; margin: 50px auto; text-align: center;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size:32px; margin-bottom:10px;">Todo lo que necesitas para <span style="color:#d4af37;">generar ingresos desde casa</span></h2>
-        <div class="grid-img">
-            <div class="card-img"><img src="curso-completo.jpg" width="200" height="200"><p>Curso completo paso a paso</p></div>
-            <div class="card-img"><img src="vela-acuario.jpg" width="200" height="200"><p>Velas en tendencia</p></div>
-            <div class="card-img"><img src="esferas-brillantes.jpg" width="200" height="200"><p>Velas tipo esferas brillantes</p></div>
-            <div class="card-img"><img src="bouquet-velitas.jpg" width="200" height="200"><p>Bouquet de velas premium</p></div>
-            <div class="card-img"><img src="encapsulado-floral.jpg" width="200" height="200"><p>Acabados que aumentan el valor</p></div>
-            <div class="card-img"><img src="proveedores-mapa.jpg" width="200" height="200"><p>Proveedores por país</p></div>
-            <div class="card-img"><img src="clases-vivo.jpg" width="200" height="200"><p>Clases privadas en vivo al mes</p></div>
-            <div class="card-img"><img src="certificado.jpg" width="200" height="200"><p>Certificado al finalizar</p></div>
-            <div class="card-img vip"><img src="grupo-vip.jpg" width="200" height="200"><p>Acceso a grupo VIP privado + soporte</p></div>
-        </div>
-    </div>
-
-    <!-- PREGUNTAS FRECUENTES -->
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 30px; text-align:center;">Preguntas Frecuentes</h2>
-    <div class="faq-container">
-        <div class="faq-item">
-            <div class="faq-question">¿Cómo y cuándo recibiré el curso?</div>
-            <div class="faq-answer">Recibirás acceso inmediato después del pago por correo electrónico. Tendrás acceso de por vida desde cualquier dispositivo.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">¿El pago es seguro?</div>
-            <div class="faq-answer">Sí, el pago es procesado por Hotmart, una plataforma segura a nivel internacional que protege tus datos.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">¿Necesito experiencia previa?</div>
-            <div class="faq-answer">No necesitas experiencia. El curso está diseñado paso a paso desde cero para principiantes.</div>
-        </div>
-    </div>
-
-    <div style="text-align:center; margin:40px 0;">
-        <img src="garantia-7-dias.jpg" width="420" height="250" style="width:100%; max-width:420px; border-radius:25px;">
-    </div>
-
-    <!-- SECCIÓN FINAL -->
-    <div class="bottom-section">
-        <div class="old" id="precio-tachado-2" data-usd="74">$74 USD</div>
-        <div class="new" id="precio-oferta-2" data-usd="37">$37 USD</div>
-        <p style="font-weight: 700; text-align:center;">¡ÚLTIMA OPORTUNIDAD PARA UNIRTE CON DESCUENTO!</p>
-        <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">SÍ, QUIERO MI ACCESO AHORA</a>
-        <div id="mensaje-descuento-2" style="font-weight: bold; color: #b8860b; margin: 10px 0; text-align: center; font-size: 0.9em; font-style: italic;"></div>
-    </div>
-
-    <!-- TESTIMONIOS (SIN RESUMIR) -->
     <div style="margin:50px 0;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size:28px; text-align:center;">Mira lo que están logrando personas que empezaron desde cero</h2>
-        <video autoplay loop muted playsinline width="400" height="700" style="width:100%; max-width:400px; border-radius:20px; margin:20px auto; display:block;">
+        <h2 style="font-family:'Playfair Display';">Aprende con una persona que ya vive de esto</h2>
+        <p>Yuly Mar Rivas pasó de ser ama de casa a vivir de su pasión.</p>
+        <img src="yuly.jpg" width="220" height="220" style="border-radius:50%; margin-top:20px;">
+    </div>
+
+    <!-- GRID -->
+    <div class="grid-img">
+        <div class="card-img"><img src="curso-completo.jpg" width="200" height="200"><p>Paso a paso</p></div>
+        <div class="card-img"><img src="vela-acuario.jpg" width="200" height="200"><p>Tendencias</p></div>
+        <div class="card-img"><img src="esferas-brillantes.jpg" width="200" height="200"><p>Técnicas PRO</p></div>
+        <div class="card-img"><img src="certificado.jpg" width="200" height="200"><p>Certificación</p></div>
+    </div>
+
+    <!-- TESTIMONIOS -->
+    <div style="margin:50px 0;">
+        <h2 style="font-family:'Playfair Display';">Resultados reales</h2>
+        <video autoplay loop muted playsinline width="400" height="700" style="width:100%; max-width:350px; border-radius:20px;">
             <source src="testimonios.mp4" type="video/mp4">
         </video>
-        <p style="text-align:center; font-size:18px; font-weight:600;">Tú podrías ser el siguiente</p>
-        
-        <div class="old" id="precio-tachado-3" data-usd="74">$74 USD</div>
-        <div class="new" id="precio-oferta-3" data-usd="37">$37 USD</div>
-        <div class="timer" id="timer2">Oferta termina en: 14:18</div>
-        <br>
-        <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">
-            🚀 QUIERO CAMBIAR MI SITUACIÓN AHORA
-        </a>
-        
-        <div id="mensaje-descuento-3" style="font-weight: bold; color: #b8860b; margin: 10px 0; text-align: center; font-size: 0.9em; font-style: italic;"></div>
-        
-        <div style="text-align: center; width: 100%; margin-top: 10px; margin-bottom: 30px;">
-            <a href="https://wa.link/7h1fs9" class="btn-soporte-premium" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="18" height="18" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
-                ¿DUDAS CON LA INSCRIPCIÓN? ESCRÍBEME
-            </a>
-        </div>
     </div>
 
-</div> <!-- Fin Wrapper -->
+    <div class="bottom-section">
+        <img src="garantia-7-dias.jpg" width="300" height="180" style="margin-bottom:20px;">
+        <div class="new">$37 USD</div>
+        <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">SÍ, QUIERO ACCESO INMEDIATO</a>
+    </div>
+</div>
 
+<!-- POPUP DE VENTAS -->
 <div id="sale-popup" class="sale-popup"></div>
 
 <script>
-// SCRIPTS ORIGINALES SIN CAMBIOS
+// SISTEMA DE NOTIFICACIONES DE VENTAS
+const names = ["Maria", "Elena", "Claudia", "Adriana", "Lucia", "Sofia", "Isabel", "Marta", "Patricia", "Raquel"];
+const cities = ["Mexico", "Colombia", "Chile", "Ecuador", "Peru", "España", "Argentina"];
+const popup = document.getElementById('sale-popup');
+
+function showSale() {
+    const name = names[Math.floor(Math.random() * names.length)];
+    const city = cities[Math.floor(Math.random() * cities.length)];
+    popup.innerText = `${name} de ${city} se acaba de inscribir ✅`;
+    popup.classList.add('show');
+    setTimeout(() => popup.classList.remove('show'), 4000);
+}
+setInterval(showSale, 8000);
+setTimeout(showSale, 3000);
+
+// TEMPORIZADOR
 let time = 900;
 setInterval(() => {
     let m = Math.floor(time / 60);
     let s = time % 60;
-    let text = "Oferta termina en: " + m + ":" + String(s).padStart(2, '0');
-    if (document.getElementById("timer1")) document.getElementById("timer1").innerText = text;
-    if (document.getElementById("timer2")) document.getElementById("timer2").innerText = text;
+    document.getElementById("timer1").innerText = `Oferta termina en: ${m}:${String(s).padStart(2, '0')}`;
     time = time <= 0 ? 900 : time - 1;
 }, 1000);
 
-document.querySelectorAll('.faq-item').forEach(item => {
-  item.addEventListener('click', () => {
-    item.classList.toggle('active');
-  });
-});
-
+// PRECIOS DINÁMICOS
 async function convertirPrecios() {
     try {
         const ipRes = await fetch('https://ipapi.co/json/');
         const ipData = await ipRes.json();
-        const monedaLocal = ipData.currency;
-        const exchangeRes = await fetch('https://open.er-api.com/v6/latest/USD');
-        const exchangeData = await exchangeRes.json();
-        const tasa = exchangeData.rates[monedaLocal];
+        const moneda = ipData.currency;
+        const exRes = await fetch('https://open.er-api.com/v6/latest/USD');
+        const exData = await exRes.json();
+        const tasa = exData.rates[moneda];
         if (tasa) {
-            const ids = ['precio-tachado', 'precio-oferta', 'precio-tachado-2', 'precio-oferta-2', 'precio-tachado-3', 'precio-oferta-3'];
-            ids.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) {
-                    const usd = el.getAttribute('data-usd');
-                    let p = Math.ceil(usd * tasa * (monedaLocal === 'USD' ? 1 : 1.25));
-                    el.innerText = monedaLocal + " " + p.toLocaleString();
-                }
+            document.querySelectorAll('[data-usd]').forEach(el => {
+                const usd = el.getAttribute('data-usd');
+                let p = Math.ceil(usd * tasa * (moneda === 'USD' ? 1 : 1.2));
+                el.innerText = `${moneda} ${p.toLocaleString()}`;
             });
         }
     } catch (e) {}
 }
 convertirPrecios();
+
+// FAQ
+document.querySelectorAll('.faq-item').forEach(item => {
+    item.onclick = () => item.classList.toggle('active');
+});
 </script>
 </body>
 </html>

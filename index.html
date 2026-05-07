@@ -1,39 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta name="facebook-domain-verification" content="1rz4wc6eg8r5tab79zsufzy82imwpg" />
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    
-    fbq('init', '1274753604821165'); 
-    fbq('track', 'PageView');
-
-    function btm_track_checkout(event, link) {
-        event.preventDefault();
-        fbq('track', 'InitiateCheckout', {
-            content_name: 'Curso Velas Artesanales Premium',
-            content_category: 'Manualidades y Emprendimiento',
-            value: 37.00,
-            currency: 'USD'
-        });
-        setTimeout(function(){ window.location.href = link; }, 250);
-    }
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
-    /></noscript>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
     <link rel="dns-prefetch" href="//ipapi.co">
     <link rel="dns-prefetch" href="//open.er-api.com">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="facebook-domain-verification" content="1rz4wc6eg8r5tab79zsufzy82imwpg" />  
     <title>Curso Velas Artesanales Premium</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -217,7 +191,8 @@
         100% { transform: scale(1); }
     }
 
-    img { max-width: 100%; height: auto; display: block; margin: 0 auto; transform: translateZ(0); }
+    img { max-width: 100%; height: auto; display: block;  margin: 0 auto; transform: translateZ(0);  content-visibility: auto; 
+}
 
     .btn-soporte-premium {
         display: flex !important; align-items: center; justify-content: center;
@@ -292,15 +267,14 @@
 
 <div class="wrapper">
 
-    <!-- IMAGEN PRINCIPAL -->
+    
     <div style="margin-bottom:20px;">
     <img src="vela2.jpg"  width="900"  height="500"  fetchpriority="high"  alt="Velas Artesanales Premium"  style="width:100%; height:auto; aspect-ratio: 900 / 500; border-radius:20px;">
 
-    <!-- BLOQUE HERO (MOVIDO ARRIBA PARA MEJOR CONVERSIÓN) -->
     <div class="hero reveal">
         <h1>Únete a más de 1,200 mujeres que ya transformaron su sala en un taller de velas</h1>
         <p style="text-align:center;">Mira cómo funciona por dentro</p>
-        <video width="640" height="360" preload="metadata" controls poster="portada.video.jpg" style="width:100%; height:auto; border-radius:20px;">
+        <video width="640" height="360" preload="metadata" controls poster="portada.video.jpg" style="width:100%; height:auto; border-radius:20px; aspect-ratio: 16/9;">
             <source src="condena-video.mp4" type="video/mp4">
         </video>
         
@@ -330,13 +304,12 @@
         
         <div style="text-align: center; width: 100%; margin-top: 10px;">
             <a href="https://wa.link/jotwfj" class="btn-soporte-premium" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="18" height="18" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="18" height="18" alt="Icono WhatsApp" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
                 CHATEAR CON HAMILTON (SOPORTE VIP)
             </a>
         </div>
     </div>
 
-    <!-- HISTORIA DE LA CREADORA (YULY) -->
     <div style="text-align:center; min-height: 300px; margin-top: 50px;">
         <h2 style="font-size:24px; font-weight:bold; margin-bottom:10px; font-family: 'Playfair Display', serif;">
           Aprende con una persona que ya vive de esto
@@ -348,10 +321,9 @@
         <p style="max-width:600px; margin:0 auto 20px;">
           Hoy tú puedes seguir el mismo paso a paso y empezar tu propio negocio desde cero.
         </p>
-        <img src="yuly.jpg" width="220" height="220" loading="lazy" style="border-radius:50%; object-fit:cover; margin: 0 auto;">
+        <img src="yuly.jpg"  width="220"  height="220"  loading="lazy"  style="border-radius:50%; object-fit:cover; margin: 0 auto; display: block;"  alt="Experta Yuly Mar Rivas">
     </div>
 
-    <!-- BONO EXCLUSIVO -->
     <div style="max-width: 700px; margin: 40px auto; background: linear-gradient(135deg, rgba(255,247,237,0.9), rgba(255,255,255,0.8)); border: 1px solid rgba(212,175,55,0.2); box-shadow: 0 10px 30px rgba(212,175,55,0.15); padding: 20px; border-radius: 15px; text-align: center;">
         <h3 style="font-size:20px; margin-bottom:10px;">🎁 BONO EXCLUSIVO PARA TI</h3>
         <p style="font-size:14px; margin-bottom:15px;">Antes de decidir, tendrás acceso a un bono donde verás el paso a paso real para crear tu primera vela de gel.</p>
@@ -374,32 +346,32 @@
         <li>✔️ Te gustaría vender desde redes sociales</li>
     </ul>
 
-    <!-- SECCIÓN PREMIUM CONTENIDO -->
     <div style="max-width: 1000px; margin: 50px auto; text-align: center;">
         <h2 style="font-family: 'Playfair Display', serif; font-size:32px; margin-bottom:10px;">Todo lo que necesitas para <span style="color:#d4af37;">generar ingresos desde casa</span></h2>
         <p style="font-size:16px; opacity:0.8; max-width:600px; margin:0 auto 30px;">Un sistema paso a paso para crear, vender y empezar desde cero</p>
 
-        <div class="grid-img reveal">
-            <div class="card-img"><img src="curso-completo.jpg" width="200" height="200"><p>Curso completo paso a paso</p></div>
-            <div class="card-img"><img src="vela-acuario.jpg" width="200" height="200"><p>Velas en tendencia</p></div>
-            <div class="card-img"><img src="esferas-brillantes.jpg" width="200" height="200"><p>Velas tipo esferas brillantes</p></div>
-            <div class="card-img"><img src="bouquet-velitas.jpg" width="200" height="200"><p>Bouquet de velas premium</p></div>
-            <div class="card-img"><img src="encapsulado-floral.jpg" width="200" height="200"><p>Acabados que aumentan el valor</p></div>
-            <div class="card-img"><img src="proveedores-mapa.jpg" width="200" height="200"><p>Proveedores por país</p></div>
-            <div class="card-img"><img src="clases-vivo.jpg" width="200" height="200"><p>Clases privadas en vivo al mes</p></div>
-            <div class="card-img"><img src="certificado.jpg" width="200" height="200"><p>Certificado al finalizar</p></div>
-            <div class="card-img vip"><img src="grupo-vip.jpg" width="200" height="200"><p>Acceso a grupo VIP privado + soporte</p></div>
-        </div>
+       <div class="grid-img reveal">
+       <div class="card-img"><img src="curso-completo.jpg" width="200" height="200" loading="lazy" alt="Curso paso a paso"><p>Curso completo paso a paso</p></div>
+       <div class="card-img"><img src="vela-acuario.jpg" width="200" height="200" loading="lazy" alt="Velas tendencia"><p>Velas en tendencia</p></div>
+       <div class="card-img"><img src="esferas-brillantes.jpg" width="200" height="200" loading="lazy" alt="Esferas brillantes"><p>Velas tipo esferas brillantes</p></div>
+       <div class="card-img"><img src="bouquet-velitas.jpg" width="200" height="200" loading="lazy" alt="Bouquet premium"><p>Bouquet de velas premium</p></div>
+       <div class="card-img"><img src="encapsulado-floral.jpg" width="200" height="200" loading="lazy" alt="Acabados florales"><p>Acabados que aumentan el valor</p></div>
+       <div class="card-img"><img src="proveedores-mapa.jpg" width="200" height="200" loading="lazy" alt="Mapa proveedores"><p>Proveedores por país</p></div>
+       <div class="card-img"><img src="clases-vivo.jpg" width="200" height="200" loading="lazy" alt="Clases en vivo"><p>Clases privadas en vivo al mes</p></div>
+       <div class="card-img"><img src="certificado.jpg" width="200" height="200" loading="lazy" alt="Certificado oficial"><p>Certificado al finalizar</p></div>
+       <div class="card-img vip"><img src="grupo-vip.jpg" width="200" height="200" loading="lazy" alt="Grupo VIP"><p>Acceso a grupo VIP privado + soporte</p></div>
+      </div>
+      
         <p style="margin-top:25px; font-weight:600;">No necesitas experiencia. Solo seguir el paso a paso.</p>
     </div>
 
-    <!-- PREGUNTAS FRECUENTES -->
     <h2 style="font-family: 'Playfair Display', serif; font-size: 30px; text-align:center;">Preguntas Frecuentes</h2>
     <div class="faq-container reveal">
-        <div class="faq-item">
-            <div class="faq-question">¿Cómo y cuándo recibiré el curso?</div>
-            <div class="faq-answer">Recibirás acceso inmediato después del pago por correo electrónico. Tendrás acceso de por vida desde cualquier dispositivo.</div>
-        </div>
+    <div class="faq-item">
+    <div class="faq-question">¿Cómo y cuándo recibiré el curso?</div>
+    <div class="faq-answer">Recibirás acceso inmediato después del pago por correo electrónico. Tendrás acceso de por vida desde cualquier dispositivo.</div>
+
+ </div>
         <div class="faq-item">
             <div class="faq-question">¿El pago es seguro?</div>
             <div class="faq-answer">Sí, el pago es procesado por Hotmart, una plataforma segura a nivel internacional que protege tus datos.</div>
@@ -411,10 +383,9 @@
     </div>
 
     <div style="text-align:center; margin:40px 0;">
-        <img src="garantia-7-dias.jpg" width="420" height="250" style="width:100%; max-width:420px; border-radius:25px; box-shadow:0 15px 40px rgba(0,0,0,0.12);">
+        <img src="garantia-7-dias.jpg" width="420" height="250" loading="lazy" alt="Garantía de satisfacción 7 días"style="width:100%; max-width:420px; border-radius:25px; box-shadow:0 15px 40px rgba(0,0,0,0.12);">>
     </div>
 
-    <!-- SECCIÓN FINAL DE COMPRA -->
     <div class="bottom-section reveal">
         <div class="old" id="precio-tachado-2" data-usd="74">$74 USD</div>
         <div class="new" id="precio-oferta-2" data-usd="37">$37 USD</div>
@@ -424,13 +395,15 @@
         <div id="mensaje-descuento-2" style="font-weight: bold; color: #b8860b; margin: 10px 0; text-align: center; font-size: 0.9em; font-style: italic;"></div>
     </div>
 
-    <!-- TESTIMONIOS -->
-    <div style="margin:50px 0;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size:28px; text-align:center;">Mira lo que están logrando personas que empezaron desde cero</h2>
-        <p style="text-align:center; font-size:16px; margin-top:10px; color: #6b6b6b; font-style: italic;">Resultados compartidos dentro de nuestra comunidad privada</p>
-        <video autoplay loop muted playsinline width="400" height="700" style="width:100%; max-width:400px; border-radius:20px; margin:20px auto; display:block; box-shadow:0 10px 30px rgba(0,0,0,0.15);">
-            <source src="testimonios.mp4" type="video/mp4">
+          <div style="margin:50px 0;">
+          <h2 style="font-family: 'Playfair Display', serif; font-size:28px; text-align:center;">Mira lo que están logrando personas que empezaron desde cero</h2>
+          <p style="text-align:center; font-size:16px; margin-top:10px; color: #6b6b6b; font-style: italic;">Resultados compartidos dentro de nuestra comunidad privada</p>
+          <video preload="none" loop muted playsinline width="400" height="700" 
+           style="width:100%; max-width:400px; border-radius:20px; margin:20px auto; display:block; box-shadow:0 10px 30px rgba(0,0,0,0.15);"
+           onmouseover="this.play()" onmouseout="this.pause()" onclick="this.play()">
+        <source src="testimonios.mp4" type="video/mp4">
         </video>
+
         <p style="text-align:center; font-size:18px; font-weight:600;">Tú podrías ser el siguiente</p>
         <p style="text-align:center; font-size:18px; margin-top:15px;">
             ✔️ Pedidos reales desde casa <br>
@@ -450,18 +423,18 @@
         
         <div style="text-align: center; width: 100%; margin-top: 10px; margin-bottom: 30px;">
             <a href="https://wa.link/7h1fs9" class="btn-soporte-premium" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="18" height="18" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"  width="18"  height="18"  alt="Icono WhatsApp" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
                 ¿DUDAS CON LA INSCRIPCIÓN? ESCRÍBEME
             </a>
         </div>
     </div>
 
-</div> <!-- Fin Wrapper -->
+</div> 
 
 <div id="sale-popup" class="sale-popup"><p id="sale-text"></p></div>
 
 <script>
-// TEMPORIZADOR
+
 let time = localStorage.getItem('tiempo_restante') ? parseInt(localStorage.getItem('tiempo_restante')) : 900;
 setInterval(() => {
     let m = Math.floor(time / 60);
@@ -475,7 +448,7 @@ setInterval(() => {
     time = time <= 0 ? 900 : time - 1;
 }, 1000);
 
-// POPUPS DE VENTA
+
 const names = ["Ana","María","Laura","Sofía","Tamara","Claudia","Dana","Marta","Isabel","Carla","Lucía"];
 const countries = ["de México","de Colombia","de Chile","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
 function showPopup() {
@@ -489,7 +462,7 @@ function showPopup() {
 }
 setTimeout(() => { showPopup(); setInterval(showPopup, 8000); }, 3000);
 
-// FAQ
+
 document.querySelectorAll('.faq-item').forEach(item => {
   item.addEventListener('click', () => {
     document.querySelectorAll('.faq-item').forEach(i => { if (i !== item) i.classList.remove('active'); });
@@ -497,14 +470,13 @@ document.querySelectorAll('.faq-item').forEach(item => {
   });
 });
 
-// REVEAL ANIMATION
+
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
 }, { threshold: 0.15 });
 reveals.forEach(el => observer.observe(el));
 
-// CONVERSIÓN DE PRECIOS
 async function convertirPrecios() {
     try {
         const ipRes = await fetch('https://ipapi.co/json/');
@@ -538,7 +510,28 @@ async function convertirPrecios() {
         }
     } catch (e) { console.error(e); }
 }
-convertirPrecios();
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1274753604821165');
+fbq('track', 'PageView');
+
+function btm_track_checkout(event, link) {
+    event.preventDefault();
+    fbq('track', 'InitiateCheckout', {
+        content_name: 'Curso Velas Artesanales Premium',
+        content_category: 'Manualidades y Emprendimiento',
+        value: 37.00,
+        currency: 'USD'
+    });
+    setTimeout(function(){ window.location.href = link; }, 250);
+}
+window.addEventListener('load', () => {
+    setTimeout(convertirPrecios, 100);
+});
 </script>
 </body>
 </html>

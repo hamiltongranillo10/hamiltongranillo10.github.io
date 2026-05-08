@@ -567,7 +567,11 @@ function btm_track_checkout(event, link) {
 }
 
 window.addEventListener('load', () => {
-    setTimeout(convertirPrecios, 100);
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => convertirPrecios());
+    } else {
+        setTimeout(convertirPrecios, 200);
+    }
 });
 
 </script>

@@ -488,35 +488,37 @@ async function convertirPrecios() {
         const ipData = await ipRes.json();
         const monedaLocal = ipData.currency;
         const simboloMoneda = ipData.currency_symbol || '$';
+        
         const exchangeRes = await fetch('https://open.er-api.com/v6/latest/USD');
         const exchangeData = await exchangeRes.json();
         const tasa = exchangeData.rates[monedaLocal];
+
         if (tasa) {
             const elementos = ['precio-tachado', 'precio-oferta', 'precio-tachado-2', 'precio-oferta-2', 'precio-tachado-3', 'precio-oferta-3'];
-            let mostrarMensaje = false;
-            elementos.forEach(id => {
+            let mostrarMensaje = (monedaLocal !== 'USD');
+            
+            // 1. Preparamos los datos PRIMERO (sin tocar la pantalla aún)
+            const cambios = elementos.map(id => {
                 const el = document.getElementById(id);
-                if (el) {
-                    const usd = el.getAttribute('data-usd');
-                    let margen = (monedaLocal === 'USD') ? 1.0 : (monedaLocal === 'MXN' ? 1.23 : 1.25);
-                    if (monedaLocal !== 'USD') mostrarMensaje = true;
-                    let precioFinal = (monedaLocal === 'COP' || monedaLocal === 'CLP') 
-                        ? Math.ceil((usd * tasa * margen) / 1000) * 1000 
-                        : Math.ceil(usd * tasa * margen);
-                   window.requestAnimationFrame(() => {
-                elementos.forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el) {
-                        const usd = el.getAttribute('data-usd');
-                        let margen = (monedaLocal === 'USD') ? 1.0 : (monedaLocal === 'MXN' ? 1.23 : 1.25);
-                        let precioFinal = (monedaLocal === 'COP' || monedaLocal === 'CLP')
-                            ? Math.ceil((usd * tasa * margen) / 1000) * 1000
-                            : Math.ceil(usd * tasa * margen);
+                if (!el) return null;
+                
+                const usd = el.getAttribute('data-usd');
+                let margen = (monedaLocal === 'USD') ? 1.0 : (monedaLocal === 'MXN' ? 1.23 : 1.25);
+                let precioFinal = (monedaLocal === 'COP' || monedaLocal === 'CLP') 
+                    ? Math.ceil((usd * tasa * margen) / 1000) * 1000 
+                    : Math.ceil(usd * tasa * margen);
+                
+                const texto = (monedaLocal === 'USD') 
+                    ? `${simboloMoneda}${precioFinal} USD` 
+                    : `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
+                
+                return { el, texto };
+            }).filter(item => item !== null);
 
-                        el.innerText = (monedaLocal === 'USD') 
-                            ? `${simboloMoneda}${precioFinal} USD` 
-                            : `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
-                    }
+            // 2. Usamos UN SOLO requestAnimationFrame para escribir TODO de golpe
+            window.requestAnimationFrame(() => {
+                cambios.forEach(item => {
+                    item.el.innerText = item.texto;
                 });
 
                 if (mostrarMensaje) {
@@ -527,7 +529,9 @@ async function convertirPrecios() {
                 }
             });
         }
-    } catch (e) { console.error(e); }
+    } catch (e) { 
+        console.error("Error en conversión:", e); 
+    }
 }
 
 var pixelCargado = false;

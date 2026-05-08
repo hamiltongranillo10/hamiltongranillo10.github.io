@@ -499,15 +499,29 @@ async function convertirPrecios() {
                     let precioFinal = (monedaLocal === 'COP' || monedaLocal === 'CLP') 
                         ? Math.ceil((usd * tasa * margen) / 1000) * 1000 
                         : Math.ceil(usd * tasa * margen);
-                    el.innerText = (monedaLocal === 'USD') ? `${simboloMoneda}${precioFinal} USD` : `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
+                   window.requestAnimationFrame(() => {
+                elementos.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        const usd = el.getAttribute('data-usd');
+                        let margen = (monedaLocal === 'USD') ? 1.0 : (monedaLocal === 'MXN' ? 1.23 : 1.25);
+                        let precioFinal = (monedaLocal === 'COP' || monedaLocal === 'CLP')
+                            ? Math.ceil((usd * tasa * margen) / 1000) * 1000
+                            : Math.ceil(usd * tasa * margen);
+
+                        el.innerText = (monedaLocal === 'USD') 
+                            ? `${simboloMoneda}${precioFinal} USD` 
+                            : `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
+                    }
+                });
+
+                if (mostrarMensaje) {
+                    ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3'].forEach(idMsg => {
+                        const c = document.getElementById(idMsg);
+                        if (c) c.innerText = "¡Haz clic en el botón para aplicar un bono de descuento extra disponible en tu país! 🎁";
+                    });
                 }
             });
-            if (mostrarMensaje) {
-                ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3'].forEach(idMsg => {
-                    const c = document.getElementById(idMsg);
-                    if (c) c.innerText = "¡Haz clic en el botón para aplicar un bono de descuento extra disponible en tu país! 🎁";
-                });
-            }
         }
     } catch (e) { console.error(e); }
 }

@@ -511,17 +511,38 @@ async function convertirPrecios() {
         }
     } catch (e) { console.error(e); }
 }
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
-fbq('init', '1274753604821165');
-fbq('track', 'PageView');
+var pixelCargado = false;
+
+function cargarFacebookPixel() {
+    if (pixelCargado) return;
+    pixelCargado = true;
+
+    
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1274753604821165');
+    fbq('track', 'PageView');
+    console.log('Pixel cargado para mejorar PageSpeed');
+}
+
+// Disparadores: cargan el pixel solo cuando el usuario hace algo
+window.addEventListener('scroll', cargarFacebookPixel, {once: true});
+window.addEventListener('mousemove', cargarFacebookPixel, {once: true});
+window.addEventListener('touchstart', cargarFacebookPixel, {once: true});
 
 function btm_track_checkout(event, link) {
     event.preventDefault();
+    
+    cargarFacebookPixel();
+
     fbq('track', 'InitiateCheckout', {
         content_name: 'Curso Velas Artesanales Premium',
         content_category: 'Manualidades y Emprendimiento',
@@ -530,9 +551,11 @@ function btm_track_checkout(event, link) {
     });
     setTimeout(function(){ window.location.href = link; }, 250);
 }
+
 window.addEventListener('load', () => {
     setTimeout(convertirPrecios, 100);
 });
+
 </script>
 </body>
 </html>

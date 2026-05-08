@@ -6,6 +6,8 @@
     <link rel="preload" as="image" href="vela2.webp" fetchpriority="high">
     <link rel="dns-prefetch" href="//ipapi.co">
     <link rel="dns-prefetch" href="//open.er-api.com">
+    <link rel="preconnect" href="https://ipapi.co">
+    <link rel="preconnect" href="https://open.er-api.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="facebook-domain-verification" content="1rz4wc6eg8r5tab79zsufzy82imwpg" />  
@@ -484,13 +486,17 @@ reveals.forEach(el => observer.observe(el));
 
 async function convertirPrecios() {
     try {
-        const ipRes = await fetch('https://ipapi.co/json/');
+)
+        const [ipRes, exchangeRes] = await Promise.all([
+            fetch('https://ipapi.co/json/'),
+            fetch('https://open.er-api.com/v6/latest/USD')
+        ]);
+
         const ipData = await ipRes.json();
+        const exchangeData = await exchangeRes.json();
+        
         const monedaLocal = ipData.currency;
         const simboloMoneda = ipData.currency_symbol || '$';
-        
-        const exchangeRes = await fetch('https://open.er-api.com/v6/latest/USD');
-        const exchangeData = await exchangeRes.json();
         const tasa = exchangeData.rates[monedaLocal];
 
         if (tasa) {

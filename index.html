@@ -24,7 +24,7 @@
 
     html {
     scroll-behavior: smooth;
-    content-visibility: auto;
+
 }
         
     body { 
@@ -255,7 +255,7 @@
     }
 
  
-    img { aspect-ratio: auto attr(width) / attr(height); content-visibility: auto; }
+    img { aspect-ratio: auto attr(width) / attr(height); 
 
   
     #mensaje-descuento-1, #mensaje-descuento-2, #mensaje-descuento-3 {
@@ -484,7 +484,6 @@ reveals.forEach(el => observer.observe(el));
 
 async function convertirPrecios() {
     try {
-)
         const [ipRes, exchangeRes] = await Promise.all([
             fetch('https://ipapi.co/json/'),
             fetch('https://open.er-api.com/v6/latest/USD')

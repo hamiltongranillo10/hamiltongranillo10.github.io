@@ -2,53 +2,52 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
-    <link rel="preload" as="image" href="vela2.webp" fetchpriority="high">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">  
+    <link rel="preload"as="image"href="vela2-medium.jpg"imagesrcset="vela2-celular.jpg 392w,vela2-medium.jpg 600w,vela2.jpg 900w"imagesizes="(max-width: 600px) 100vw,(max-width: 900px) 600px,900px"fetchpriority="high">
     <link rel="dns-prefetch" href="//ipapi.co">
     <link rel="dns-prefetch" href="//open.er-api.com">
+    <link rel="preconnect" href="https://ipapi.co">
+    <link rel="preconnect" href="https://open.er-api.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <meta name="facebook-domain-verification" content="1rz4wc6eg8r5tab79zsufzy82imwpg" />  
-    <title>Curso Velas Artesanales Premium</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <meta name="facebook-domain-verification" content="tzj1clvv6xp8g1hqhtldnk92huyu0r" />
+    <title>Eternaluz Academy | Curso de Velas Artesanales</title>
+    <meta name="description" content="Aprende a crear y vender velas artesanales desde casa con un curso paso a paso. Incluye clases, proveedores, soporte VIP y acceso inmediato.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
     :root {
-        --primary: #d4af37;
-        --primary-dark: #b88a2a;
-        --accent: #f43f5e;
-        --glass: rgba(255, 255, 255, 0.65);
-    }
+    --primary: #d4af37;       
+    --primary-dark: #b88a2a;   
+    --accent: #f43f5e;
+    --glass: rgba(255, 255, 255, 0.65);
+}
+
+    html {
+    scroll-behavior: smooth;
+
+}
         
-    body { 
-        margin: 0; 
-        font-family: 'Montserrat', sans-serif; 
-        background: 
-            radial-gradient(circle at top, rgba(255,255,255,0.7), transparent 60%),
-            linear-gradient(135deg, #f7f1e8, #e8dccb);
-        background-size: cover;
-        color: #2b2b2b;
-        overflow-x: hidden;
-        position: relative;
-        overflow-anchor: none;
-    }
+  body {
+    background-color: #fdfaf5 !important; 
+    background: radial-gradient(circle, #ffffff 0%, #f7f3eb 100%) !important;
+    color: #333;
+}
 
     .top-bar { background: linear-gradient(90deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 10px; font-size: 12px; font-weight: 800; text-transform: uppercase; }
     .wrapper { max-width: 900px; width: 100%; margin: 0 auto; padding: 15px; box-sizing: border-box; text-align: center; }
         
-    .hero, .bottom-section { 
-        background: var(--glass); 
-        backdrop-filter: blur(15px); 
-        -webkit-backdrop-filter: blur(15px); 
-        padding: 40px 20px; 
-        border-radius: 30px; 
-        border: 1px solid rgba(255,255,255,0.6); 
-        box-shadow: 
-        0 20px 50px rgba(0,0,0,0.08),
-        0 2px 10px rgba(0,0,0,0.04);
-    }
+    .hero, .bottom-section {
+    background: rgba(255, 255, 255, 0.7) !important; 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 40px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(191, 149, 63, 0.3); 
+    box-shadow: 
+        0 15px 35px rgba(184, 134, 11, 0.05), 
+        0 5px 15px rgba(0,0,0,0.05);
+}
 
     h1 { 
         font-family: 'Playfair Display', serif; 
@@ -74,17 +73,20 @@
         min-height: 1.2em;
     }
 
-    .new { 
-        font-size: clamp(55px, 10vw, 100px) !important; 
-        color: var(--primary); 
-        font-weight: 800;
-        display: block !important; 
-        text-align: center !important; 
-        margin: 5px auto 20px !important; 
-        line-height: 1; 
-        letter-spacing: -1px; 
-        min-height: 1.2em;
-    }
+   .new {
+    font-size: clamp(55px, 10vw, 100px) !important;
+    font-weight: 800;
+    display: block !important;
+    text-align: center !important;
+    margin: 5px auto 20px !important;
+    line-height: 1;
+    letter-spacing: -1px;
+    min-height: 1.2em;
+    background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1));
+}
    
     .btn { 
         background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); 
@@ -192,7 +194,7 @@
         100% { transform: scale(1); }
     }
 
-    img { max-width: 100%; height: auto; display: block;  margin: 0 auto; transform: translateZ(0);  content-visibility: auto; 
+    img { max-width: 100%; height: auto; display: block;  margin: 0 auto; transform: translateZ(0); 
 }
 
     .btn-soporte-premium {
@@ -250,7 +252,7 @@
     }
 
  
-    img { aspect-ratio: auto attr(width) / attr(height); content-visibility: auto; }
+    img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
 
   
     #mensaje-descuento-1, #mensaje-descuento-2, #mensaje-descuento-3 {
@@ -270,10 +272,12 @@
 
     
     <div style="margin-bottom:20px;">
-    <img src="vela2.webp" width="900" height="599" fetchpriority="high" alt="Velas Artesanales Premium" style="width:100%; height:auto; aspect-ratio: 900 / 600; border-radius:20px;">
-    <div class="hero reveal">
+  
+<img src="vela2-medium.jpg"srcset="vela2-celular.jpg 392w,vela2-medium.jpg 600w,vela2.jpg 900w"sizes="(max-width: 600px) 100vw,(max-width: 900px) 600px,900px"width="900"height="600"fetchpriority="high"alt="Velas Artesanales Premium"style="width:100%; height:auto; aspect-ratio: 900 / 600; border-radius:20px;">
+        
+        <div class="hero reveal">
         <h1>Únete a más de 1,200 mujeres que ya transformaron su sala en un taller de velas</h1>
-        <p style="text-align:center;">Mira cómo funciona por dentro</p>
+         <p style="text-align:center;">Mira cómo funciona por dentro</p>
          <video width="640" height="360" preload="none"  controls poster="portada.video.webp" style="width:100%; height:auto; border-radius:20px; background-color: #000;">
          <source src="condena-video.mp4" type="video/mp4">
     Tu navegador no soporta videos.
@@ -297,8 +301,8 @@
                 <div class="info-reproductor">
                     <p class="texto-soporte"><strong>¿Tienes dudas?</strong> Escucha esto de Hamilton:</p>
                     <audio controls class="audio-estilo">
-                        <source src="https://hamiltongranillo10.github.io/tu-audio.mp3" type="audio/mpeg">
-                    </audio>
+                   <source src="tu-audio.mp3" type="audio/mpeg">
+                   </audio>
                 </div>
             </div>
         </div>
@@ -352,8 +356,8 @@
         <p style="font-size:16px; opacity:0.8; max-width:600px; margin:0 auto 30px;">Un sistema paso a paso para crear, vender y empezar desde cero</p>
 
        <div class="grid-img reveal">
-       <div class="card-img"><img src="curso-completo.webp" width="200"  height="200"  loading="lazy"  alt="Curso paso a paso de velas artesanales"><p>Curso completo paso a paso</p></div>
-       <div class="card-img"><img src="vela-acuario.webp" width="200" height="200" loading="lazy"  alt="Velas en tendencia tipo acuario"><p>Velas en tendencia</p></div>
+       <div class="card-img"><img src="curso-completo.jpg" width="200"  height="200"  loading="lazy"  alt="Curso paso a paso de velas artesanales"><p>Curso completo paso a paso</p></div>
+       <div class="card-img"><img src="vela-acuario.jpg" width="200" height="200" loading="lazy"  alt="Velas en tendencia tipo acuario"><p>Velas en tendencia</p></div>
        <div class="card-img"><img src="esferas-brillantes.webp" width="200" height="200" loading="lazy" alt="Velas artesanales tipo esferas brillantes"><p>Velas tipo esferas brillantes</p></div>
        <div class="card-img"><img src="bouquet-velitas.webp" width="200" height="200" loading="lazy" alt="Bouquet de velas artesanales premium"><p>Bouquet de velas premium</p></div>
        <div class="card-img"><img src="encapsulado-floral.webp" width="200" height="200" loading="lazy" alt="Vela artesanal encapsulado floral"><p>Acabados que aumentan el valor</p></div>
@@ -479,39 +483,44 @@ reveals.forEach(el => observer.observe(el));
 
 async function convertirPrecios() {
     try {
-        const ipRes = await fetch('https://ipapi.co/json/');
+        const [ipRes, exchangeRes] = await Promise.all([
+            fetch('https://ipapi.co/json/'),
+            fetch('https://open.er-api.com/v6/latest/USD')
+        ]);
+
         const ipData = await ipRes.json();
+        const exchangeData = await exchangeRes.json();
+        
         const monedaLocal = ipData.currency;
         const simboloMoneda = ipData.currency_symbol || '$';
-        const exchangeRes = await fetch('https://open.er-api.com/v6/latest/USD');
-        const exchangeData = await exchangeRes.json();
         const tasa = exchangeData.rates[monedaLocal];
+
         if (tasa) {
             const elementos = ['precio-tachado', 'precio-oferta', 'precio-tachado-2', 'precio-oferta-2', 'precio-tachado-3', 'precio-oferta-3'];
-            let mostrarMensaje = false;
-            elementos.forEach(id => {
+            let mostrarMensaje = (monedaLocal !== 'USD');
+            
+            // 1. Preparamos los datos PRIMERO (sin tocar la pantalla aún)
+            const cambios = elementos.map(id => {
                 const el = document.getElementById(id);
-                if (el) {
-                    const usd = el.getAttribute('data-usd');
-                    let margen = (monedaLocal === 'USD') ? 1.0 : (monedaLocal === 'MXN' ? 1.23 : 1.25);
-                    if (monedaLocal !== 'USD') mostrarMensaje = true;
-                    let precioFinal = (monedaLocal === 'COP' || monedaLocal === 'CLP') 
-                        ? Math.ceil((usd * tasa * margen) / 1000) * 1000 
-                        : Math.ceil(usd * tasa * margen);
-                   window.requestAnimationFrame(() => {
-                elementos.forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el) {
-                        const usd = el.getAttribute('data-usd');
-                        let margen = (monedaLocal === 'USD') ? 1.0 : (monedaLocal === 'MXN' ? 1.23 : 1.25);
-                        let precioFinal = (monedaLocal === 'COP' || monedaLocal === 'CLP')
-                            ? Math.ceil((usd * tasa * margen) / 1000) * 1000
-                            : Math.ceil(usd * tasa * margen);
+                if (!el) return null;
+                
+                const usd = el.getAttribute('data-usd');
+                let margen = (monedaLocal === 'USD') ? 1.0 : (monedaLocal === 'MXN' ? 1.23 : 1.25);
+                let precioFinal = (monedaLocal === 'COP' || monedaLocal === 'CLP') 
+                    ? Math.ceil((usd * tasa * margen) / 1000) * 1000 
+                    : Math.ceil(usd * tasa * margen);
+                
+                const texto = (monedaLocal === 'USD') 
+                    ? `${simboloMoneda}${precioFinal} USD` 
+                    : `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
+                
+                return { el, texto };
+            }).filter(item => item !== null);
 
-                        el.innerText = (monedaLocal === 'USD') 
-                            ? `${simboloMoneda}${precioFinal} USD` 
-                            : `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
-                    }
+            // 2. Usamos UN SOLO requestAnimationFrame para escribir TODO de golpe
+            window.requestAnimationFrame(() => {
+                cambios.forEach(item => {
+                    item.el.innerText = item.texto;
                 });
 
                 if (mostrarMensaje) {
@@ -522,7 +531,9 @@ async function convertirPrecios() {
                 }
             });
         }
-    } catch (e) { console.error(e); }
+    } catch (e) { 
+        console.error("Error en conversión:", e); 
+    }
 }
 
 var pixelCargado = false;

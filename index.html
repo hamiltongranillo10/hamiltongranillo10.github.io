@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">  
-    <link rel="preload" as="image" href="vela2.webp" fetchpriority="high">
+    <link rel="preload"as="image"href="vela2.webp"fetchpriority="high">
     <link rel="dns-prefetch" href="//ipapi.co">
     <link rel="dns-prefetch" href="//open.er-api.com">
     <link rel="preconnect" href="https://ipapi.co">
@@ -373,7 +373,35 @@ img {
         <p style="max-width:600px; margin:0 auto 20px;">
           Hoy tú puedes seguir el mismo paso a paso y empezar tu propio negocio desde cero.
         </p>
-        <img src="yuly.webp" width="220" height="220" loading="lazy" style="border-radius:50%; object-fit:cover; margin: 0 auto; display: block;" alt="Experta Yuly Mar Rivas">
+        
+      <picture>
+
+  <source 
+    media="(max-width: 600px)" 
+    srcset="vela2-celular.webp">
+
+  <source 
+    media="(min-width: 601px)" 
+    srcset="vela2.webp">
+
+  <img 
+    src="vela2.webp"
+    width="1600"
+    height="1066"
+    fetchpriority="high"
+    alt="Velas Artesanales Premium"
+    style="
+      width:100%;
+      max-width:1200px;
+      height:auto;
+      aspect-ratio:1600 / 1066;
+      border-radius:20px;
+      display:block;
+      margin:0 auto;
+    ">
+
+</picture>
+    
     </div>
 
     <div style="max-width: 700px; margin: 40px auto; background: linear-gradient(135deg, rgba(255,247,237,0.9), rgba(255,255,255,0.8)); border: 1px solid rgba(212,175,55,0.2); box-shadow: 0 10px 30px rgba(212,175,55,0.15); padding: 20px; border-radius: 15px; text-align: center;">

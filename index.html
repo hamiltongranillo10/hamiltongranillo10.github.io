@@ -897,13 +897,14 @@ const observer = new IntersectionObserver(entries => {
 reveals.forEach(el => observer.observe(el));
 
 async function convertirPrecios() {
+    if (sessionStorage.getItem("monedaDetectada")) return;
     try {
 
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 2000);
 
         const [ipRes, exchangeRes] = await Promise.all([
-            fetch('https://ipapi.co/json/', {
+              fetch('https://ipwho.is/', {
                 signal: controller.signal
             }),
             fetch('https://open.er-api.com/v6/latest/USD', {
@@ -916,8 +917,8 @@ async function convertirPrecios() {
         const ipData = await ipRes.json();
         const exchangeData = await exchangeRes.json();
 
-        const monedaLocal = ipData.currency;
-        const simboloMoneda = ipData.currency_symbol || '$';
+        const monedaLocal = ipData.currency.code;
+        const simboloMoneda = ipData.currency.symbol || '$';
         const tasa = exchangeData.rates[monedaLocal];
 
         if (tasa) {
@@ -954,8 +955,13 @@ async function convertirPrecios() {
                         if (c) c.innerText = "¡Haz clic en el botón para aplicar un bono de descuento extra disponible en tu país! 🎁";
                     });
                 }
-            });
-        }
+                
+          sessionStorage.setItem("monedaDetectada", "true");
+        
+    });
+
+    }
+        
     } catch (e) { 
         console.error("Error en conversión:", e); 
     }

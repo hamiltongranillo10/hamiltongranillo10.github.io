@@ -508,7 +508,22 @@ body {
         height: auto;
     }
 }
-    
+
+
+    .video-testimonios {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 20px;
+    margin: 20px auto;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+@media (min-width: 1024px) {
+    .video-testimonios {
+        max-width: 650px;
+    }
+}
     
 </style>
 </head>
@@ -681,7 +696,7 @@ body {
           <div style="margin:50px 0;">
           <h2 style="font-family: 'Playfair Display', serif; font-size:28px; text-align:center;">Mira lo que están logrando personas que empezaron desde cero</h2>
           <p style="text-align:center; font-size:16px; margin-top:10px; color: #6b6b6b; font-style: italic;">Resultados compartidos dentro de nuestra comunidad privada</p>
-          <video autoplay muted  loop  playsinline  preload="metadata"  width="400" height="700" style="width:100%; max-width:400px; border-radius:20px; margin:20px auto; display:block; box-shadow:0 10px 30px rgba(0,0,0,0.15);">
+          <video class="video-testimonios" autoplay muted loop playsinline preload="metadata" width="400" height="700">
           <source src="testimonios.mp4" type="video/mp4">
     Tu navegador no soporta videos.
 </video>

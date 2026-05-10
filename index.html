@@ -895,61 +895,41 @@ const observer = new IntersectionObserver(entries => {
 reveals.forEach(el => observer.observe(el));
 
 async function convertirPrecios() {
-    const monedaAnterior = sessionStorage.setItem("monedaDetectada", ipData.currency);
-
-    if (monedaAnterior === ipData?.currency) return;
-
     try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 2000);
+        const res = await fetch('https://shy-poetry-965.hamiltongranillo.workers.dev/');
+        const ipData = await res.json();
 
-        const ipRes = await fetch('https://shy-poetry-965.hamiltongranillo.workers.dev/', {
-            signal: controller.signal
-        });
+        if (!ipData || typeof ipData.rate !== "number") return;
 
-        clearTimeout(timeout);
-
-        const ipData = await ipRes.json();
-
-       if (!ipData || typeof ipData.rate !== "number") return;
-
-        const tasa = ipData.rate || 1;
+        const tasa = ipData.rate;
         const simboloMoneda = ipData.symbol || "$";
         const moneda = ipData.currency || "USD";
 
-       const elementos = [
-       'precio-tachado',
-       'precio-oferta',
-       'precio-tachado-2',
-       'precio-oferta-2',
-       'precio-tachado-3',
-       'precio-oferta-3'
-     ];
-        const cambios = elementos.map(id => {
+        const elementos = [
+            'precio-tachado',
+            'precio-oferta',
+            'precio-tachado-2',
+            'precio-oferta-2',
+            'precio-tachado-3',
+            'precio-oferta-3'
+        ];
+
+        elementos.forEach(id => {
             const el = document.getElementById(id);
-            if (!el) return null;
+            if (!el) return;
 
-            const usd = parseFloat(el?.getAttribute('data-usd') || "0"); if (isNaN(usd)) return null;
-           const precioFinal = Math.ceil(usd * tasa);
+            const usd = parseFloat(el.getAttribute('data-usd'));
+            if (isNaN(usd)) return;
 
-        const formato = new Intl.NumberFormat('es-ES', {
-        maximumFractionDigits: 0
-        }).format(precioFinal);
+            const precioFinal = Math.ceil(usd * tasa);
 
-   return {
-     el,
-      texto: `${simboloMoneda}${formato} ${moneda}`
-};
-        requestAnimationFrame(() => {
-            cambios.forEach(item => {
-                item.el.innerText = item.texto;
-            });
+            const formato = new Intl.NumberFormat('es-ES').format(precioFinal);
 
-            sessionStorage.setItem("monedaDetectada", "true");
+            el.innerText = `${simboloMoneda}${formato} ${moneda}`;
         });
 
     } catch (e) {
-        console.error("Error en conversión:", e);
+        console.error("Error conversión:", e);
     }
 }
 

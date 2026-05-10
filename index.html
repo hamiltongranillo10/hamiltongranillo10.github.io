@@ -895,7 +895,9 @@ const observer = new IntersectionObserver(entries => {
 reveals.forEach(el => observer.observe(el));
 
 async function convertirPrecios() {
-    if (sessionStorage.getItem("monedaDetectada")) return;
+    const monedaAnterior = sessionStorage.setItem("monedaDetectada", ipData.currency);
+
+    if (monedaAnterior === ipData?.currency) return;
 
     try {
         const controller = new AbortController();

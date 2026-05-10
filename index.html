@@ -901,7 +901,7 @@ async function convertirPrecios() {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 2000);
 
-        const ipRes = await fetch('https://ipwho.is/', {
+        const ipRes = await fetch('https://shy-poetry-965.hamiltongranillo.workers.dev/', {
             signal: controller.signal
         });
 
@@ -909,54 +909,30 @@ async function convertirPrecios() {
 
         const ipData = await ipRes.json();
 
-        if (!ipData || ipData.success === false) {
-            console.warn("IP API falló:", ipData);
-            return;
-        }
+       if (!ipData || typeof ipData.rate !== "number") return;
 
-        const pais = ipData?.country_code || "US";
+        const tasa = ipData.rate || 1;
+        const simboloMoneda = ipData.symbol || "$";
 
-        const tasas = {
-            US: 1,
-            MX: 17,
-            CO: 4000,
-            EC: 1,
-            CL: 900,
-            PE: 3.7
-        };
-
-        const simbolos = {
-            US: "$",
-            MX: "$",
-            CO: "$",
-            EC: "$",
-            CL: "$",
-            PE: "S/"
-        };
-
-        const tasa = tasas[pais] || 1;
-        const simboloMoneda = simbolos[pais] || "$";
-
-        const elementos = [
-            'precio-tachado',
-            'precio-oferta',
-            'precio-tachado-2',
-            'precio-oferta-2',
-            'precio-tachado-3',
-            'precio-oferta-3'
-        ];
-
+       const elementos = [
+       'precio-tachado',
+       'precio-oferta',
+       'precio-tachado-2',
+       'precio-oferta-2',
+       'precio-tachado-3',
+       'precio-oferta-3'
+     ];
         const cambios = elementos.map(id => {
             const el = document.getElementById(id);
             if (!el) return null;
 
-            const usd = parseFloat(el.getAttribute('data-usd'));
+            const usd = parseFloat(el?.getAttribute('data-usd') || "0"); if (isNaN(usd)) return null;
+            const precioFinal = Math.ceil(usd * tasa);
 
-            let precioFinal = Math.ceil(usd * tasa);
-
-            const texto = `${simboloMoneda}${precioFinal}`;
-
-            return { el, texto };
+            return {
+                el,
+                texto: `${simboloMoneda}${precioFinal}`
+            };
         }).filter(Boolean);
 
         requestAnimationFrame(() => {

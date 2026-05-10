@@ -800,14 +800,24 @@ reveals.forEach(el => observer.observe(el));
 
 async function convertirPrecios() {
     try {
+
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 2000);
+
         const [ipRes, exchangeRes] = await Promise.all([
-            fetch('https://ipapi.co/json/'),
-            fetch('https://open.er-api.com/v6/latest/USD')
+            fetch('https://ipapi.co/json/', {
+                signal: controller.signal
+            }),
+            fetch('https://open.er-api.com/v6/latest/USD', {
+                signal: controller.signal
+            })
         ]);
+
+        clearTimeout(timeout);
 
         const ipData = await ipRes.json();
         const exchangeData = await exchangeRes.json();
-        
+
         const monedaLocal = ipData.currency;
         const simboloMoneda = ipData.currency_symbol || '$';
         const tasa = exchangeData.rates[monedaLocal];

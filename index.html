@@ -492,9 +492,12 @@ body {
   max-width: 100%;
 }
 
-    .garantia-wrapper {
-  text-align: center;
-  margin: 40px 0;
+   .garantia-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
 }
 
 .garantia-wrapper img {
@@ -503,8 +506,6 @@ body {
   height: auto;
   border-radius: 25px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-  display: block;
-  margin: 0 auto;
 }
 
      .sale-popup {
@@ -671,9 +672,9 @@ body {
         </div>
     </div>
 
-   <img src="garantia-7-dias.webp" width="420" height="250"  loading="lazy"  alt="Garantía de satisfacción 7 días"  style="width:100%; max-width:420px; border-radius:25px; box-shadow:0 15px 40px rgba(0,0,0,0.12);">
-   
-    </div>
+        <div class="garantia-wrapper">
+       <img src="garantia-7-dias.webp" alt="Garantía de satisfacción 7 días">
+       </div>
 
     <div class="bottom-section reveal">
         <div class="old" id="precio-tachado-2" data-usd="74">$74 USD</div>
@@ -764,6 +765,12 @@ function showPopup() {
 
     setTimeout(() => popup.classList.remove('show'), 3500);
 }
+    function startPopupLoop() {
+    showPopup();
+    setInterval(showPopup, 7000);
+}
+
+window.addEventListener('load', startPopupLoop);
 
 document.querySelectorAll('.faq-item').forEach(item => {
   item.addEventListener('click', () => {

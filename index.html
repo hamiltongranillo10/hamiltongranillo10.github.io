@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <meta name="theme-color" content="#d4af37">    
 <link rel="preload" as="image" href="vela2.webp" fetchpriority="high">
-<link rel="dns-prefetch" href="//ipapi.co">
 <link rel="dns-prefetch" href="//open.er-api.com">
-<link rel="preconnect" href="https://ipapi.co">
 <link rel="preconnect" href="https://open.er-api.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -898,76 +896,79 @@ reveals.forEach(el => observer.observe(el));
 
 async function convertirPrecios() {
     if (sessionStorage.getItem("monedaDetectada")) return;
-    try {
 
+    try {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 2000);
 
-        const [ipRes, exchangeRes] = await Promise.all([
-              fetch('https://ipwho.is/', {
-                signal: controller.signal
-            }),
-            fetch('https://open.er-api.com/v6/latest/USD', {
-                signal: controller.signal
-            })
-        ]);
+        const ipRes = await fetch('https://ipwho.is/', {
+            signal: controller.signal
+        });
 
         clearTimeout(timeout);
 
         const ipData = await ipRes.json();
-        const exchangeData = await exchangeRes.json();
 
         if (!ipData || ipData.success === false) {
-         console.warn("IP API falló:", ipData);
-        return;
+            console.warn("IP API falló:", ipData);
+            return;
         }
 
-        const monedaLocal = ipData?.currency?.code || "USD";
-        const simboloMoneda = ipData?.currency?.symbol || "$";
-        const tasa = exchangeData.rates?.[monedaLocal] || exchangeData.rates["USD"];
-        if (tasa) {
-            const elementos = ['precio-tachado', 'precio-oferta', 'precio-tachado-2', 'precio-oferta-2', 'precio-tachado-3', 'precio-oferta-3'];
-            let mostrarMensaje = (monedaLocal !== 'USD');
-            
-            // 1. Preparamos los datos PRIMERO (sin tocar la pantalla aún)
-            const cambios = elementos.map(id => {
-                const el = document.getElementById(id);
-                if (!el) return null;
-                
-                const usd = el.getAttribute('data-usd');
-                let margen = (monedaLocal === 'USD') ? 1.0 : (monedaLocal === 'MXN' ? 1.23 : 1.25);
-                let precioFinal = (monedaLocal === 'COP' || monedaLocal === 'CLP') 
-                    ? Math.ceil((usd * tasa * margen) / 1000) * 1000 
-                    : Math.ceil(usd * tasa * margen);
-                
-                const texto = (monedaLocal === 'USD') 
-                    ? `${simboloMoneda}${precioFinal} USD` 
-                    : `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
-                
-                return { el, texto };
-            }).filter(item => item !== null);
+        const pais = ipData?.country_code || "US";
 
-            // 2. Usamos UN SOLO requestAnimationFrame para escribir TODO de golpe
-            window.requestAnimationFrame(() => {
-                cambios.forEach(item => {
-                    item.el.innerText = item.texto;
-                });
+        const tasas = {
+            US: 1,
+            MX: 17,
+            CO: 4000,
+            EC: 1,
+            CL: 900,
+            PE: 3.7
+        };
 
-                if (mostrarMensaje) {
-                    ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3'].forEach(idMsg => {
-                        const c = document.getElementById(idMsg);
-                        if (c) c.innerText = "¡Haz clic en el botón para aplicar un bono de descuento extra disponible en tu país! 🎁";
-                    });
-                }
-                
-          sessionStorage.setItem("monedaDetectada", "true");
-        
-    });
+        const simbolos = {
+            US: "$",
+            MX: "$",
+            CO: "$",
+            EC: "$",
+            CL: "$",
+            PE: "S/"
+        };
 
-    }
-        
-    } catch (e) { 
-        console.error("Error en conversión:", e); 
+        const tasa = tasas[pais] || 1;
+        const simboloMoneda = simbolos[pais] || "$";
+
+        const elementos = [
+            'precio-tachado',
+            'precio-oferta',
+            'precio-tachado-2',
+            'precio-oferta-2',
+            'precio-tachado-3',
+            'precio-oferta-3'
+        ];
+
+        const cambios = elementos.map(id => {
+            const el = document.getElementById(id);
+            if (!el) return null;
+
+            const usd = parseFloat(el.getAttribute('data-usd'));
+
+            let precioFinal = Math.ceil(usd * tasa);
+
+            const texto = `${simboloMoneda}${precioFinal}`;
+
+            return { el, texto };
+        }).filter(Boolean);
+
+        requestAnimationFrame(() => {
+            cambios.forEach(item => {
+                item.el.innerText = item.texto;
+            });
+
+            sessionStorage.setItem("monedaDetectada", "true");
+        });
+
+    } catch (e) {
+        console.error("Error en conversión:", e);
     }
 }
 

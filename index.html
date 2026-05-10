@@ -917,10 +917,14 @@ async function convertirPrecios() {
         const ipData = await ipRes.json();
         const exchangeData = await exchangeRes.json();
 
-        const monedaLocal = ipData.currency.code;
-        const simboloMoneda = ipData.currency.symbol || '$';
-        const tasa = exchangeData.rates[monedaLocal];
+        if (!ipData || ipData.success === false) {
+         console.warn("IP API falló:", ipData);
+        return;
+        }
 
+        const monedaLocal = ipData?.currency?.code || "USD";
+        const simboloMoneda = ipData?.currency?.symbol || "$";
+        const tasa = exchangeData.rates?.[monedaLocal] || exchangeData.rates["USD"];
         if (tasa) {
             const elementos = ['precio-tachado', 'precio-oferta', 'precio-tachado-2', 'precio-oferta-2', 'precio-tachado-3', 'precio-oferta-3'];
             let mostrarMensaje = (monedaLocal !== 'USD');

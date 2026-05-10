@@ -894,13 +894,19 @@ function btm_track_checkout(event, link) {
 }
 
 window.addEventListener('load', () => {
+    const ejecutar = () => {
+        setTimeout(() => {
+            convertirPrecios();
+        }, 1200); 
+    };
+
     if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => convertirPrecios());
+        requestIdleCallback(ejecutar);
     } else {
-        setTimeout(convertirPrecios, 200);
+        setTimeout(ejecutar, 1500);
     }
 });
-
+    
 </script>
 </body>
 </html>

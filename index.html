@@ -913,6 +913,7 @@ async function convertirPrecios() {
 
         const tasa = ipData.rate || 1;
         const simboloMoneda = ipData.symbol || "$";
+        const moneda = ipData.currency || "USD";
 
        const elementos = [
        'precio-tachado',
@@ -927,14 +928,16 @@ async function convertirPrecios() {
             if (!el) return null;
 
             const usd = parseFloat(el?.getAttribute('data-usd') || "0"); if (isNaN(usd)) return null;
-            const precioFinal = Math.ceil(usd * tasa);
+           const precioFinal = Math.ceil(usd * tasa);
 
-            return {
-                el,
-                texto: `${simboloMoneda}${precioFinal}`
-            };
-        }).filter(Boolean);
+        const formato = new Intl.NumberFormat('es-ES', {
+        maximumFractionDigits: 0
+        }).format(precioFinal);
 
+   return {
+     el,
+      texto: `${simboloMoneda}${formato} ${moneda}`
+};
         requestAnimationFrame(() => {
             cambios.forEach(item => {
                 item.el.innerText = item.texto;

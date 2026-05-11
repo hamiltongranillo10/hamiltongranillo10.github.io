@@ -896,46 +896,49 @@ reveals.forEach(el => observer.observe(el));
 
 async function convertirPrecios() {
     try {
-        const res = await fetch('https://shy-poetry-965.hamiltongranillo.workers.dev/');
-        const ipData = await res.json();
+        const res = await fetch('https://shy-poetry-965.hamiltongranillo.workers.dev/', {
+            cache: "no-store"
+        });
 
+        const ipData = await res.json();
         if (!ipData) return;
 
         const pais = (ipData.country_code || "US").toUpperCase();
 
-        // 🌎 PRECIOS FIJOS POR PAÍS (igual o muy cercano a Hotmart)
-        const preciosPorPais = {
-            EC: { precio: 37, moneda: "USD" },
-            US: { precio: 37, moneda: "USD" },
+        // 🌎 CONFIG POR PAÍS (OFERTA REAL + PRECIO ORIGINAL FIJO)
+        const config = {
+            EC: { original: 74, oferta: 37, moneda: "USD" },
+            US: { original: 74, oferta: 37, moneda: "USD" },
 
-            MX: { precio: 779.52, moneda: "MXN" },
-            CO: { precio: 145485, moneda: "COP" },
-            PE: { precio: 135, moneda: "PEN" },
-            AR: { precio: 60044, moneda: "ARS" },
-            BR: { precio: 202, moneda: "BRL" },
-            CL: { precio: 41385, moneda: "CLP" },
-            ES: { precio: 41.14, moneda: "EUR" },
-            IT: { precio: 41.48, moneda: "EUR" },
-            CA: { precio: 37, moneda: "USD" }
+            MX: { original: 1499, oferta: 779.52, moneda: "MXN" },
+            CO: { original: 280000, oferta: 145485, moneda: "COP" },
+            PE: { original: 250, oferta: 135, moneda: "PEN" },
+            AR: { original: 90000, oferta: 60044, moneda: "ARS" },
+            BR: { original: 399, oferta: 202, moneda: "BRL" },
+            CL: { original: 65000, oferta: 41385, moneda: "CLP" },
+            ES: { original: 79, oferta: 41.14, moneda: "EUR" },
+            IT: { original: 79, oferta: 41.48, moneda: "EUR" },
+            CA: { original: 74, oferta: 37, moneda: "USD" }
         };
 
-        const data = preciosPorPais[pais] || preciosPorPais["EC"];
+        const data = config[pais] || config["EC"];
 
-        const elementos = [
-            'precio-tachado',
-            'precio-oferta',
-            'precio-tachado-2',
-            'precio-oferta-2',
-            'precio-tachado-3',
-            'precio-oferta-3'
-        ];
+        // 💰 MAPEO CORRECTO
+        const mapa = {
+            "precio-tachado": data.original,
+            "precio-tachado-2": data.original,
+            "precio-tachado-3": data.original,
 
-        // 💰 actualizar precios
-        elementos.forEach(id => {
+            "precio-oferta": data.oferta,
+            "precio-oferta-2": data.oferta,
+            "precio-oferta-3": data.oferta
+        };
+
+        Object.keys(mapa).forEach(id => {
             const el = document.getElementById(id);
             if (!el) return;
 
-            el.innerText = `${data.precio} ${data.moneda}`;
+            el.innerText = `${data.moneda} ${mapa[id]}`;
         });
 
         // 🧠 MENSAJES POR PAÍS
@@ -949,20 +952,19 @@ async function convertirPrecios() {
             CL: "IVA incluido + hasta 12 cuotas"
         };
 
-        const paisesSinMensaje = ["EC", "US", "CA"];
+        const sinMensaje = ["EC", "US", "CA"];
 
-        const idsMensajes = [
+        const ids = [
             'mensaje-descuento-1',
             'mensaje-descuento-2',
             'mensaje-descuento-3'
         ];
 
-        idsMensajes.forEach(id => {
+        ids.forEach(id => {
             const el = document.getElementById(id);
             if (!el) return;
 
-            // ❌ sin mensaje en USD
-            if (paisesSinMensaje.includes(pais)) {
+            if (sinMensaje.includes(pais)) {
                 el.innerText = "";
                 return;
             }

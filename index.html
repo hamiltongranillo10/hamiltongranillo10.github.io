@@ -1150,6 +1150,10 @@ const bgMusic = document.getElementById("bg-music");
 
 const musicToggle = document.getElementById("music-toggle");
 
+const mainVideo = document.querySelector('.hero video');
+
+const hamiltonAudio = document.querySelector('.audio-estilo');
+
 let musicPlaying = false;
 
 if(bgMusic && musicToggle){
@@ -1187,6 +1191,42 @@ if(bgMusic && musicToggle){
     });
 
 }
+
+
+// PAUSAR MÚSICA EN VIDEO
+if(mainVideo && bgMusic){
+
+    mainVideo.addEventListener('play', () => {
+
+        bgMusic.pause();
+
+    });
+
+}
+
+
+// BAJAR VOLUMEN EN AUDIO HAMILTON
+if(hamiltonAudio && bgMusic){
+
+    hamiltonAudio.addEventListener('play', () => {
+
+        bgMusic.volume = 0.05;
+
+    });
+
+    hamiltonAudio.addEventListener('pause', () => {
+
+        bgMusic.volume = 0.15;
+
+    });
+
+    hamiltonAudio.addEventListener('ended', () => {
+
+        bgMusic.volume = 0.15;
+
+    });
+
+}
     
 </script>
     
@@ -1196,7 +1236,7 @@ if(bgMusic && musicToggle){
         🔊 Música Ambiente
     </button>
 
-    <audio id="bg-music" loop preload="none">
+    <audio id="bg-music" loop>
         <source src="white-petals.mp3" type="audio/mpeg">
     </audio>
 

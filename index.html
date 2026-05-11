@@ -906,30 +906,53 @@ async function convertirPrecios() {
         clearTimeout(timeout);
 
         const ipData = await ipRes.json();
-
-        const monedaLocal = ipData.currency;
         const pais = ipData.country_name;
 
-        // SOLO MENSAJES POR PAÍS
         let mensaje = "";
 
-        if (monedaLocal === "MXN") {
-            mensaje = "💳 En México puedes pagar con tarjeta en hasta 3 cuotas sin interés.";
-        } 
-        else if (monedaLocal === "COP") {
-            mensaje = "💰 En Colombia el precio ya incluye impuestos (IVA incluido).";
-        }
-        else if (monedaLocal === "CLP") {
-            mensaje = "📦 En Chile el precio final ya incluye impuestos locales.";
-        }
-        else if (monedaLocal === "USD") {
-            mensaje = "🔥 Acceso internacional en USD sin cargos adicionales.";
-        }
-        else {
-            mensaje = "🌍 Precio adaptado automáticamente a tu país.";
+        switch (pais) {
+
+            case "Mexico":
+            case "México":
+                mensaje = "💳 En México puedes pagar en cuotas con tarjeta de crédito (según banco).";
+                break;
+
+            case "Colombia":
+                mensaje = "💳 En Colombia puedes pagar en 12 cuotas con tarjeta de crédito.";
+                break;
+
+            case "Chile":
+                mensaje = "💳 En Chile puedes pagar en cuotas con tarjeta de crédito según tu banco.";
+                break;
+
+            case "Peru":
+            case "Perú":
+                mensaje = "💳 En Perú puedes pagar en hasta 12 cuotas con tarjeta de crédito.";
+                break;
+
+            case "Argentina":
+                mensaje = "💳 En Argentina pueden aplicar tarifas adicionales según el medio de pago.";
+                break;
+
+            case "Spain":
+            case "España":
+                mensaje = "💳 En España el precio incluye IVA.";
+                break;
+
+            case "Italy":
+            case "Italia":
+                mensaje = "💳 En Italia el precio incluye IVA.";
+                break;
+
+            case "Brazil":
+            case "Brasil":
+                mensaje = "💳 En Brasil puedes pagar con tarjeta de crédito.";
+                break;
+
+            default:
+                mensaje = "🔥 Acceso disponible desde tu país con pago seguro por Hotmart.";
         }
 
-        // Mostrar en tus mensajes existentes
         window.requestAnimationFrame(() => {
             ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3'].forEach(id => {
                 const el = document.getElementById(id);
@@ -938,7 +961,7 @@ async function convertirPrecios() {
         });
 
     } catch (e) {
-        console.error("Error en conversión:", e);
+        console.error("Error:", e);
     }
 }
 
@@ -985,7 +1008,7 @@ function btm_track_checkout(event, link) {
 window.addEventListener('load', () => {
     const ejecutar = () => {
         setTimeout(() => {
-            convertirPrecios(); // ahora solo muestra mensajes
+            convertirPrecios(); 
         }, 800);
     };
 

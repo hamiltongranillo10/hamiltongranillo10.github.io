@@ -1099,26 +1099,37 @@ window.addEventListener('load', () => {
         setTimeout(ejecutar, 1000);
     }
 });
-
-    const bgMusic = document.getElementById("bg-music");
-
-bgMusic.volume = 0.15;
+    
+const bgMusic = document.getElementById("bg-music");
 
 let musicStarted = false;
 
-// Inicia música después del primer click
-document.addEventListener("click", () => {
+bgMusic.volume = 0.15;
+
+
+// INICIAR MÚSICA EN PRIMER CLICK
+document.addEventListener("click", async () => {
 
     if (!musicStarted) {
-        bgMusic.play();
-        musicStarted = true;
+
+        try {
+
+            await bgMusic.play();
+
+            musicStarted = true;
+
+        } catch(err) {
+
+            console.log("Autoplay bloqueado:", err);
+
+        }
     }
 
 }, { once: true });
 
 
-// VIDEO PRINCIPAL
-const mainVideo = document.querySelector('video');
+
+const mainVideo = document.querySelector('.hero video');
 
 if (mainVideo) {
 

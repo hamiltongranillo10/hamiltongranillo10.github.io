@@ -887,11 +887,11 @@ setInterval(() => {
     time = time <= 0 ? 900 : time - 1;
 }, 1000);
 
-
+let lastName = "";
 let popupStarted = false;
 let popup;
 
-const names = ["Ana","María","Laura","Sofía","Tamara","Claudia","Dana","Marta","Isabel","Carla","Lucía"];
+const names = ["María Fernanda", "Valentina", "Isabella", "Camila", "Sofía", "Daniela", "Andrea", "Valeria", "Gabriela", "Luciana", "Paula", "Natalia", "Fernanda", "Carolina", "Alejandra", "Julieth", "Sara", "Diana", "Melissa", "Katherine"];
 const countries = ["de México","de Colombia","de Chile","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
 const messages = [ "acaba de inscribirse", "se acaba de unir", "acabó de registrarse", "entró al curso"];
 
@@ -903,7 +903,12 @@ function showPopup()
 {
     if (!popup || !popupStarted) return;
 
-    const name = names[Math.floor(Math.random() * names.length)];
+   let name; do {
+    name = names[Math.floor(Math.random() * names.length)];
+ } while (name === lastName && names.length > 1);
+
+lastName = name;
+    
     const country = countries[Math.floor(Math.random() * countries.length)];
 
     popup.innerHTML = `🔥 <b>${name}</b> ${country} ${messages[Math.floor(Math.random() * messages.length)]}`;

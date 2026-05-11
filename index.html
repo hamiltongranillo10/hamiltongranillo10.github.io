@@ -865,47 +865,103 @@ body {
     
 <script>
 
-let time = localStorage.getItem('tiempo_restante') ? parseInt(localStorage.getItem('tiempo_restante')) : 900;
+
+let time = localStorage.getItem('tiempo_restante')
+    ? parseInt(localStorage.getItem('tiempo_restante'))
+    : 900;
+
 setInterval(() => {
     let m = Math.floor(time / 60);
     let s = time % 60;
-    let text = "Oferta termina en: " + m + ":" + String(s).padStart(2, '0');
+
+    const text = `Oferta termina en: ${m}:${String(s).padStart(2, '0')}`;
+
     const t1 = document.getElementById("timer1");
     const t2 = document.getElementById("timer2");
+
     if (t1) t1.innerText = text;
     if (t2) t2.innerText = text;
+
     localStorage.setItem('tiempo_restante', time);
+
     time = time <= 0 ? 900 : time - 1;
 }, 1000);
 
 
+let popupStarted = false;
+let popup;
+
 const names = ["Ana","María","Laura","Sofía","Tamara","Claudia","Dana","Marta","Isabel","Carla","Lucía"];
 const countries = ["de México","de Colombia","de Chile","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
-function showPopup() {
-    const popup = document.getElementById('sale-popup');
-    if (!popup) return;
+const messages = [ "acaba de inscribirse", "se acaba de unir", "acabó de registrarse", "entró al curso"];
+
+     function getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+    
+function showPopup()
+{
+    if (!popup || !popupStarted) return;
+
     const name = names[Math.floor(Math.random() * names.length)];
     const country = countries[Math.floor(Math.random() * countries.length)];
-    popup.innerHTML = `🔥 <b>${name}</b> ${country} acaba de inscribirse`;
+
+    popup.innerHTML = `🔥 <b>${name}</b> ${country} ${messages[Math.floor(Math.random() * messages.length)]}`;
+
     popup.classList.add('show');
-    setTimeout(() => popup.classList.remove('show'), 3500);
+
+    setTimeout(() => {
+        popup.classList.remove('show');
+    }, 3200);
+
+    schedulePopup();
 }
-setTimeout(() => { showPopup(); setInterval(showPopup, 8000); }, 3000);
+
+function schedulePopup() {
+    const delay = getRandom(7000, 14000);
+
+    setTimeout(() => {
+        showPopup();
+    }, delay);
+}
 
 
-document.querySelectorAll('.faq-item').forEach(item => {
-  item.addEventListener('click', () => {
-    document.querySelectorAll('.faq-item').forEach(i => { if (i !== item) i.classList.remove('active'); });
-    item.classList.toggle('active');
-  });
+    document.addEventListener("DOMContentLoaded", () => {
+
+ popup = document.getElementById('sale-popup');
+     
+        
+   setTimeout(() => {
+    popupStarted = true;
+
+    setTimeout(() => {
+        showPopup();
+        schedulePopup();
+    }, getRandom(4000, 7000));
+
+}, 5000);
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelectorAll('.faq-item').forEach(i => {
+                if (i !== item) i.classList.remove('active');
+            });
+            item.classList.toggle('active');
+        });
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el => observer.observe(el));
 });
-
-
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
-}, { threshold: 0.15 });
-reveals.forEach(el => observer.observe(el));
 
 async function convertirPrecios() {
     try {

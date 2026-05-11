@@ -929,7 +929,7 @@ let popupStarted = false;
 let popup;
 
 const names = ["María Fernanda", "Valentina", "Isabella", "Camila", "Sofía", "Daniela", "Andrea", "Valeria", "Gabriela", "Luciana", "Paula", "Natalia", "Fernanda", "Carolina", "Alejandra", "Julieth", "Sara", "Diana", "Melissa", "Katherine"];
-const countries = ["de México","de Colombia","de Chile","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
+const countries = ["de México","de Colombia","de Chile","de Honduras","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
 const messages = [ "acaba de inscribirse", "se acaba de unir", "acabó de registrarse", "entró al curso"];
 
      function getRandom(min, max) {
@@ -1060,6 +1060,12 @@ async function convertirPrecios() {
             case "Brasil":
                 mensaje = "💳 En Brasil puedes pagar con tarjeta de crédito.";
                 break;
+                
+          case "honduras":
+          case "honduras":
+               mensaje = "💳 En Honduras el precio es fijo y no aplica pago en cuotas.";
+          break;
+        
         }
 
         window.requestAnimationFrame(() => {

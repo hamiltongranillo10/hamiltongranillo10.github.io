@@ -904,6 +904,22 @@ async function convertirPrecios() {
         const tasa = ipData.rate;
         const simboloMoneda = ipData.symbol || "$";
         const moneda = (ipData.currency || "USD").toUpperCase();
+        const pais = (ipData.country_code || "").toUpperCase();
+
+        
+        const paisesUSD = ["US", "EC", "CA"];
+
+       
+        const configPais = {
+            MX: { iva: true, cuotas: 6 },
+            CO: { iva: false, cuotas: 12 },
+            PE: { iva: false, cuotas: 12 },
+            AR: { iva: false, cuotas: 12 },
+            ES: { iva: true, cuotas: 12 },
+            CL: { iva: true, cuotas: 12 },
+            IT: { iva: true, cuotas: 12 },
+            BR: { iva: false, cuotas: 12 }
+        };
 
         const elementos = [
             'precio-tachado',
@@ -914,6 +930,9 @@ async function convertirPrecios() {
             'precio-oferta-3'
         ];
 
+      
+        const preciosCalculados = {};
+
         elementos.forEach(id => {
             const el = document.getElementById(id);
             if (!el) return;
@@ -922,39 +941,62 @@ async function convertirPrecios() {
             if (isNaN(usd)) return;
 
             const precioFinal = Math.ceil(usd * tasa);
-
             const formato = new Intl.NumberFormat('es-ES').format(precioFinal);
 
             el.innerText = `${simboloMoneda}${formato} ${moneda}`;
+
+            preciosCalculados[id] = precioFinal;
         });
 
+        
         const idsMensajes = [
             'mensaje-descuento-1',
             'mensaje-descuento-2',
             'mensaje-descuento-3'
         ];
 
-        if (moneda === "USD") {
-            
-            idsMensajes.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.innerText = "";
-            });
-        } else {
-           
-            const mensaje = "🎁 Oferta internacional activa + bono exclusivo por tu país";
+        function mostrarMensaje(precio) {
 
-            idsMensajes.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.innerText = mensaje;
-            });
+            
+            if (paisesUSD.includes(pais)) return "";
+
+            const cfg = configPais[pais];
+
+            if (!cfg) {
+                return "Opciones de pago disponibles según tu país";
+            }
+
+            let texto = "";
+
+            
+            if (cfg.iva) {
+                texto += "IVA incluido";
+            }
+
+           
+            if (cfg.cuotas) {
+                const cuota = (precio / cfg.cuotas).toFixed(2);
+                texto += ` o en ${cfg.cuotas} cuotas de ${simboloMoneda}${cuota} en tarjeta de crédito`;
+            }
+
+            return texto;
         }
+
+        idsMensajes.forEach(id => {
+            const el = document.getElementById(id);
+            if (!el) return;
+
+           
+            const precio = preciosCalculados['precio-oferta'] || 0;
+
+            const mensaje = mostrarMensaje(precio);
+            el.innerText = mensaje;
+        });
 
     } catch (e) {
         console.error("Error conversión:", e);
     }
 }
-
 var pixelCargado = false;
 
 function cargarFacebookPixel() {

@@ -916,31 +916,33 @@ async function convertirPrecios() {
     const oferta = document.querySelector("#oferta");
 
     const observer = new IntersectionObserver(async (entries) => {
-        if (entries[0].isIntersecting && !ipLoaded) {
-            ipLoaded = true;
+    if (!entries || !entries[0]) return;
 
-            try {
-                const controller = new AbortController();
-                const timeout = setTimeout(() => controller.abort(), 2000);
+    if (entries[0].isIntersecting && !ipLoaded) {
+        ipLoaded = true;
 
-                const res = await fetch("https://ipapi.co/json/", {
-                    signal: controller.signal
-                });
+        try {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 2000);
 
-                clearTimeout(timeout);
+            const res = await fetch("https://ipapi.co/json/", {
+                signal: controller.signal
+            });
 
-                const data = await res.json();
-                console.log("IP DATA:", data);
+            clearTimeout(timeout);
 
-            } catch (err) {
-                console.log("Error IP API:", err);
-            }
+            const data = await res.json();
+            console.log("IP DATA:", data);
 
-            observer.disconnect();
+        } catch (err) {
+            console.log("Error IP API:", err);
         }
-    }, {
-        threshold: 0.5
-    });
+
+        observer.disconnect();
+    }
+}, {
+    threshold: 0.5
+});
 
     if (oferta) {
         observer.observe(oferta);

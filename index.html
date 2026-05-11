@@ -4,16 +4,19 @@
 <meta charset="UTF-8"> 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <meta name="theme-color" content="#d4af37">    
+
 <link rel="preload" as="image" href="vela2.webp" fetchpriority="high">
-<link rel="dns-prefetch" href="//open.er-api.com">
-<link rel="preconnect" href="https://open.er-api.com">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
 <meta name="facebook-domain-verification" content="tzj1clvv6xp8g1hqhtldnk92huyu0r" />
+
 <title>Eternaluz Academy | Curso de Velas Artesanales</title>
+
 <meta name="description" content="Aprende a crear y vender velas artesanales desde casa con un curso paso a paso. Incluye clases, proveedores, soporte VIP y acceso inmediato.">
-    
  <style>
     :root {
     --primary: #d4af37;       
@@ -894,88 +897,7 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.15 });
 reveals.forEach(el => observer.observe(el));
 
-async function convertirPrecios() {
-    try {
-        const res = await fetch('https://shy-poetry-965.hamiltongranillo.workers.dev/', {
-            cache: "no-store"
-        });
 
-        const ipData = await res.json();
-        if (!ipData) return;
-
-        const pais = (ipData.country_code || "US").toUpperCase();
-
-        // 🌎 CONFIG POR PAÍS (OFERTA REAL + PRECIO ORIGINAL FIJO)
-        const config = {
-            EC: { original: 74, oferta: 37, moneda: "USD" },
-            US: { original: 74, oferta: 37, moneda: "USD" },
-
-            MX: { original: 1499, oferta: 779.52, moneda: "MXN" },
-            CO: { original: 280000, oferta: 145485, moneda: "COP" },
-            PE: { original: 250, oferta: 135, moneda: "PEN" },
-            AR: { original: 90000, oferta: 60044, moneda: "ARS" },
-            BR: { original: 399, oferta: 202, moneda: "BRL" },
-            CL: { original: 65000, oferta: 41385, moneda: "CLP" },
-            ES: { original: 79, oferta: 41.14, moneda: "EUR" },
-            IT: { original: 79, oferta: 41.48, moneda: "EUR" },
-            CA: { original: 74, oferta: 37, moneda: "USD" }
-        };
-
-        const data = config[pais] || config["EC"];
-
-        // 💰 MAPEO CORRECTO
-        const mapa = {
-            "precio-tachado": data.original,
-            "precio-tachado-2": data.original,
-            "precio-tachado-3": data.original,
-
-            "precio-oferta": data.oferta,
-            "precio-oferta-2": data.oferta,
-            "precio-oferta-3": data.oferta
-        };
-
-        Object.keys(mapa).forEach(id => {
-            const el = document.getElementById(id);
-            if (!el) return;
-
-            el.innerText = `${data.moneda} ${mapa[id]}`;
-        });
-
-        // 🧠 MENSAJES POR PAÍS
-        const mensajes = {
-            MX: "IVA incluido + hasta 6 cuotas en tarjeta de crédito",
-            CO: "Pago en cuotas disponible en tarjeta de crédito",
-            PE: "Pago en hasta 12 cuotas en tarjeta",
-            AR: "Financiación disponible en cuotas",
-            ES: "IVA incluido + pago en cuotas",
-            IT: "IVA incluso + pago en cuotas",
-            CL: "IVA incluido + hasta 12 cuotas"
-        };
-
-        const sinMensaje = ["EC", "US", "CA"];
-
-        const ids = [
-            'mensaje-descuento-1',
-            'mensaje-descuento-2',
-            'mensaje-descuento-3'
-        ];
-
-        ids.forEach(id => {
-            const el = document.getElementById(id);
-            if (!el) return;
-
-            if (sinMensaje.includes(pais)) {
-                el.innerText = "";
-                return;
-            }
-
-            el.innerText = mensajes[pais] || "Opciones de pago disponibles según tu país";
-        });
-
-    } catch (e) {
-        console.error("Error conversión:", e);
-    }
-}
 var pixelCargado = false;
 
 function cargarFacebookPixel() {
@@ -1016,19 +938,6 @@ function btm_track_checkout(event, link) {
     setTimeout(function(){ window.location.href = link; }, 250);
 }
 
-window.addEventListener('load', () => {
-    const ejecutar = () => {
-        setTimeout(() => {
-            convertirPrecios();
-        }, 1200); 
-    };
-
-    if ('requestIdleCallback' in window) {
-        requestIdleCallback(ejecutar);
-    } else {
-        setTimeout(ejecutar, 1500);
-    }
-});
     
 </script>
 </body>

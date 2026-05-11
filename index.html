@@ -903,7 +903,7 @@ async function convertirPrecios() {
 
         const tasa = ipData.rate;
         const simboloMoneda = ipData.symbol || "$";
-        const moneda = ipData.currency || "USD";
+        const moneda = (ipData.currency || "USD").toUpperCase();
 
         const elementos = [
             'precio-tachado',
@@ -927,6 +927,28 @@ async function convertirPrecios() {
 
             el.innerText = `${simboloMoneda}${formato} ${moneda}`;
         });
+
+        const idsMensajes = [
+            'mensaje-descuento-1',
+            'mensaje-descuento-2',
+            'mensaje-descuento-3'
+        ];
+
+        if (moneda === "USD") {
+            
+            idsMensajes.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = "";
+            });
+        } else {
+           
+            const mensaje = "🎁 Oferta internacional activa + bono exclusivo por tu país";
+
+            idsMensajes.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = mensaje;
+            });
+        }
 
     } catch (e) {
         console.error("Error conversión:", e);

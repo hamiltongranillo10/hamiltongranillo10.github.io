@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <meta name="theme-color" content="#d4af37">    
 <link rel="preload" as="image" href="vela2.webp" fetchpriority="high">
-<link rel="dns-prefetch" href="//ipapi.co">
-<link rel="dns-prefetch" href="//open.er-api.com">
-<link rel="preconnect" href="https://ipapi.co">
-<link rel="preconnect" href="https://open.er-api.com">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -902,62 +899,46 @@ async function convertirPrecios() {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 2000);
 
-        const [ipRes, exchangeRes] = await Promise.all([
-            fetch('https://ipapi.co/json/', {
-                signal: controller.signal
-            }),
-            fetch('https://open.er-api.com/v6/latest/USD', {
-                signal: controller.signal
-            })
-        ]);
+        const ipRes = await fetch('https://ipapi.co/json/', {
+            signal: controller.signal
+        });
 
         clearTimeout(timeout);
 
         const ipData = await ipRes.json();
-        const exchangeData = await exchangeRes.json();
 
         const monedaLocal = ipData.currency;
-        const simboloMoneda = ipData.currency_symbol || '$';
-        const tasa = exchangeData.rates[monedaLocal];
+        const pais = ipData.country_name;
 
-        if (tasa) {
-            const elementos = ['precio-tachado', 'precio-oferta', 'precio-tachado-2', 'precio-oferta-2', 'precio-tachado-3', 'precio-oferta-3'];
-            let mostrarMensaje = (monedaLocal !== 'USD');
-            
-            // 1. Preparamos los datos PRIMERO (sin tocar la pantalla aún)
-            const cambios = elementos.map(id => {
-                const el = document.getElementById(id);
-                if (!el) return null;
-                
-                const usd = el.getAttribute('data-usd');
-                let margen = (monedaLocal === 'USD') ? 1.0 : (monedaLocal === 'MXN' ? 1.23 : 1.25);
-                let precioFinal = (monedaLocal === 'COP' || monedaLocal === 'CLP') 
-                    ? Math.ceil((usd * tasa * margen) / 1000) * 1000 
-                    : Math.ceil(usd * tasa * margen);
-                
-                const texto = (monedaLocal === 'USD') 
-                    ? `${simboloMoneda}${precioFinal} USD` 
-                    : `${simboloMoneda}${precioFinal.toLocaleString()} ${monedaLocal}`;
-                
-                return { el, texto };
-            }).filter(item => item !== null);
+        // SOLO MENSAJES POR PAÍS
+        let mensaje = "";
 
-            // 2. Usamos UN SOLO requestAnimationFrame para escribir TODO de golpe
-            window.requestAnimationFrame(() => {
-                cambios.forEach(item => {
-                    item.el.innerText = item.texto;
-                });
-
-                if (mostrarMensaje) {
-                    ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3'].forEach(idMsg => {
-                        const c = document.getElementById(idMsg);
-                        if (c) c.innerText = "¡Haz clic en el botón para aplicar un bono de descuento extra disponible en tu país! 🎁";
-                    });
-                }
-            });
+        if (monedaLocal === "MXN") {
+            mensaje = "💳 En México puedes pagar con tarjeta en hasta 3 cuotas sin interés.";
+        } 
+        else if (monedaLocal === "COP") {
+            mensaje = "💰 En Colombia el precio ya incluye impuestos (IVA incluido).";
         }
-    } catch (e) { 
-        console.error("Error en conversión:", e); 
+        else if (monedaLocal === "CLP") {
+            mensaje = "📦 En Chile el precio final ya incluye impuestos locales.";
+        }
+        else if (monedaLocal === "USD") {
+            mensaje = "🔥 Acceso internacional en USD sin cargos adicionales.";
+        }
+        else {
+            mensaje = "🌍 Precio adaptado automáticamente a tu país.";
+        }
+
+        // Mostrar en tus mensajes existentes
+        window.requestAnimationFrame(() => {
+            ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = mensaje;
+            });
+        });
+
+    } catch (e) {
+        console.error("Error en conversión:", e);
     }
 }
 
@@ -1004,17 +985,16 @@ function btm_track_checkout(event, link) {
 window.addEventListener('load', () => {
     const ejecutar = () => {
         setTimeout(() => {
-            convertirPrecios();
-        }, 1200); 
+            convertirPrecios(); // ahora solo muestra mensajes
+        }, 800);
     };
 
     if ('requestIdleCallback' in window) {
         requestIdleCallback(ejecutar);
     } else {
-        setTimeout(ejecutar, 1500);
+        setTimeout(ejecutar, 1000);
     }
 });
-    
 </script>
 </body>
 </html>

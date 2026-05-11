@@ -603,11 +603,9 @@ body {
 }
 
 
-    .video-testimonios {
+   .video-testimonios {
     width: 100%;
-    max-width: 400px;
     border-radius: 20px;
-    margin: 20px auto;
     display: block;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
@@ -630,7 +628,20 @@ body {
 .faq-item:hover {
     transform: translateX(4px);
 }
-     
+
+    .video-wrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    position: relative;
+    cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+    .video-wrapper {
+        max-width: 650px;
+    }
+} 
     
 </style>
 </head>
@@ -804,10 +815,12 @@ body {
           <div style="margin:50px 0;">
           <h2 style="font-family: 'Playfair Display', serif; font-size:28px; text-align:center;">Mira lo que están logrando personas que empezaron desde cero</h2>
           <p style="text-align:center; font-size:16px; color:#6b6b6b; font-style:italic;">Grupo privado donde los alumnos comparten sus avances diarios, resultados reales y soporte directo</p>
-          <video class="video-testimonios" autoplay muted loop playsinline preload="metadata" poster="portada-testimonios.webp">
-    <source src="testimonios.mp4" type="video/mp4">
-    Tu navegador no soporta videos.
-</video>
+         <div class="video-wrapper" onclick="this.querySelector('video').play()">
+         <video class="video-testimonios" muted loop playsinline preload="none" poster="portada-testimonios.webp">
+        <source src="testimonios.mp4" type="video/mp4">
+    </video>
+    <div class="play-overlay">▶ Ver testimonios</div>
+</div>
 
         <p style="text-align:center; font-size:18px; font-weight:600;">Tú podrías ser el siguiente</p>
         <p style="text-align:center; font-size:18px; margin-top:15px;">

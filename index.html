@@ -1018,65 +1018,78 @@ async function convertirPrecios() {
         clearTimeout(timeout);
 
         const ipData = await ipRes.json();
-        const pais = ipData.country_name;
+
+
+        let pais = (ipData.country_name || "")
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
 
         let mensaje = "";
 
         switch (pais) {
 
-           case "Mexico":
-           case "México":
-           mensaje = "💳 En México incluye IVA. Puedes pagar en hasta 6 cuotas con tarjeta de crédito (según tu banco).";
-           break;
+            case "mexico":
+                mensaje = "💳 En México incluye IVA. Puedes pagar en hasta 6 cuotas con tarjeta de crédito (según tu banco).";
+                break;
 
-            case "Colombia":
+            case "colombia":
                 mensaje = "💳 En Colombia puedes pagar en 12 cuotas con tarjeta de crédito.";
                 break;
 
-            case "Chile":
+            case "chile":
                 mensaje = "💳 En Chile puedes pagar en cuotas con tarjeta de crédito según tu banco.";
                 break;
 
-            case "Peru":
-            case "Perú":
+            case "peru":
                 mensaje = "💳 En Perú puedes pagar en hasta 12 cuotas con tarjeta de crédito.";
                 break;
 
-            case "Argentina":
+            case "argentina":
                 mensaje = "💳 En Argentina pueden aplicar tarifas adicionales según el medio de pago.";
                 break;
 
-            case "Spain":
-            case "España":
+            case "spain":
                 mensaje = "💳 En España el precio incluye IVA.";
                 break;
 
-            case "Italy":
-            case "Italia":
+            case "italy":
                 mensaje = "💳 En Italia el precio incluye IVA.";
                 break;
 
-            case "Brazil":
-            case "Brasil":
+            case "brazil":
                 mensaje = "💳 En Brasil puedes pagar con tarjeta de crédito.";
                 break;
-                
-          case "honduras":
-          case "honduras":
-               mensaje = "💳 En Honduras el precio es fijo y no aplica pago en cuotas.";
-          break;
-        
+
+            case "honduras":
+                mensaje = "💳 En Honduras el precio es fijo y no aplica pago en cuotas.";
+                break;
+
+            default:
+                mensaje = "💳 Puedes pagar con tarjeta de crédito según tu país.";
+                break;
         }
 
+        
         window.requestAnimationFrame(() => {
-            ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.innerText = mensaje;
-            });
+            ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3']
+                .forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.innerText = mensaje;
+                });
         });
 
     } catch (e) {
         console.error("Error:", e);
+
+        
+        const fallback = "💳 Puedes pagar con tarjeta de crédito según tu país.";
+
+        ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3']
+            .forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = fallback;
+            });
     }
 }
 

@@ -643,49 +643,32 @@ body {
     }
 } 
 
-     .music-player{
-
-    position:fixed;
-
-    right:15px;
-
-    bottom:20px;
-
-    z-index:99999;
-
-    backdrop-filter:blur(12px);
-
-    -webkit-backdrop-filter:blur(12px);
-
+    .music-player {
+    position: fixed;
+    right: 15px;
+    bottom: 20px;
+    z-index: 99999;
 }
 
-#music-toggle{
+#music-toggle {
 
-    background:rgba(255,255,255,0.82);
+    background: rgba(255,255,255,0.9);
 
-    border:1px solid rgba(212,175,55,0.25);
+    border: 1px solid rgba(212,175,55,0.3);
 
-    color:#111827;
+    backdrop-filter: blur(10px);
 
-    padding:12px 18px;
+    padding: 12px 18px;
 
-    border-radius:999px;
+    border-radius: 100px;
 
-    font-size:13px;
+    font-size: 13px;
 
-    font-weight:700;
+    font-weight: 700;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    box-shadow:0 10px 30px rgba(0,0,0,0.10);
-
-    transition:0.3s ease;
-
-}
-
-#music-toggle:hover{
-
-    transform:translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 
 }
     
@@ -1146,90 +1129,6 @@ window.addEventListener('load', () => {
     }
 });
     
-const bgMusic = document.getElementById("bg-music");
-
-const musicToggle = document.getElementById("music-toggle");
-
-const mainVideo = document.querySelector('.hero video');
-
-const hamiltonAudio = document.querySelector('.audio-estilo');
-
-let musicPlaying = false;
-
-if(bgMusic && musicToggle){
-
-    bgMusic.volume = 0.15;
-
-    musicToggle.addEventListener("click", async () => {
-
-        try{
-
-            if(!musicPlaying){
-
-                await bgMusic.play();
-
-                musicPlaying = true;
-
-                musicToggle.innerHTML = "⏸️ Pausar Música";
-
-            } else {
-
-                bgMusic.pause();
-
-                musicPlaying = false;
-
-                musicToggle.innerHTML = "🔊 Música Ambiente";
-
-            }
-
-        } catch(err){
-
-            console.log(err);
-
-        }
-
-    });
-
-}
-
-
-// PAUSAR MÚSICA EN VIDEO
-if(mainVideo && bgMusic){
-
-    mainVideo.addEventListener('play', () => {
-
-        bgMusic.pause();
-
-    });
-
-}
-
-
-// BAJAR VOLUMEN EN AUDIO HAMILTON
-if(hamiltonAudio && bgMusic){
-
-    hamiltonAudio.addEventListener('play', () => {
-
-        bgMusic.volume = 0.05;
-
-    });
-
-    hamiltonAudio.addEventListener('pause', () => {
-
-        bgMusic.volume = 0.15;
-
-    });
-
-    hamiltonAudio.addEventListener('ended', () => {
-
-        bgMusic.volume = 0.15;
-
-    });
-
-}
-    
-</script>
-    
 <div class="music-player">
 
     <button id="music-toggle">
@@ -1242,6 +1141,46 @@ if(hamiltonAudio && bgMusic){
 
 </div>
 
-    
+<script>
+
+const musicBtn = document.getElementById("music-toggle");
+const bgMusic = document.getElementById("bg-music");
+
+let playing = false;
+
+bgMusic.volume = 0.15;
+
+musicBtn.addEventListener("click", async () => {
+
+    try {
+
+        if (!playing) {
+
+            await bgMusic.play();
+
+            playing = true;
+
+            musicBtn.innerHTML = "🔇 Pausar Música";
+
+        } else {
+
+            bgMusic.pause();
+
+            playing = false;
+
+            musicBtn.innerHTML = "🔊 Música Ambiente";
+
+        }
+
+    } catch(err) {
+
+        console.log("Error:", err);
+
+    }
+
+});
+
+</script>
+
 </body>
 </html>

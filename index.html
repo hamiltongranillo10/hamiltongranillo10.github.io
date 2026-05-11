@@ -1104,19 +1104,21 @@ const bgMusic = document.getElementById("bg-music");
 
 let musicStarted = false;
 
-bgMusic.volume = 0.15;
+if (bgMusic) {
 
+    bgMusic.volume = 0.15;
 
-// INICIAR MÚSICA EN PRIMER CLICK
-document.addEventListener("click", async () => {
+    async function startMusic() {
 
-    if (!musicStarted) {
+        if (musicStarted) return;
 
         try {
 
             await bgMusic.play();
 
             musicStarted = true;
+
+            console.log("Música iniciada");
 
         } catch(err) {
 
@@ -1125,24 +1127,39 @@ document.addEventListener("click", async () => {
         }
     }
 
-}, { once: true });
+    // Inicia música con cualquier interacción
+    document.addEventListener("click", startMusic, { once: true });
+
+    document.addEventListener("touchstart", startMusic, { once: true });
+
+    document.addEventListener("scroll", startMusic, { once: true });
+
+}
 
 
-
+// VIDEO PRINCIPAL
 const mainVideo = document.querySelector('.hero video');
 
-if (mainVideo) {
+if (mainVideo && bgMusic) {
 
     mainVideo.addEventListener('play', () => {
+
         bgMusic.pause();
+
     });
 
-    mainVideo.addEventListener('pause', () => {
-        bgMusic.play();
-    });
+    mainVideo.addEventListener('ended', async () => {
 
-    mainVideo.addEventListener('ended', () => {
-        bgMusic.play();
+        try {
+
+            await bgMusic.play();
+
+        } catch(err) {
+
+            console.log(err);
+
+        }
+
     });
 }
 
@@ -1150,21 +1167,26 @@ if (mainVideo) {
 // AUDIO HAMILTON
 const hamiltonAudio = document.querySelector('.audio-estilo');
 
-if (hamiltonAudio) {
+if (hamiltonAudio && bgMusic) {
 
     hamiltonAudio.addEventListener('play', () => {
+
         bgMusic.volume = 0.05;
+
     });
 
     hamiltonAudio.addEventListener('pause', () => {
+
         bgMusic.volume = 0.15;
+
     });
 
     hamiltonAudio.addEventListener('ended', () => {
+
         bgMusic.volume = 0.15;
+
     });
 }
-
     
 </script>
     

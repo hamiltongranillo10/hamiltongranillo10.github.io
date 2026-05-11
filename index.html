@@ -642,6 +642,52 @@ body {
         max-width: 650px;
     }
 } 
+
+     .music-player{
+
+    position:fixed;
+
+    right:15px;
+
+    bottom:20px;
+
+    z-index:99999;
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+}
+
+#music-toggle{
+
+    background:rgba(255,255,255,0.82);
+
+    border:1px solid rgba(212,175,55,0.25);
+
+    color:#111827;
+
+    padding:12px 18px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.10);
+
+    transition:0.3s ease;
+
+}
+
+#music-toggle:hover{
+
+    transform:translateY(-2px);
+
+}
     
 </style>
 </head>
@@ -1102,97 +1148,59 @@ window.addEventListener('load', () => {
     
 const bgMusic = document.getElementById("bg-music");
 
-let musicStarted = false;
+const musicToggle = document.getElementById("music-toggle");
 
-if (bgMusic) {
+let musicPlaying = false;
+
+if(bgMusic && musicToggle){
 
     bgMusic.volume = 0.15;
 
-    async function startMusic() {
+    musicToggle.addEventListener("click", async () => {
 
-        if (musicStarted) return;
+        try{
 
-        try {
+            if(!musicPlaying){
 
-            await bgMusic.play();
+                await bgMusic.play();
 
-            musicStarted = true;
+                musicPlaying = true;
 
-            console.log("Música iniciada");
+                musicToggle.innerHTML = "⏸️ Pausar Música";
 
-        } catch(err) {
+            } else {
 
-            console.log("Autoplay bloqueado:", err);
+                bgMusic.pause();
 
-        }
-    }
+                musicPlaying = false;
 
-    // Inicia música con cualquier interacción
-    document.addEventListener("click", startMusic, { once: true });
+                musicToggle.innerHTML = "🔊 Música Ambiente";
 
-    document.addEventListener("touchstart", startMusic, { once: true });
+            }
 
-    document.addEventListener("scroll", startMusic, { once: true });
-
-}
-
-
-// VIDEO PRINCIPAL
-const mainVideo = document.querySelector('.hero video');
-
-if (mainVideo && bgMusic) {
-
-    mainVideo.addEventListener('play', () => {
-
-        bgMusic.pause();
-
-    });
-
-    mainVideo.addEventListener('ended', async () => {
-
-        try {
-
-            await bgMusic.play();
-
-        } catch(err) {
+        } catch(err){
 
             console.log(err);
 
         }
 
     });
-}
 
-
-// AUDIO HAMILTON
-const hamiltonAudio = document.querySelector('.audio-estilo');
-
-if (hamiltonAudio && bgMusic) {
-
-    hamiltonAudio.addEventListener('play', () => {
-
-        bgMusic.volume = 0.05;
-
-    });
-
-    hamiltonAudio.addEventListener('pause', () => {
-
-        bgMusic.volume = 0.15;
-
-    });
-
-    hamiltonAudio.addEventListener('ended', () => {
-
-        bgMusic.volume = 0.15;
-
-    });
 }
     
 </script>
     
-<audio id="bg-music" loop preload="none">
-    <source src="white-petals.mp3" type="audio/mpeg">
-</audio>
+<div class="music-player">
+
+    <button id="music-toggle">
+        🔊 Música Ambiente
+    </button>
+
+    <audio id="bg-music" loop preload="none">
+        <source src="white-petals.mp3" type="audio/mpeg">
+    </audio>
+
+</div>
 
     
 </body>

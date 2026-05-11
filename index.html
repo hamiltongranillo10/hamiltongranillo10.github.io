@@ -894,6 +894,7 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.15 });
 reveals.forEach(el => observer.observe(el));
 
+
 function mostrarMensajes(base, valor, urgencia) {
     window.requestAnimationFrame(() => {
 
@@ -916,15 +917,12 @@ function fallbackMensajes() {
     );
 }
 
+    
 async function convertirPrecios() {
-
-    // 🟢 1. Fallback inmediato (siempre muestra algo)
-    fallbackMensajes();
-
     try {
 
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 1500);
+        const timeout = setTimeout(() => controller.abort(), 2000);
 
         const ipRes = await fetch('https://ipapi.co/json/', {
             signal: controller.signal
@@ -933,87 +931,87 @@ async function convertirPrecios() {
         clearTimeout(timeout);
 
         const ipData = await ipRes.json();
+        const pais = ipData.country_name;
 
-        // ✅ IMPORTANTE: usamos country_code (MX, CO, PE...)
-        const pais = (ipData.country_code || "").toLowerCase();
+        let mensaje = "";
 
-        let base = "";
-        let valor = "";
-        let urgencia = "";
+       switch (pais) {
 
-        switch (pais) {
+    case "mx":
+        base = "💳 México: incluye IVA y puedes pagar en hasta 6 cuotas (según banco).";
+        valor = "📦 Acceso inmediato al curso completo";
+        urgencia = "🔥 Cupos limitados disponibles hoy";
+        break;
 
-            case "mx":
-                base = "💳 México: incluye IVA y puedes pagar en hasta 6 cuotas (según banco).";
-                valor = "📦 Acceso inmediato al curso completo";
-                urgencia = "🔥 Cupos limitados disponibles hoy";
-                break;
+    case "co":
+        base = "💳 Colombia: puedes pagar en 12 cuotas con tarjeta de crédito.";
+        valor = "🔥 Más de 1,200 estudiantes ya empezaron";
+        urgencia = "⚡ Empieza hoy y cambia tus ingresos";
+        break;
 
-            case "co":
-                base = "💳 Colombia: puedes pagar en 12 cuotas con tarjeta de crédito.";
-                valor = "🔥 Más de 1,200 estudiantes ya empezaron";
-                urgencia = "⚡ Empieza hoy y cambia tus ingresos";
-                break;
+    case "pe":
+        base = "💳 Perú: puedes pagar en hasta 12 cuotas con tarjeta de crédito.";
+        valor = "📦 Acceso inmediato desde cualquier dispositivo";
+        urgencia = "🔥 Empieza hoy tu negocio desde casa";
+        break;
 
-            case "pe":
-                base = "💳 Perú: puedes pagar en hasta 12 cuotas con tarjeta de crédito.";
-                valor = "📦 Acceso inmediato desde cualquier dispositivo";
-                urgencia = "🔥 Empieza hoy tu negocio desde casa";
-                break;
+    case "cl":
+        base = "💳 Chile: puedes pagar en cuotas con tarjeta de crédito según banco.";
+        valor = "📦 Acceso inmediato al curso completo";
+        urgencia = "⚡ Resultados desde las primeras semanas";
+        break;
 
-            case "cl":
-                base = "💳 Chile: puedes pagar en cuotas con tarjeta de crédito según banco.";
-                valor = "📦 Acceso inmediato al curso completo";
-                urgencia = "⚡ Resultados desde las primeras semanas";
-                break;
+    case "ar":
+        base = "💳 Argentina: pueden aplicar tarifas según medio de pago.";
+        valor = "📦 Acceso inmediato al curso completo";
+        urgencia = "🔥 Empieza hoy tu emprendimiento desde casa";
+        break;
 
-            case "ar":
-                base = "💳 Argentina: pueden aplicar tarifas según medio de pago.";
-                valor = "📦 Acceso inmediato al curso completo";
-                urgencia = "🔥 Empieza hoy tu emprendimiento desde casa";
-                break;
+    case "es":
+        base = "💳 España: precio incluye IVA.";
+        valor = "🔥 Formación completa paso a paso";
+        urgencia = "📦 Acceso inmediato + soporte incluido";
+        break;
 
-            case "es":
-                base = "💳 España: precio incluye IVA.";
-                valor = "🔥 Formación completa paso a paso";
-                urgencia = "📦 Acceso inmediato + soporte incluido";
-                break;
+    case "it":
+        base = "💳 Italia: precio incluye IVA.";
+        valor = "📦 Acceso inmediato al curso completo";
+        urgencia = "🔥 Aprende un negocio desde casa";
+        break;
 
-            case "it":
-                base = "💳 Italia: precio incluye IVA.";
-                valor = "📦 Acceso inmediato al curso completo";
-                urgencia = "🔥 Aprende un negocio desde casa";
-                break;
+    case "br":
+        base = "💳 Brasil: puedes pagar con tarjeta de crédito.";
+        valor = "🔥 Aprende a crear y vender velas";
+        urgencia = "⚡ Inicia hoy tu negocio digital";
+        break;
 
-            case "br":
-                base = "💳 Brasil: puedes pagar con tarjeta de crédito.";
-                valor = "🔥 Aprende a crear y vender velas";
-                urgencia = "⚡ Inicia hoy tu negocio digital";
-                break;
+    case "ec":
+    case "bo":
+    case "cr":
+    case "gt":
+    case "hn":
+    case "pa":
+    case "do":
+        base = "💳 Pago seguro disponible en tu país.";
+        valor = "📦 Acceso inmediato al curso completo";
+        urgencia = "🔥 Empieza hoy mismo sin experiencia";
+        break;
 
-            case "ec":
-            case "bo":
-            case "cr":
-            case "gt":
-            case "hn":
-            case "pa":
-            case "do":
-                base = "💳 Pago seguro disponible en tu país.";
-                valor = "📦 Acceso inmediato al curso completo";
-                urgencia = "🔥 Empieza hoy mismo sin experiencia";
-                break;
-
-            default:
-                base = "💳 Pago seguro disponible en tu país.";
-                valor = "📦 Acceso inmediato al curso completo";
-                urgencia = "🔥 Empieza hoy mismo sin experiencia";
-        }
-
-        // 🟡 Mostrar mensajes en embudo
-        mostrarMensajes(base, valor, urgencia);
+    default:
+        base = "💳 Pago seguro disponible en tu país.";
+        valor = "📦 Acceso inmediato al curso completo";
+        urgencia = "🔥 Empieza hoy mismo sin experiencia";
+}
+        
+        window.requestAnimationFrame(() => {
+            ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = mensaje;
+            });
+        });
 
     } catch (e) {
-        console.log("IP fallback usado");
+        console.error("Error:", e);
     }
 }
 
@@ -1057,30 +1055,19 @@ function btm_track_checkout(event, link) {
     setTimeout(function(){ window.location.href = link; }, 250);
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
+    const ejecutar = () => {
+        setTimeout(() => {
+            convertirPrecios(); 
+        }, 800);
+    };
 
-    inicializarUI();
-
-    setTimeout(() => {
-        mostrarInfoPais();
-    }, 800);
-
-    
-function mostrarMensajes(base, valor, urgencia) {
-
-    window.requestAnimationFrame(() => {
-
-        const top = document.getElementById('mensaje-descuento-1');
-        if (top) top.innerText = base;
-
-        const mid = document.getElementById('mensaje-descuento-2');
-        if (mid) mid.innerText = valor;
-
-        const bottom = document.getElementById('mensaje-descuento-3');
-        if (bottom) bottom.innerText = urgencia;
-    });
-}
-
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(ejecutar);
+    } else {
+        setTimeout(ejecutar, 1000);
+    }
+});
 </script>
 </body>
 </html>

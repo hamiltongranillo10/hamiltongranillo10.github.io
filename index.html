@@ -899,27 +899,27 @@ async function convertirPrecios() {
         const res = await fetch('https://shy-poetry-965.hamiltongranillo.workers.dev/');
         const ipData = await res.json();
 
-        if (!ipData || typeof ipData.rate !== "number") return;
+        if (!ipData) return;
 
-        const tasa = ipData.rate;
-        const simboloMoneda = ipData.symbol || "$";
-        const moneda = (ipData.currency || "USD").toUpperCase();
-        const pais = (ipData.country_code || "").toUpperCase();
+        const pais = (ipData.country_code || "US").toUpperCase();
 
-        
-        const paisesUSD = ["US", "EC", "CA"];
+        // 🌎 PRECIOS FIJOS POR PAÍS (igual o muy cercano a Hotmart)
+        const preciosPorPais = {
+            EC: { precio: 37, moneda: "USD" },
+            US: { precio: 37, moneda: "USD" },
 
-       
-        const configPais = {
-            MX: { iva: true, cuotas: 6 },
-            CO: { iva: false, cuotas: 12 },
-            PE: { iva: false, cuotas: 12 },
-            AR: { iva: false, cuotas: 12 },
-            ES: { iva: true, cuotas: 12 },
-            CL: { iva: true, cuotas: 12 },
-            IT: { iva: true, cuotas: 12 },
-            BR: { iva: false, cuotas: 12 }
+            MX: { precio: 779.52, moneda: "MXN" },
+            CO: { precio: 145485, moneda: "COP" },
+            PE: { precio: 135, moneda: "PEN" },
+            AR: { precio: 60044, moneda: "ARS" },
+            BR: { precio: 202, moneda: "BRL" },
+            CL: { precio: 41385, moneda: "CLP" },
+            ES: { precio: 41.14, moneda: "EUR" },
+            IT: { precio: 41.48, moneda: "EUR" },
+            CA: { precio: 37, moneda: "USD" }
         };
+
+        const data = preciosPorPais[pais] || preciosPorPais["EC"];
 
         const elementos = [
             'precio-tachado',
@@ -930,67 +930,44 @@ async function convertirPrecios() {
             'precio-oferta-3'
         ];
 
-      
-        const preciosCalculados = {};
-
+        // 💰 actualizar precios
         elementos.forEach(id => {
             const el = document.getElementById(id);
             if (!el) return;
 
-            const usd = parseFloat(el.getAttribute('data-usd'));
-            if (isNaN(usd)) return;
-
-            const precioFinal = Math.ceil(usd * tasa);
-            const formato = new Intl.NumberFormat('es-ES').format(precioFinal);
-
-            el.innerText = `${simboloMoneda}${formato} ${moneda}`;
-
-            preciosCalculados[id] = precioFinal;
+            el.innerText = `${data.precio} ${data.moneda}`;
         });
 
-        
+        // 🧠 MENSAJES POR PAÍS
+        const mensajes = {
+            MX: "IVA incluido + hasta 6 cuotas en tarjeta de crédito",
+            CO: "Pago en cuotas disponible en tarjeta de crédito",
+            PE: "Pago en hasta 12 cuotas en tarjeta",
+            AR: "Financiación disponible en cuotas",
+            ES: "IVA incluido + pago en cuotas",
+            IT: "IVA incluso + pago en cuotas",
+            CL: "IVA incluido + hasta 12 cuotas"
+        };
+
+        const paisesSinMensaje = ["EC", "US", "CA"];
+
         const idsMensajes = [
             'mensaje-descuento-1',
             'mensaje-descuento-2',
             'mensaje-descuento-3'
         ];
 
-        function mostrarMensaje(precio) {
-
-            
-            if (paisesUSD.includes(pais)) return "";
-
-            const cfg = configPais[pais];
-
-            if (!cfg) {
-                return "Opciones de pago disponibles según tu país";
-            }
-
-            let texto = "";
-
-            
-            if (cfg.iva) {
-                texto += "IVA incluido";
-            }
-
-           
-            if (cfg.cuotas) {
-                const cuota = (precio / cfg.cuotas).toFixed(2);
-                texto += ` o en ${cfg.cuotas} cuotas de ${simboloMoneda}${cuota} en tarjeta de crédito`;
-            }
-
-            return texto;
-        }
-
         idsMensajes.forEach(id => {
             const el = document.getElementById(id);
             if (!el) return;
 
-           
-            const precio = preciosCalculados['precio-oferta'] || 0;
+            // ❌ sin mensaje en USD
+            if (paisesSinMensaje.includes(pais)) {
+                el.innerText = "";
+                return;
+            }
 
-            const mensaje = mostrarMensaje(precio);
-            el.innerText = mensaje;
+            el.innerText = mensajes[pais] || "Opciones de pago disponibles según tu país";
         });
 
     } catch (e) {

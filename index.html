@@ -111,8 +111,8 @@
     animation: pulsePrice 2.5s ease-in-out infinite;
 }
    
-    .btn {
-        
+   .btn {
+
     text-decoration: none !important;
     background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #aa771c 100%);
     color: #111 !important;
@@ -140,16 +140,23 @@
 
     transition: all 0.25s ease;
 
-    animation: pulseSoft 2.5s ease-in-out infinite;
+    animation: pulseSoft 1.8s ease-in-out infinite;
+
+    will-change: transform;
 
     position: relative;
     overflow: hidden;
 }
-
     @keyframes pulseSoft {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.02); }
+
+    0%, 100% {
+        transform: scale(1);
     }
+
+    50% {
+        transform: scale(1.045);
+    }
+}
 
     .btn::after {
     content: "";

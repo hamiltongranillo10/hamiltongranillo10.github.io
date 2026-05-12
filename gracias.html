@@ -331,79 +331,22 @@ function cerrarTodo() {
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-
     const btn = form.querySelector('button');
     btn.innerText = "Cargando guía...";
     btn.disabled = true;
 
-    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .then(() => { 
-            localStorage.setItem('registroHecho', 'true');
-            mostrarGuiaFinal(); 
-        })
-        .catch(() => { 
-            localStorage.setItem('registroHecho', 'true');
-            mostrarGuiaFinal();
-        });
-});
-</script>
-
-<!-- 🎵 MUSICA (IMPORTANTE: DEBE IR DESPUÉS DEL HTML) -->
-<div class="music-player">
-
-    <button id="music-toggle">🔊 Música Ambiente</button>
-
-    <audio id="bg-music" loop>
-        <source src="white-petals.mp3" type="audio/mpeg">
-    </audio>
-
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-    const bgMusic = document.getElementById("bg-music");
-    const musicBtn = document.getElementById("music-toggle");
-
-    if (!bgMusic || !musicBtn) return;
-
-    let playing = false;
-
-    bgMusic.volume = 0.15;
-
-    // 🔥 restaurar música en todas las páginas
-    const saved = localStorage.getItem("music-playing");
-
-    if (saved === "true") {
-        bgMusic.play().catch(() => {});
-        playing = true;
-        musicBtn.innerText = "🔇 Pausar Música";
-    }
-
-    // 🎮 botón play / pause
-    musicBtn.addEventListener("click", async () => {
-
-        try {
-
-            if (!playing) {
-                await bgMusic.play();
-                playing = true;
-                localStorage.setItem("music-playing", "true");
-                musicBtn.innerText = "🔇 Pausar Música";
-            } else {
-                bgMusic.pause();
-                playing = false;
-                localStorage.setItem("music-playing", "false");
-                musicBtn.innerText = "🔊 Música Ambiente";
-            }
-
-        } catch (err) {
-            console.log(err);
-        }
-
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(response => { 
+        localStorage.setItem('registroHecho', 'true');
+        mostrarGuiaFinal(); 
+    })
+    .catch(error => { 
+        localStorage.setItem('registroHecho', 'true');
+        mostrarGuiaFinal();
     });
-
 });
+
+    
 </script>
     
 </body>

@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <meta name="facebook-domain-verification" content="tzj1clvv6xp8g1hqhtldnk92huyu0r" />
 <title>Eternaluz Academy | Curso de Velas Artesanales</title>
 <meta name="description" content="Aprende a crear y vender velas artesanales desde casa con un curso paso a paso. Incluye clases, proveedores, soporte VIP y acceso inmediato.">
@@ -26,10 +26,22 @@
 
 }
         
-  body {
-    background-color: #fdfaf5 !important; 
-    background: radial-gradient(circle, #ffffff 0%, #f7f3eb 100%) !important;
-    color: #333;
+ body {
+
+    font-family: 'Inter', sans-serif;
+
+    line-height: 1.6;
+
+    color: #111827;
+
+    background-color: #fdfaf5 !important;
+
+    background: radial-gradient(
+        circle,
+        #ffffff 0%,
+        #f7f3eb 100%
+    ) !important;
+
 }
 
     .top-bar {background: linear-gradient( 90deg, #000000 0%,#111111 50%,#1a1a1a 100%); color: #f8fafc; text-align: center; padding: 12px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.08); box-shadow: 0 6px 20px rgba(0,0,0,0.18);}
@@ -62,6 +74,7 @@
     }
 
     .old {
+
     text-decoration: line-through;
     color: rgba(59, 36, 18, 0.75);
 
@@ -80,8 +93,12 @@
     text-shadow: 0 3px 12px rgba(0,0,0,0.08);
 
     transform: rotate(-1deg);
+
+    min-height: 1.2em;
+
+    contain: layout;
 }
-   .new {
+  .new {
 
     font-size: clamp(80px, 14vw, 130px);
 
@@ -109,16 +126,22 @@
         0 4px 12px rgba(0,0,0,0.10);
 
     animation: pulsePrice 2.5s ease-in-out infinite;
+
+    min-height: 1.2em;
+
+    contain: layout;
 }
    
-    .btn {
-        
+   .btn {
+
     text-decoration: none !important;
     background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #aa771c 100%);
     color: #111 !important;
 
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
     font-weight: 800;
+
     text-align: center;
 
     padding: 22px 45px;
@@ -140,16 +163,23 @@
 
     transition: all 0.25s ease;
 
-    animation: pulseSoft 2.5s ease-in-out infinite;
+    animation: pulseSoft 1.8s ease-in-out infinite;
+
+    will-change: transform;
 
     position: relative;
     overflow: hidden;
 }
-
     @keyframes pulseSoft {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.02); }
+
+    0%, 100% {
+        transform: scale(1);
     }
+
+    50% {
+        transform: scale(1.045);
+    }
+}
 
     .btn::after {
     content: "";
@@ -168,38 +198,55 @@
     animation: glassShine 4s infinite;
 }
 
- @media (min-width: 1024px) {
+@media (min-width: 1024px) {
+
     .btn {
         padding: 34px 65px;
         font-size: 25px;
         width: 370px;
     }
+
+    .grid-img .card-img p {
+        font-size: 19px;
+    }
+
 }
 
 @media (max-width: 1023px) {
+
     .btn {
         width: 100%;
         max-width: 420px;
     }
+
 }
 
 @media (max-width: 600px) {
+
     .btn {
         padding: 16px 25px;
         font-size: 16px;
         width: 100%;
     }
-}
 
-@media (min-width: 1024px) {
-    .grid-img .card-img p {
-        font-size: 19px;
-    }
 }
 
     
-    @keyframes glassShine { 0% { left: -120%; } 15% { left: 150%; } 100% { left: 150%; } }
+   @keyframes glassShine {
 
+    0% {
+        left: -120%;
+    }
+
+    15% {
+        left: 150%;
+    }
+
+    100% {
+        left: 150%;
+    }
+
+}
     .btn-temario {
         background: transparent;
         color: #b88a2a;
@@ -264,7 +311,7 @@
     .faq-answer { max-height: 0; overflow: hidden; opacity: 0; transition: all 0.35s ease; font-size: 14px; color: #555; margin-top: 0; text-align: left; }
     .faq-item.active .faq-answer { max-height: 200px; opacity: 1; margin-top: 10px; }
 
-    .sale-popup {
+   .sale-popup {
     position: fixed;
     left: 18px;
     bottom: 95px;
@@ -287,7 +334,7 @@
     color: #111;
 
     opacity: 0;
-    transform: translateY(20px) scale(.95);
+    transform: translateY(20px);
 
     transition:
         opacity .45s cubic-bezier(.22,.61,.36,1),
@@ -298,7 +345,11 @@
         "Apple Color Emoji",
         "Noto Color Emoji",
         sans-serif;
+
+    will-change: transform, opacity;
+    contain: layout style paint;
 }
+     
 .sale-popup.show {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -315,7 +366,18 @@
         100% { transform: scale(1); }
     }
 
-    img { max-width: 100%; height: auto; display: block;  margin: 0 auto; transform: translateZ(0); 
+    img {
+
+    max-width: 100%;
+
+    height: auto;
+
+    display: block;
+
+    margin: 0 auto;
+
+    transform: translateZ(0);
+
 }
 
     .btn-soporte-premium {
@@ -395,14 +457,8 @@
         50% { transform: translateY(12px); opacity: 1; }
     }
 
-    .tarjeta-soporte-hamilton {
-        background: #ffffff; border-radius: 25px; padding: 20px;
-        max-width: 400px; margin: 15px auto; border: 2px solid #e9b96e;
-        box-shadow: 0px 10px 20px rgba(0,0,0,0.05);
-    }
-
-    .cuerpo-reproductor { display: flex; align-items: center; gap: 15px; }
-    .foto-hamilton { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; }
+    .cuerpo-reproductor {display: flex;align-items: center;gap: 15px;}
+    .foto-hamilton { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(191, 149, 63, 0.3);}
     .texto-soporte { margin: 0 0 8px 0; font-size: 14px; color: #444; text-align: left; }
     .audio-estilo { width: 100%; height: 35px; }
 
@@ -455,13 +511,6 @@
     }
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
 .msg-descuento {
     min-height: 40px;
     display: block;
@@ -472,19 +521,6 @@ img {
     text-align: center;
     font-size: 0.9em;
     font-style: italic;
-}
-
-.old,
-.new {
-    min-height: 1.2em;
-    contain: layout;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    color: #111827;
-    line-height: 1.6;
 }
 
 h1, h2, h3 {
@@ -509,19 +545,6 @@ p, span, a {
     font-size: clamp(60px, 12vw, 110px);
 }
 
-.btn {
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    color: #111827;
-    line-height: 1.6;
-
-    background: #FFF4DD !important;
-}
-
    .tarjeta-soporte-hamilton {
     background: rgba(255, 244, 225, 0.85);
     border: 1px solid rgba(191, 149, 63, 0.2);
@@ -533,22 +556,10 @@ body {
     max-width: 500px;
     margin: 20px auto;
 }
-
-.cuerpo-reproductor {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
 .contenedor-foto {
     flex-shrink: 0;
 }
-
-.foto-hamilton {
-    border-radius: 50%;
-    border: 2px solid rgba(191, 149, 63, 0.3);
-}
-
+     
 .info-reproductor {
     width: 100%;
 }
@@ -563,18 +574,14 @@ body {
 
 .audio-estilo {
     width: 100%;
-    background: rgba(255, 244, 225, 0.7);
-    border: 1px solid rgba(191, 149, 63, 0.25);
-    border-radius: 50px;
-    padding: 8px;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
-
-    .audio-estilo {
     background: transparent;
     border: none;
+    border-radius: 50px;
+    padding: 8px;
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
     box-shadow: none;
 }
 
@@ -594,12 +601,6 @@ body {
     50% {
         transform: scale(1.04);
     }
-}
-
-@keyframes glassShine {
-    0% { left: -120%; }
-    15% { left: 150%; }
-    100% { left: 150%; }
 }
 
     .btn:hover {
@@ -989,19 +990,19 @@ function showPopup()
 
     const time = times[Math.floor(Math.random() * times.length)];
 
-    popup.innerHTML = `
-    <div style="display:flex; flex-direction:column; line-height:1.3;">
-        <span><b>${name}</b> ${country}</span>
+   popup.querySelector('#sale-text').innerHTML = `
+<div style="display:flex; flex-direction:column; line-height:1.3;">
+    <span><b>${name}</b> ${country}</span>
 
-        <small style="
-            opacity:.75;
-            font-size:11px;
-            margin-top:2px;
-        ">
-            ${message} · ${time}
-        </small>
-    </div>
-    `;
+    <small style="
+        opacity:.75;
+        font-size:11px;
+        margin-top:2px;
+    ">
+        ${message} · ${time}
+    </small>
+</div>
+`;
 
     requestAnimationFrame(() => {
         popup.classList.add('show');

@@ -1064,10 +1064,6 @@ async function convertirPrecios() {
             case "honduras":
                 mensaje = "💳 En Honduras el precio es fijo y no aplica pago en cuotas.";
                 break;
-
-            default:
-                mensaje = "💳 Puedes pagar con tarjeta de crédito según tu país.";
-                break;
         }
 
         
@@ -1082,8 +1078,6 @@ async function convertirPrecios() {
     } catch (e) {
         console.error("Error:", e);
 
-        
-        const fallback = "💳 Puedes pagar con tarjeta de crédito según tu país.";
 
         ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3']
             .forEach(id => {

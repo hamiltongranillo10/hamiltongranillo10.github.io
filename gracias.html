@@ -345,6 +345,73 @@ form.addEventListener('submit', e => {
         mostrarGuiaFinal();
     });
 });
+
+<div class="music-player">
+
+    <button id="music-toggle">🔊 Música Ambiente</button>
+
+    <audio id="bg-music" loop>
+        <source src="white-petals.mp3" type="audio/mpeg">
+    </audio>
+
+</div>
+
+<script>
+
+const bgMusic = document.getElementById("bg-music");
+const musicBtn = document.getElementById("music-toggle");
+
+let playing = false;
+
+bgMusic.volume = 0.15;
+
+/* 🎯 RESTAURAR MÚSICA SI VENÍAN DE LA LANDING */
+window.addEventListener("load", () => {
+
+    const saved = localStorage.getItem("music-playing");
+
+    if (saved === "true") {
+        bgMusic.play().catch(() => {});
+        playing = true;
+
+        if (musicBtn) {
+            musicBtn.innerHTML = "🔇 Pausar Música";
+        }
+    }
+});
+
+/* 🎮 BOTÓN CONTROL */
+if (musicBtn) {
+    musicBtn.addEventListener("click", async () => {
+
+        try {
+
+            if (!playing) {
+
+                await bgMusic.play();
+                playing = true;
+
+                localStorage.setItem("music-playing", "true");
+
+                musicBtn.innerHTML = "🔇 Pausar Música";
+
+            } else {
+
+                bgMusic.pause();
+                playing = false;
+
+                localStorage.setItem("music-playing", "false");
+
+                musicBtn.innerHTML = "🔊 Música Ambiente";
+            }
+
+        } catch (err) {
+            console.log(err);
+        }
+
+    });
+}
+
 </script>
 
 </body>

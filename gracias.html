@@ -346,16 +346,6 @@ form.addEventListener('submit', e => {
     });
 });
 
-<div class="music-player">
-
-    <button id="music-toggle">🔊 Música Ambiente</button>
-
-    <audio id="bg-music" loop>
-        <source src="white-petals.mp3" type="audio/mpeg">
-    </audio>
-
-</div>
-
 <script>
 
 const bgMusic = document.getElementById("bg-music");
@@ -365,7 +355,7 @@ let playing = false;
 
 bgMusic.volume = 0.15;
 
-/* 🎯 RESTAURAR MÚSICA SI VENÍAN DE LA LANDING */
+/* 🔥 RESTAURAR MÚSICA EN TODAS LAS PÁGINAS */
 window.addEventListener("load", () => {
 
     const saved = localStorage.getItem("music-playing");
@@ -387,21 +377,17 @@ if (musicBtn) {
         try {
 
             if (!playing) {
-
                 await bgMusic.play();
                 playing = true;
 
                 localStorage.setItem("music-playing", "true");
-
                 musicBtn.innerHTML = "🔇 Pausar Música";
 
             } else {
-
                 bgMusic.pause();
                 playing = false;
 
                 localStorage.setItem("music-playing", "false");
-
                 musicBtn.innerHTML = "🔊 Música Ambiente";
             }
 
@@ -414,5 +400,15 @@ if (musicBtn) {
 
 </script>
 
+    <div class="music-player">
+
+    <button id="music-toggle">🔊 Música Ambiente</button>
+
+    <audio id="bg-music" loop>
+        <source src="white-petals.mp3" type="audio/mpeg">
+    </audio>
+
+</div>
+    
 </body>
 </html>

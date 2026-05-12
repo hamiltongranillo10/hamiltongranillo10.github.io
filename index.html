@@ -1170,37 +1170,55 @@ let playing = false;
 
 bgMusic.volume = 0.15;
 
-musicBtn.addEventListener("click", async () => {
+/* 🔥 RESTAURAR MÚSICA EN CUALQUIER PÁGINA */
+window.addEventListener("load", () => {
 
-    try {
+    const saved = localStorage.getItem("music-playing");
 
-        if (!playing) {
+    if (saved === "true") {
+        bgMusic.play().catch(() => {});
+        playing = true;
 
-            await bgMusic.play();
-
-            playing = true;
-
+        if (musicBtn) {
             musicBtn.innerHTML = "🔇 Pausar Música";
-
-        } else {
-
-            bgMusic.pause();
-
-            playing = false;
-
-            musicBtn.innerHTML = "🔊 Música Ambiente";
-
         }
-
-    } catch(err) {
-
-        console.log("Error:", err);
-
     }
-
 });
 
-   document.addEventListener("DOMContentLoaded", () => {
+/* 🔥 BOTÓN DE CONTROL */
+if (musicBtn) {
+    musicBtn.addEventListener("click", async () => {
+
+        try {
+
+            if (!playing) {
+
+                await bgMusic.play();
+                playing = true;
+
+                localStorage.setItem("music-playing", "true");
+
+                musicBtn.innerHTML = "🔇 Pausar Música";
+
+            } else {
+
+                bgMusic.pause();
+                playing = false;
+
+                localStorage.setItem("music-playing", "false");
+
+                musicBtn.innerHTML = "🔊 Música Ambiente";
+            }
+
+        } catch(err) {
+            console.log("Error:", err);
+        }
+
+    });
+}
+
+/* 🎥 REINICIAR VIDEO AL TERMINAR */
+document.addEventListener("DOMContentLoaded", () => {
 
     const video = document.getElementById("video1");
 
@@ -1212,7 +1230,6 @@ musicBtn.addEventListener("click", async () => {
 
             video.pause();
             video.currentTime = 0;
-          
             video.load();
 
         }, 300);

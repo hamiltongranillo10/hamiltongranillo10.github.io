@@ -1040,11 +1040,7 @@ function schedulePopup() {
     else if (idioma.includes("es-hn") || idioma.includes("hn")) {
         mensaje = "💳 En Honduras el precio es fijo y no aplica pago en cuotas.";
     } 
-    else {
-        // 🌍 Default general (sin API, sin error)
-        mensaje = "💳 Puedes pagar con tarjeta de crédito según disponibilidad de tu banco.";
-    }
-
+    
     // 🔥 actualizar UI
     window.requestAnimationFrame(() => {
         ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3']

@@ -1005,86 +1005,54 @@ function schedulePopup() {
     reveals.forEach(el => observer.observe(el));
 });
 
-async function convertirPrecios() {
-    try {
+ function convertirPrecios() {
 
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 2000);
+    let mensaje = "";
 
-        const ipRes = await fetch('https://ipapi.co/json/', {
-            signal: controller.signal
-        });
+    // 🌎 Sin API: detectamos país solo si existe navigator.language
+    let idioma = (navigator.language || "").toLowerCase();
 
-        clearTimeout(timeout);
+    // 🔎 Mapeo simple por idioma / región (sin precisión IP)
+    if (idioma.includes("es-mx")) {
+        mensaje = "💳 En México incluye IVA. Puedes pagar en hasta 6 cuotas con tarjeta de crédito (según tu banco).";
+    } 
+    else if (idioma.includes("es-co")) {
+        mensaje = "💳 En Colombia puedes pagar en 12 cuotas con tarjeta de crédito.";
+    } 
+    else if (idioma.includes("es-cl")) {
+        mensaje = "💳 En Chile puedes pagar en cuotas con tarjeta de crédito según tu banco.";
+    } 
+    else if (idioma.includes("es-pe")) {
+        mensaje = "💳 En Perú puedes pagar en hasta 12 cuotas con tarjeta de crédito.";
+    } 
+    else if (idioma.includes("es-ar")) {
+        mensaje = "💳 En Argentina pueden aplicar tarifas adicionales según el medio de pago.";
+    } 
+    else if (idioma.includes("es-es")) {
+        mensaje = "💳 En España el precio incluye IVA.";
+    } 
+    else if (idioma.includes("it")) {
+        mensaje = "💳 En Italia el precio incluye IVA.";
+    } 
+    else if (idioma.includes("pt-br")) {
+        mensaje = "💳 En Brasil puedes pagar con tarjeta de crédito.";
+    } 
+    else if (idioma.includes("es-hn") || idioma.includes("hn")) {
+        mensaje = "💳 En Honduras el precio es fijo y no aplica pago en cuotas.";
+    } 
+    else {
+        // 🌍 Default general (sin API, sin error)
+        mensaje = "💳 Puedes pagar con tarjeta de crédito según disponibilidad de tu banco.";
+    }
 
-        const ipData = await ipRes.json();
-
-
-        let pais = (ipData.country_name || "")
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "");
-
-        let mensaje = "";
-
-        switch (pais) {
-
-            case "mexico":
-                mensaje = "💳 En México incluye IVA. Puedes pagar en hasta 6 cuotas con tarjeta de crédito (según tu banco).";
-                break;
-
-            case "colombia":
-                mensaje = "💳 En Colombia puedes pagar en 12 cuotas con tarjeta de crédito.";
-                break;
-
-            case "chile":
-                mensaje = "💳 En Chile puedes pagar en cuotas con tarjeta de crédito según tu banco.";
-                break;
-
-            case "peru":
-                mensaje = "💳 En Perú puedes pagar en hasta 12 cuotas con tarjeta de crédito.";
-                break;
-
-            case "argentina":
-                mensaje = "💳 En Argentina pueden aplicar tarifas adicionales según el medio de pago.";
-                break;
-
-            case "spain":
-                mensaje = "💳 En España el precio incluye IVA.";
-                break;
-
-            case "italy":
-                mensaje = "💳 En Italia el precio incluye IVA.";
-                break;
-
-            case "brazil":
-                mensaje = "💳 En Brasil puedes pagar con tarjeta de crédito.";
-                break;
-
-            case "honduras":
-                mensaje = "💳 En Honduras el precio es fijo y no aplica pago en cuotas.";
-                break;
-        }
-
-        
-        window.requestAnimationFrame(() => {
-            ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3']
-                .forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el) el.innerText = mensaje;
-                });
-        });
-
-    } catch (e) {
-        console.error("Error:", e);
-
-
+    // 🔥 actualizar UI
+    window.requestAnimationFrame(() => {
         ['mensaje-descuento-1', 'mensaje-descuento-2', 'mensaje-descuento-3']
             .forEach(id => {
                 const el = document.getElementById(id);
-                if (el) el.innerText = fallback;
+                if (el) el.innerText = mensaje;
             });
-    }
+    });
 }
 
 var pixelCargado = false;
@@ -1162,10 +1130,15 @@ const bgMusic = document.getElementById("bg-music");
 
 let playing = false;
 
-bgMusic.volume = 0.15;
+/* 🔊 volumen seguro */
+if (bgMusic) {
+    bgMusic.volume = 0.15;
+}
 
-/* 🔥 RESTAURAR MÚSICA EN CUALQUIER PÁGINA */
+/* 🔥 RESTAURAR MÚSICA */
 window.addEventListener("load", () => {
+
+    if (!bgMusic) return;
 
     const saved = localStorage.getItem("music-playing");
 
@@ -1179,28 +1152,24 @@ window.addEventListener("load", () => {
     }
 });
 
-/* 🔥 BOTÓN DE CONTROL */
-if (musicBtn) {
+/* 🎮 CONTROL BOTÓN */
+if (musicBtn && bgMusic) {
     musicBtn.addEventListener("click", async () => {
 
         try {
 
             if (!playing) {
-
                 await bgMusic.play();
                 playing = true;
 
                 localStorage.setItem("music-playing", "true");
-
                 musicBtn.innerHTML = "🔇 Pausar Música";
 
             } else {
-
                 bgMusic.pause();
                 playing = false;
 
                 localStorage.setItem("music-playing", "false");
-
                 musicBtn.innerHTML = "🔊 Música Ambiente";
             }
 
@@ -1211,7 +1180,7 @@ if (musicBtn) {
     });
 }
 
-/* 🎥 REINICIAR VIDEO AL TERMINAR */
+/* 🎥 REINICIAR VIDEO */
 document.addEventListener("DOMContentLoaded", () => {
 
     const video = document.getElementById("video1");
@@ -1221,11 +1190,9 @@ document.addEventListener("DOMContentLoaded", () => {
     video.addEventListener("ended", () => {
 
         setTimeout(() => {
-
             video.pause();
             video.currentTime = 0;
             video.load();
-
         }, 300);
 
     });

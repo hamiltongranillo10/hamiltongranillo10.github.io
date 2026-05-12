@@ -265,16 +265,43 @@
     .faq-item.active .faq-answer { max-height: 200px; opacity: 1; margin-top: 10px; }
 
     .sale-popup {
-        position: fixed; left: 18px; bottom: 95px; z-index: 999999;
-        display: flex; align-items: center; gap: 10px;
-        background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
-        padding: 10px 14px; border-radius: 999px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        font-size: 13px; font-weight: 600; color: #111;
-        opacity: 0; transform: translateY(20px); transition: all 0.35s ease;
-    }
+    position: fixed;
+    left: 18px;
+    bottom: 95px;
+    z-index: 999999;
 
-    .sale-popup.show { opacity: 1; transform: translateY(0); }
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background: rgba(255,255,255,0.92);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    padding: 10px 14px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+
+    font-size: 12px;
+    font-weight: 600;
+    color: #111;
+
+    opacity: 0;
+
+    transform: translateY(20px) scale(.96);
+
+    transition:
+        opacity .45s cubic-bezier(.22,.61,.36,1),
+        transform .45s cubic-bezier(.22,.61,.36,1);
+}
+
+    .sale-popup.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
     .sale-popup::before {
         content: ""; width: 10px; height: 10px; background: #22c55e; border-radius: 50%;
         animation: livePulse 2.5s infinite;
@@ -928,9 +955,9 @@ let popup;
 
 const names = ["María Fernanda", "Valentina", "Isabella", "Camila", "Sofía", "Daniela", "Andrea", "Valeria", "Gabriela", "Luciana", "Paula", "Natalia", "Fernanda", "Carolina", "Alejandra", "Julieth", "Sara", "Diana", "Melissa", "Katherine"];
 const countries = ["de México","de Colombia","de Chile","de Honduras","de Perú","de Ecuador","de Argentina","de España","de Estados Unidos"];
-const messages = [ "acaba de inscribirse", "se acaba de unir", "acabó de registrarse", "entró al curso"];
-
-     function getRandom(min, max) {
+const messages = ["acaba de inscribirse", "se unió al curso", "obtuvo acceso", "entró hace unos segundos", "comenzó hoy", "ya está dentro", "activó su acceso", "se registró exitosamente", "acaba de entrar", "ya empezó el curso"];
+     
+    function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
     
@@ -938,17 +965,45 @@ function showPopup()
 {
     if (!popup || !popupStarted) return;
 
-   let name; do {
-    name = names[Math.floor(Math.random() * names.length)];
- } while (name === lastName && names.length > 1);
+    let name;
 
-lastName = name;
-    
+    do {
+        name = names[Math.floor(Math.random() * names.length)];
+    } while (name === lastName && names.length > 1);
+
+    lastName = name;
+
     const country = countries[Math.floor(Math.random() * countries.length)];
 
-    popup.innerHTML = `🔥 <b>${name}</b> ${country} ${messages[Math.floor(Math.random() * messages.length)]}`;
+    const message = messages[Math.floor(Math.random() * messages.length)];
 
-    popup.classList.add('show');
+    const times = [
+        "hace 5 segundos",
+        "hace 12 segundos",
+        "hace 1 minuto",
+        "recién",
+        "ahora mismo"
+    ];
+
+    const time = times[Math.floor(Math.random() * times.length)];
+
+    popup.innerHTML = `
+    <div style="display:flex; flex-direction:column; line-height:1.3;">
+        <span><b>${name}</b> ${country}</span>
+
+        <small style="
+            opacity:.75;
+            font-size:11px;
+            margin-top:2px;
+        ">
+            ${message} · ${time}
+        </small>
+    </div>
+    `;
+
+    requestAnimationFrame(() => {
+        popup.classList.add('show');
+    });
 
     setTimeout(() => {
         popup.classList.remove('show');
@@ -958,13 +1013,13 @@ lastName = name;
 }
 
 function schedulePopup() {
-    const delay = getRandom(7000, 14000);
+
+    const delay = getRandom(9000, 22000);
 
     setTimeout(() => {
         showPopup();
     }, delay);
 }
-
 
     document.addEventListener("DOMContentLoaded", () => {
 

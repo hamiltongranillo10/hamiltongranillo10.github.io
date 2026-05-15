@@ -790,7 +790,7 @@ body {
         </div>
         
         <div style="text-align: center; width: 100%; margin-top: 10px;">
-            <a href="https://wa.link/jotwfj" class="btn-soporte-premium" target="_blank">
+           <a href="https://wa.link/jotwfj" class="btn-soporte-premium" target="_blank" onclick="trackWhatsApp()">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="18" height="18" alt="Icono WhatsApp" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
                 CHATEAR CON HAMILTON (SOPORTE VIP)
             </a>
@@ -1070,7 +1070,7 @@ Este curso es para personas que quieren empezar desde cero y generar ingresos de
             
 
     <div style="text-align:center; margin-top:10px; margin-bottom:30px;">
-        <a href="https://wa.link/7h1fs9" class="btn-soporte-premium" target="_blank">
+        <a href="https://wa.link/7h1fs9" class="btn-soporte-premium" target="_blank" onclick="trackWhatsApp()">
            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
                  width="18" height="18"
                  alt="Icono WhatsApp"
@@ -1388,6 +1388,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+    function trackWhatsApp() {
+    cargarFacebookPixel();
+    fbq('track', 'Contact');
+}
 
 </script>
 

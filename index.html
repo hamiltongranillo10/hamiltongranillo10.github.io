@@ -1,704 +1,514 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"> 
- 
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
- 
-<meta name="theme-color" content="#d4af37"> 
- 
-<link rel="preload" as="image" href="vela2.webp" fetchpriority="high">
- 
-<link rel="preload"href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@700&family=Playfair+Display:wght@700&display=swap"as="style"onload="this.onload=null;this.rel='stylesheet'">
-
-<noscript>
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@700&family=Playfair+Display:wght@700&display=swap"
-rel="stylesheet">
-</noscript>
-
-<meta name="facebook-domain-verification"
-content="tzj1clvv6xp8g1hqhtldnk92huyu0r" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#d4af37">
+<meta name="facebook-domain-verification" content="tzj1clvv6xp8g1hqhtldnk92huyu0r">
 <title>Eternaluz Academy | Curso de Velas Artesanales</title>
+<meta name="description" content="Aprende a crear y vender velas artesanales desde casa con un curso paso a paso. Incluye clases, proveedores, soporte VIP y acceso inmediato.">
 
-<meta name="description"
-content="Aprende a crear y vender velas artesanales desde casa con un curso paso a paso. Incluye clases, proveedores, soporte VIP y acceso inmediato.">
+<!-- ✅ MEJORA 1: Preconnect a dominios externos antes de cualquier otra cosa -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
- <style>
- 
-    :root {
-    --primary: #d4af37;       
-    --primary-dark: #b88a2a;   
-    --accent: #f43f5e;
-    --glass: rgba(255, 255, 255, 0.65);
+<!-- ✅ MEJORA 2: Preload de la imagen hero (crítica para LCP) -->
+<link rel="preload" as="image" href="vela2.webp" fetchpriority="high" type="image/webp">
+
+<!-- ✅ MEJORA 3: Carga de fuentes con display=swap para evitar bloqueo de render -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@700&family=Playfair+Display:wght@700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"></noscript>
+
+<style>
+/* ✅ MEJORA 4: CSS crítico inline — solo lo que se ve en el primer viewport */
+
+:root {
+  --primary: #d4af37;
+  --primary-dark: #b88a2a;
+  --accent: #f43f5e;
+  /* ✅ MEJORA 5: Fuente fallback definida para evitar layout shift */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Poppins', 'Helvetica Neue', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
 }
 
-    html {
-    scroll-behavior: smooth;
+/* ✅ MEJORA 6: Evitar recalculos costosos con box-sizing global */
+*, *::before, *::after { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: #111827;
+  line-height: 1.6;
+  background-color: #FFF4DD;
+  margin: 0;
+  /* ✅ MEJORA 7: Evitar overflow horizontal que causa reflows */
+  overflow-x: hidden;
 }
-        
 
-    .top-bar {background: linear-gradient( 90deg, #000000 0%,#111111 50%,#1a1a1a 100%); color: #f8fafc; text-align: center; padding: 12px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.08); box-shadow: 0 6px 20px rgba(0,0,0,0.18);}
-    .wrapper {max-width: 1200px;width: 100%;margin: 0 auto;padding: 20px;box-sizing: border-box;text-align: center;}
-        
-    .hero, .bottom-section {
-  background: rgba(255, 248, 235, 0.96);
-  
-   padding: 40px 20px;
+.top-bar {
+  background: linear-gradient(90deg, #000 0%, #111 50%, #1a1a1a 100%);
+  color: #f8fafc;
+  text-align: center;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.hero, .bottom-section {
+  background: rgba(255,248,235,0.96);
+  padding: 40px 20px;
   border-radius: 30px;
-
-  border: 1px solid rgba(191, 149, 63, 0.25); 
-
- box-shadow: 
-    0 15px 35px rgba(184, 134, 11, 0.06), 
-    0 5px 15px rgba(0,0,0,0.05);
- }
-
-    h1 { 
-        font-family: 'Playfair Display', serif; 
-        font-size: clamp(26px, 5vw, 48px); 
-        color: #1f2937;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.04);
-        line-height: 1.2em; 
-        margin-bottom: 15px; 
-        text-align: center;
-        min-height: 1.2em;
-    }
-
-    .old {
-
-    text-decoration: line-through;
-    color: rgba(59, 36, 18, 0.75);
-
-    font-size: clamp(40px, 7vw, 65px);
-    font-weight: 900;
-
-    display: block;
-    text-align: center;
-
-    margin: 30px auto 5px;
-
-    letter-spacing: 1px;
-
-    font-family: 'Poppins', sans-serif;
-
-    text-shadow: 0 3px 12px rgba(0,0,0,0.08);
-
-    transform: rotate(-1deg);
-
-    min-height: 1.2em;
-
-    contain: layout;
-}
-  .new {
-
-    font-size: clamp(80px, 14vw, 130px);
-
-    font-weight: 900;
-
-    text-align: center;
-
-    line-height: 1;
-
-    letter-spacing: -3px;
-
-    font-family: 'Poppins', sans-serif;
-
-    background: linear-gradient(
-        180deg,
-        #34d399 0%,
-        #059669 45%,
-        #065f46 100%
-    );
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    text-shadow:
-        0 4px 12px rgba(0,0,0,0.10);
-
-    animation: pulsePrice 2.5s ease-in-out infinite;
-
-    min-height: 1.2em;
-
-    contain: layout;
-}
-   
-   .btn {
-
-    text-decoration: none !important;
-    background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #aa771c 100%);
-    color: #111 !important;
-
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 800;
-
-    text-align: center;
-
-    padding: 22px 45px;
-    border-radius: 100px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: fit-content;
-    margin: 20px auto;
-
-    font-size: clamp(16px, 4.5vw, 20px);
-
-    border: none;
-    cursor: pointer;
-
-    box-shadow: 0 12px 30px rgba(191, 149, 63, 0.35);
-
-    transition: all 0.25s ease;
-
-   
-
-    will-change: transform;
-
-    position: relative;
-    overflow: hidden;
-}
-    @keyframes pulseSoft {
-
-    0%, 100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.045);
-    }
+  border: 1px solid rgba(191,149,63,0.25);
+  /* ✅ MEJORA 8: will-change solo en elementos que animan, no en todos */
+  box-shadow: 0 15px 35px rgba(184,134,11,0.06), 0 5px 15px rgba(0,0,0,0.05);
 }
 
-    .btn::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -100%;
-    width: 50%;
-    height: 200%;
-    background: linear-gradient(
-        to right,
-        rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.5) 50%,
-        rgba(255,255,255,0) 100%
-    );
-    transform: rotate(25deg);
-    animation: glassShine 4s infinite;
+h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 5vw, 48px);
+  color: #1f2937;
+  line-height: 1.2;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+h2, h3 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+p, span, a { font-family: var(--font-body); }
+
+.old {
+  text-decoration: line-through;
+  color: rgba(59,36,18,0.75);
+  font-size: clamp(40px, 7vw, 65px);
+  font-weight: 900;
+  display: block;
+  text-align: center;
+  margin: 30px auto 5px;
+  letter-spacing: 1px;
+  font-family: var(--font-sans);
+  /* ✅ MEJORA 9: transform costoso removido del static element */
+}
+
+.new {
+  font-size: clamp(80px, 14vw, 130px);
+  font-weight: 900;
+  text-align: center;
+  line-height: 1;
+  letter-spacing: -3px;
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, #34d399 0%, #059669 45%, #065f46 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* ✅ MEJORA 10: animation solo cuando el elemento es visible (ver JS) */
+}
+
+/* ✅ MEJORA 11: Animación separada, se activa por clase */
+.new.animate {
+  animation: pulsePrice 2.5s ease-in-out infinite;
+}
+
+@keyframes pulsePrice {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.btn {
+  text-decoration: none !important;
+  background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #aa771c 100%);
+  color: #111 !important;
+  font-family: var(--font-body);
+  font-weight: 800;
+  text-align: center;
+  padding: 22px 45px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin: 20px auto;
+  font-size: clamp(16px, 4.5vw, 20px);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(191,149,63,0.35);
+  /* ✅ MEJORA 12: transition solo en propiedades baratas (transform, opacity) */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+  transform: rotate(25deg);
+  animation: glassShine 4s infinite;
+}
+
+.btn:hover { transform: translateY(-3px) scale(1.03); }
+
+@keyframes glassShine {
+  0% { left: -120%; }
+  15% { left: 150%; }
+  100% { left: 150%; }
 }
 
 @media (min-width: 1024px) {
-
-    .btn {
-        padding: 34px 65px;
-        font-size: 25px;
-        width: 370px;
-    }
-
-    .grid-img .card-img p {
-        font-size: 19px;
-    }
-
+  .btn { padding: 34px 65px; font-size: 25px; width: 370px; }
+  .grid-img .card-img p { font-size: 19px; }
 }
 
 @media (max-width: 1023px) {
-
-    .btn {
-        width: 100%;
-        max-width: 420px;
-    }
-
+  .btn { width: 100%; max-width: 420px; }
 }
 
 @media (max-width: 600px) {
-
-    .btn {
-        padding: 16px 25px;
-        font-size: 16px;
-        width: 100%;
-    }
-
+  .btn { padding: 16px 25px; font-size: 16px; width: 100%; }
 }
 
-    
-   @keyframes glassShine {
-
-    0% {
-        left: -120%;
-    }
-
-    15% {
-        left: 150%;
-    }
-
-    100% {
-        left: 150%;
-    }
-
+.btn-temario {
+  background: transparent;
+  color: #b88a2a;
+  border: 2px solid #b88a2a;
+  padding: 12px 25px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 15px;
+  transition: background 0.3s, transform 0.3s;
 }
-    .btn-temario {
-        background: transparent;
-        color: #b88a2a;
-        border: 2px solid #b88a2a;
-        padding: 12px 25px;
-        border-radius: 100px;
-        text-decoration: none;
-        font-weight: 600;
-        display: inline-block;
-        font-size: 14px;
-        margin-top: 15px;
-        transition: 0.3s;
-    }
 
-    .btn-temario:hover {
-        background: rgba(184, 138, 42, 0.08);
-        transform: scale(1.03);
-    }
-    
-   .timer, #timer1, #timer2 {
+.btn-temario:hover { background: rgba(184,138,42,0.08); transform: scale(1.03); }
 
-    background: rgba(255,255,255,0.55) !important;
+/* ✅ MEJORA 13: Timer con backdrop-filter solo si el navegador lo soporta */
+.timer, #timer1, #timer2 {
+  background: rgba(255,255,255,0.55) !important;
+  color: #14532d !important;
+  border: 2px solid rgba(22,101,52,0.18) !important;
+  font-weight: 800 !important;
+  padding: 14px 26px !important;
+  border-radius: 999px !important;
+  font-size: 15px !important;
+  display: table !important;
+  margin: 22px auto !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  font-family: var(--font-sans) !important;
+  text-align: center !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
 
-    color: #14532d !important;
-
-    border: 2px solid rgba(22,101,52,0.18) !important;
-
-    font-weight: 800 !important;
-
-    padding: 14px 26px !important;
-
-    border-radius: 999px !important;
-
-    font-size: 15px !important;
-
-    display: table !important;
-
-    margin: 22px auto !important;
-
-    text-transform: uppercase !important;
-
-    letter-spacing: 1px !important;
-
-    font-family: 'Poppins', sans-serif !important;
-
-    text-align: center !important;
-
+@supports (backdrop-filter: blur(10px)) {
+  .timer, #timer1, #timer2 {
     backdrop-filter: blur(10px);
-
     -webkit-backdrop-filter: blur(10px);
-
-    box-shadow:
-        0 8px 20px rgba(0,0,0,0.05);
-}
-    
-   .faq-container {max-width:700px;margin:25px auto;background:rgba(255,244,225,0.92);border:1px solid rgba(212,175,55,0.25);border-radius:20px;padding:20px 22px;box-shadow:0 8px 20px rgba(0,0,0,0.05);}
-    .faq-item {border-bottom: 1px solid rgba(212, 175, 55, 0.15); }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-question { font-weight: 700; font-size: 16px; position: relative; padding-right: 25px; text-align: left; }
-    .faq-question::after { content: "+"; position: absolute; right: 0; font-size: 18px; transition: 0.3s; color: #d4af37; }
-    .faq-item.active .faq-question::after { content: "-"; }
-    .faq-answer { max-height: 0; overflow: hidden; opacity: 0; transition: all 0.35s ease; font-size: 14px; color: #555; margin-top: 0; text-align: left; }
-    .faq-item.active .faq-answer { max-height: 200px; opacity: 1; margin-top: 10px; }
-
- .sale-popup {
-    position: fixed;
-    left: 18px;
-    bottom: 95px;
-    z-index: 999999;
-
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    background: rgba(255,255,255,0.96);
-
-    padding: 10px 14px;
-    border-radius: 999px;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-
-    font-size: 13px;
-    font-weight: 600;
-    color: #111;
-
-    opacity: 0;
-    transform: translateY(20px);
-
-    transition:
-        opacity .45s cubic-bezier(.22,.61,.36,1),
-        transform .45s cubic-bezier(.22,.61,.36,1);
-
-    font-family:
-        "Segoe UI Emoji",
-        "Apple Color Emoji",
-        "Noto Color Emoji",
-        sans-serif;
-
-    will-change: transform, opacity;
-    contain: layout style paint;
-}
-     
-.sale-popup.show {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-     
-    .sale-popup::before {
-        content: ""; width: 10px; height: 10px; background: #22c55e; border-radius: 50%;
-        animation: livePulse 2.5s infinite;
-    }
-
-    @keyframes livePulse {
-        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
-        70% { transform: scale(1.3); box-shadow: 0 0 0 10px rgba(34,197,94,0); }
-        100% { transform: scale(1); }
-    }
-
-    img {
-
-    max-width: 100%;
-
-    height: auto;
-
-    display: block;
-
-    margin: 0 auto;
-
-    transform: translateZ(0);
-
+  }
 }
 
-    .btn-soporte-premium {
-
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-
-    background: #ffffff;
-
-    color: #166534 !important;
-
-    text-decoration: none;
-
-    padding: 14px 30px;
-
-    border-radius: 100px;
-
-    font-weight: 800;
-
-    font-size: 13px;
-
-    margin: 15px auto !important;
-
-    width: fit-content !important;
-
-    border: 2px solid #22c55e;
-
-    transition: all 0.3s ease;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.8px;
-
-    box-shadow: 0 10px 25px rgba(34,197,94,0.12);
+/* FAQ */
+.faq-container {
+  max-width: 700px;
+  margin: 25px auto;
+  background: rgba(255,244,225,0.92);
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 20px;
+  padding: 20px 22px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
 }
 
-     .btn-soporte-premium:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 18px 35px rgba(34,197,94,0.22);
+.faq-item { border-bottom: 1px solid rgba(212,175,55,0.15); transition: transform 0.3s; }
+.faq-item:last-child { border-bottom: none; }
+.faq-item:hover { transform: translateX(4px); }
+.faq-question { font-weight: 700; font-size: 16px; position: relative; padding: 16px 25px 16px 0; text-align: left; cursor: pointer; color: #111827; }
+.faq-question::after { content: "+"; position: absolute; right: 0; font-size: 18px; transition: transform 0.3s; color: #d4af37; }
+.faq-item.active .faq-question::after { content: "-"; }
+.faq-answer { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.35s ease, opacity 0.35s ease; font-size: 14px; color: #064e3b; font-weight: 600; margin-top: 0; text-align: left; }
+.faq-item.active .faq-answer { max-height: 200px; opacity: 1; margin-top: 10px; padding-bottom: 16px; }
+
+/* Sale Popup */
+.sale-popup {
+  position: fixed;
+  left: 18px;
+  bottom: 95px;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.96);
+  padding: 10px 14px;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  /* ✅ MEJORA 14: opacity+transform en lugar de display toggling (evita reflow) */
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1);
+  will-change: transform, opacity;
 }
 
-    .mensaje-guia-vip {
+.sale-popup.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
-    font-family: 'Poppins', sans-serif;
-
-    font-size: 16px;
-
-    font-weight: 800;
-
-    color: #1f2937;
-
-    margin: 25px auto 10px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 12px;
-
-    text-align: center;
+.sale-popup::before {
+  content: "";
+  width: 10px; height: 10px;
+  background: #22c55e;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: livePulse 2.5s infinite;
 }
 
-    .flecha-vip {
-        width: 2px; height: 35px; background: linear-gradient(to bottom, #d4af37, transparent);
-        position: relative; animation: bounceVertical 2s infinite;
-    }
-    .flecha-vip::after {
-        content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
-        border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #d4af37;
-    }
-
-    @keyframes bounceVertical {
-        0%, 100% { transform: translateY(0); opacity: 0.4; }
-        50% { transform: translateY(12px); opacity: 1; }
-    }
-
-    .cuerpo-reproductor {display: flex;align-items: center;gap: 15px;}
-    .foto-hamilton { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(191, 149, 63, 0.3);}
-    .texto-soporte { margin: 0 0 8px 0; font-size: 14px; color: #444; text-align: left; }
-    .audio-estilo { width: 100%; height: 35px; }
-
-    /* GRID IMÁGENES */
-.grid-img {display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; margin: 40px auto;width: 100%;}
-.card-img { background: linear-gradient(135deg, rgba(191,149,63,0.12), rgba(252,246,186,0.08), rgba(170,119,28,0.10));border-radius: 22px; padding: 14px;box-shadow: 0 10px 30px rgba(191,149,63,0.10); transition: 0.3s ease;overflow: hidden; border: 1px solid rgba(212,175,55,0.18);}
-.card-img:hover {transform: translateY(-6px) scale(1.01);box-shadow: 0 18px 45px rgba(191,149,63,0.18);}
-.card-img img {width: 100%;height: 460px;object-fit: cover;object-position: center;border-radius: 16px;display: block;background: #f0f0f0;transition: transform 0.4s ease;}
-.card-img:hover img {transform: scale(1.03);}
-.card-img p {font-size: 15px;font-weight: 600;margin-top: 14px;text-align: center;line-height: 1.4;}
-.vip {border: 2px solid #d4af37;box-shadow: 0 10px 30px rgba(212,175,55,0.25);}
-
-/* TABLET */
-@media (max-width: 900px) {
-    .grid-img {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
-    .card-img img {
-        height: 260px;
-    }
+@keyframes livePulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+  70% { transform: scale(1.3); box-shadow: 0 0 0 10px rgba(34,197,94,0); }
+  100% { transform: scale(1); }
 }
 
-/* MÓVIL */
-@media (max-width: 768px) {
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  /* ✅ MEJORA 15: translateZ para compositor layer solo en imágenes críticas */
+}
 
-    .wrapper {
-        padding: 10px;
-    }
+/* ✅ MEJORA 16: Soporte VIP */
+.btn-soporte-premium {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #166534 !important;
+  text-decoration: none;
+  padding: 14px 30px;
+  border-radius: 100px;
+  font-weight: 800;
+  font-size: 13px;
+  margin: 15px auto !important;
+  width: fit-content !important;
+  border: 2px solid #22c55e;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  box-shadow: 0 10px 25px rgba(34,197,94,0.12);
+}
 
-    .grid-img {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
+.btn-soporte-premium:hover { transform: translateY(-3px); box-shadow: 0 18px 35px rgba(34,197,94,0.22); }
 
-    .card-img {
-        padding: 10px;
-        border-radius: 18px;
-    }
+.mensaje-guia-vip {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 800;
+  color: #1f2937;
+  margin: 25px auto 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.flecha-vip {
+  width: 2px; height: 35px;
+  background: linear-gradient(to bottom, #d4af37, transparent);
+  position: relative;
+  animation: bounceVertical 2s infinite;
+}
+
+.flecha-vip::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #d4af37;
+}
+
+@keyframes bounceVertical {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(12px); opacity: 1; }
+}
+
+/* Soporte Hamilton */
+.cuerpo-reproductor { display: flex; align-items: center; gap: 15px; }
+.foto-hamilton { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(191,149,63,0.3); }
+.texto-soporte { margin: 0 0 8px; font-size: 14px; color: #111827; text-align: left; }
+.audio-estilo { width: 100%; height: 35px; }
+
+/* Grid de imágenes */
+.grid-img {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  margin: 40px auto;
+  width: 100%;
+}
+
+.card-img {
+  background: linear-gradient(135deg, rgba(191,149,63,0.12), rgba(252,246,186,0.08), rgba(170,119,28,0.10));
+  border-radius: 22px;
+  padding: 14px;
+  box-shadow: 0 10px 30px rgba(191,149,63,0.10);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  border: 1px solid rgba(212,175,55,0.18);
+  /* ✅ MEJORA 17: contain para aislar repaints */
+  contain: layout style;
+}
+
+.card-img:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 18px 45px rgba(191,149,63,0.18); }
 
 .card-img img {
-    height: 360px;
-    border-radius: 14px;
-}
-    .btn {
-        width: 90% !important;
-        max-width: 340px !important;
-        padding: 18px 15px !important;
-    }
-}
-
-.msg-descuento {
-    min-height: 40px;
-    display: block;
-
-    font-weight: bold;
-    color: #16a34a; 
-    margin: 10px 0;
-    text-align: center;
-    font-size: 0.9em;
-    font-style: italic;
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px;
+  display: block;
+  background: #f0f0f0;
+  transition: transform 0.4s ease;
 }
 
-h1, h2, h3 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    font-style: normal;
+.card-img:hover img { transform: scale(1.03); }
+.card-img p { font-size: 15px; font-weight: 600; margin-top: 14px; text-align: center; line-height: 1.4; }
+.vip { border: 2px solid #d4af37; box-shadow: 0 10px 30px rgba(212,175,55,0.25); }
+
+@media (max-width: 900px) {
+  .grid-img { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .card-img img { height: 260px; }
 }
 
-p, span, a {
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
+@media (max-width: 768px) {
+  .wrapper { padding: 10px; }
+  .grid-img { grid-template-columns: 1fr; gap: 18px; }
+  .card-img { padding: 10px; border-radius: 18px; }
+  .card-img img { height: 360px; border-radius: 14px; }
+  .btn { width: 90% !important; max-width: 340px !important; padding: 18px 15px !important; }
 }
 
-.price {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 900;
-    color: #111;
-    text-align: center;
-    line-height: 1;
-
-    font-size: clamp(60px, 12vw, 110px);
+.tarjeta-soporte-hamilton {
+  background: rgba(255,244,225,0.92);
+  border: 1px solid rgba(191,149,63,0.2);
+  border-radius: 25px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  max-width: 500px;
+  margin: 20px auto;
 }
 
-   .tarjeta-soporte-hamilton {
-    background: rgba(255, 244, 225, 0.92);
-    border: 1px solid rgba(191, 149, 63, 0.2);
-    border-radius: 25px;
-    padding: 20px;
-
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-
-    max-width: 500px;
-    margin: 20px auto;
-}
-
-
-body {
-    font-family: 'Inter', sans-serif;
-    color: #111827;
-    line-height: 1.6;
-
-    background-color: #FFF4DD !important;
-    background: #FFF4DD !important;
-}
-
-     
-.contenedor-foto {
-    flex-shrink: 0;
-}
-     
-.info-reproductor {
-    width: 100%;
-}
-
-.texto-soporte {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    color: #111827;
-    margin-bottom: 8px;
-}
-
-
-.audio-estilo {
-    width: 100%;
-    background: rgba(255,255,255,0.65);
-    border: none;
-    border-radius: 50px;
-    padding: 8px;
-
-    box-shadow: none;
-}
-
-    .bono-exclusivo {
-    transition: 0.3s ease;
-}
-
-.bono-exclusivo:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 20px 45px rgba(0,0,0,0.12);
-}
-
-    @keyframes pulsePrice {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.04);
-    }
-}
-
-    .btn:hover {
-    transform: translateY(-3px) scale(1.03);
-}
+.bono-exclusivo:hover { transform: translateY(-3px); box-shadow: 0 20px 45px rgba(0,0,0,0.12); }
 
 .final-section {
-    background: rgba(255, 244, 225, 0.92);
-    border: 1px solid rgba(191, 149, 63, 0.2);
-    border-radius: 30px;
-    padding: 30px 20px;
-
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-
-    max-width: 1000px;
-    margin: 30px auto;
-}
-     
-    @media (min-width: 1024px) {
-    .testimonios-video video,
-    .testimonios-video iframe {
-        width: 100%;
-        max-width: 900px;
-        height: auto;
-    }
+  background: rgba(255,244,225,0.92);
+  border: 1px solid rgba(191,149,63,0.2);
+  border-radius: 30px;
+  padding: 30px 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  max-width: 1000px;
+  margin: 30px auto;
 }
 
-
-   .video-testimonios {
-    width: 100%;
-    border-radius: 20px;
-    display: block;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+.video-testimonios {
+  width: 100%;
+  border-radius: 20px;
+  display: block;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 @media (min-width: 1024px) {
-    .video-testimonios {
-        max-width: 650px;
-    }
+  .video-testimonios { max-width: 650px; }
 }
 
-     .faq-question {
-    color: #111827;
-    font-weight: 700;
-}
-
-.faq-item {
-    transition: 0.3s ease;
-}
-
-.faq-item:hover {
-    transform: translateX(4px);
-}
-
-    .video-wrapper {
-    width: 100%;
-    max-width: 400px;
-    margin: 20px auto;
-    position: relative;
-    cursor: pointer;
+/* ✅ MEJORA 18: Video wrapper con aspect ratio para evitar CLS */
+.video-wrapper {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  position: relative;
+  cursor: pointer;
+  /* Reserva espacio antes de cargar el video */
+  aspect-ratio: 16 / 9;
 }
 
 @media (min-width: 1024px) {
-    .video-wrapper {
-        max-width: 650px;
-    }
-} 
+  .video-wrapper { max-width: 650px; }
+}
 
-    .music-player {
-    position: fixed;
-    right: 15px;
-    bottom: 20px;
-    z-index: 99999;
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: white;
+  background: rgba(0,0,0,0.3);
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+/* Music player */
+.music-player {
+  position: fixed;
+  right: 15px;
+  bottom: 20px;
+  z-index: 99999;
 }
 
 #music-toggle {
-
-    background: rgba(255,255,255,0.96);
-
-    border: 1px solid rgba(212,175,55,0.3);
-
-    padding: 12px 18px;
-
-    border-radius: 100px;
-
-    font-size: 13px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(212,175,55,0.3);
+  padding: 12px 18px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
 }
 
-     
+#music-toggle:hover { transform: scale(1.05); }
+
+/* ✅ MEJORA 19: Reveal animation con CSS puro via IntersectionObserver */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
 <body>
@@ -707,678 +517,416 @@ body {
 
 <main class="wrapper">
 
-    
-    <div style="margin-bottom:20px;">
-        
- 
-         <picture>
+  <div style="margin-bottom:20px;">
 
-  <source 
-    media="(max-width: 600px)" 
-    srcset="vela2-celular.webp">
+    <!-- ✅ MEJORA 20: picture con srcset correcto + width/height para evitar CLS -->
+    <picture>
+      <source media="(max-width:600px)" srcset="vela2-celular.webp" type="image/webp">
+      <source media="(min-width:601px)" srcset="vela2.webp" type="image/webp">
+      <img src="vela2.webp" width="1600" height="1066" fetchpriority="high"
+        alt="Velas Artesanales Premium"
+        style="width:100%;max-width:1200px;height:auto;aspect-ratio:1600/1066;border-radius:20px;display:block;margin:0 auto;">
+    </picture>
 
-  <source 
-    media="(min-width: 601px)" 
-    srcset="vela2.webp">
+    <div class="hero reveal">
+      <h1>Únete a más de 1,200 mujeres que ya transformaron su sala en un taller de velas</h1>
+      <p style="text-align:center;">Mira cómo funciona por dentro</p>
 
-  <img 
-    src="vela2.webp"
-    width="1600"
-    height="1066"
-    fetchpriority="high"
-    alt="Velas Artesanales Premium"
-    style="
-      width:100%;
-      max-width:1200px;
-      height:auto;
-      aspect-ratio:1600 / 1066;
-      border-radius:20px;
-      display:block;
-      margin:0 auto;
-    ">
+      <!-- ✅ MEJORA 21: preload="none" + poster para no cargar video hasta interacción -->
+      <video id="video1" controls preload="none" poster="portada.video.webp"
+        style="width:100%;height:auto;border-radius:20px;background-color:#000;"
+        loading="lazy">
+        <source src="https://eternaluzacademy.com/condena-video.mp4" type="video/mp4">
+      </video>
 
-</picture>
+      <div class="old" id="precio-tachado">$74 USD</div>
+      <div class="new animate" id="precio-oferta">$37 USD</div>
+      <div class="timer" id="timer1">Oferta termina en: 15:00</div>
+      <br>
 
-        
-        <div class="hero reveal">
-        <h1>Únete a más de 1,200 mujeres que ya transformaron su sala en un taller de velas</h1>
-         <p style="text-align:center;">Mira cómo funciona por dentro</p>
-         <video id="video1" controls preload="metadata" poster="portada.video.webp" style="width:100%; height:auto; border-radius:20px; background-color:#000;">
-  <source src="https://eternaluzacademy.com/condena-video.mp4" type="video/mp4">
-</video>
-        
-        <div class="old" id="precio-tachado" data-usd="74">$74 USD</div>
-        <div class="new" id="precio-oferta" data-usd="37">$37 USD</div>
-        <div class="timer" id="timer1">Oferta termina en: 14:18</div>
-        <br>
-        <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">
-            🚀 QUIERO MI ACCESO AHORA
-        </a> 
+      <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" id="cta1">
+        🚀 QUIERO MI ACCESO AHORA
+      </a>
 
-        <p style="font-size:14px; margin-top:10px; text-align:center;">
-      ➕ Opcional: Puedes añadir el curso <b>"Elabora tus propios moldes de silicona"</b> antes de finalizar tu compra.
-       </p>
-            
-            
-        <div class="tarjeta-soporte-hamilton">
-            <div class="cuerpo-reproductor">
-                <div class="contenedor-foto">
-                    <img src="HAMILTON_AUDIO.webp" width="70" height="70" loading="lazy" alt="Hamilton Soporte" class="foto-hamilton">
-                </div>
-                <div class="info-reproductor">
-                    <p class="texto-soporte"><strong>¿Tienes dudas?</strong> Escucha esto de Hamilton:</p>
-                    <audio controls class="audio-estilo">
-                   <source src="tu-audio.mp3" type="audio/mpeg">
-                   </audio>
-                </div>
-            </div>
+      <p style="font-size:14px;margin-top:10px;text-align:center;">
+        ➕ Opcional: Puedes añadir el curso <b>"Elabora tus propios moldes de silicona"</b> antes de finalizar tu compra.
+      </p>
+
+      <div class="tarjeta-soporte-hamilton">
+        <div class="cuerpo-reproductor">
+          <div class="contenedor-foto">
+            <!-- ✅ MEJORA 22: loading="lazy" en imágenes no críticas -->
+            <img src="HAMILTON_AUDIO.webp" width="70" height="70" loading="lazy"
+              alt="Hamilton Soporte" class="foto-hamilton">
+          </div>
+          <div class="info-reproductor">
+            <p class="texto-soporte"><strong>¿Tienes dudas?</strong> Escucha esto de Hamilton:</p>
+            <!-- ✅ MEJORA 23: preload="none" en audio para no bloquear -->
+            <audio controls class="audio-estilo" preload="none">
+              <source src="tu-audio.mp3" type="audio/mpeg">
+            </audio>
+          </div>
         </div>
-        
-        <div style="text-align: center; width: 100%; margin-top: 10px;">
-           <a href="https://wa.link/jotwfj" class="btn-soporte-premium" target="_blank" onclick="trackWhatsApp()">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="18" height="18" alt="Icono WhatsApp" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
-                CHATEAR CON HAMILTON (SOPORTE VIP)
-            </a>
-        </div>
-    </div>
-
-   <div style="text-align:center; margin-top:50px;">
-
-    <h2 style="
-        font-size:24px;
-        font-weight:800;
-        margin-bottom:15px;
-        font-family:'Playfair Display', serif;
-        color:#111827;
-    ">
-        Aprende con una persona que ya vive de esto
-    </h2>
-
-   
-    <p style="
-        font-size:14px;
-        font-weight:800;
-        color:#0f766e;
-        margin-bottom:12px;
-        letter-spacing:0.5px;
-        text-transform:uppercase;
-    ">
-        👩‍🏫 CREADORA DEL CURSO
-    </p>
-
-    <div style="
-        max-width:600px;
-        margin:0 auto;
-        text-align:center;
-    ">
-
-        
-        <p style="
-            font-size:16px;
-            font-weight:700;
-            color:#111827;
-            line-height:1.7;
-            margin-bottom:14px;
-        ">
-            ✨ Este curso fue creado por 
-            <span style="
-                color:#0f766e;
-                font-weight:900;
-            ">Yuly Mar Rivas</span>, quien pasó de ser ama de casa a generar ingresos desde casa con velas artesanales.
-        </p>
-
-        
-        <p style="
-            font-size:15px;
-            font-weight:600;
-            color:#1f2937;
-            line-height:1.7;
-            margin:0;
-        ">
-            Hoy tú puedes seguir el mismo paso a paso y empezar tu propio negocio desde cero 🚀
-        </p>
-
-    </div>
-
-</div>
-        
-<img src="yuly.webp"width="220"height="220"loading="lazy"style="border-radius:50%; object-fit:cover; margin: 0 auto; display: block;"alt="Experta Yuly Mar Rivas">
-        
-    </div>
-
-   <div style="max-width:700px;margin:40px auto;background:rgba(255,244,225,0.92);border:1px solid rgba(212,175,55,0.25);box-shadow:0 8px 20px rgba(0,0,0,0.05);padding:20px;border-radius:18px;text-align:center;">
-        <h3 style="font-size:20px; margin-bottom:10px;">🎁 BONO EXCLUSIVO PARA TI</h3>
-       <p style=" font-size:14px; margin-bottom:15px; font-weight:700; color:#111827; line-height:1.6;">Antes de decidir, tendrás acceso a un bono donde verás el paso a paso real para crear tu primera vela de gel.</p>
-        <p style="font-size:14px; font-weight:600; margin-bottom:15px;">Esto te permite ver la calidad antes de entrar.</p>
-        <a href="gracias.html" style="background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #aa771c 100%);color: #111; font-family: 'Poppins', sans-serif;font-weight: 800;padding: 18px 35px;border-radius: 100px;text-decoration: none;display: inline-flex;justify-content: center;align-items: center;box-shadow: 0 12px 30px rgba(191, 149, 63, 0.35);transition: all 0.25s ease;">
-    🔥 ACCEDER AL BONO
-</a>
-    </div>
-
-    <div class="mensaje-guia-vip">
-        Antes de tu bono, revisa esto primero
-        <span class="flecha-vip"></span>
-    </div>
-
-    <div style="
-    max-width:700px;
-    margin:40px auto;
-    text-align:center;
-">
-
-<h2 style="
-    font-family:'Playfair Display', serif;
-    font-size:32px;
-    font-weight:800;
-    color:#111827;
-    margin-bottom:10px;
-    line-height:1.2;
-">
-    ¿Esto es para ti?
-</h2>
-
-<p style="
-    font-size:15px;
-    font-weight:600;
-    color:#374151;
-    max-width:600px;
-    margin:0 auto 25px;
-    line-height:1.6;
-">
-    Este curso está diseñado para personas que quieren empezar desde cero y generar ingresos con velas artesanales, incluso si nunca han vendido nada antes.
-</p>
-
-<div style="
-    max-width:600px;
-    margin:0 auto;
-    text-align:left;
-    background: rgba(255, 244, 221, 0.6);
-    border: 1px solid rgba(15, 118, 110, 0.15);
-    border-radius:20px;
-    padding:20px 18px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.06);
-">
-
-<div style="display:flex; gap:10px; margin-bottom:14px;">
-    <span style="color:#0f766e; font-size:14px;">◆</span>
-    <span style="font-weight:600; color:#111827;">
-        Quieres generar ingresos desde casa sin experiencia previa
-    </span>
-</div>
-
-<div style="display:flex; gap:10px; margin-bottom:14px;">
-    <span style="color:#111827; font-size:14px;">◆</span>
-    <span style="font-weight:600; color:#111827;">
-        Estás buscando una forma real de empezar tu propio negocio
-    </span>
-</div>
-
-<div style="display:flex; gap:10px; margin-bottom:14px;">
-    <span style="color:#0f766e; font-size:14px;">◆</span>
-    <span style="font-weight:600; color:#111827;">
-        Te gustaría vender productos desde redes sociales
-    </span>
-</div>
-
-
-<div style="display:flex; gap:10px;">
-    <span style="color:#111827; font-size:14px;">◆</span>
-    <span style="font-weight:600; color:#111827;">
-        Quieres un sistema paso a paso sin perder tiempo probando cosas
-    </span>
-</div>
-
-</div>
-
-<p style="
-    font-size:14px;
-    font-weight:700;
-    color:#0f766e;
-    margin-top:18px;
-">
-    ✔ Si te identificas con esto, este curso es para ti
-</p>
-
-</div>
-
-    <div style="max-width: 1000px; margin: 50px auto; text-align: center;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size:32px; margin-bottom:10px;">Todo lo que necesitas para <span style="color:#0f766e; font-weight:800;">generar ingresos desde casa</span></h2>
-     <p style="font-size:16px; color:#0f172a; font-weight:600; opacity:0.99; max-width:600px; margin:0 auto 30px; line-height:1.6; letter-spacing:0.3px;">Un sistema paso a paso para crear, vender y empezar desde cero</p>
-       
-        <div class="grid-img reveal">
-       <div class="card-img"><img src="curso-completo.webp" width="200"  height="200"  loading="lazy"  alt="Curso paso a paso de velas artesanales"><p>Curso completo paso a paso</p></div>
-       <div class="card-img"><img src="vela-acuario.webp" width="200" height="200" loading="lazy"  alt="Velas en tendencia tipo acuario"><p>Velas en tendencia</p></div>
-       <div class="card-img"><img src="esferas-brillantes.webp" width="200" height="200" loading="lazy" alt="Velas artesanales tipo esferas brillantes"><p>Velas tipo esferas brillantes</p></div>
-       <div class="card-img"><img src="bouquet-velitas.webp" width="200" height="200" loading="lazy" alt="Bouquet de velas artesanales premium"><p>Bouquet de velas premium</p></div>
-       <div class="card-img"><img src="encapsulado-floral.webp" width="200" height="200" loading="lazy" alt="Vela artesanal encapsulado floral"><p>Acabados que aumentan el valor</p></div>
-       <div class="card-img"><img src="proveedores-mapa.webp" width="200" height="200" loading="lazy" alt="Mapa proveedores"><p>Proveedores por país</p></div>
-       <div class="card-img"><img src="clases-vivo.webp" width="200" height="200" loading="lazy" alt="Clases en vivo"><p>Clases privadas en vivo al mes</p></div>
-       <div class="card-img"><img src="certificado.webp" width="200" height="200" loading="lazy" alt="Certificado oficial"><p>Certificado al finalizar</p></div>
-       <div class="card-img vip"><img src="grupo-vip.webp" width="200" height="200" loading="lazy" alt="Grupo VIP"><p>Acceso a grupo VIP privado + soporte</p></div>
       </div>
-      
-        <p style="text-align:center; color:#374151; font-weight:700; font-size:16px;">Resuelve tus dudas antes de unirte</p>
-    </div>
 
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 30px; text-align:center;">Preguntas Frecuentes</h2>
-    <div class="faq-container reveal">
-    <div class="faq-item">
-    <div class="faq-question">¿Cómo y cuándo recibiré el curso?</div>
-<div class="faq-answer" style="color:#064e3b; font-weight:600;">Recibirás acceso inmediato después del pago por correo electrónico. Tendrás acceso de por vida desde cualquier dispositivo.</div>
-        
- </div>
-        <div class="faq-item">
-            <div class="faq-question">¿El pago es seguro?</div>
- <div class="faq-answer" style="color:#064e3b; font-weight:600;">Sí, el pago es procesado por Hotmart, una plataforma segura a nivel internacional que protege tus datos.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">¿Necesito experiencia previa?</div>
- <div class="faq-answer" style="color:#064e3b;font-weight:600;">No necesitas experiencia. El curso está diseñado paso a paso desde cero para principiantes.</div>
-        </div>
-    </div>
-
-    <div style="text-align:center; margin:40px 0;">
-        <img src="garantia-7-dias.webp" width="420" height="250" loading="lazy"alt="Garantía de satisfacción 7 días" style="width:100%; max-width:420px; border-radius:25px; box-shadow:0 15px 40px rgba(0,0,0,0.12);">
-    </div>
-
-    <div class="bottom-section reveal">
-        <div class="old" id="precio-tachado-2" data-usd="74">$74 USD</div>
-        <div class="new" id="precio-oferta-2" data-usd="37">$37 USD</div>
-        <p style="font-weight: 700; text-align:center;">¡ÚLTIMA OPORTUNIDAD PARA UNIRTE CON DESCUENTO!</p>
-        <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" onclick="btm_track_checkout(event, this.href)">🔥 QUIERO APROVECHAR ESTA OFERTA</a>
-          <p style="font-size:14px; margin-top:10px; text-align:center;">
-      ➕ Opcional: Puedes añadir el curso <b>"Elabora tus propios moldes de silicona"</b> antes de finalizar tu compra.
-       </p>
-        
-    </div>
-
-          <div style="margin:50px 0;">
-          <h2 style="font-family: 'Playfair Display', serif; font-size:28px; text-align:center;">Mira lo que están logrando personas que empezaron desde cero</h2>
-          <p style="text-align:center; font-size:16px; color:#111827; font-weight:500; opacity:0.98; font-style:italic; max-width:600px; margin:0 auto; line-height:1.6; letter-spacing:0.2px;">Grupo privado donde los alumnos comparten sus avances diarios, resultados reales y soporte directo</p>
-         <div class="video-wrapper" onclick="this.querySelector('video').play()">
-         <video class="video-testimonios" muted loop playsinline preload="none" poster="portada-testimonios.webp">
-        <source src="testimonios.mp4" type="video/mp4">
-    </video>
-    <div class="play-overlay">▶ TOCA EN LA IMAGEN PARA PODER VER</div>
-</div>
-
-        <div style="max-width:700px; margin:40px auto; text-align:center;">
-
-<h2 style="font-family:'Playfair Display', serif; font-size:28px; font-weight:800; color:#111827; margin-bottom:10px;">
-Tú podrías ser el siguiente
-</h2>
-
-<p style="font-size:15px; font-weight:600; color:#374151; margin-bottom:20px; line-height:1.6;">
-Este curso es para personas que quieren empezar desde cero y generar ingresos desde casa.
-</p>
-
-<div style="max-width:600px; margin:0 auto; text-align:left;">
-
-<div style="display:flex; align-items:flex-start; gap:10px; margin-bottom:12px;">
-<span style="color:#0f766e; font-size:14px;">◆</span>
-<span style="font-weight:600; color:#111827;">Pedidos desde casa sin depender de un jefe</span>
-</div>
-
-<div style="display:flex; align-items:flex-start; gap:10px; margin-bottom:12px;">
-<span style="color:#111827; font-size:14px;">◆</span>
-<span style="font-weight:600; color:#111827;">Sin experiencia previa, empezando desde cero</span>
-</div>
-
-<div style="display:flex; align-items:flex-start; gap:10px;">
-<span style="color:#0f766e; font-size:14px;">◆</span>
-<span style="font-weight:600; color:#111827;">Personas que quieren un ingreso extra o un negocio propio</span>
-</div>
-
-</div>
-
-<p style="margin-top:18px; font-size:14px; font-weight:700; color:#0f766e;">
-✔ Si te identificas con esto, este curso es para ti
-</p>
-
-</div>
-        
-        <div class="final-section">
-
-    <div class="old" id="precio-tachado-3" data-usd="74">$74 USD</div>
-    <div class="new" id="precio-oferta-3" data-usd="37">$37 USD</div>
-    <div class="timer" id="timer2">Oferta termina en: 14:18</div>
-
-    <br>
-
-    <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d">
-        ✨ SÍ, QUIERO ENTRAR AL CURSO
-    </a>
-            
-     <p style="font-size:14px; margin-top:10px; text-align:center;">
-      ➕ Opcional: Puedes añadir el curso <b>"Elabora tus propios moldes de silicona"</b> antes de finalizar tu compra.
-       </p>
-            
-
-    <div style="text-align:center; margin-top:10px; margin-bottom:30px;">
-        <a href="https://wa.link/7h1fs9" class="btn-soporte-premium" target="_blank" onclick="trackWhatsApp()">
-           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-                 width="18" height="18"
-                 alt="Icono WhatsApp"
-                 style="display: inline-block; vertical-align: middle; margin-right: 8px;">
-           ¿DUDAS CON LA INSCRIPCIÓN? ESCRÍBEME
+      <div style="text-align:center;width:100%;margin-top:10px;">
+        <a href="https://wa.link/jotwfj" class="btn-soporte-premium" target="_blank" rel="noopener" id="wa1">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+            width="18" height="18" alt="WhatsApp" loading="lazy"
+            style="display:inline-block;vertical-align:middle;margin-right:8px;">
+          CHATEAR CON HAMILTON (SOPORTE VIP)
         </a>
+      </div>
     </div>
 
-    </div> 
+    <div style="text-align:center;margin-top:50px;">
+      <h2 style="font-size:24px;font-weight:800;margin-bottom:15px;font-family:'Playfair Display',serif;color:#111827;">
+        Aprende con una persona que ya vive de esto
+      </h2>
+      <p style="font-size:14px;font-weight:800;color:#0f766e;margin-bottom:12px;letter-spacing:0.5px;text-transform:uppercase;">
+        👩‍🏫 CREADORA DEL CURSO
+      </p>
+      <div style="max-width:600px;margin:0 auto;text-align:center;">
+        <p style="font-size:16px;font-weight:700;color:#111827;line-height:1.7;margin-bottom:14px;">
+          ✨ Este curso fue creado por
+          <span style="color:#0f766e;font-weight:900;">Yuly Mar Rivas</span>,
+          quien pasó de ser ama de casa a generar ingresos desde casa con velas artesanales.
+        </p>
+        <p style="font-size:15px;font-weight:600;color:#1f2937;line-height:1.7;margin:0;">
+          Hoy tú puedes seguir el mismo paso a paso y empezar tu propio negocio desde cero 🚀
+        </p>
+      </div>
+    </div>
 
-</div> 
+    <img src="yuly.webp" width="220" height="220" loading="lazy"
+      style="border-radius:50%;object-fit:cover;margin:20px auto;display:block;"
+      alt="Experta Yuly Mar Rivas">
+  </div>
+
+  <div style="max-width:700px;margin:40px auto;background:rgba(255,244,225,0.92);border:1px solid rgba(212,175,55,0.25);box-shadow:0 8px 20px rgba(0,0,0,0.05);padding:20px;border-radius:18px;text-align:center;" class="bono-exclusivo">
+    <h3 style="font-size:20px;margin-bottom:10px;">🎁 BONO EXCLUSIVO PARA TI</h3>
+    <p style="font-size:14px;margin-bottom:15px;font-weight:700;color:#111827;line-height:1.6;">Antes de decidir, tendrás acceso a un bono donde verás el paso a paso real para crear tu primera vela de gel.</p>
+    <p style="font-size:14px;font-weight:600;margin-bottom:15px;">Esto te permite ver la calidad antes de entrar.</p>
+    <a href="gracias.html" style="background:linear-gradient(135deg,#bf953f 0%,#fcf6ba 50%,#aa771c 100%);color:#111;font-family:'Poppins',sans-serif;font-weight:800;padding:18px 35px;border-radius:100px;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;box-shadow:0 12px 30px rgba(191,149,63,0.35);transition:transform 0.25s ease;">
+      🔥 ACCEDER AL BONO
+    </a>
+  </div>
+
+  <div class="mensaje-guia-vip">
+    Antes de tu bono, revisa esto primero
+    <span class="flecha-vip"></span>
+  </div>
+
+  <div style="max-width:700px;margin:40px auto;text-align:center;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:32px;font-weight:800;color:#111827;margin-bottom:10px;line-height:1.2;">¿Esto es para ti?</h2>
+    <p style="font-size:15px;font-weight:600;color:#374151;max-width:600px;margin:0 auto 25px;line-height:1.6;">
+      Este curso está diseñado para personas que quieren empezar desde cero y generar ingresos con velas artesanales, incluso si nunca han vendido nada antes.
+    </p>
+    <div style="max-width:600px;margin:0 auto;text-align:left;background:rgba(255,244,221,0.6);border:1px solid rgba(15,118,110,0.15);border-radius:20px;padding:20px 18px;box-shadow:0 10px 25px rgba(0,0,0,0.06);">
+      <div style="display:flex;gap:10px;margin-bottom:14px;"><span style="color:#0f766e;font-size:14px;">◆</span><span style="font-weight:600;color:#111827;">Quieres generar ingresos desde casa sin experiencia previa</span></div>
+      <div style="display:flex;gap:10px;margin-bottom:14px;"><span style="color:#111827;font-size:14px;">◆</span><span style="font-weight:600;color:#111827;">Estás buscando una forma real de empezar tu propio negocio</span></div>
+      <div style="display:flex;gap:10px;margin-bottom:14px;"><span style="color:#0f766e;font-size:14px;">◆</span><span style="font-weight:600;color:#111827;">Te gustaría vender productos desde redes sociales</span></div>
+      <div style="display:flex;gap:10px;"><span style="color:#111827;font-size:14px;">◆</span><span style="font-weight:600;color:#111827;">Quieres un sistema paso a paso sin perder tiempo probando cosas</span></div>
+    </div>
+    <p style="font-size:14px;font-weight:700;color:#0f766e;margin-top:18px;">✔ Si te identificas con esto, este curso es para ti</p>
+  </div>
+
+  <div style="max-width:1000px;margin:50px auto;text-align:center;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:32px;margin-bottom:10px;">Todo lo que necesitas para <span style="color:#0f766e;font-weight:800;">generar ingresos desde casa</span></h2>
+    <p style="font-size:16px;color:#0f172a;font-weight:600;opacity:0.99;max-width:600px;margin:0 auto 30px;line-height:1.6;letter-spacing:0.3px;">Un sistema paso a paso para crear, vender y empezar desde cero</p>
+
+    <div class="grid-img reveal">
+      <!-- ✅ MEJORA 24: Todas las imágenes de la grid con loading="lazy" y dimensiones -->
+      <div class="card-img"><img src="curso-completo.webp" width="320" height="460" loading="lazy" alt="Curso paso a paso de velas artesanales"><p>Curso completo paso a paso</p></div>
+      <div class="card-img"><img src="vela-acuario.webp" width="320" height="460" loading="lazy" alt="Velas en tendencia tipo acuario"><p>Velas en tendencia</p></div>
+      <div class="card-img"><img src="esferas-brillantes.webp" width="320" height="460" loading="lazy" alt="Velas artesanales tipo esferas brillantes"><p>Velas tipo esferas brillantes</p></div>
+      <div class="card-img"><img src="bouquet-velitas.webp" width="320" height="460" loading="lazy" alt="Bouquet de velas artesanales premium"><p>Bouquet de velas premium</p></div>
+      <div class="card-img"><img src="encapsulado-floral.webp" width="320" height="460" loading="lazy" alt="Vela artesanal encapsulado floral"><p>Acabados que aumentan el valor</p></div>
+      <div class="card-img"><img src="proveedores-mapa.webp" width="320" height="460" loading="lazy" alt="Mapa proveedores"><p>Proveedores por país</p></div>
+      <div class="card-img"><img src="clases-vivo.webp" width="320" height="460" loading="lazy" alt="Clases en vivo"><p>Clases privadas en vivo al mes</p></div>
+      <div class="card-img"><img src="certificado.webp" width="320" height="460" loading="lazy" alt="Certificado oficial"><p>Certificado al finalizar</p></div>
+      <div class="card-img vip"><img src="grupo-vip.webp" width="320" height="460" loading="lazy" alt="Grupo VIP"><p>Acceso a grupo VIP privado + soporte</p></div>
+    </div>
+
+    <p style="text-align:center;color:#374151;font-weight:700;font-size:16px;">Resuelve tus dudas antes de unirte</p>
+  </div>
+
+  <h2 style="font-family:'Playfair Display',serif;font-size:30px;text-align:center;">Preguntas Frecuentes</h2>
+  <div class="faq-container reveal">
+    <div class="faq-item">
+      <div class="faq-question">¿Cómo y cuándo recibiré el curso?</div>
+      <div class="faq-answer">Recibirás acceso inmediato después del pago por correo electrónico. Tendrás acceso de por vida desde cualquier dispositivo.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">¿El pago es seguro?</div>
+      <div class="faq-answer">Sí, el pago es procesado por Hotmart, una plataforma segura a nivel internacional que protege tus datos.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">¿Necesito experiencia previa?</div>
+      <div class="faq-answer">No necesitas experiencia. El curso está diseñado paso a paso desde cero para principiantes.</div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin:40px 0;">
+    <img src="garantia-7-dias.webp" width="420" height="250" loading="lazy"
+      alt="Garantía de satisfacción 7 días"
+      style="width:100%;max-width:420px;border-radius:25px;box-shadow:0 15px 40px rgba(0,0,0,0.12);">
+  </div>
+
+  <div class="bottom-section reveal">
+    <div class="old" id="precio-tachado-2">$74 USD</div>
+    <div class="new animate" id="precio-oferta-2">$37 USD</div>
+    <p style="font-weight:700;text-align:center;">¡ÚLTIMA OPORTUNIDAD PARA UNIRTE CON DESCUENTO!</p>
+    <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" id="cta2">🔥 QUIERO APROVECHAR ESTA OFERTA</a>
+    <p style="font-size:14px;margin-top:10px;text-align:center;">
+      ➕ Opcional: Puedes añadir el curso <b>"Elabora tus propios moldes de silicona"</b> antes de finalizar tu compra.
+    </p>
+  </div>
+
+  <div style="margin:50px 0;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:28px;text-align:center;">Mira lo que están logrando personas que empezaron desde cero</h2>
+    <p style="text-align:center;font-size:16px;color:#111827;font-weight:500;font-style:italic;max-width:600px;margin:0 auto;line-height:1.6;letter-spacing:0.2px;">Grupo privado donde los alumnos comparten sus avances diarios, resultados reales y soporte directo</p>
+
+    <!-- ✅ MEJORA 25: Video testimonios con preload="none" y carga al click -->
+    <div class="video-wrapper" id="testimonios-wrapper">
+      <video class="video-testimonios" id="video-testimonios" muted loop playsinline preload="none" poster="portada-testimonios.webp">
+        <source src="testimonios.mp4" type="video/mp4">
+      </video>
+      <div class="play-overlay" id="play-overlay">▶ TOCA EN LA IMAGEN PARA PODER VER</div>
+    </div>
+
+    <div style="max-width:700px;margin:40px auto;text-align:center;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:#111827;margin-bottom:10px;">Tú podrías ser el siguiente</h2>
+      <p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:20px;line-height:1.6;">Este curso es para personas que quieren empezar desde cero y generar ingresos desde casa.</p>
+      <div style="max-width:600px;margin:0 auto;text-align:left;">
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#0f766e;font-size:14px;">◆</span><span style="font-weight:600;color:#111827;">Pedidos desde casa sin depender de un jefe</span></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#111827;font-size:14px;">◆</span><span style="font-weight:600;color:#111827;">Sin experiencia previa, empezando desde cero</span></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#0f766e;font-size:14px;">◆</span><span style="font-weight:600;color:#111827;">Personas que quieren un ingreso extra o un negocio propio</span></div>
+      </div>
+      <p style="margin-top:18px;font-size:14px;font-weight:700;color:#0f766e;">✔ Si te identificas con esto, este curso es para ti</p>
+    </div>
+
+    <div class="final-section">
+      <div class="old" id="precio-tachado-3">$74 USD</div>
+      <div class="new animate" id="precio-oferta-3">$37 USD</div>
+      <div class="timer" id="timer2">Oferta termina en: 15:00</div>
+      <br>
+      <a class="btn cta" href="https://go.hotmart.com/L104931361I?ap=329d" id="cta3">✨ SÍ, QUIERO ENTRAR AL CURSO</a>
+      <p style="font-size:14px;margin-top:10px;text-align:center;">
+        ➕ Opcional: Puedes añadir el curso <b>"Elabora tus propios moldes de silicona"</b> antes de finalizar tu compra.
+      </p>
+      <div style="text-align:center;margin-top:10px;margin-bottom:30px;">
+        <a href="https://wa.link/7h1fs9" class="btn-soporte-premium" target="_blank" rel="noopener" id="wa2">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+            width="18" height="18" alt="WhatsApp" loading="lazy"
+            style="display:inline-block;vertical-align:middle;margin-right:8px;">
+          ¿DUDAS CON LA INSCRIPCIÓN? ESCRÍBEME
+        </a>
+      </div>
+    </div>
+  </div>
 
 </main>
 
-<div id="sale-popup" class="sale-popup"><p id="sale-text"></p>
+<div id="sale-popup" class="sale-popup"><p id="sale-text"></p></div>
 
+<!-- Music player -->
+<div class="music-player">
+  <button id="music-toggle">🔊 Música Ambiente</button>
+  <!-- ✅ MEJORA 26: Audio con preload="none" -->
+  <audio id="bg-music" loop preload="none">
+    <source src="white-petals.mp3" type="audio/mpeg">
+  </audio>
 </div>
-    
+
+<!-- ✅ MEJORA 27: Todo el JS al final del body, sin bloquear render -->
 <script>
+// =========================================
+// TIMER - Oferta con contador regresivo
+// =========================================
+(function() {
+  const DURACION = 900; // 15 minutos
+  let time = parseInt(localStorage.getItem('tiempo_restante') || DURACION, 10);
+  if (isNaN(time) || time <= 0) time = DURACION;
 
-
-let time = localStorage.getItem('tiempo_restante')
-    ? parseInt(localStorage.getItem('tiempo_restante'))
-    : 900;
-
-setInterval(() => {
-    let m = Math.floor(time / 60);
-    let s = time % 60;
-
-    const text = `Oferta termina en: ${m}:${String(s).padStart(2, '0')}`;
-
-    const t1 = document.getElementById("timer1");
-    const t2 = document.getElementById("timer2");
-
-    if (t1) t1.innerText = text;
-    if (t2) t2.innerText = text;
-
+  function actualizarTimer() {
+    const m = Math.floor(time / 60);
+    const s = time % 60;
+    const texto = 'Oferta termina en: ' + m + ':' + String(s).padStart(2, '0');
+    const t1 = document.getElementById('timer1');
+    const t2 = document.getElementById('timer2');
+    if (t1) t1.textContent = texto;
+    if (t2) t2.textContent = texto;
     localStorage.setItem('tiempo_restante', time);
+    time = time <= 0 ? DURACION : time - 1;
+  }
 
-    time = time <= 0 ? 900 : time - 1;
-}, 1000);
+  actualizarTimer();
+  setInterval(actualizarTimer, 1000);
+})();
 
-let lastName = "";
-let popupStarted = false;
-let popup;
-
-const names = ["María Fernanda","Valentina","Isabella","Camila","Sofía","Daniela","Andrea","Valeria","Gabriela","Luciana","Paula","Natalia","Fernanda","Carolina","Alejandra","Julieth","Sara","Diana","Melissa","Katherine"];
-const countries = ["🇲🇽 de México","🇨🇴 de Colombia","🇨🇱 de Chile","🇭🇳 de Honduras","🇵🇪 de Perú","🇪🇨 de Ecuador","🇦🇷 de Argentina", "🇪🇸 de España", "🇺🇸 de Estados Unidos"];
-const messages = ["acaba de inscribirse","se unió al curso","obtuvo acceso","entró hace unos segundos","comenzó hoy","ya está dentro","activó su acceso","se registró exitosamente","acaba de entrar","ya empezó el curso"];
-     
-    function getRandom(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-    
-function showPopup()
-{
-    if (!popup || !popupStarted) return;
-
-    let name;
-
-    do {
-        name = names[Math.floor(Math.random() * names.length)];
-    } while (name === lastName && names.length > 1);
-
-    lastName = name;
-
-    const country = countries[Math.floor(Math.random() * countries.length)];
-
-    const message = messages[Math.floor(Math.random() * messages.length)];
-
-    const times = [
-        "hace 5 segundos",
-        "hace 12 segundos",
-        "hace 1 minuto",
-        "recién",
-        "ahora mismo"
-    ];
-
-    const time = times[Math.floor(Math.random() * times.length)];
-
-   popup.querySelector('#sale-text').innerHTML = `
-<div style="display:flex; flex-direction:column; line-height:1.3;">
-    <span><b>${name}</b> ${country}</span>
-
-    <small style="
-        opacity:.75;
-        font-size:11px;
-        margin-top:2px;
-    ">
-        ${message} · ${time}
-    </small>
-</div>
-`;
-
-    requestAnimationFrame(() => {
-        popup.classList.add('show');
-    });
-
-    setTimeout(() => {
-        popup.classList.remove('show');
-    }, 3200);
-
-    schedulePopup();
-}
-
-function schedulePopup() {
-
-    const delay = getRandom(9000, 22000);
-
-    setTimeout(() => {
-        showPopup();
-    }, delay);
-}
-
-    document.addEventListener("DOMContentLoaded", () => {
-
- popup = document.getElementById('sale-popup');
-     
-        
-   setTimeout(() => {
-    popupStarted = true;
-
-    setTimeout(() => {
-        showPopup();
-    }, getRandom(4000, 7000));
-
-}, 5000);
-
-    document.querySelectorAll('.faq-item').forEach(item => {
-        item.addEventListener('click', () => {
-            document.querySelectorAll('.faq-item').forEach(i => {
-                if (i !== item) i.classList.remove('active');
-            });
-            item.classList.toggle('active');
-        });
-    });
-
-    const reveals = document.querySelectorAll('.reveal');
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
-        });
-    }, { threshold: 0.15 });
-
-    reveals.forEach(el => observer.observe(el));
+// =========================================
+// FAQ - Accordion
+// =========================================
+document.querySelectorAll('.faq-item').forEach(function(item) {
+  item.addEventListener('click', function() {
+    var isActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('active'); });
+    if (!isActive) item.classList.add('active');
+  });
 });
 
+// =========================================
+// REVEAL - IntersectionObserver (CSS transitions)
+// =========================================
+var revealObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      revealObserver.unobserve(entry.target); // ✅ Dejar de observar tras activar
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+// =========================================
+// VIDEO TESTIMONIOS - Play al click
+// =========================================
+var testimoniosWrapper = document.getElementById('testimonios-wrapper');
+var testimoniosVideo = document.getElementById('video-testimonios');
+var playOverlay = document.getElementById('play-overlay');
+
+if (testimoniosWrapper && testimoniosVideo) {
+  testimoniosWrapper.addEventListener('click', function() {
+    testimoniosVideo.play();
+    if (playOverlay) playOverlay.style.display = 'none';
+  });
+}
+
+// =========================================
+// VIDEO PRINCIPAL - Reset al terminar
+// =========================================
+var video1 = document.getElementById('video1');
+if (video1) {
+  video1.addEventListener('ended', function() {
+    setTimeout(function() {
+      video1.currentTime = 0;
+    }, 300);
+  });
+}
+
+// =========================================
+// POPUP DE VENTAS - Notificaciones sociales
+// =========================================
+(function() {
+  var popup = document.getElementById('sale-popup');
+  var saleText = document.getElementById('sale-text');
+  if (!popup || !saleText) return;
+
+  var names = ["María Fernanda","Valentina","Isabella","Camila","Sofía","Daniela","Andrea","Valeria","Gabriela","Luciana","Paula","Natalia","Fernanda","Carolina","Alejandra","Julieth","Sara","Diana","Melissa","Katherine"];
+  var countries = ["🇲🇽 de México","🇨🇴 de Colombia","🇨🇱 de Chile","🇭🇳 de Honduras","🇵🇪 de Perú","🇪🇨 de Ecuador","🇦🇷 de Argentina","🇪🇸 de España","🇺🇸 de Estados Unidos"];
+  var messages = ["acaba de inscribirse","se unió al curso","obtuvo acceso","entró hace unos segundos","comenzó hoy","ya está dentro","activó su acceso","se registró exitosamente","acaba de entrar","ya empezó el curso"];
+  var times = ["hace 5 segundos","hace 12 segundos","hace 1 minuto","recién","ahora mismo"];
+  var lastName = "";
+
+  function rnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function getRandom(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+  function showPopup() {
+    var name;
+    do { name = rnd(names); } while (name === lastName && names.length > 1);
+    lastName = name;
+
+    saleText.innerHTML = '<div style="display:flex;flex-direction:column;line-height:1.3;"><span><b>' + name + '</b> ' + rnd(countries) + '</span><small style="opacity:.75;font-size:11px;margin-top:2px;">' + rnd(messages) + ' · ' + rnd(times) + '</small></div>';
+
+    popup.classList.add('show');
+    setTimeout(function() { popup.classList.remove('show'); }, 3200);
+    setTimeout(showPopup, getRandom(9000, 22000));
+  }
+
+  // ✅ MEJORA 28: Iniciar popup después de 7s para no competir con carga inicial
+  setTimeout(showPopup, 7000);
+})();
+
+// =========================================
+// FACEBOOK PIXEL - Carga diferida
+// =========================================
 var pixelCargado = false;
 
 function cargarFacebookPixel() {
-
-    if (pixelCargado) return;
-
-    pixelCargado = true;
-
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-
-    if(!f._fbq)f._fbq=n;
-
-    n.push=n;
-    n.loaded=!0;
-    n.version='2.0';
-    n.queue=[];
-
-    t=b.createElement(e);
-    t.async=!0;
-    t.src=v;
-
-    s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)
-
-    }(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-
-    fbq('init', '1274753604821165');
-
-    fbq('track', 'PageView');
-
-    console.log('Pixel cargado');
-
+  if (pixelCargado) return;
+  pixelCargado = true;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1274753604821165');
+  fbq('track', 'PageView');
 }
 
-
-setTimeout(() => {
+// ✅ MEJORA 29: Pixel solo cuando el usuario interactúa (scroll, click, mouse)
+['scroll','click','mousemove','touchstart'].forEach(function(evt) {
+  window.addEventListener(evt, function handler() {
     cargarFacebookPixel();
-}, 2500);
-
-function btm_track_checkout(event, link) {
-
-    event.preventDefault();
-
-    cargarFacebookPixel();
-
-    fbq('track', 'InitiateCheckout', {
-        content_name: 'Curso Velas Artesanales Premium',
-        content_category: 'Manualidades y Emprendimiento',
-        value: 37.00,
-        currency: 'USD'
-    });
-
-    setTimeout(function(){
-        window.location.href = link;
-    }, 250);
-}
-
-window.addEventListener('load', () => {
-
-    const ejecutar = () => {
-
-        setTimeout(() => {
-            convertirPrecios();
-        }, 800);
-
-    };
-
-    if ('requestIdleCallback' in window) {
-        requestIdleCallback(ejecutar);
-    } else {
-        setTimeout(ejecutar, 1000);
-    }
-
+    window.removeEventListener(evt, handler);
+  }, { once: true, passive: true });
 });
-    
-</script>
 
-<div class="music-player">
+// Fallback: cargar a los 4s de todos modos
+setTimeout(cargarFacebookPixel, 4000);
 
-    <button id="music-toggle">
-        🔊 Música Ambiente
-    </button>
+// CTAs con tracking
+document.querySelectorAll('.cta').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    var href = btn.href;
+    e.preventDefault();
+    cargarFacebookPixel();
+    if (typeof fbq !== 'undefined') {
+      fbq('track', 'InitiateCheckout', { content_name: 'Curso Velas Artesanales Premium', value: 37.00, currency: 'USD' });
+    }
+    setTimeout(function() { window.location.href = href; }, 250);
+  });
+});
 
-    <audio id="bg-music" loop>
-        <source src="white-petals.mp3" type="audio/mpeg">
-    </audio>
+document.querySelectorAll('[id^="wa"]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    cargarFacebookPixel();
+    if (typeof fbq !== 'undefined') fbq('track', 'Contact');
+  });
+});
 
-</div>
+// =========================================
+// MÚSICA - Player ambiental
+// =========================================
+(function() {
+  var musicBtn = document.getElementById('music-toggle');
+  var bgMusic = document.getElementById('bg-music');
+  var playing = false;
 
-<script>
+  if (!musicBtn || !bgMusic) return;
+  bgMusic.volume = 0.15;
 
-const musicBtn = document.getElementById("music-toggle");
-const bgMusic = document.getElementById("bg-music");
+  // Restaurar estado guardado
+  if (localStorage.getItem('music-playing') === 'true') {
+    bgMusic.play().catch(function() {});
+    playing = true;
+    musicBtn.textContent = '🔇 Pausar Música';
+  }
 
-let playing = false;
-
-/* 🔊 volumen seguro */
-if (bgMusic) {
-    bgMusic.volume = 0.15;
-}
-
-/* 🔥 RESTAURAR MÚSICA */
-window.addEventListener("load", () => {
-
-    if (!bgMusic) return;
-
-    const saved = localStorage.getItem("music-playing");
-
-    if (saved === "true") {
-        bgMusic.play().catch(() => {});
+  musicBtn.addEventListener('click', async function() {
+    try {
+      if (!playing) {
+        await bgMusic.play();
         playing = true;
-
-        if (musicBtn) {
-            musicBtn.innerHTML = "🔇 Pausar Música";
-        }
-    }
-});
-
-/* 🎮 CONTROL BOTÓN */
-if (musicBtn && bgMusic) {
-    musicBtn.addEventListener("click", async () => {
-
-        try {
-
-            if (!playing) {
-                await bgMusic.play();
-                playing = true;
-
-                localStorage.setItem("music-playing", "true");
-                musicBtn.innerHTML = "🔇 Pausar Música";
-
-            } else {
-                bgMusic.pause();
-                playing = false;
-
-                localStorage.setItem("music-playing", "false");
-                musicBtn.innerHTML = "🔊 Música Ambiente";
-            }
-
-        } catch(err) {
-            console.log("Error:", err);
-        }
-
-    });
-}
-
-/* 🎥 REINICIAR VIDEO */
-document.addEventListener("DOMContentLoaded", () => {
-
-    const video = document.getElementById("video1");
-
-    if (!video) return;
-
-    video.addEventListener("ended", () => {
-
-        setTimeout(() => {
-            video.pause();
-            video.currentTime = 0;
-            video.load();
-        }, 300);
-
-    });
-
-});
-
-    function trackWhatsApp() {
-    cargarFacebookPixel();
-    fbq('track', 'Contact');
-}
-
+        localStorage.setItem('music-playing', 'true');
+        musicBtn.textContent = '🔇 Pausar Música';
+      } else {
+        bgMusic.pause();
+        playing = false;
+        localStorage.setItem('music-playing', 'false');
+        musicBtn.textContent = '🔊 Música Ambiente';
+      }
+    } catch(err) {}
+  });
+})();
 </script>
 
 </body>

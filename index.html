@@ -21,15 +21,15 @@
   --gold-dim: #8a6e1f;
   --green: #059669;
   --green-light: #34d399;
-  --bg: #0a0a0a;
-  --bg2: #111111;
-  --bg3: #181818;
+  --bg: #0d0b08;
+  --bg2: #13100c;
+  --bg3: #1c1812;
   --surface: rgba(255,255,255,0.04);
   --surface-hover: rgba(255,255,255,0.07);
   --border: rgba(212,175,55,0.15);
   --border-glow: rgba(212,175,55,0.35);
-  --text: #f5f0e8;
-  --text-muted: rgba(245,240,232,0.55);
+  --text: #f7f2e8;
+  --text-muted: rgba(247,242,232,0.52);
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Outfit', sans-serif;
   --radius: 18px;
@@ -43,37 +43,67 @@ html{scroll-behavior:smooth;}
 body {
   font-family: var(--font-body);
   color: var(--text);
-  background: var(--bg);
+  background: radial-gradient(ellipse 120% 80% at 50% 0%, #1a1208 0%, #0d0b08 60%, #080603 100%);
   overflow-x: hidden;
   line-height: 1.6;
   cursor: none;
 }
 
-/* CUSTOM CURSOR */
+/* CUSTOM CURSOR — candle flame dot */
 #cursor {
-  width: 12px; height: 12px;
-  background: var(--gold);
-  border-radius: 50%;
+  width: 10px; height: 14px;
+  background: linear-gradient(180deg, #fff5c0 0%, #f0a500 50%, #c06000 100%);
+  border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
   position: fixed;
   pointer-events: none;
   z-index: 999999;
-  transform: translate(-50%,-50%);
-  transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
-  mix-blend-mode: difference;
+  transform: translate(-50%, -60%);
+  transition: width 0.3s, height 0.3s, opacity 0.3s;
+  box-shadow: 0 0 8px rgba(240,165,0,0.7), 0 0 20px rgba(240,165,0,0.3);
+  animation: flicker 2s ease-in-out infinite;
+}
+@keyframes flicker {
+  0%,100%{ transform: translate(-50%,-60%) scaleX(1) scaleY(1); opacity:1; }
+  25%{ transform: translate(-50%,-60%) scaleX(0.9) scaleY(1.05); opacity:0.9; }
+  75%{ transform: translate(-50%,-60%) scaleX(1.05) scaleY(0.97); opacity:0.95; }
 }
 #cursor-ring {
-  width: 36px; height: 36px;
-  border: 1.5px solid rgba(212,175,55,0.5);
+  width: 34px; height: 34px;
+  border: 1.5px solid rgba(212,175,55,0.4);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 999998;
   transform: translate(-50%,-50%);
   transition: transform 0.25s cubic-bezier(.16,1,.3,1), width 0.3s, height 0.3s, opacity 0.3s;
+  box-shadow: 0 0 12px rgba(212,175,55,0.15);
 }
 body:hover #cursor { opacity: 1; }
 
-/* SCROLL PROGRESS */
+/* SECTION DIVIDER — wax drip style */
+.divider {
+  position: relative;
+  height: 24px;
+  margin: 40px 0;
+  display: flex; align-items: center; justify-content: center;
+  overflow: visible;
+}
+.divider::before {
+  content: '';
+  position: absolute; top: 50%; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.25), rgba(212,175,55,0.5), rgba(212,175,55,0.25), transparent);
+  transform: translateY(-50%);
+}
+.divider::after {
+  content: '🕯';
+  font-size: 18px;
+  position: relative; z-index: 1;
+  background: radial-gradient(ellipse 60px 40px at 50% 50%, #0d0b08 60%, transparent 100%);
+  padding: 0 12px;
+  line-height: 1;
+  filter: drop-shadow(0 0 6px rgba(212,175,55,0.4));
+}
 #scroll-bar {
   position: fixed; top: 0; left: 0;
   height: 2px;
@@ -84,12 +114,53 @@ body:hover #cursor { opacity: 1; }
   box-shadow: 0 0 10px rgba(212,175,55,0.6);
 }
 
-/* CANVAS BG */
-#bg-canvas {
-  position: fixed; inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.55;
+/* CANDLE AMBIENT BACKGROUND */
+#candle-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+}
+.glow-pool {
+  position: absolute; border-radius: 50%;
+  filter: blur(90px);
+  animation: breathe 8s ease-in-out infinite;
+}
+.glow-1 {
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, rgba(180,120,20,0.09) 0%, transparent 70%);
+  top: -100px; left: -100px;
+  animation-delay: 0s;
+}
+.glow-2 {
+  width: 500px; height: 500px;
+  background: radial-gradient(ellipse, rgba(212,175,55,0.07) 0%, transparent 70%);
+  top: 40%; left: 50%; transform: translate(-50%,-50%);
+  animation-delay: -3s;
+}
+.glow-3 {
+  width: 550px; height: 350px;
+  background: radial-gradient(ellipse, rgba(160,100,15,0.08) 0%, transparent 70%);
+  bottom: -80px; right: -80px;
+  animation-delay: -5s;
+}
+@keyframes breathe {
+  0%,100%{ opacity: 1; transform: scale(1); }
+  50%{ opacity: 0.6; transform: scale(1.12); }
+}
+.smoke-svg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+.smoke-path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: smokeRise 12s ease-in-out infinite;
+}
+.s1 { animation-delay: 0s; }
+.s2 { animation-delay: -4s; }
+.s3 { animation-delay: -8s; }
+@keyframes smokeRise {
+  0%   { stroke-dashoffset: 600; opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 0.4; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
 }
 
 /* TOP BAR */
@@ -153,7 +224,7 @@ body:hover #cursor { opacity: 1; }
 
 /* HERO CARD */
 .hero-card {
-  background: linear-gradient(145deg, rgba(20,16,8,0.95), rgba(10,10,10,0.98));
+  background: linear-gradient(145deg, rgba(22,17,9,0.97), rgba(13,11,8,0.99));
   border: 1px solid var(--border-glow);
   border-radius: var(--radius-lg);
   padding: clamp(24px, 4vw, 48px);
@@ -532,18 +603,32 @@ h3 { font-family: var(--font-body); font-size: 18px; font-weight: 700; color: va
   width: 100%;
   max-width: 340px;
   aspect-ratio: 9 / 16;
-  border-radius: 24px;
+  border-radius: 28px;
   overflow: hidden;
   cursor: pointer;
-  background: #000;
-  border: 1px solid var(--border-glow);
-  box-shadow: 0 30px 70px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,175,55,0.08);
+  background: #0d0b08;
+  border: 1px solid rgba(212,175,55,0.3);
+  box-shadow:
+    0 0 0 4px rgba(212,175,55,0.06),
+    0 30px 70px rgba(0,0,0,0.7),
+    0 0 60px rgba(180,120,20,0.12);
 }
+/* Warm vignette over video */
 .reels-frame::before {
   content: '';
   position: absolute; inset: 0; z-index: 2;
-  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 40%);
+  background:
+    linear-gradient(to top, rgba(10,7,3,0.72) 0%, transparent 45%),
+    radial-gradient(ellipse 100% 60% at 50% 110%, rgba(180,100,10,0.18) 0%, transparent 70%);
   pointer-events: none; border-radius: inherit;
+}
+/* Subtle wax-glow inner border */
+.reels-frame::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 5;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(212,175,55,0.12);
+  pointer-events: none;
 }
 .video-testimonios {
   width: 100%; height: 100%;
@@ -553,63 +638,56 @@ h3 { font-family: var(--font-body); font-size: 18px; font-weight: 700; color: va
 .play-overlay {
   position: absolute; inset: 0; z-index: 3;
   display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 10px;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(3px);
+  flex-direction: column; gap: 12px;
+  background: rgba(8,6,3,0.42);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   transition: opacity 0.35s ease;
   border-radius: inherit;
 }
 .play-circle {
-  width: 64px; height: 64px; border-radius: 50%;
-  background: rgba(212,175,55,0.18);
-  border: 2px solid var(--gold);
+  width: 66px; height: 66px; border-radius: 50%;
+  background: rgba(212,175,55,0.14);
+  border: 1.5px solid rgba(212,175,55,0.7);
   display: flex; align-items: center; justify-content: center;
-  font-size: 24px;
-  box-shadow: 0 0 30px rgba(212,175,55,0.25);
-  transition: transform 0.25s ease, background 0.25s ease;
+  font-size: 22px;
+  box-shadow: 0 0 30px rgba(212,175,55,0.25), 0 0 60px rgba(212,175,55,0.08);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  animation: flamePulse 3s ease-in-out infinite;
+}
+@keyframes flamePulse {
+  0%,100%{ box-shadow: 0 0 20px rgba(212,175,55,0.25), 0 0 50px rgba(212,175,55,0.08); }
+  50%{ box-shadow: 0 0 35px rgba(212,175,55,0.4), 0 0 80px rgba(212,175,55,0.14); }
 }
 .reels-frame:hover .play-circle {
   transform: scale(1.1);
-  background: rgba(212,175,55,0.28);
+  background: rgba(212,175,55,0.22);
 }
 .play-overlay span {
-  font-size: 11px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: rgba(255,255,255,0.85);
+  font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: rgba(247,235,200,0.8);
 }
 /* Reels bottom bar */
 .reels-bar {
   position: absolute; bottom: 0; left: 0; right: 0; z-index: 4;
-  padding: 16px 16px 20px;
+  padding: 18px 18px 22px;
   display: flex; align-items: center; gap: 10px;
   pointer-events: none;
 }
 .reels-avatar {
-  width: 34px; height: 34px; border-radius: 50%;
-  border: 2px solid white;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1.5px solid rgba(212,175,55,0.6);
   background: var(--gold-dim);
   flex-shrink: 0;
   overflow: hidden;
+  box-shadow: 0 0 12px rgba(212,175,55,0.2);
 }
 .reels-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .reels-username {
-  font-size: 13px; font-weight: 700; color: white;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
-}
-/* Reels side actions */
-.reels-actions {
-  position: absolute; right: 12px; bottom: 100px; z-index: 4;
-  display: flex; flex-direction: column; align-items: center; gap: 18px;
-  pointer-events: none;
-}
-.reels-action-btn {
-  display: flex; flex-direction: column; align-items: center; gap: 3px;
-  color: white; font-size: 10px; font-weight: 600;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-}
-.reels-action-icon {
-  width: 28px; height: 28px;
-  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));
-  font-size: 22px; line-height: 1;
+  font-size: 13px; font-weight: 700;
+  color: rgba(247,235,200,0.95);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+  letter-spacing: 0.3px;
 }
 
 /* TESTIMONIAL SECTION */
@@ -647,7 +725,7 @@ h3 { font-family: var(--font-body); font-size: 18px; font-weight: 700; color: va
 
 /* FOOTER SECTION */
 .final-section {
-  background: linear-gradient(145deg, rgba(20,16,8,0.95), rgba(10,10,10,0.98));
+  background: linear-gradient(145deg, rgba(22,17,9,0.97), rgba(13,11,8,0.99));
   border: 1px solid var(--border-glow);
   border-radius: var(--radius-lg);
   padding: clamp(28px,4vw,50px);
@@ -704,7 +782,22 @@ p { font-family: var(--font-body); }
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 <div id="scroll-bar"></div>
-<canvas id="bg-canvas"></canvas>
+<!-- Candle ambient background: animated warm glow pools -->
+<div id="candle-bg" aria-hidden="true">
+  <div class="glow-pool glow-1"></div>
+  <div class="glow-pool glow-2"></div>
+  <div class="glow-pool glow-3"></div>
+  <svg class="smoke-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <filter id="smokeBlur"><feGaussianBlur stdDeviation="18"/></filter>
+    </defs>
+    <g filter="url(#smokeBlur)" opacity="0.18">
+      <path class="smoke-path s1" d="M200,800 Q220,700 200,600 Q180,500 210,400 Q230,300 200,200" stroke="rgba(247,230,190,0.6)" stroke-width="22" fill="none" stroke-linecap="round"/>
+      <path class="smoke-path s2" d="M720,820 Q740,720 720,620 Q700,520 730,420 Q750,320 720,220" stroke="rgba(247,230,190,0.5)" stroke-width="18" fill="none" stroke-linecap="round"/>
+      <path class="smoke-path s3" d="M1240,800 Q1260,700 1240,600 Q1220,500 1250,400 Q1270,310 1240,210" stroke="rgba(247,230,190,0.55)" stroke-width="20" fill="none" stroke-linecap="round"/>
+    </g>
+  </svg>
+</div>
 
 <div class="top-bar">🔥 OFERTA DE LANZAMIENTO ACTIVA — DESCUENTO LIMITADO DISPONIBLE AHORA</div>
 
@@ -922,28 +1015,12 @@ p { font-family: var(--font-body); }
           <span>Toca para ver</span>
         </div>
 
-        <!-- Bottom bar (like IG reels) -->
+        <!-- Bottom bar -->
         <div class="reels-bar">
           <div class="reels-avatar">
             <img src="yuly.webp" alt="Yuly" loading="lazy">
           </div>
           <span class="reels-username">@eternaluzacademy</span>
-        </div>
-
-        <!-- Side actions -->
-        <div class="reels-actions">
-          <div class="reels-action-btn">
-            <span class="reels-action-icon">❤️</span>
-            <span>Me gusta</span>
-          </div>
-          <div class="reels-action-btn">
-            <span class="reels-action-icon">💬</span>
-            <span>Comentar</span>
-          </div>
-          <div class="reels-action-btn">
-            <span class="reels-action-icon">↗️</span>
-            <span>Compartir</span>
-          </div>
         </div>
       </div>
     </div>
@@ -1009,7 +1086,7 @@ p { font-family: var(--font-body); }
 </div>
 
 <script>
-// CURSOR
+// CURSOR — flame
 (function(){
   var c = document.getElementById('cursor');
   var r = document.getElementById('cursor-ring');
@@ -1026,12 +1103,12 @@ p { font-family: var(--font-body); }
   animRing();
   document.querySelectorAll('a,button,[class*="btn"]').forEach(function(el){
     el.addEventListener('mouseenter',function(){
-      c.style.width='20px';c.style.height='20px';
+      c.style.width='14px';c.style.height='20px';
       r.style.width='52px';r.style.height='52px';
     });
     el.addEventListener('mouseleave',function(){
-      c.style.width='12px';c.style.height='12px';
-      r.style.width='36px';r.style.height='36px';
+      c.style.width='10px';c.style.height='14px';
+      r.style.width='34px';r.style.height='34px';
     });
   });
 })();
@@ -1049,43 +1126,7 @@ p { font-family: var(--font-body); }
   },{passive:true});
 })();
 
-// PARTICLES CANVAS
-(function(){
-  var canvas=document.getElementById('bg-canvas');
-  var ctx=canvas.getContext('2d');
-  var W,H,particles=[];
-  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
-  resize();
-  window.addEventListener('resize',resize);
-  for(var i=0;i<55;i++){
-    particles.push({
-      x:Math.random()*2000,y:Math.random()*3000,
-      r:Math.random()*1.2+0.3,
-      vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.12,
-      o:Math.random()*.5+.1
-    });
-  }
-  var sy=0;
-  window.addEventListener('scroll',function(){sy=window.scrollY;},{passive:true});
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    for(var i=0;i<particles.length;i++){
-      var p=particles[i];
-      var screenY=p.y-sy*.15;
-      if(screenY<H+10&&screenY>-10){
-        ctx.beginPath();
-        ctx.arc(p.x%W,screenY%H,p.r,0,Math.PI*2);
-        ctx.fillStyle='rgba(212,175,55,'+p.o+')';
-        ctx.fill();
-      }
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0)p.x=W;if(p.x>W)p.x=0;
-      if(p.y<0)p.y=4000;if(p.y>4000)p.y=0;
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
+
 
 // TIMER
 (function(){

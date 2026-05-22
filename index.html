@@ -520,29 +520,96 @@ h3 { font-family: var(--font-body); font-size: 18px; font-weight: 700; color: va
   pointer-events:none;
 }
 
-/* VIDEO WRAPPER */
-.video-wrapper {
-  width:100%; max-width:680px; margin:20px auto;
-  position:relative; cursor:pointer; border-radius:var(--radius);
-  overflow:hidden; aspect-ratio:16/9;
-  border: 1px solid var(--border);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+/* VIDEO WRAPPER — Reels style */
+.reels-outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 24px auto;
 }
-.video-testimonios { width:100%; height:100%; object-fit:cover; display:block; }
+.reels-frame {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 9 / 16;
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #000;
+  border: 1px solid var(--border-glow);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,175,55,0.08);
+}
+.reels-frame::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 40%);
+  pointer-events: none; border-radius: inherit;
+}
+.video-testimonios {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  position: absolute; inset: 0;
+}
 .play-overlay {
-  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-  flex-direction: column; gap:12px;
-  background: rgba(0,0,0,0.5); color:white;
-  font-weight:700; font-size:14px; letter-spacing:1px;
-  backdrop-filter: blur(4px);
-  transition: opacity 0.3s;
+  position: absolute; inset: 0; z-index: 3;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 10px;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(3px);
+  transition: opacity 0.35s ease;
+  border-radius: inherit;
 }
 .play-circle {
-  width:60px;height:60px;border-radius:50%;
-  background: rgba(212,175,55,0.2);
-  border:2px solid var(--gold);
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(212,175,55,0.18);
+  border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 0 30px rgba(212,175,55,0.25);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.reels-frame:hover .play-circle {
+  transform: scale(1.1);
+  background: rgba(212,175,55,0.28);
+}
+.play-overlay span {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(255,255,255,0.85);
+}
+/* Reels bottom bar */
+.reels-bar {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 4;
+  padding: 16px 16px 20px;
+  display: flex; align-items: center; gap: 10px;
+  pointer-events: none;
+}
+.reels-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 2px solid white;
+  background: var(--gold-dim);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.reels-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.reels-username {
+  font-size: 13px; font-weight: 700; color: white;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+}
+/* Reels side actions */
+.reels-actions {
+  position: absolute; right: 12px; bottom: 100px; z-index: 4;
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+  pointer-events: none;
+}
+.reels-action-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  color: white; font-size: 10px; font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+.reels-action-icon {
+  width: 28px; height: 28px;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));
+  font-size: 22px; line-height: 1;
 }
 
 /* TESTIMONIAL SECTION */
@@ -843,13 +910,41 @@ p { font-family: var(--font-body); }
       Grupo privado donde los alumnos comparten sus avances diarios, resultados reales y soporte directo
     </p>
 
-    <div class="video-wrapper" id="testimonios-wrapper">
-      <video class="video-testimonios" id="video-testimonios" muted loop playsinline preload="none" poster="portada-testimonios.webp">
-        <source src="testimonios.mp4" type="video/mp4">
-      </video>
-      <div class="play-overlay" id="play-overlay">
-        <div class="play-circle">▶</div>
-        TOCA PARA VER
+    <div class="reels-outer">
+      <div class="reels-frame" id="testimonios-wrapper">
+        <video class="video-testimonios" id="video-testimonios" muted loop playsinline preload="none" poster="portada-testimonios.webp">
+          <source src="testimonios.mp4" type="video/mp4">
+        </video>
+
+        <!-- Play overlay -->
+        <div class="play-overlay" id="play-overlay">
+          <div class="play-circle">▶</div>
+          <span>Toca para ver</span>
+        </div>
+
+        <!-- Bottom bar (like IG reels) -->
+        <div class="reels-bar">
+          <div class="reels-avatar">
+            <img src="yuly.webp" alt="Yuly" loading="lazy">
+          </div>
+          <span class="reels-username">@eternaluzacademy</span>
+        </div>
+
+        <!-- Side actions -->
+        <div class="reels-actions">
+          <div class="reels-action-btn">
+            <span class="reels-action-icon">❤️</span>
+            <span>Me gusta</span>
+          </div>
+          <div class="reels-action-btn">
+            <span class="reels-action-icon">💬</span>
+            <span>Comentar</span>
+          </div>
+          <div class="reels-action-btn">
+            <span class="reels-action-icon">↗️</span>
+            <span>Compartir</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1026,15 +1121,19 @@ var ro=new IntersectionObserver(function(entries){
 },{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
 
-// VIDEO TESTIMONIOS
+// VIDEO TESTIMONIOS — reels click
 var tw=document.getElementById('testimonios-wrapper');
 var tv=document.getElementById('video-testimonios');
 var po=document.getElementById('play-overlay');
 if(tw&&tv){
   tw.addEventListener('click',function(){
-    tv.play();
-    if(po)po.style.opacity='0';
-    setTimeout(function(){if(po)po.style.display='none';},400);
+    if(tv.paused){
+      tv.play();
+      if(po){po.style.opacity='0';setTimeout(function(){po.style.display='none';},350);}
+    } else {
+      tv.pause();
+      if(po){po.style.display='flex';setTimeout(function(){po.style.opacity='1';},10);}
+    }
   });
 }
 

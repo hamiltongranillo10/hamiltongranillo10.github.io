@@ -816,29 +816,33 @@ h3 {
   }
   .hero-desktop-left { text-align: left; }
   .hero-desktop-left h1 { text-align: left; font-size: 46px; }
+  .hero-desktop-left > div:first-child { text-align: left; }
   .hero-desktop-left .badge { margin-bottom: 20px; }
   .hero-desktop-left p { text-align: left !important; }
   .hero-desktop-left .price-block { text-align: left; }
-  .hero-desktop-left .price-new { font-size: 90px; }
-  .hero-desktop-left .price-pill { display: inline-block; }
-  .hero-desktop-left .timer-wrap { margin: 16px 0; justify-content: flex-start; }
-  .hero-desktop-left .btn { margin: 18px 0; width: auto; }
+  .hero-desktop-left .price-new { font-size: 90px; display: block; }
+  .hero-desktop-left .price-old { display: block; }
+  .hero-desktop-left .price-pill { display: inline-block; margin-top: 8px; }
+  .hero-desktop-left .timer-wrap { margin: 16px 0; justify-content: flex-start; width: fit-content; }
+  .hero-desktop-left .btn { margin: 18px 0; width: 100%; max-width: 420px; justify-content: center; }
   .hero-desktop-left .trust-badges { justify-content: flex-start !important; }
   .hero-desktop-left .hamilton-card { margin: 20px 0; max-width: 100%; }
-  .hero-desktop-left .btn-wa { margin: 0; }
+  .hero-desktop-left .btn-wa { margin: 0; justify-content: flex-start; }
   .hero-desktop-right .video-hero { margin: 0; border-radius: 20px; width: 100%; }
 
   /* Creator — horizontal layout */
   .creator-desktop {
-    display: flex !important;
+    display: grid !important;
+    grid-template-columns: 140px 1fr !important;
     align-items: center;
-    gap: 50px;
+    gap: 40px;
     text-align: left !important;
-    max-width: 1000px !important;
+    max-width: 860px !important;
     margin: 0 auto;
+    padding: 0 40px;
   }
-  .creator-desktop .creator-photo { flex-shrink: 0; width: 140px !important; height: 140px !important; margin: 0 !important; }
-  .creator-desktop div { flex: 1; }
+  .creator-desktop .creator-photo { width: 140px !important; height: 140px !important; margin: 0 !important; }
+  .creator-desktop .section-label { text-align: left !important; }
   .creator-desktop h2 { text-align: left !important; margin-bottom: 14px; }
   .creator-desktop p { text-align: left !important; }
 

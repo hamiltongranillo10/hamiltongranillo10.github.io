@@ -207,18 +207,18 @@ body {
 .hero-sub { font-size:15px; color:var(--ink-3); font-weight:400; margin-bottom:28px; line-height:1.6; }
 .hero-sub strong { color:var(--ink-2); font-weight:600; }
 
-/* PRICE */
+
 .price-row { margin-bottom:4px; }
 .top-price{display:block;margin-left:90px;}@media (min-width:768px){.top-price{margin-left:150px;}}
 .price-was { font-size:28px; font-weight:500; color:var(--ink-4); text-decoration:line-through; letter-spacing:1px; }
 .price-now { font-family:var(--ff-sans); font-size:clamp(72px,10vw,110px); font-weight:700; line-height:1; letter-spacing:-3px; background:linear-gradient(150deg,var(--gold-dk) 0%,var(--gold) 35%,var(--gold-lt) 55%,var(--gold) 75%,var(--gold-dk) 100%); background-size:220% auto; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; animation:shim 5s linear infinite; display:block; }
+.move-now{display:block;margin-left:20px;}@media (min-width:768px){.move-now{margin-left:0;}}
 .price-tag { display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg,rgba(74,124,89,.12),rgba(106,170,126,.07)); border:1px solid rgba(74,124,89,.25); color:var(--sage); border-radius:999px; padding:5px 16px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-top:8px; }
 
-/* TIMER */
 .timer-box { display:inline-flex; align-items:center; gap:9px; background:rgba(74,124,89,.07); border:1px solid rgba(74,124,89,.22); border-radius:999px; padding:10px 22px; font-size:13px; font-weight:700; color:var(--sage); text-transform:uppercase; letter-spacing:1.5px; margin:18px 0; }
 .timer-live { width:7px; height:7px; border-radius:50%; background:var(--sage-lt); animation:adk 1.5s infinite; }
 
-/* CTA */
+
 .btn-cta {
   display:flex; align-items:center; justify-content:center; gap:8px;
   text-decoration:none !important;
@@ -480,7 +480,7 @@ body {
 
        <div class="price-row">
   <span class="price-was top-price">$74 USD</span>
-  <span class="price-now">$37 USD</span>
+  <span class="price-now move-now">$37 USD</span>
   <span class="price-tag">🎉 Ahorras 50% — Solo hoy</span>
 </div>
         <div class="timer-box" id="timer1"><span class="timer-live"></span>Oferta termina en: 15:00</div>

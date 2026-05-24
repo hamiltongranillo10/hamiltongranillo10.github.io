@@ -126,31 +126,80 @@ body {
 @media(min-width:960px){ .hero-inner{ grid-template-columns:52% 48%; align-items:stretch; } }
 
 .hero-left { padding:clamp(32px,5vw,64px); display:flex; flex-direction:column; justify-content:center; }
-.hero-right { position:relative; min-height:340px; background:var(--ink); overflow:hidden; }
-@media(max-width:959px){ .hero-right{ border-radius:0 0 28px 28px; } }
-@media(min-width:960px){ .hero-right{ border-radius:0 28px 28px 0; min-height:auto; } }
+.hero-right {
+  position: relative;
+  background: linear-gradient(145deg, #1e1810 0%, #2a1e0e 60%, #1a1208 100%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 28px;
+  gap: 24px;
+  min-height: 340px;
+}
+@media(max-width:959px){ .hero-right{ border-radius:0 0 28px 28px; padding:28px 20px; } }
+@media(min-width:960px){ .hero-right{ border-radius:0 28px 28px 0; } }
 
-.hero-right video { width:100%; height:100%; object-fit:cover; display:block; opacity:.85; }
-.hero-right-overlay {
-  position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
-  padding:28px;
-  background:linear-gradient(to top, rgba(20,14,8,.75) 0%, rgba(20,14,8,.2) 50%, transparent 100%);
+/* Ambient glow inside hero-right */
+.hero-right::before {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,168,76,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(201,168,76,.08) 0%, transparent 60%);
   pointer-events:none;
 }
-.hero-right-label { font-family:var(--ff-serif); font-size:14px; color:rgba(255,245,210,.85); font-style:italic; letter-spacing:.5px; }
-.hero-play-btn {
-  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  width:70px; height:70px; border-radius:50%;
-  background:rgba(255,248,220,.15);
-  border:2px solid rgba(201,168,76,.8);
-  display:flex; align-items:center; justify-content:center;
-  font-size:24px; pointer-events:all; cursor:pointer;
-  box-shadow:0 0 0 10px rgba(201,168,76,.08), 0 0 40px rgba(201,168,76,.2);
-  animation:rng 3s ease-in-out infinite;
-  transition:transform .25s, background .25s;
+
+/* Video container — 16:9 */
+.hero-video-box {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid rgba(201,168,76,.25);
+  box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(201,168,76,.1);
+  aspect-ratio: 16 / 9;
+  z-index: 1;
 }
-.hero-play-btn:hover { transform:translate(-50%,-50%) scale(1.1); background:rgba(255,248,220,.25); }
-@keyframes rng { 0%,100%{box-shadow:0 0 0 10px rgba(201,168,76,.08),0 0 30px rgba(201,168,76,.18)} 50%{box-shadow:0 0 0 18px rgba(201,168,76,.04),0 0 50px rgba(201,168,76,.28)} }
+.hero-video-box video {
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+
+/* Decorative stats below video */
+.hero-deco-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  z-index: 1;
+}
+.hds-item {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(201,168,76,.18);
+  border-radius: 14px;
+  padding: 14px 10px;
+  text-align: center;
+  transition: background .3s, border-color .3s;
+}
+.hds-item:hover { background: rgba(201,168,76,.08); border-color: rgba(201,168,76,.35); }
+.hds-n { font-family: var(--ff-serif); font-size: 22px; font-weight: 700; color: var(--gold-lt); line-height: 1; }
+.hds-l { font-size: 10px; font-weight: 600; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+/* Label above video */
+.hero-video-label {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; color: rgba(255,245,210,.7);
+  z-index: 1;
+  width: 100%;
+}
+.hero-video-label::before, .hero-video-label::after {
+  content:''; flex:1; height:1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,.3));
+}
+.hero-video-label::after { background: linear-gradient(90deg, rgba(201,168,76,.3), transparent); }
 
 .hero-eyebrow { margin-bottom:18px; }
 .hero-h1 { font-family:var(--ff-serif); font-size:clamp(30px,4.5vw,52px); font-weight:900; line-height:1.15; color:var(--ink); margin-bottom:14px; }
@@ -462,14 +511,31 @@ body {
       </div>
 
       <!-- RIGHT: VIDEO -->
-      <div class="hero-right" id="video-wrap">
-        <video id="video1" preload="none" poster="portada.video.webp" style="width:100%;height:100%;object-fit:cover;display:block;">
-          <source src="https://eternaluzacademy.com/condena-video.mp4" type="video/mp4">
-        </video>
-        <div class="hero-right-overlay">
-          <span class="hero-right-label">Mira el curso por dentro</span>
+      <div class="hero-right">
+
+        <div class="hero-video-label">El curso por dentro</div>
+
+        <div class="hero-video-box">
+          <video id="video1" preload="none" poster="portada.video.webp" controls style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="https://eternaluzacademy.com/condena-video.mp4" type="video/mp4">
+          </video>
         </div>
-        <div class="hero-play-btn" id="hero-play">▶</div>
+
+        <div class="hero-deco-stats">
+          <div class="hds-item">
+            <div class="hds-n">9</div>
+            <div class="hds-l">Módulos</div>
+          </div>
+          <div class="hds-item">
+            <div class="hds-n">+500</div>
+            <div class="hds-l">Alumnas</div>
+          </div>
+          <div class="hds-item">
+            <div class="hds-n">7</div>
+            <div class="hds-l">Días garantía</div>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -488,7 +554,7 @@ body {
     </div>
     <div class="proof-sep"></div>
     <div class="proof-item">
-      <div class="proof-num">20</div>
+      <div class="proof-num">9</div>
       <div class="proof-txt">Módulos completos</div>
     </div>
     <div class="proof-sep"></div>
@@ -781,15 +847,8 @@ var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isInterse
 document.querySelectorAll('.rev').forEach(function(el){ro.observe(el);});
 
 // HERO VIDEO
-var hp=document.getElementById('hero-play'),v1=document.getElementById('video1');
-if(hp&&v1){
-  hp.addEventListener('click',function(){
-    v1.setAttribute('controls','');
-    v1.play();
-    hp.style.display='none';
-  });
-  v1.addEventListener('ended',function(){setTimeout(function(){v1.currentTime=0;},300);});
-}
+var v1=document.getElementById('video1');
+if(v1){v1.addEventListener('ended',function(){setTimeout(function(){v1.currentTime=0;},300);});}
 
 // REEL
 var rw=document.getElementById('reel-wrap'),rv=document.getElementById('reel-video'),ro2=document.getElementById('reel-overlay');

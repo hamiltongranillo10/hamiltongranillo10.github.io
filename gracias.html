@@ -1,353 +1,481 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>Gracias por tu guía</title>
+<title>Tu Bono Gratuito — Eternaluz Academy</title>
 
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-
-fbq('init', '1274753604821165');
-fbq('track', 'PageView');
-fbq('track', 'Lead');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1274753604821165');
+fbq('track','PageView');
+fbq('track','Lead');
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-body{
-margin:0;
-font-family:'Montserrat', sans-serif;
-background: linear-gradient(135deg,#f7f1e8,#e8dccb);
-color:#2b2b2b;
+:root {
+  --ivory:   #faf6ef;
+  --ivory-2: #f3ece0;
+  --ivory-3: #e8dece;
+  --gold:    #c9a84c;
+  --gold-lt: #e8c96a;
+  --gold-dk: #9a7530;
+  --gold-pale:#f5e9c8;
+  --ink:     #1e1810;
+  --ink-2:   #3d3020;
+  --ink-3:   #6b5840;
+  --ink-4:   #9e8870;
+  --sage:    #4a7c59;
+  --sage-lt: #6aaa7e;
+  --white:   #ffffff;
+  --ff-serif:'Playfair Display', Georgia, serif;
+  --ff-sans: 'DM Sans', sans-serif;
+  --ease:    cubic-bezier(.16,1,.3,1);
 }
 
-.container{
-max-width:800px;
-margin:auto;
-padding:40px 20px;
-text-align:center;
-position: relative;
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: var(--ff-sans);
+  background: var(--ivory);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.65;
+  min-height: 100vh;
 }
 
-h1{
-font-family:'Playfair Display', serif;
-font-size:34px;
-margin-bottom:10px;
-margin-top: 60px;
+/* AMBIENT */
+.amb { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+.amb-g { position:absolute; border-radius:50%; filter:blur(90px); animation:abr 14s ease-in-out infinite; }
+.a1 { width:600px; height:400px; background:radial-gradient(ellipse,rgba(201,168,76,.1) 0%,transparent 70%); top:-120px; right:-80px; }
+.a2 { width:500px; height:500px; background:radial-gradient(ellipse,rgba(232,222,206,.2) 0%,transparent 70%); bottom:5%; left:-100px; animation-delay:-6s; }
+@keyframes abr { 0%,100%{transform:scale(1);opacity:.8} 50%{transform:scale(1.1) translate(15px,-20px);opacity:1} }
+
+/* SCROLL BAR */
+#spb { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(--gold-dk),var(--gold),var(--gold-lt)); z-index:100000; width:0; transition:width .08s linear; box-shadow:0 0 8px rgba(201,168,76,.5); }
+
+/* WRAP */
+.wrap { position:relative; z-index:1; max-width:860px; margin:0 auto; padding:28px 20px 80px; }
+
+/* BACK BTN */
+.back-btn {
+  display:inline-flex; align-items:center; gap:7px;
+  text-decoration:none; color:var(--gold-dk);
+  font-size:13px; font-weight:700;
+  background:rgba(201,168,76,.1);
+  border:1px solid rgba(201,168,76,.25);
+  border-radius:999px; padding:8px 16px;
+  transition:all .3s; margin-bottom:32px;
 }
+.back-btn:hover { background:rgba(201,168,76,.18); transform:translateX(-3px); }
 
-p{
-font-size:18px;
-line-height:1.6;
+/* HERO GRACIAS */
+.hero-gracias {
+  text-align:center;
+  padding: clamp(40px,6vw,70px) clamp(24px,5vw,60px);
+  background: linear-gradient(150deg, var(--white) 0%, var(--ivory) 60%, var(--ivory-2) 100%);
+  border:1px solid rgba(201,168,76,.25);
+  border-radius:28px;
+  position:relative; overflow:hidden;
+  box-shadow:0 4px 40px rgba(201,168,76,.08), 0 1px 0 rgba(255,255,255,.95) inset;
 }
-
-.highlight{
-color:#b88a2a;
-font-weight:800;
+.hero-gracias::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold-dk),var(--gold),var(--gold-lt),var(--gold),var(--gold-dk),transparent);
+  background-size:200% auto; animation:shim 5s linear infinite;
 }
+@keyframes shim { 0%{background-position:0% center} 100%{background-position:200% center} }
 
-.box{
-background: rgba(255,255,255,0.75);
-backdrop-filter: blur(10px);
-border-radius:25px;
-padding:30px;
-margin-top:25px;
-box-shadow:0 20px 50px rgba(0,0,0,0.08);
-border:1px solid rgba(255,255,255,0.6);
+.confetti { font-size:40px; margin-bottom:16px; animation:bounce 2s ease-in-out infinite; display:block; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+.hero-gracias h1 {
+  font-family:var(--ff-serif);
+  font-size:clamp(28px,5vw,48px);
+  font-weight:900; line-height:1.15;
+  color:var(--ink); margin-bottom:14px;
 }
-
-.btn{
-display:inline-block;
-margin-top:20px;
-padding:18px 30px;
-border-radius:100px;
-text-decoration:none;
-font-weight:800;
-font-size:16px;
-color:white;
-background: linear-gradient(135deg, #d4af37, #b88a2a);
-box-shadow:0 10px 25px rgba(212,175,55,0.35);
-transition:0.3s;
-position:relative;
-overflow:hidden;
-border:none;
-cursor:pointer;
+.hero-gracias h1 em { font-style:italic; color:var(--gold-dk); }
+.hero-gracias p {
+  font-size:clamp(15px,2.5vw,17px);
+  color:var(--ink-3); max-width:520px;
+  margin:0 auto 28px; line-height:1.7;
 }
+.hero-gracias p strong { color:var(--ink-2); font-weight:600; }
 
-.btn:hover{
-transform:scale(1.05);
-box-shadow:0 15px 35px rgba(212,175,55,0.45);
+/* MAIN CTA BTN */
+.btn-main {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  text-decoration:none;
+  background:linear-gradient(135deg,var(--gold-dk) 0%,var(--gold) 40%,var(--gold-lt) 60%,var(--gold) 80%,var(--gold-dk) 100%);
+  background-size:280% auto;
+  color:var(--white) !important;
+  font-family:var(--ff-sans); font-weight:700;
+  font-size:clamp(15px,2.5vw,18px);
+  padding:clamp(16px,2vw,20px) clamp(28px,4vw,48px);
+  border-radius:999px; border:none; cursor:pointer;
+  position:relative; overflow:hidden;
+  transition:background-position .5s, transform .25s, box-shadow .25s;
+  box-shadow:0 8px 28px rgba(153,117,48,.38);
+  animation:ctp 3.5s ease-in-out infinite;
+  width:100%; max-width:400px;
 }
+.btn-main:hover { background-position:right center; transform:translateY(-3px); box-shadow:0 14px 40px rgba(153,117,48,.5); }
+.btn-main::after { content:''; position:absolute; top:0; left:-90%; width:35%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent); animation:bs 4s infinite; }
+@keyframes bs { 0%{left:-90%} 28%,100%{left:140%} }
+@keyframes ctp { 0%,100%{box-shadow:0 8px 28px rgba(153,117,48,.38)} 50%{box-shadow:0 12px 40px rgba(153,117,48,.55),0 0 0 7px rgba(153,117,48,.06)} }
 
-.btn::after{
-content:"";
-position:absolute;
-top:-50%;
-left:-100%;
-width:50%;
-height:200%;
-background:rgba(255,255,255,0.4);
-transform:rotate(25deg);
-animation:shine 3s infinite;
+/* SECONDARY BTN */
+.btn-sec {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  text-decoration:none;
+  background:transparent;
+  border:2px solid var(--gold);
+  color:var(--gold-dk) !important;
+  font-family:var(--ff-sans); font-weight:700;
+  font-size:clamp(14px,2vw,16px);
+  padding:clamp(14px,2vw,18px) clamp(24px,4vw,44px);
+  border-radius:999px; cursor:pointer;
+  transition:all .3s;
+  width:100%; max-width:400px;
 }
+.btn-sec:hover { background:rgba(201,168,76,.1); transform:translateY(-2px); }
 
-@keyframes shine{
-0%{left:-120%;}
-100%{left:150%;}
+/* SECTION CARD */
+.s-card {
+  background:var(--white);
+  border:1px solid rgba(201,168,76,.2);
+  border-radius:24px;
+  padding:clamp(28px,4vw,44px);
+  margin-top:20px;
+  position:relative; overflow:hidden;
+  box-shadow:0 2px 20px rgba(201,168,76,.06), 0 1px 0 rgba(255,255,255,.9) inset;
+  transition:border-color .3s, box-shadow .3s;
 }
+.s-card:hover { border-color:rgba(201,168,76,.35); box-shadow:0 8px 40px rgba(201,168,76,.1); }
+.s-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(255,245,180,.8),transparent); }
 
-.small{
-font-size:13px;
-opacity:0.8;
-margin-top:15px;
+.s-card h2 {
+  font-family:var(--ff-serif);
+  font-size:clamp(22px,3.5vw,30px);
+  font-weight:700; color:var(--ink);
+  margin-bottom:12px; line-height:1.2;
 }
+.s-card h2 em { font-style:italic; color:var(--gold-dk); }
+.s-card p { font-size:15px; color:var(--ink-3); line-height:1.7; margin-bottom:16px; }
+.s-card p:last-of-type { margin-bottom:0; }
+.s-card .highlight { color:var(--gold-dk); font-weight:700; }
 
-h2{
-font-family:'Playfair Display', serif;
+/* PASOS */
+.steps { display:grid; gap:14px; margin:20px 0; }
+.step {
+  display:flex; align-items:flex-start; gap:14px;
+  background:rgba(201,168,76,.05);
+  border:1px solid rgba(201,168,76,.15);
+  border-radius:16px; padding:16px 18px;
+  transition:border-color .3s, background .3s;
 }
-
-
-.back-btn-inicio {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    z-index: 10;
+.step:hover { background:rgba(201,168,76,.09); border-color:rgba(201,168,76,.3); }
+.step-num {
+  width:32px; height:32px; border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-dk),var(--gold));
+  color:var(--white); font-weight:800; font-size:14px;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
 }
+.step-txt strong { display:block; font-size:14px; font-weight:700; color:var(--ink-2); margin-bottom:3px; }
+.step-txt span { font-size:13px; color:var(--ink-3); line-height:1.5; }
 
-.back-btn-inicio svg {
-    width: 45px;
-    height: auto;
-    fill: none;
-    stroke: #b88a2a;
-    stroke-width: 2;
-    transform: rotate(-10deg);
+/* URGENCY CARD */
+.urgency-card {
+  background:linear-gradient(145deg,var(--ink) 0%,#2a1e0e 100%);
+  border-radius:24px;
+  padding:clamp(28px,4vw,44px);
+  margin-top:20px;
+  text-align:center;
+  position:relative; overflow:hidden;
+  box-shadow:0 10px 40px rgba(0,0,0,.2);
 }
+.urgency-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,transparent,var(--gold-dk),var(--gold),var(--gold-lt),var(--gold),var(--gold-dk),transparent); background-size:200% auto; animation:shim 4s linear infinite; }
+.urgency-card::after { content:''; position:absolute; bottom:-60px; right:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle,rgba(201,168,76,.1) 0%,transparent 65%); pointer-events:none; }
+.urgency-card h2 { font-family:var(--ff-serif); font-size:clamp(22px,3.5vw,32px); font-weight:700; color:var(--white); margin-bottom:10px; }
+.urgency-card h2 em { font-style:italic; color:var(--gold-lt); }
+.urgency-card p { font-size:15px; color:rgba(255,255,255,.65); line-height:1.7; margin-bottom:20px; max-width:480px; margin-left:auto; margin-right:auto; }
+.urgency-card .highlight { color:var(--gold-lt); font-weight:700; }
 
-.back-btn-inicio span {
-    font-size: 16px;
-    font-weight: 700;
-    color: #b88a2a;
-    font-style: italic;
-}
+/* PRICE ROW */
+.price-mini { display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom:20px; flex-wrap:wrap; }
+.pm-was { font-size:18px; color:rgba(255,255,255,.35); text-decoration:line-through; font-weight:500; }
+.pm-now { font-family:var(--ff-sans); font-size:clamp(42px,8vw,64px); font-weight:900; line-height:1; background:linear-gradient(150deg,var(--gold-dk),var(--gold),var(--gold-lt)); background-size:220% auto; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; animation:shim 5s linear infinite; }
+.pm-tag { background:rgba(74,124,89,.2); border:1px solid rgba(74,124,89,.4); color:#6aaa7e; border-radius:999px; padding:4px 14px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
 
+/* BADGE */
+.badge { display:inline-flex; align-items:center; gap:7px; background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.35); border-radius:999px; padding:5px 15px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--gold-dk); margin-bottom:16px; }
+.badge-dot { width:5px; height:5px; border-radius:50%; background:var(--gold); animation:adk 2s infinite; }
+@keyframes adk { 0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.5)} 60%{box-shadow:0 0 0 6px rgba(201,168,76,0)} }
 
+/* DIVIDER */
+.div-line { position:relative; height:28px; margin:40px 0; display:flex; align-items:center; justify-content:center; }
+.div-line::before { content:''; position:absolute; top:50%; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(201,168,76,.3),var(--gold-dk),rgba(201,168,76,.3),transparent); transform:translateY(-50%); }
+.div-line::after { content:'🕯'; font-size:16px; position:relative; z-index:1; background:var(--ivory); padding:0 14px; filter:drop-shadow(0 0 4px rgba(201,168,76,.35)); }
+
+/* TRUST ROW */
+.trust-row { display:flex; flex-wrap:wrap; justify-content:center; gap:10px 22px; margin-top:16px; }
+.trust-item { display:flex; align-items:center; gap:6px; font-size:12px; font-weight:500; color:rgba(255,255,255,.5); }
+
+/* REVEAL */
+.rev { opacity:0; transform:translateY(24px); transition:opacity .6s ease,transform .6s var(--ease); }
+.rev.on { opacity:1; transform:translateY(0); }
+.rev-d1 { transition-delay:.1s; } .rev-d2 { transition-delay:.2s; }
+
+/* ══════════════════════════
+   MODAL
+══════════════════════════ */
 .modal-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.9); 
-    z-index: 99999;
-    display: none;
-    justify-content: center;
-    align-items: center;
+  position:fixed; inset:0;
+  background:rgba(10,8,5,.88);
+  z-index:99999; display:none;
+  justify-content:center; align-items:center;
+  backdrop-filter:blur(6px);
+  padding:16px;
 }
+.modal-overlay.open { display:flex; }
+.modal-box {
+  background:var(--white);
+  width:100%; max-width:460px;
+  border-radius:24px;
+  position:relative;
+  border:1px solid rgba(201,168,76,.25);
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
+  overflow:hidden;
+  max-height:90vh;
+  display:flex; flex-direction:column;
+}
+.modal-header {
+  background:linear-gradient(135deg,var(--ivory),var(--ivory-2));
+  border-bottom:1px solid rgba(201,168,76,.15);
+  padding:18px 22px;
+  display:flex; align-items:center; justify-content:space-between;
+  flex-shrink:0;
+}
+.modal-header h3 { font-family:var(--ff-serif); font-size:20px; font-weight:700; color:var(--ink); }
+.modal-close { width:32px; height:32px; border-radius:50%; border:1px solid rgba(201,168,76,.3); background:transparent; color:var(--gold-dk); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+.modal-close:hover { background:rgba(201,168,76,.12); }
+.modal-body { overflow-y:auto; padding:24px; flex:1; -webkit-overflow-scrolling:touch; }
+.modal-body img { width:100%; display:block; margin-bottom:14px; border-radius:12px; border:1px solid rgba(201,168,76,.15); }
 
-.modal-content {
-    background: #f4f1ea;
-    width: 95%;
-    max-width: 500px;
-    border-radius: 20px;
-    position: relative;
-    padding: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    max-height: 85vh;
-    display: flex;
-    flex-direction: column;
+/* EMAIL INPUT */
+.email-form { margin-top:8px; }
+.email-form p { font-size:14px; color:var(--ink-3); text-align:center; line-height:1.6; margin-bottom:6px; }
+.email-form .subtext { font-size:12px; color:var(--gold-dk); font-weight:500; text-align:center; margin-bottom:16px; }
+.email-input {
+  width:100%; padding:14px 20px;
+  border-radius:999px;
+  border:1.5px solid rgba(201,168,76,.4);
+  font-family:var(--ff-sans); font-size:15px;
+  background:var(--ivory); color:var(--ink);
+  text-align:center; outline:none;
+  transition:border-color .3s;
+  margin-bottom:12px;
 }
+.email-input:focus { border-color:var(--gold); }
 
-.close-header {
-    position: sticky;
-    top: -20px;
-    background: #f4f1ea;
-    padding: 10px 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: flex-end;
-    border-bottom: 1px solid rgba(184, 138, 42, 0.1);
-    margin: -20px -20px 10px -20px;
-    padding-right: 20px;
-    border-radius: 20px 20px 0 0;
-}
-
-.close-btn {
-    font-size: 18px;
-    color: #b88a2a;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.modal-body {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.modal-body img {
-    width: 100%;
-    display: block;
-    margin-bottom: 15px;
-    border-radius: 10px;
-}
-
-.input-email {
-    width: 100%;
-    padding: 15px;
-    margin-top: 15px;
-    border-radius: 100px;
-    border: 1px solid #d4af37;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.stop-scrolling {
-    height: 100%;
-    overflow: hidden !important;
-}
+/* NO SCROLL */
+.noscroll { overflow:hidden !important; }
 </style>
 </head>
-
 <body>
 
-<div id="main-site">
-    <div class="container">
-        <div class="back-btn-inicio" onclick="window.location.href='https://hamiltongranillo10.github.io/'">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 12H5M11 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M19 12c-1.5 0-3-.5-4-1.5S12.5 8 11 6" stroke-width="1" opacity="0.5"/>
-                <path d="M11 18c1.5 0 3 .5 4 1.5s2.5 2.5 4 4" stroke-width="1" opacity="0.5"/>
-            </svg>
-            <span>Inicio</span>
-        </div>
+<div class="amb"><div class="amb-g a1"></div><div class="amb-g a2"></div></div>
+<div id="spb"></div>
 
-        <h1 id="tituloPrincipal">🎉 Felicidades Tu bono ya está listo</h1>
-        <p id="textoSecundario">Ya diste el primer paso para crear <span class="highlight">velas de gel desde cero</span></p>
+<main class="wrap">
 
-        <div class="box">
-            <p>Aquí tienes tu guía gratuita con materiales exactos y paso a paso real.</p>
-            <button onclick="abrirRegistro()" class="btn">📥 LEER MI GUÍA GRATIS</button>
-            <p style="margin-top:15px;">Pero lo más importante no es hacer velas…</p>
-            <p class="highlight">Es saber cómo convertirlas en ingresos reales.</p>
-            <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">🔥 QUIERO APRENDER A VENDER MIS VELAS</a>
-            <p class="small">Este es el siguiente paso si quieres resultados reales</p>
-        </div>
+  <!-- BACK -->
+  <a href="https://hamiltongranillo10.github.io/" class="back-btn">
+    ← Volver al inicio
+  </a>
 
-        <div class="box">
-            <h2>✨ ¿Quieres ir más allá?</h2>
-            <p>Si te gustó la guía gratuita, este es el siguiente nivel.</p>
-            <p class="highlight">Guía Práctica: Diseña y Crea Velas Artesanales desde Cero</p>
-            <p>Aprende el proceso completo paso a paso para crear velas más profesionales.</p>
-            <a class="btn" href="https://go.hotmart.com/G105542674I?ap=5742" target="_blank">🔥 ACCEDER A LA GUÍA COMPLETA</a>
-        </div>
+  <!-- ═══ HERO ═══ -->
+  <div class="hero-gracias rev">
+    <span class="confetti">🎉</span>
+    <span class="badge"><span class="badge-dot"></span>Bono Desbloqueado</span>
+    <h1 id="tituloPrincipal">¡Tu bono gratuito <em>ya está listo!</em></h1>
+    <p id="textoSecundario">Diste el primer paso. Ahora descarga tu guía y descubre cómo crear <strong>velas de gel desde cero</strong> — el mismo método que usa Yuly para generar ingresos reales desde casa.</p>
+    <button onclick="abrirRegistro()" class="btn-main">📥 DESCARGAR MI GUÍA GRATIS</button>
+    <p style="font-size:12px;color:var(--ink-4);margin-top:12px;">✓ Gratis · ✓ Acceso inmediato · ✓ Sin tarjeta</p>
+  </div>
 
-        <div class="box">
-            <h2>🚀 Antes de empezar</h2>
-            <p>Hacer velas es fácil.</p>
-            <p>Lo difícil es venderlas.</p>
-            <p class="highlight">Ahí está el dinero real.</p>
-            <a class="btn" href="https://go.hotmart.com/L104931361I?ap=329d">🔥 QUIERO APRENDER A VENDER MIS VELAS</a>
+  <!-- ═══ PASOS ═══ -->
+  <div class="s-card rev rev-d1" style="margin-top:28px;">
+    <h2>Así funciona tu <em>bono</em></h2>
+    <p>En 3 simples pasos tendrás tu guía y estarás creando tu primera vela:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-txt">
+          <strong>Descarga la guía gratis</strong>
+          <span>Ingresa tu email y accede al paso a paso para crear tu primera vela de gel.</span>
         </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-txt">
+          <strong>Consigue los materiales</strong>
+          <span>La guía incluye la lista exacta de lo que necesitas y dónde conseguirlo barato.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-txt">
+          <strong>Crea tu primera vela</strong>
+          <span>Sigue el proceso y ten tu primera vela lista — luego aprende a venderla.</span>
+        </div>
+      </div>
     </div>
-</div>
+    <button onclick="abrirRegistro()" class="btn-main" style="margin-top:8px;">📥 QUIERO MI GUÍA AHORA</button>
+  </div>
 
+  <div class="div-line"></div>
+
+  <!-- ═══ SIGUIENTE NIVEL ═══ -->
+  <div class="s-card rev">
+    <h2>¿Quieres ir al <em>siguiente nivel?</em></h2>
+    <p>La guía te enseña a hacer velas. Pero hacer velas es solo la mitad.</p>
+    <p class="highlight">La otra mitad — la que genera el dinero real — es saber cómo venderlas.</p>
+    <p>Con el curso completo de Eternaluz Academy aprenderás exactamente eso: un sistema paso a paso para crear velas artesanales premium y convertirlas en un negocio rentable desde casa.</p>
+
+    <div style="display:grid;gap:10px;margin:20px 0;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-2);font-weight:500;"><span style="color:var(--gold-dk);">✦</span> 9 módulos completos con técnicas en tendencia</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-2);font-weight:500;"><span style="color:var(--gold-dk);">✦</span> Proveedores por país para conseguir materiales baratos</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-2);font-weight:500;"><span style="color:var(--gold-dk);">✦</span> Clases privadas en vivo al mes</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-2);font-weight:500;"><span style="color:var(--gold-dk);">✦</span> Grupo VIP privado con soporte directo</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-2);font-weight:500;"><span style="color:var(--gold-dk);">✦</span> Certificado oficial al finalizar</div>
+    </div>
+
+    <a href="https://go.hotmart.com/L104931361I?ap=329d" class="btn-main">🔥 QUIERO APRENDER A VENDER MIS VELAS</a>
+    <p style="font-size:12px;color:var(--ink-4);margin-top:10px;text-align:center;">Solo $37 USD · Garantía 7 días · Acceso inmediato</p>
+  </div>
+
+  <!-- ═══ GUÍA COMPLETA ═══ -->
+  <div class="s-card rev rev-d1">
+    <h2>¿Ya tienes la guía básica? <em>Sube de nivel</em></h2>
+    <p>La <strong>Guía Práctica Completa: Diseña y Crea Velas Artesanales desde Cero</strong> te lleva más lejos con técnicas más profesionales y acabados premium.</p>
+    <p>Perfecta para cuando ya hiciste tu primera vela y quieres crear productos que puedas vender a mayor precio.</p>
+    <a href="https://go.hotmart.com/G105542674I?ap=5742" target="_blank" class="btn-sec" style="margin-top:8px;">📖 VER GUÍA COMPLETA</a>
+  </div>
+
+  <!-- ═══ URGENCY CTA ═══ -->
+  <div class="urgency-card rev">
+    <span class="badge" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:var(--gold-lt);"><span class="badge-dot"></span>Oferta Activa</span>
+    <h2>Hacer velas es fácil.<br><em>Venderlas es donde está el dinero.</em></h2>
+    <p>Miles de mujeres hacen velas en casa. Las que realmente generan ingresos son las que aprendieron el sistema completo de creación <span class="highlight">y</span> venta.</p>
+    <div class="price-mini">
+      <span class="pm-was">$74 USD</span>
+      <span class="pm-now">$37</span>
+      <span class="pm-tag">Hoy -50%</span>
+    </div>
+    <a href="https://go.hotmart.com/L104931361I?ap=329d" class="btn-main" style="margin:0 auto;">✨ SÍ, QUIERO EL CURSO COMPLETO</a>
+    <div class="trust-row" style="margin-top:16px;">
+      <div class="trust-item">🔒 Pago seguro</div>
+      <div class="trust-item">♾️ Acceso de por vida</div>
+      <div class="trust-item">↩️ Garantía 7 días</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══ MODAL EMAIL ═══ -->
 <div id="modalRegistro" class="modal-overlay">
-    <div class="modal-content" style="height: auto;">
-        <div class="close-header">
-            <span class="close-btn" onclick="cerrarTodo()">&times;</span>
-        </div>
-        <div class="modal-body" style="overflow: visible;">
-            <h2 style="margin-top:0; text-align:center;">✨ ¡Casi listo!</h2>
-            <p style="text-align:center; margin-bottom: 5px;">Ingresa tu email para desbloquear la guía y recibir tu <b>Manual de Regalo</b>.</p>
-            <p style="text-align:center; font-size: 14px; color: #b88a2a; font-weight: 500; margin-top: 0;">
-                (Nuestro asesor Hamilton se encargará de hacerte llegar tu manual de regalo a tu correo de forma inmediata)
-            </p>
-            <form id="formEmails">
-                <input type="email" name="email" class="input-email" placeholder="Correo electronico" required>
-                <button type="submit" class="btn" style="width:100%; border:none; cursor:pointer;">DESBLOQUEAR AHORA</button>
-            </form>
-        </div>
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>✨ ¡Casi listo!</h3>
+      <button class="modal-close" onclick="cerrarTodo()">×</button>
     </div>
+    <div class="modal-body">
+      <div class="email-form">
+        <p>Ingresa tu email para desbloquear tu guía gratuita y recibir tu <strong>Manual de Regalo</strong>.</p>
+        <p class="subtext">Nuestro asesor Hamilton te enviará el manual a tu correo de inmediato 🎁</p>
+        <form id="formEmails">
+          <input type="email" name="email" class="email-input" placeholder="Tu correo electrónico" required>
+          <button type="submit" class="btn-main" style="margin:0 auto;">DESBLOQUEAR MI GUÍA</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
+<!-- ═══ MODAL GUÍA ═══ -->
 <div id="modalGuia" class="modal-overlay">
-    <div class="modal-content">
-        <div class="close-header">
-            <span class="close-btn" onclick="cerrarTodo()">&times; Cerrar Guía</span>
-        </div>
-        <div class="modal-body">
-            <img src="guia1.jpg" alt="Pág 1">
-            <img src="guia2.jpg" alt="Pág 2">
-            <img src="guia3.jpg" alt="Pág 3">
-            <img src="guia4.jpg" alt="Pág 4">
-            <img src="guia5.jpg" alt="Pág 5">
-            <img src="guia6.jpg" alt="Pág 6">
-        </div>
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>📖 Tu Guía Gratuita</h3>
+      <button class="modal-close" onclick="cerrarTodo()">× Cerrar</button>
     </div>
+    <div class="modal-body">
+      <img src="guia1.jpg" alt="Guía pág 1">
+      <img src="guia2.jpg" alt="Guía pág 2">
+      <img src="guia3.jpg" alt="Guía pág 3">
+      <img src="guia4.jpg" alt="Guía pág 4">
+      <img src="guia5.jpg" alt="Guía pág 5">
+      <img src="guia6.jpg" alt="Guía pág 6">
+    </div>
+  </div>
 </div>
 
 <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbyRjj6T0uxc_yZ43ScUq_KD20C8uO3qI5RSWzxSZIw4W-qqoBXRGcNdRvSDoF2d74t9mQ/exec'; 
-const form = document.getElementById('formEmails');
+// SCROLL BAR
+window.addEventListener('scroll',function(){
+  document.getElementById('spb').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';
+},{passive:true});
 
-function abrirRegistro() {
-    if (localStorage.getItem('registroHecho') === 'true') {
-        mostrarGuiaFinal(); 
-    } else {
-        document.getElementById("modalRegistro").style.display = "flex";
-        document.body.classList.add("stop-scrolling");
-    }
+// REVEAL
+var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('on');ro.unobserve(x.target);}});},{threshold:.1});
+document.querySelectorAll('.rev').forEach(function(el){ro.observe(el);});
+
+// GOOGLE SHEETS
+var scriptURL='https://script.google.com/macros/s/AKfycbyRjj6T0uxc_yZ43ScUq_KD20C8uO3qI5RSWzxSZIw4W-qqoBXRGcNdRvSDoF2d74t9mQ/exec';
+var form=document.getElementById('formEmails');
+
+function abrirRegistro(){
+  if(localStorage.getItem('registroHecho')==='true'){
+    mostrarGuia();
+  } else {
+    document.getElementById('modalRegistro').classList.add('open');
+    document.body.classList.add('noscroll');
+  }
 }
 
-function mostrarGuiaFinal() {
-    document.getElementById("modalRegistro").style.display = "none";
-    document.getElementById("modalGuia").style.display = "flex";
-    document.body.classList.add("stop-scrolling");
-    window.scrollTo(0,0);
-    document.getElementById("tituloPrincipal").innerText = "📖 Tu Guía Gratuita";
-    document.getElementById("textoSecundario").style.display = "none";
+function mostrarGuia(){
+  document.getElementById('modalRegistro').classList.remove('open');
+  document.getElementById('modalGuia').classList.add('open');
+  document.body.classList.add('noscroll');
+  document.getElementById('tituloPrincipal').innerHTML='📖 Tu <em>Guía Gratuita</em>';
+  document.getElementById('textoSecundario').style.display='none';
 }
 
-function cerrarTodo() {
-    document.getElementById("modalRegistro").style.display = "none";
-    document.getElementById("modalGuia").style.display = "none";
-    document.body.classList.remove("stop-scrolling");
-    document.getElementById("tituloPrincipal").innerText = "🎉 Felicidades Tu bono ya está listo";
-    document.getElementById("textoSecundario").style.display = "block";
+function cerrarTodo(){
+  document.getElementById('modalRegistro').classList.remove('open');
+  document.getElementById('modalGuia').classList.remove('open');
+  document.body.classList.remove('noscroll');
+  document.getElementById('tituloPrincipal').innerHTML='¡Tu bono gratuito <em>ya está listo!</em>';
+  document.getElementById('textoSecundario').style.display='block';
 }
 
-form.addEventListener('submit', e => {
-    e.preventDefault();
-    const btn = form.querySelector('button');
-    btn.innerText = "Cargando guía...";
-    btn.disabled = true;
-
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    .then(response => { 
-        localStorage.setItem('registroHecho', 'true');
-        mostrarGuiaFinal(); 
-    })
-    .catch(error => { 
-        localStorage.setItem('registroHecho', 'true');
-        mostrarGuiaFinal();
-    });
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var btn=form.querySelector('button');
+  btn.textContent='Cargando guía...';
+  btn.disabled=true;
+  fetch(scriptURL,{method:'POST',body:new FormData(form)})
+    .then(function(){localStorage.setItem('registroHecho','true');mostrarGuia();})
+    .catch(function(){localStorage.setItem('registroHecho','true');mostrarGuia();});
 });
-
-    
 </script>
-    
 </body>
 </html>

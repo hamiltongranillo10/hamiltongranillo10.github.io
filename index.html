@@ -127,7 +127,7 @@ body {
 .hero-left { padding:clamp(32px,5vw,64px); display:flex; flex-direction:column; justify-content:center; }
 .hero-right {
   position: relative;
-  background: linear-gradient(145deg, rgba(30,24,16,0.25) 0%, rgba(42,30,14,0.25) 60%, rgba(26,18,8,0.25) 100%);
+  background: linear-gradient(145deg, rgba(30,24,16,0.90) 0%, rgba(42,30,14,0.90) 60%, rgba(26,18,8,0.90) 100%);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -484,9 +484,10 @@ body {
 
       
        <div class="hero-right">
-       <img src="vela-negra.jpg" alt="Vela" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.2;filter:brightness(0.6);z-index:0;">
-
-        <div class="hero-video-label">El curso por dentro</div>
+         
+        <img src="vela-negra.jpg" alt="Vela" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;filter:brightness(1.2) saturate(0.8);mix-blend-mode:overlay;z-index:0;display:none;" class="hero-bg-img"> 
+       
+         <div class="hero-video-label">El curso por dentro</div>
 
         <div class="hero-video-box">
           <video id="video1" preload="none" poster="portada.video.webp" controls style="width:100%;height:100%;object-fit:cover;display:block;">

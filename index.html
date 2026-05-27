@@ -415,7 +415,7 @@ p,span,a,div,button,input { font-family: var(--ff-sans); }
 @media(min-width:960px){ .sec{ margin:90px 0; } }
 
 
-/* MÓVIL */
+
 .vela-svg{
   width:240px;
   height:260px;
@@ -430,7 +430,7 @@ p,span,a,div,button,input { font-family: var(--ff-sans); }
   min-height:220px;
 }
 
-/* PC */
+
 @media(min-width:768px){
 
   .vela-svg{
@@ -519,37 +519,37 @@ p,span,a,div,button,input { font-family: var(--ff-sans); }
       
       <div class="hero-right">
 
-<!-- VELA -->
+
 <div class="vela-container">
 
   <svg class="vela-svg" viewBox="0 0 90 220" fill="none" xmlns="http://www.w3.org/2000/svg">
 
-    <!-- Llama -->
+    
     <path d="M45 8 C42 14 36 18 36 26 C36 33 40 38 45 38 C50 38 54 33 54 26 C54 18 48 14 45 8Z"
       stroke="rgba(232,201,106,0.9)"
       stroke-width="1.8"
       fill="none"
       stroke-linecap="round"/>
 
-    <!-- Mecha -->
+    
     <line x1="45" y1="38" x2="45" y2="46"
       stroke="rgba(232,201,106,0.7)"
       stroke-width="1.5"
       stroke-linecap="round"/>
 
-    <!-- Cuerpo vela -->
+   
     <rect x="30" y="46" width="30" height="70" rx="4"
       stroke="rgba(232,201,106,0.65)"
       stroke-width="1.8"
       fill="none"/>
 
-    <!-- Base -->
+   
     <rect x="24" y="116" width="42" height="8" rx="3"
       stroke="rgba(232,201,106,0.55)"
       stroke-width="1.6"
       fill="none"/>
 
-    <!-- Glow -->
+    
     <circle cx="45" cy="25" r="18"
       fill="rgba(232,201,106,0.08)"/>
 
@@ -1042,33 +1042,40 @@ document.querySelectorAll('[id^="wa"]').forEach(function(b){b.addEventListener('
   var inpEl  = document.getElementById('el-inp');
   var opened = false;
 
-  // Guarda todas las opciones que ya tocó el usuario
+  
   var usadas = [];
 
-  // Todas las opciones disponibles
+  
   var TODAS = ['💰 Precio','🛡 Garantía','🛒 ¿Cómo compro?','📦 ¿Qué incluye?','💬 Hablar con Hamilton'];
 
-  // Fases del saludo inicial
-  var fase = 'inicio'; // inicio → pidio_nombre → pidio_motivo → listo
+  
+  var fase = 'inicio'; 
   var nombre = '';
 
   fab.onclick = function(){ if(!opened){ abrir(); } else { cerrar(); } };
   document.getElementById('el-close').onclick = cerrar;
 
   function abrir(){
-    opened = true;
-    box.classList.add('open');
-    fab.innerHTML = '✕';
-    badge.style.display = 'none';
-    reiniciar();
-  }
+  opened = true;
+  box.classList.add('open');
 
-  function cerrar(){
-    opened = false;
-    box.classList.remove('open');
-    fab.innerHTML = '🕯<span id="el-badge" style="display:none">1</span>';
-    badge = document.getElementById('el-badge');
-  }
+ 
+  fab.style.display = 'none';
+
+  badge.style.display = 'none';
+  reiniciar();
+}
+
+function cerrar(){
+  opened = false;
+  box.classList.remove('open');
+
+  
+  fab.style.display = 'flex';
+
+  fab.innerHTML = '🕯<span id="el-badge" style="display:none">1</span>';
+  badge = document.getElementById('el-badge');
+}
 
   function reiniciar(){
     msgsEl.innerHTML = '';
@@ -1083,7 +1090,7 @@ document.querySelectorAll('[id^="wa"]').forEach(function(b){b.addEventListener('
     }, 320);
   }
 
-  // ── HELPERS ──
+ 
   function scroll(){ msgsEl.scrollTop = msgsEl.scrollHeight; }
 
   function typing(id){
@@ -1115,7 +1122,7 @@ document.querySelectorAll('[id^="wa"]').forEach(function(b){b.addEventListener('
     r.appendChild(b); r.appendChild(av); msgsEl.appendChild(r); scroll();
   }
 
-  // Muestra solo las opciones que NO se han usado aún
+  
   function chipsDisponibles(){
     chipsEl.innerHTML='';
     var disponibles = TODAS.filter(function(t){ return usadas.indexOf(t) === -1; });
@@ -1144,10 +1151,10 @@ document.querySelectorAll('[id^="wa"]').forEach(function(b){b.addEventListener('
     return img;
   }
 
-  // ── FLUJO DE EMPATÍA INICIAL ──
+  
   function flujoInicial(txt){
 
-    // Paso 1: recibe el nombre
+    
     if(fase === 'pidio_nombre'){
       nombre = extraerNombre(txt);
       fase = 'pidio_motivo';
@@ -1160,7 +1167,7 @@ document.querySelectorAll('[id^="wa"]').forEach(function(b){b.addEventListener('
       return true;
     }
 
-    // Paso 2: recibe la motivación y pasa al menú
+    
     if(fase === 'pidio_motivo'){
       var low = txt.toLowerCase();
       var respMotiv = '';
@@ -1193,7 +1200,7 @@ document.querySelectorAll('[id^="wa"]').forEach(function(b){b.addEventListener('
     return false;
   }
 
-  // ── RESPUESTAS DE DUDAS ──
+  
   var R = {
 
     precio: function(){
@@ -1240,7 +1247,7 @@ document.querySelectorAll('[id^="wa"]').forEach(function(b){b.addEventListener('
               typing('t3');
               go(function(){
                 rmT('t3');
-                bot('⭐ <strong>Importante:</strong> cuando llegue tu confirmación, envía una captura a Hamilton por WhatsApp — por si no sabes como entrar, el te guia paso a paso para que accedas a curso. 📸', [
+                bot('⭐ <strong>Importante:</strong> cuando llegue tu confirmación, envía una captura a Hamilton por WhatsApp — por si no sabes como entrar, el te guia paso a paso para que accedas al curso. 📸', [
                   {t:'🚀 Comprar ahora', u:HM, cl:'gold'},
                   {t:'💬 WhatsApp de Hamilton', u:WA, cl:'green'}
                 ]);
@@ -1257,7 +1264,7 @@ document.querySelectorAll('[id^="wa"]').forEach(function(b){b.addEventListener('
       noChips(); typing();
       go(function(){
         rmT();
-        bot('✅ +60 clases en video a tu ritmo<br>✅ MODULO 1: Bienvenida<br>✅ MODULO 2: Herramientas, materiales y medidas de seguridad <br>✅ MODULO 3: Conociendo las ceras<br>✅ MODULO 4: Como darle color y aroma a tus velas<br>✅ MODULO 5: Pabilos y aditivos<br>✅ MODULO 6: Curación y quemado<br>✅ MODULO 7: Lo que necesitas saber sobre los moldes<br>✅MODULO 8: Preguntas frecuentes<br>✅MODULO 9: Comenzamos con la practica<br>✅MODULO 10: Velas tipo postre o reposteras<br>✅MODULO 11: Velas con cera de arena<br>✅MODULO 12: Aprende a elaborar otros tipos de velas<br>✅MODULO 13: Aprende a sacar tus costos, cuánto cobrar por tus velas<br>✅ MODULO 14: Clases especiales<br>✅ MODULO 15: Bonos<br>✅ MODULO 16: Flores pétalo a pétalo<br>✅MODULO 17: Velas navideñas<br>✅MODULO 18: Velas premium<br>✅MODULO 19: Aprende a elaborar jabones de glicerina<br>✅MODULO 20: Despedida<br>✅', [
+        bot('✅ +60 clases en video a tu ritmo<br>✅ MODULO 1: Bienvenida<br>✅ MODULO 2: Herramientas, materiales y medidas de seguridad <br>✅ MODULO 3: Conociendo las ceras<br>✅ MODULO 4: Como darle color y aroma a tus velas<br>✅ MODULO 5: Pabilos y aditivos<br>✅ MODULO 6: Curación y quemado<br>✅ MODULO 7: Lo que necesitas saber sobre los moldes<br>✅MODULO 8: Preguntas frecuentes<br>✅MODULO 9: Comenzamos con la practica<br>✅MODULO 10: Velas tipo postre o reposteras<br>✅MODULO 11: Velas con cera de arena<br>✅MODULO 12: Aprende a elaborar otros tipos de velas<br>✅MODULO 13: Aprende a sacar tus costos, cuánto cobrar por tus velas<br>✅ MODULO 14: Clases especiales<br>✅ MODULO 15: Bonos<br>✅ MODULO 16: Flores pétalo a pétalo<br>✅MODULO 17: Velas navideñas<br>✅MODULO 18: Velas premium<br>✅MODULO 19: Aprende a elaborar jabones de glicerina<br>✅MODULO 20: Despedida<br>', [
           {t:'🚀 Inscribirme por 37 USD', u:HM, cl:'gold'}
         ]);
         chipsDisponibles();
@@ -1287,7 +1294,7 @@ document.querySelectorAll('[id^="wa"]').forEach(function(b){b.addEventListener('
           typing('t2');
           go(function(){
             rmT('t2');
-            bot('Al finalizar recibirás tus accesos por email. Luego <strong>envía la captura de confirmación a Hamilton</strong> para que te guie mejor al ingresar a curso 📸', [
+            bot('Al finalizar recibirás tus accesos por email. Luego <strong>envía la captura de confirmación a Hamilton</strong> para que te guie paso a paso como acceder al curso 📸', [
               {t:'💬 WhatsApp de Hamilton', u:WA, cl:'green'}
             ]);
             chipsDisponibles();
@@ -1308,7 +1315,7 @@ document.querySelectorAll('[id^="wa"]').forEach(function(b){b.addEventListener('
     }
   };
 
-  // ── DETECTAR INTENCIÓN ──
+  
   function detectar(txt){
     var t = txt.toLowerCase();
     if(tiene(t,['precio','costo','cuánto','cuanto','37','74','oferta','vale','cuesta'])) return 'precio';
@@ -1320,17 +1327,17 @@ document.querySelectorAll('[id^="wa"]').forEach(function(b){b.addEventListener('
     return 'fallback';
   }
 
-  // ── ENTRADA PRINCIPAL ──
+ 
   function send(txt){
     if(!txt||!txt.trim()) return;
     user(txt); inpEl.value=''; noChips();
 
-    // Si estamos en el flujo inicial de empatía, lo manejamos ahí
+    
     if(fase !== 'listo'){
       if(flujoInicial(txt)) return;
     }
 
-    // Si ya pasó el flujo inicial, respondemos dudas normalmente
+    
     R[detectar(txt)]();
   }
 

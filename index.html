@@ -177,6 +177,77 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+
+<style>
+.testi-quote{
+  display:-webkit-box;
+  -webkit-line-clamp:4;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  transition:all .3s ease;
+}
+.testi-quote.expanded{
+  display:block;
+  -webkit-line-clamp:unset;
+}
+.ver-mas{
+  background:none;
+  border:none;
+  color:var(--rojo);
+  font-size:.82rem;
+  font-weight:600;
+  cursor:pointer;
+  padding:6px 0 0;
+  display:block;
+  letter-spacing:1px;
+  font-family:'Inter',sans-serif;
+}
+.ver-mas:hover{color:#aa0000}
+</style>
+<style>
+.testi-quote{max-height:6.5em;overflow:hidden;position:relative;transition:max-height .4s ease}
+.testi-quote.expanded{max-height:2000px}
+.ver-mas{background:none;border:none;color:#CC0000;font-size:.8rem;font-weight:700;cursor:pointer;padding:6px 0 0;display:inline-block;letter-spacing:1px;font-family:"Inter",sans-serif;text-transform:uppercase}
+.ver-mas:hover{color:#aa0000}
+</style>
+
+<style>
+.whatsapp-btn{
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  z-index:1000;
+  background:#25D366;
+  color:#fff;
+  border-radius:50px;
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  font-family:"Inter",sans-serif;
+  font-size:.85rem;
+  font-weight:700;
+  box-shadow:0 4px 20px rgba(37,211,102,0.4);
+  transition:all .2s ease;
+  animation:waPulse 2.5s ease infinite;
+}
+.whatsapp-btn:hover{
+  background:#20ba5a;
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(37,211,102,0.5);
+  animation:none;
+}
+.whatsapp-btn svg{width:22px;height:22px;fill:#fff;flex-shrink:0}
+@keyframes waPulse{
+  0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}
+  50%{box-shadow:0 4px 30px rgba(37,211,102,0.7),0 0 0 8px rgba(37,211,102,0.1)}
+}
+@media(max-width:600px){
+  .whatsapp-btn span{display:none}
+  .whatsapp-btn{padding:14px;border-radius:50%;bottom:80px}
+}
+</style>
 </head>
 <body>
 
@@ -462,7 +533,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       <div style="text-align:center">
         <div style="font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;color:#fff">5.0</div>
         <div style="color:#CC0000;font-size:1.2rem;letter-spacing:4px">★★★★★</div>
-        <div style="font-size:.8rem;color:#666;margin-top:4px;letter-spacing:1px">7 EVALUACIONES VERIFICADAS</div>
+        <div style="font-size:.8rem;color:#666;margin-top:4px;letter-spacing:1px">9 EVALUACIONES VERIFICADAS</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:6px;min-width:200px">
         <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.75rem;color:#666;width:70px">5 estrellas</span><div style="flex:1;height:6px;background:#222;border-radius:3px"><div style="width:100%;height:100%;background:#CC0000;border-radius:3px"></div></div></div>
@@ -476,49 +547,50 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     <div class="testi-grid stagger">
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Comencé este curso porque recién terminé una relación y me sentía perdida, con un vacío enorme. Le pedí a Dios que me guiara para sanar y entender por qué me había vuelto a pasar lo mismo. Me siento más capacitada para identificar banderas rojas y patrones tóxicos."</p>
-        <p class="testi-author">— Alejandra · 21 de May de 2026</p>
+        <p class="testi-quote">"Comencé este curso porque recién terminé una relación y me sentía perdida, con un vacío enorme. Le pedí a Dios que me guiara para poder sanar y entender porque me había vuelto a pasar lo mismo. Un día entre a Facebook y vi un reel de Andrés que me llamó la atención, me metí a su página y vi los cursos que ofrecía y me anoté a todos en ese momento. Poco a poco empecé a trabajar en cada uno hasta que fui entendiendo muchas cosas que desconocía completamente y que he ido sanando. Me siento más capacitada para identificar banderas rojas y patrones tóxicos y sobre todo a no brincarme mis límites. Mi relación anterior fue con un Narcisista. Gracias a este curso pude sanar el dolor, el vacío y la culpa que venía sintiendo tras la ruptura. Logré entender que parte de mi error fue no tener la madurez emocional y el amor propio para poder detectarlo desde el inicio de la relación. Haber permitido que se brincara mis límites y no haberme ido a tiempo. Hay una frase de Andrés que me marcó completamente y me hizo ver las cosas de otra manera. Dentro de las sesiones grupales al comentar mi situación Él me dijo: "Está actuando como un Jefe, no como un Líder" y eso bastó para hacerme entender de golpe que lo que me estaba dando esta persona en la relación era control y no libertad. Al grupo que me acompañó en este proceso, le agradezco su amor, apoyo, paciencia y amistad generada. Te recomiendo completamente tomar estos cursos con Andrés, yo siento que ha sido como un Angel que Diosito me puso para lograr salir renovada de este proceso."</p>
+        <p class="testi-author">— Alejandra · 21 de Mayo de 2026</p>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Quién elegimos como compañero de vida es la decisión más importante. Este curso nos educa y empodera para identificar y examinar nuestras decisiones. Si lo aplicas, te ahorrará años y dinero en terapia."</p>
-        <p class="testi-author">— Loveda · 13 de Mar de 2026</p>
+        <p class="testi-quote">"Quién elegimos como compañero o compañera de vida es la decisión más importante de nuestra vida. Este curso nos educa y nos empodera para identificar y examinar nuestras decisiones pasadas y actuales en las relaciones. Nos ayuda a fortalecer nuestros límites y a defendernos mejor a nosotros mismos. Si meditas y aplicas la orientación y los ejercicios recomendados, te ahorrará años y dinero en terapia."</p>
+        <p class="testi-author">— Loveda · 13 de Marzo de 2026</p>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-quote">"Excelente contenido. Nos ayuda a construir relaciones más conscientes y equilibradas."</p>
-        <p class="testi-author">— Diana · 13 de Mar de 2026</p>
+        <p class="testi-author">— Diana · 13 de Marzo de 2026</p>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Este curso fue mucho más de lo que esperaba. Me ayudó a identificar patrones en mi comportamiento que antes no veía. Tener claridad y herramientas hace toda la diferencia. ¡Gracias por crear un curso tan necesario y transformador!"</p>
-        <p class="testi-author">— Amanda · 12 de Mar de 2026</p>
+        <p class="testi-quote">"Este curso fue mucho más de lo que esperaba... Me ayudó a identificar patrones en mi comportamiento que antes no veía y a entender cómo muchas de mis reacciones afectaban mis relaciones. Gracias a las herramientas que compartes, hoy estoy trabajando conscientemente en dejar atrás actitudes tóxicas y en construir una versión más sana de mí misma. Salir de ciertos lugares emocionales no es fácil y muchas veces duele, pero tener claridad y herramientas hace toda la diferencia. Gracias por crear un curso tan necesario y transformador!!!"</p>
+        <p class="testi-author">— Amanda · 12 de Marzo de 2026</p>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Me parece muy valioso porque no solo enseña a detectar al otro, sino a entender por qué uno se siente atraído a determinados arquetipos. He aprendido a establecer límites claros para retirarme de una relación de pareja insana."</p>
-        <p class="testi-author">— Jacqueline · 12 de Mar de 2026</p>
+        <p class="testi-quote">"Me parece muy interesante porque define qué es una bandera roja frente a una incompatibilidad de caracteres o errores que podemos corregir. Me parece valioso porque no solo enseña a "detectar" al otro, sino a entender por qué uno se siente atraído a determinados arquetipos de persona para que nos ayude a romper el ciclo. Con este curso he aprendido a establecer límites claros, para poder retirarme de una relación de pareja insana."</p>
+        <p class="testi-author">— Jacqueline · 12 de Marzo de 2026</p>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Hola Andres! Hermano te felicito por compartir tus conocimientos y sobre todo tu entusiasmo de servir y ayudar. A través de este taller he aprendido mucho. Muchas gracias, Dios te bendiga."</p>
-        <p class="testi-author">— Juan · 11 de Mar de 2026</p>
+        <p class="testi-quote">"Hola Andres! Hermano de felicito por compartir tus, conocimientos, experiencias y sobre todo tu entusiasmo de servir y ayudar a todas las personas que de una manera u otra hemos pasado por desafíos en nuestras vidas. Dios te dio ese propósito para ayudarnos y que nosotros tengamos una mejor calidad de vida. Eres una persona muy valiosa y especial. A traves de este taller de Banderas Rojas he aprendido mucho contigo y mis compañeros de este maravillo grupo. Estoy seguro de que estos nuevos conocimientos van a ser de gran ayuda para mí en mi vida. Muchas Gracias Andres. Dios te Bendice hoy y siempre. Te envió un fuerte abrazo con cariño. Atte. Arq. Juan Castaños."</p>
+        <p class="testi-author">— Juan · 11 de Marzo de 2026</p>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Ha sido una experiencia bonita. Encontré algunos patrones, en la forma de cómo socializar, cómo aprender a marcar límites..."</p>
-        <p class="testi-author">— Katherine · 10 de Mar de 2026</p>
+        <p class="testi-quote">"Ha sido una experiencia significativa para el punto de vida que estoy llevando. He aprendido mucho para sentirme mejor, cuidarme y aprender sobre alguien que se nota sabe y ha estudiado mucho de estos temas."</p>
+        <p class="testi-author">— Adrian · 10 de Marzo de 2026</p>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Ha sido una experiencia significativa para el punto de vida que estoy llevando. He aprendido mucho para sentirme mejor y cuidarme."</p>
-        <p class="testi-author">— Adrian · 10 de Mar de 2026</p>
+        <p class="testi-quote">"HA SIDO UNA EXPERIENCIA BONITA ENCONTRADO ALGUNOS PATRONES, EN LA FORMA DE CÓMO SOCIALIZAR, COMO APRENDER A MARCAR LÍMITES..."</p>
+        <p class="testi-author">— Katherine · 10 de Marzo de 2026</p>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Creo que es algo increíble el proceso por el que vamos pasando en el curso. Nos ayuda a crecer y tener herramientas para construir una nueva y mejorada versión de nosotros mismos."</p>
-        <p class="testi-author">— Andres · 09 de Mar de 2026</p>
+        <p class="testi-quote">"Creo que es algo increíble el proceso por el que vamos pasando en el curso creo que nos ayuda a crecer y tener herramientas para poder construir una nueva y mejorada versión, me siento muy orgulloso del crecimiento emocional y personal que me está generando y me siento con ganas de hacer más cursos y me da pena que se terminen por eso me encantaría seguir creciendo con el equipo tan increíble que tenéis que hace esto posible."</p>
+        <p class="testi-author">— Andres · 09 de Marzo de 2026</p>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -612,61 +684,64 @@ fbq('track', 'ViewContent', {
   currency: 'USD'
 });
 </script>
+
+<script>
+document.querySelectorAll('.testi-quote').forEach(q => {
+  // Only add button if text is long enough to be clamped
+  const clone = q.cloneNode(true);
+  clone.style.cssText = 'display:block;position:absolute;visibility:hidden;width:' + q.offsetWidth + 'px';
+  document.body.appendChild(clone);
+  const fullHeight = clone.scrollHeight;
+  document.body.removeChild(clone);
+  
+  if(q.scrollHeight > 100) {
+    const btn = document.createElement('button');
+    btn.className = 'ver-mas';
+    btn.textContent = 'Ver más ↓';
+    btn.onclick = function(){
+      if(q.classList.contains('expanded')){
+        q.classList.remove('expanded');
+        btn.textContent = 'Ver más ↓';
+      } else {
+        q.classList.add('expanded');
+        btn.textContent = 'Ver menos ↑';
+      }
+    };
+    q.parentNode.insertBefore(btn, q.nextSibling);
+  }
+});
+</script>
+<script>
+document.querySelectorAll('.testi-quote').forEach(q => {
+  if(q.scrollHeight > q.clientHeight + 5) {
+    const btn = document.createElement('button');
+    btn.className = 'ver-mas';
+    btn.textContent = 'Ver más ↓';
+    btn.onclick = function(){
+      if(q.classList.contains('expanded')){
+        q.classList.remove('expanded');
+        btn.textContent = 'Ver más ↓';
+      } else {
+        q.classList.add('expanded');
+        btn.textContent = 'Ver menos ↑';
+      }
+    };
+    q.parentNode.insertBefore(btn, q.nextSibling);
+  }
+});
+</script>
+
+<!-- WhatsApp Support Button -->
+<a class="whatsapp-btn" 
+   href="https://wa.me/593968107948?text=Hola%2C%20vi%20el%20curso%20Banderas%20Rojas%20y%20tengo%20algunas%20preguntas%20antes%20de%20acceder.%20%C2%BFMe%20puedes%20ayudar%3F" 
+   target="_blank" 
+   rel="noopener"
+   onclick="fbq && fbq('track', 'Contact')"
+   title="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span>¿Dudas? Escríbenos</span>
+</a>
 </body>
 </html>
-<!-- ANIMATIONS PATCH -->
-<style>
-@keyframes fadeUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(204,0,0,0.5)}60%{box-shadow:0 0 0 14px rgba(204,0,0,0)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes glitch{0%,93%,100%{transform:none;clip-path:none}94%{clip-path:inset(20% 0 60% 0);transform:skewX(-8deg) translateX(-6px)}96%{clip-path:inset(60% 0 10% 0);transform:skewX(5deg) translateX(4px)}98%{clip-path:none;transform:none}}
-@keyframes scanline{0%{top:-4px}100%{top:100%}}
-@keyframes borderGlow{0%,100%{border-color:rgba(204,0,0,0.25)}50%{border-color:rgba(204,0,0,0.6);box-shadow:0 0 30px rgba(204,0,0,0.15)}}
-@keyframes flagRise{0%{opacity:0;transform:translateY(60px) rotate(-10deg)}10%{opacity:.12}85%{opacity:.08}100%{opacity:0;transform:translateY(-90vh) rotate(15deg)}}
-
-.hero-badge{animation:fadeUp .6s ease both}
-.hero h1{animation:fadeUp .7s .1s ease both}
-.hero-sub{animation:fadeUp .7s .2s ease both}
-.hero-stats{animation:fadeUp .7s .3s ease both}
-.hero .btn-primary{animation:fadeUp .7s .4s ease both}
-.hero-price,.hero-note{animation:fadeUp .7s .5s ease both}
-
-.hero h1{animation:fadeUp .7s .1s ease both, glitch 9s 3s infinite}
-
-.btn-cta-pulse{animation:pulse 2.4s 1.5s infinite!important}
-.btn-cta-pulse:hover{animation:none!important;transform:translateY(-2px)!important;box-shadow:0 12px 40px rgba(204,0,0,0.4)!important}
-
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:none}
-.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease}
-.reveal-left.visible{opacity:1;transform:none}
-.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s ease,transform .7s ease}
-.reveal-right.visible{opacity:1;transform:none}
-
-.stagger>*{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
-.stagger.visible>*:nth-child(1){opacity:1;transform:none;transition-delay:.05s}
-.stagger.visible>*:nth-child(2){opacity:1;transform:none;transition-delay:.15s}
-.stagger.visible>*:nth-child(3){opacity:1;transform:none;transition-delay:.25s}
-.stagger.visible>*:nth-child(4){opacity:1;transform:none;transition-delay:.35s}
-.stagger.visible>*:nth-child(5){opacity:1;transform:none;transition-delay:.45s}
-.stagger.visible>*:nth-child(6){opacity:1;transform:none;transition-delay:.55s}
-.stagger.visible>*:nth-child(7){opacity:1;transform:none;transition-delay:.65s}
-
-.tl-card{transition:transform .25s,background .25s,border-color .25s}
-.tl-card:hover{transform:translateY(-7px);background:rgba(204,0,0,0.1);border-color:rgba(204,0,0,0.45)}
-.mod-item{transition:transform .2s,background .2s}
-.mod-item:hover{transform:translateX(7px)}
-.step{transition:transform .2s,border-color .2s,background .2s}
-.step:hover{transform:translateY(-5px);border-color:rgba(204,0,0,0.4);background:rgba(204,0,0,0.05)}
-.price-card{animation:borderGlow 3.5s ease infinite}
-.author-img-wrap img{animation:float 5s ease-in-out infinite}
-
-.flag-particle{position:absolute;pointer-events:none;font-size:1.5rem;opacity:0;animation:flagRise linear infinite}
-
-nav.scrolled{background:rgba(10,0,5,.99)!important;border-bottom-color:rgba(204,0,0,.4)!important}
-
-.scanline-wrap{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.scanline-wrap::after{content:'';position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,rgba(204,0,0,.07),transparent);animation:scanline 7s linear infinite}
-
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.reveal-left,.reveal-right,.stagger>*{opacity:1!important;transform:none!important}}
-</style>

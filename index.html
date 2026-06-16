@@ -425,7 +425,7 @@ border-radius:10px;
 🔥 Precio promocional disponible por tiempo limitado
 </p>
 
-    <div class="countdown-box">
+   <div class="countdown-box">
   <span>⏰ Oferta especial finaliza en:</span>
   <div id="countdown">24:00:00</div>
 </div>
@@ -740,11 +740,10 @@ border-radius:10px;
     Acceder a Banderas Rojas por $25 →
   </a>
 
-  <div class="countdown-box" style="margin-bottom:25px">
+ <div class="countdown-box" style="margin-bottom:25px">
   <span>⏰ La oferta de $25 termina en:</span>
   <div id="countdown-final">24:00:00</div>
 </div>
-  
   <p style="margin-top:16px;font-size:12px;color:#444">✓ Acceso inmediato &nbsp;·&nbsp; ✓ Pago seguro &nbsp;·&nbsp; ✓ Garantía incluida</p>
 </section>
 
@@ -911,7 +910,13 @@ function updateCountdown(){
   const distance = endTime - now;
 
   if(distance <= 0){
-    document.getElementById("countdown").innerHTML = "00:00:00";
+
+    const topCounter = document.getElementById("countdown");
+    const finalCounter = document.getElementById("countdown-final");
+
+    if(topCounter) topCounter.innerHTML = "00:00:00";
+    if(finalCounter) finalCounter.innerHTML = "00:00:00";
+
     return;
   }
 
@@ -919,16 +924,20 @@ function updateCountdown(){
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-const timeString =
-  String(hours).padStart(2,"0") + ":" +
-  String(minutes).padStart(2,"0") + ":" +
-  String(seconds).padStart(2,"0");
+  const timeString =
+    String(hours).padStart(2,"0") + ":" +
+    String(minutes).padStart(2,"0") + ":" +
+    String(seconds).padStart(2,"0");
 
-const topCounter = document.getElementById("countdown");
-const finalCounter = document.getElementById("countdown-final");
+  const topCounter = document.getElementById("countdown");
+  const finalCounter = document.getElementById("countdown-final");
 
-if(topCounter) topCounter.innerHTML = timeString;
-if(finalCounter) finalCounter.innerHTML = timeString;
+  if(topCounter) topCounter.innerHTML = timeString;
+  if(finalCounter) finalCounter.innerHTML = timeString;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
 </script>
 
   

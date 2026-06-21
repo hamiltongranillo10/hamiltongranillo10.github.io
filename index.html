@@ -55,14 +55,16 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   /* Contenedor estándar para textos */
   .wrap{max-width:1090px;margin:0 auto;padding:0 24px;}
 
+  /* ANIMACIONES MEJORADAS */
   .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(40px) scale(0.98);
+    transition: opacity 0.9s cubic-bezier(0.215, 0.610, 0.355, 1), transform 0.9s cubic-bezier(0.215, 0.610, 0.355, 1);
+    will-change: transform, opacity;
   }
   .reveal.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 
   /* ==========================================================================
@@ -151,7 +153,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
   /* ==========================================================================
      FIN DE LAS INDICACIONES MANUALES (Estilos Generales Continuos)
-     ========================================================================== */
+     ========================================================================= */
 
   /* Urgency bar */
   .urgency-bar{
@@ -250,20 +252,21 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .price-ticket .now{font-family:'Space Mono',monospace;font-size:22px;font-weight:700;color:var(--mustard);}
   .price-ticket .tag{font-size:12px;background:var(--sage);color:var(--cream);padding:3px 8px;border-radius:4px;font-weight:700;}
 
+  /* BOTÓN DE COMPRA MEJORADO Y MÁS GRANDE */
   .btn-cta{
-    display:inline-flex;align-items:center;gap:10px;
+    display:inline-flex;align-items:center;justify-content:center;gap:12px;
     background:var(--mustard);
     color:var(--charcoal);
-    font-weight:700;
-    font-size:17px;
-    padding:18px 34px;
-    border-radius:8px;
+    font-weight:800;
+    font-size:20px;
+    padding:22px 44px;
+    border-radius:10px;
     border:none;
     cursor:pointer;
-    transition:transform 0.15s ease, background 0.15s ease;
-    box-shadow:0 10px 24px -8px rgba(217,142,59,0.5);
+    transition:transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.2s ease, box-shadow 0.2s ease;
+    box-shadow:0 12px 28px -6px rgba(217,142,59,0.6);
   }
-  .btn-cta:hover{background:var(--mustard-deep);transform:translateY(-2px);}
+  .btn-cta:hover{background:var(--mustard-deep);transform:translateY(-4px) scale(1.02);box-shadow:0 18px 36px -6px rgba(217,142,59,0.7);}
   .cta-sub{font-size:13px;color:rgba(246,239,228,0.55);margin-top:12px;}
 
   /* Media strip */
@@ -307,7 +310,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .stat-cell .label{font-size:12px;color:rgba(255,255,255,0.85);margin-top:4px;text-transform:uppercase;}
 
   /* Mockup UI Elements */
-  .mockup-cta .btn-cta-big{font-size:20px;padding:20px 48px;}
+  .mockup-cta .btn-cta-big{font-size:22px;padding:22px 56px;width:100%;max-width:480px;}
   .payment-icons{display:flex;justify-content:center;gap:18px;margin-top:18px;flex-wrap:wrap;}
   .payment-icons span{font-family:'Space Mono',monospace;font-size:11px;color:rgba(28,27,25,0.45);border:1px solid var(--line);padding:6px 12px;border-radius:6px;}
 
@@ -342,9 +345,66 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
   footer{background:var(--charcoal-soft);color:rgba(246,239,228,0.45);font-size:12px;text-align:center;padding:28px 24px;}
 
+  /* ESTILOS DEL BOTÓN FLOTANTE (STICKY COMPRA + PRECIO) */
+  .sticky-cta {
+    position: fixed;
+    top: 65px;
+    right: 24px;
+    z-index: 99;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    padding: 10px 16px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .sticky-cta.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .sticky-cta-price {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+  }
+  .sticky-cta-price .sticky-old {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    text-decoration: line-through;
+    opacity: 0.5;
+    line-height: 1;
+  }
+  .sticky-cta-price .sticky-now {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--oxblood);
+    line-height: 1.2;
+  }
+  .sticky-cta .btn-sticky {
+    background: var(--mustard);
+    color: var(--charcoal);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .sticky-cta .btn-sticky:hover {
+    background: var(--mustard-deep);
+    transform: translateY(-1px);
+  }
+
   /* ==========================================================================
      RESPONSIVE / ADAPTACIÓN PARA MÓVILES
-     ========================================================================== */
+     ========================================================================= */
   @media (max-width: 900px) {
     .google-grid {
       grid-template-columns: 1fr;
@@ -364,6 +424,19 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     .trust-banner-link {
       max-width: 100%;
     }
+    /* Ajustes móviles para el botón flotante superior */
+    .sticky-cta {
+      top: auto;
+      bottom: 20px;
+      right: 20px;
+      left: 20px;
+      justify-content: space-between;
+      transform: translateY(20px);
+      padding: 12px 20px;
+    }
+    .sticky-cta.visible {
+      transform: translateY(0);
+    }
   }
 
   @media (max-width: 480px) {
@@ -380,9 +453,19 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 </head>
 <body>
 
-<div class="urgency-bar">
+<div class="urgency-bar" id="top-bar">
   <span>⏳ Promoción especial termina en</span>
   <span class="timer" id="timer">00:10:00</span>
+</div>
+
+<div class="sticky-cta" id="floating-cta">
+  <div class="sticky-cta-price">
+    <span class="sticky-old">$175,00</span>
+    <span class="sticky-now">$65,00</span>
+  </div>
+  <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-sticky" onclick="fbq('track','InitiateCheckout');">
+    Comprar ahora →
+  </a>
 </div>
 
 <header class="hero">
@@ -398,7 +481,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       </button>
     </div>
 
-    <div class="price-ticket">
+    <div class="price-ticket" id="hero-price-trigger">
       <span class="tag">Acceso de por vida</span>
       <span class="old">$175,00</span>
       <span class="now">$65,00</span>
@@ -421,7 +504,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta btn-cta-big" onclick="fbq('track','InitiateCheckout');">
         Comprar ahora <span class="arrow">→</span>
       </a>
-     
+      
       <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="trust-banner-link" onclick="fbq('track','InitiateCheckout');">
         <img src="https://cdn.shopify.com/s/files/1/0078/9620/3362/files/468x60.jpg" alt="Compra segura garantizada">
       </a>
@@ -511,7 +594,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- SECURE PAYMENT + CURRENCY -->
 <section class="section reveal" style="padding-top:0;">
   <div class="wrap">
     <div class="payment-info-block">
@@ -631,6 +713,18 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
         reveal.classList.add('active');
       }
     });
+
+    // CONTROL DE VISIBILIDAD DEL BOTÓN FLOTANTE (STICKY CTA)
+    const floatingCta = document.getElementById('floating-cta');
+    const priceTrigger = document.getElementById('hero-price-trigger');
+    if (priceTrigger && floatingCta) {
+      const triggerTop = priceTrigger.getBoundingClientRect().top;
+      if (triggerTop < 0) {
+        floatingCta.classList.add('visible');
+      } else {
+        floatingCta.classList.remove('visible');
+      }
+    }
   }
   window.addEventListener('scroll', revealSections);
   window.addEventListener('load', revealSections);
@@ -649,8 +743,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     });
   });
 
-  // Click-to-play video: carga el iframe solo cuando la persona hace clic,
-  // usando youtube-nocookie + parámetros que reducen sugerencias/fugas hacia YouTube
+  // Click-to-play video
   const videoWrap = document.getElementById('video-wrap');
   const playBtn = document.getElementById('video-play-btn');
   function loadVideo(){
@@ -671,17 +764,40 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     videoWrap.addEventListener('click', loadVideo);
   }
 
-  // Temporizador de Cuenta Regresiva (10 minutos repetitivos)
-  let time = 600; 
+  // TEMPORIZADOR PERSISTENTE (localStorage para evitar reinicios falsos)
+  const TIMER_KEY = 'cocina_elite_timer_end';
+  const TIMER_DURATION = 600; // 10 minutos en segundos
   const timerElement = document.getElementById('timer');
-  setInterval(() => {
-    let minutes = Math.floor(time / 60);
-    let seconds = time % 60;
+
+  let endTime = localStorage.getItem(TIMER_KEY);
+
+  if (!endTime) {
+    endTime = Math.floor(Date.now() / 1000) + TIMER_DURATION;
+    localStorage.setItem(TIMER_KEY, endTime);
+  } else {
+    endTime = parseInt(endTime, 10);
+  }
+
+  function updateTimer() {
+    const now = Math.floor(Date.now() / 1000);
+    let timeRemaining = endTime - now;
+
+    if (timeRemaining <= 0) {
+      timeRemaining = 0;
+      if (timerElement) timerElement.innerText = "00:00";
+      return; // Detiene el contador de forma fija al llegar a 0 sin reinicios falsos
+    }
+
+    let minutes = Math.floor(timeRemaining / 60);
+    let seconds = timeRemaining % 60;
     minutes = minutes < 10 ? '0' + minutes : minutes;
     seconds = seconds < 10 ? '0' + seconds : seconds;
-    if(timerElement) timerElement.innerText = `${minutes}:${seconds}`;
-    if (time > 0) time--; else time = 600;
-  }, 1000);
+
+    if (timerElement) timerElement.innerText = `${minutes}:${seconds}`;
+  }
+
+  setInterval(updateTimer, 1000);
+  updateTimer();
 </script>
 
 </body>

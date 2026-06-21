@@ -6,7 +6,6 @@
   <title>Cocina de Élite — Gastronomía Online | 7 Cursos</title>
   <meta name="description" content="Domina cocina internacional, panadería, repostería y más con 7 cursos completos. Certificación incluida. Acceso inmediato.">
 
-  <!-- Facebook Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -20,7 +19,6 @@
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1" />
   </noscript>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -268,7 +266,7 @@
     footer { background: var(--charcoal-soft); color: rgba(246,239,228,0.45); font-size: 12px; text-align: center; padding: 28px 24px; margin-bottom: 0; }
 
     /* ==========================================================================
-       NUEVA BARRA DE COMPRA INFERIOR (STICKY BOTTOM BAR - SOLA LÍNEA)
+       BARRA DE COMPRA INFERIOR REVISADA (STICKY BOTTOM BAR)
        ========================================================================= */
     .sticky-bottom-bar {
       position: fixed;
@@ -300,26 +298,26 @@
     }
     .sticky-bar-price {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       gap: 12px;
-    }
-    .sticky-bar-price .sticky-old {
-      font-family: 'Space Mono', monospace;
-      font-size: 14px;
-      text-decoration: line-through;
-      opacity: 0.4;
     }
     .sticky-bar-price .sticky-now {
       font-family: 'Space Mono', monospace;
-      font-size: 32px; /* Super visible y grande */
+      font-size: 38px; /* PRECIO GRANDE EN PC */
       font-weight: 700;
       color: var(--oxblood);
+    }
+    .sticky-bar-price .sticky-old {
+      font-family: 'Space Mono', monospace;
+      font-size: 15px;
+      text-decoration: line-through;
+      color: #777777;
     }
     .sticky-bar-price .sticky-tag {
       font-size: 11px;
       background: var(--sage);
       color: var(--cream);
-      padding: 2px 6px;
+      padding: 3px 8px;
       border-radius: 4px;
       font-weight: 700;
     }
@@ -339,24 +337,27 @@
       box-shadow: 0 6px 20px rgba(217,142,59,0.5);
     }
 
-    /* Adaptabilidad Móvil */
+    /* Adaptabilidad Móvil Adaptada */
     @media (max-width: 900px) {
-      body { margin-bottom: 75px; } /* Deja espacio libre para que el footer no se tape abajo */
+      body { margin-bottom: 85px; } 
       .google-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
       .benefits-grid { grid-template-columns: 1fr; }
       .cert-block { grid-template-columns: 1fr; text-align: center; }
       .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      
+      /* Ajustes de la Barra Flotante en Móviles */
       .sticky-bar-container { padding: 0 16px; }
+      .sticky-bar-price { gap: 6px; flex-wrap: wrap; }
       .sticky-bar-price .sticky-now { font-size: 24px; }
-      .sticky-bar-price .sticky-old, .sticky-bar-price .sticky-tag { display: none; }
-      .sticky-bottom-bar .btn-sticky { padding: 12px 20px; font-size: 14px; }
+      .sticky-bar-price .sticky-old { display: inline-block; font-size: 13px; } /* Muestra el precio tachado en móvil */
+      .sticky-bar-price .sticky-tag { display: none; } /* Ocultamos solo el tag para optimizar espacio */
+      .sticky-bottom-bar .btn-sticky { padding: 12px 18px; font-size: 14px; }
     }
     @media (max-width: 480px) { .testi-grid-images { gap: 16px; } .testi-img { width: 100%; } }
   </style>
 </head>
 <body>
 
-<!-- BARRA DE COMPRA HORIZONTAL INFERIOR (Aparece tras hacer scroll) -->
 <div class="sticky-bottom-bar" id="floating-bar">
   <div class="sticky-bar-container">
     <div class="sticky-bar-price">
@@ -370,7 +371,6 @@
   </div>
 </div>
 
-<!-- Banner superior de urgencia -->
 <div class="urgency-bar" id="top-bar">
   <span>⏳ Promoción especial termina en</span>
   <span class="timer" id="timer">00:10:00</span>
@@ -389,7 +389,6 @@
       </button>
     </div>
 
-    <!-- EL ELEMENTO GATILLO: Al ocultarse este boleto gris, se activa la barra de abajo -->
     <div class="price-ticket" id="hero-price-trigger">
       <span class="tag">Acceso de por vida</span>
       <span class="old">$175,00</span>
@@ -565,11 +564,23 @@
     <div id="faq-list">
       <div class="faq-item">
         <button class="faq-q">¿Cuándo empieza el curso? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Apenas completas tu inscripción, recibes acceso inmediato a la plataforma.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Apenas completas tu inscripción, recibes acceso inmediato a la plataforma para comenzar desde hoy mismo.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">¿Por cuánto tiempo tengo acceso? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">El acceso es de por vida. Pagas una sola vez.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">El acceso es de por vida. Pagas una sola vez y puedes repasar las lecciones las veces que quieras.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Cómo se reciben los certificados? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Al completar cada uno de los cursos del programa, la plataforma generará automáticamente tu certificado digital descargable.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Los ingredientes son difíciles de conseguir? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. Todas las recetas están adaptadas con ingredientes estándar que puedes comprar fácilmente en cualquier supermercado o mercado local de tu país.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Hay soporte si tengo dudas con una receta? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Sí, cuentas con un área de alumnos dedicada abajo de cada video-lección donde los profesores resuelven todas tus dudas.</div></div>
       </div>
     </div>
   </div>
@@ -607,18 +618,17 @@
     const priceTrigger = document.getElementById('hero-price-trigger');
     if (priceTrigger && floatingBar) {
       const triggerTop = priceTrigger.getBoundingClientRect().top;
-      // Si el ticket de precio original del hero sube y desaparece de la pantalla...
       if (triggerTop < 0) {
-        floatingBar.classList.add('visible'); // Aparece la barra abajo
+        floatingBar.classList.add('visible'); 
       } else {
-        floatingBar.classList.remove('visible'); // Desaparece si vuelves arriba
+        floatingBar.classList.remove('visible'); 
       }
     }
   }
   window.addEventListener('scroll', revealSections);
   window.addEventListener('load', revealSections);
 
-  // FAQs Accordion
+  // FAQs Accordion Logic
   document.querySelectorAll('.faq-q').forEach(button => {
     button.addEventListener('click', () => {
       const faqItem = button.parentElement;

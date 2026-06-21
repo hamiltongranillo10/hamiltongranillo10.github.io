@@ -65,7 +65,9 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     transform: translateY(0);
   }
 
-  
+  /* ==========================================================================
+     INDICACIONES MANUALES PARA CAMBIAR TAMAÑOS EN PC
+     ========================================================================= */
 
   .hero-video {
     position: relative;
@@ -218,6 +220,23 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
   .hero-video::before{content:"";display:block;padding-top:56.25%;}
   .hero-video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+  .hero-video{cursor:pointer;background:#000;}
+  .hero-video .video-thumb{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    object-fit:cover;
+  }
+  .video-play-btn{
+    position:absolute;top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    width:74px;height:74px;
+    border-radius:50%;
+    background:rgba(226,35,26,0.92);
+    border:3px solid rgba(255,255,255,0.85);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    transition:transform 0.2s ease, background 0.2s ease;
+  }
+  .video-play-btn:hover{transform:translate(-50%,-50%) scale(1.08);background:#E2231A;}
 
   .price-ticket{
     display:inline-flex;align-items:center;gap:16px;
@@ -372,8 +391,11 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     <h1>Aprende a cocinar como <em>profesional</em>, desde tu propia cocina.</h1>
     <p class="lead">7 cursos completos — cocina internacional, panadería artesanal, repostería, coctelería, sushi y más. A tu ritmo, con certificación incluida.</p>
 
-    <div class="hero-video">
-      <iframe src="https://www.youtube.com/embed/2XdOloUNraU" title="Gastronomía Online" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="hero-video" id="video-wrap" data-video-id="2XdOloUNraU">
+      <img class="video-thumb" src="https://img.youtube.com/vi/2XdOloUNraU/maxresdefault.jpg" alt="Reproducir video — Gastronomía Online">
+      <button class="video-play-btn" id="video-play-btn" aria-label="Reproducir video">
+        <svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5v14l11-7-11-7Z" fill="#fff"/></svg>
+      </button>
     </div>
 
     <div class="price-ticket">
@@ -389,7 +411,11 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </header>
 
-  
+<section class="media-strip">
+  <div class="wrap">
+    <img src="https://cursosdecocina.tv/wp-content/uploads/2023/04/logos-tv-1-1.png" alt="Medios donde nos hemos visto">
+  </div>
+</section>
 
 <section class="section reveal" style="background:#fff;">
   <div class="mockup-wide-container">
@@ -400,7 +426,12 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta btn-cta-big" onclick="fbq('track','InitiateCheckout');">
         Comprar ahora <span class="arrow">→</span>
       </a>
-    
+      <div class="payment-icons">
+        <span>Mastercard</span><span>Visa</span><span>Amex</span><span>Diners Club</span>
+        <span>OXXO</span><span>SEPA</span><span>Boleto</span><span>Pago Efectivo</span>
+        <span>Elo</span><span>Hiper</span><span>Hipercard</span><span>RapiPago</span>
+        <span>Sencillito</span><span>Cobro Express</span>
+      </div>
       <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="trust-banner-link" onclick="fbq('track','InitiateCheckout');">
         <img src="https://cdn.shopify.com/s/files/1/0078/9620/3362/files/468x60.jpg" alt="Compra segura garantizada">
       </a>
@@ -496,14 +527,12 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     <div class="payment-info-block">
       <h3>Pago 100% seguro, sin importar tu país</h3>
       <p>El cobro se procesa a través de la plataforma de pago de Hotmart, una de las más usadas en Latinoamérica. El sistema convierte automáticamente el precio a tu moneda local, así que pagas como si estuvieras comprando dentro de tu propio país, sin recargos por transacciones internacionales.</p>
-      
-   </div>
-  </div>
-</section>
-
-   <section class="media-strip">
-  <div class="wrap">
-    <img src="https://cursosdecocina.tv/wp-content/uploads/2023/04/logos-tv-1-1.png" alt="Medios donde nos hemos visto">
+      <div class="payment-icons" style="margin-top:22px;">
+        <span>Mastercard</span><span>Visa</span><span>Amex</span><span>Diners Club</span>
+        <span>OXXO</span><span>SEPA</span><span>Boleto</span><span>Pago Efectivo</span>
+        <span>Elo</span><span>Hiper</span><span>Hipercard</span><span>RapiPago</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -628,6 +657,28 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       }
     });
   });
+
+  // Click-to-play video: carga el iframe solo cuando la persona hace clic,
+  // usando youtube-nocookie + parámetros que reducen sugerencias/fugas hacia YouTube
+  const videoWrap = document.getElementById('video-wrap');
+  const playBtn = document.getElementById('video-play-btn');
+  function loadVideo(){
+    const videoId = videoWrap.dataset.videoId;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1`;
+    iframe.title = 'Gastronomía Online';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0'; iframe.style.left = '0';
+    iframe.style.width = '100%'; iframe.style.height = '100%'; iframe.style.border = '0';
+    videoWrap.innerHTML = '';
+    videoWrap.appendChild(iframe);
+    videoWrap.style.cursor = 'default';
+  }
+  if(videoWrap && playBtn){
+    videoWrap.addEventListener('click', loadVideo);
+  }
 
   // Temporizador de Cuenta Regresiva (10 minutos repetitivos)
   let time = 600; 

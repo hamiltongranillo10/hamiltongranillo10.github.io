@@ -1,806 +1,645 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Banderas Rojas — Identifica la máscara a tiempo</title>
-<meta name="description" content="¿Siempre terminas en relaciones que duelen? Aprende a identificar las señales antes de que sea tarde. Curso Banderas Rojas."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --rojo:#CC0000;
-  --rojo-osc:#8B0000;
-  --rojo-bg:#1a0005;
-  --negro:#0a0005;
-  --negro2:#110008;
-  --gris:#aaa;
-  --blanco:#f5f0f0;
-  --verde:#22c55e;
-}
-html{scroll-behavior:smooth}
-body{background:var(--negro);color:var(--blanco);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cocina de Élite — Gastronomía Online | 7 Cursos</title>
+<meta name="description" content="Domina cocina internacional, panadería, repostería y más con 7 cursos completos. Certificación incluida. Acceso inmediato.">
 
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(10,0,5,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(204,0,0,0.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;color:#fff}
-.nav-logo span{color:var(--rojo)}
-.nav-flag{width:28px;height:20px;background:var(--rojo);clip-path:polygon(0 0,100% 0,100% 100%,0 80%);display:inline-block}
-.nav-cta{background:var(--rojo);color:#fff;padding:9px 22px;border-radius:4px;text-decoration:none;font-size:.85rem;font-weight:600;transition:background .2s}
-.nav-cta:hover{background:#aa0000}
-
-/* ── HERO ── */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:80px 0 0;position:relative;overflow:hidden;background:linear-gradient(120deg,#0a0005 0%,#1a0008 50%,#2a0005 100%)}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 60% 50%,rgba(180,0,0,0.2) 0%,transparent 65%);pointer-events:none}
-.hero-content{position:relative;z-index:2;padding:0 40px 80px 5%}
-.hero-img{position:relative;z-index:1;align-self:stretch;display:flex;align-items:flex-end;justify-content:flex-end;overflow:hidden}
-.hero-img img{width:100%;height:100%;object-fit:cover;object-position:top right;display:block;filter:brightness(.95) contrast(1.05);mask-image:linear-gradient(to left,black 60%,transparent 100%),linear-gradient(to bottom,black 65%,transparent 100%);-webkit-mask-image:linear-gradient(to left,black 60%,transparent 100%);mask-composite:intersect}
-.hero-img::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(204,0,0,0.15) 0%,transparent 60%);z-index:0}
-@media(max-width:900px){.hero{grid-template-columns:1fr;padding-bottom:0}.hero-content{padding:80px 5% 40px}.hero-img{min-height:50vh;max-height:55vh}.hero-img img{object-position:top center}}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(204,0,0,0.15);border:1px solid rgba(204,0,0,0.4);border-radius:999px;padding:5px 16px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rojo);margin-bottom:28px}
-.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,9vw,7rem);line-height:1;margin-bottom:24px;letter-spacing:2px}
-.hero h1 em{font-style:normal;color:var(--rojo)}
-.hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:#ccc;max-width:520px;margin-bottom:16px;line-height:1.7;font-weight:300}
-.hero-sub strong{color:#fff;font-weight:600}
-.hero-stats{display:flex;gap:32px;margin:32px 0 40px;flex-wrap:wrap}
-.stat{text-align:center}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--rojo);line-height:1}
-.stat-label{font-size:.75rem;color:var(--gris);letter-spacing:1px;text-transform:uppercase}
-.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--rojo);color:#fff;font-weight:700;font-size:1.05rem;padding:18px 36px;border-radius:6px;text-decoration:none;transition:all .2s;letter-spacing:.5px}
-.btn-primary:hover{background:#aa0000;transform:translateY(-2px);box-shadow:0 12px 40px rgba(204,0,0,0.35)}
-.btn-primary .arrow{transition:transform .2s}
-.btn-primary:hover .arrow{transform:translateX(4px)}
-.hero-note{margin-top:14px;font-size:12px;color:#555;letter-spacing:1px}
-.hero-price{margin-top:20px;display:inline-flex;align-items:baseline;gap:12px}
-.price-old{font-size:.9rem;color:#555;text-decoration:line-through}
-.price-now{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:var(--verde);letter-spacing:1px}
-.price-label{font-size:.8rem;color:var(--gris)}
-
-/* ── TRUST STRIP ── */
-.trust-strip{background:var(--negro2);border-top:1px solid rgba(204,0,0,0.15);border-bottom:1px solid rgba(204,0,0,0.15);padding:22px 5%}
-.trust-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap}
-.trust-item{display:flex;align-items:center;gap:10px;font-size:.85rem;color:#ccc}
-.trust-item .ic{font-size:1.2rem}
-.trust-item strong{color:#fff}
-
-/* ── DIVIDER ── */
-.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(204,0,0,0.4),transparent)}
-
-/* ── PAIN ── */
-.section{padding:80px 5%}
-.section-inner{max-width:1100px;margin:0 auto}
-.eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--rojo);margin-bottom:16px}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;margin-bottom:20px;letter-spacing:1px}
-.section-title em{font-style:normal;color:var(--rojo)}
-.pain-text{font-size:1.1rem;color:#ccc;max-width:680px;line-height:1.8;font-weight:300}
-.pain-text strong{color:#fff}
-
-/* ── ANTES DURANTE DESPUES ── */
-.timeline{background:var(--negro2);padding:80px 5%}
-.timeline-inner{max-width:1100px;margin:0 auto}
-.timeline-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;margin-top:48px}
-.tl-card{background:rgba(204,0,0,0.05);border:1px solid rgba(204,0,0,0.15);padding:40px 32px;position:relative;overflow:hidden}
-.tl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--rojo)}
-.tl-num{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:rgba(204,0,0,0.1);line-height:1;margin-bottom:8px}
-.tl-label{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;color:#fff;margin-bottom:16px}
-.tl-label span{color:var(--rojo)}
-.tl-text{font-size:.9rem;color:#aaa;line-height:1.8}
-.tl-text p{margin-bottom:8px}
-
-/* ── QUALIFY (para quién es / no es) ── */
-.qualify-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:48px}
-.qualify-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:32px}
-.qualify-card.yes{border-color:rgba(34,197,94,0.25)}
-.qualify-card.no{border-color:rgba(204,0,0,0.25)}
-.qualify-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:1px;margin-bottom:20px;color:#fff}
-.qualify-card.yes h3{color:var(--verde)}
-.qualify-card.no h3{color:var(--rojo)}
-.qualify-item{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;color:#ccc;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-.qualify-item:last-child{border-bottom:none}
-.qualify-item .mark{flex-shrink:0;font-weight:700}
-.qualify-card.yes .mark{color:var(--verde)}
-.qualify-card.no .mark{color:var(--rojo)}
-
-/* ── COST COMPARE ── */
-.cost-section{padding:80px 5%}
-.cost-inner{max-width:900px;margin:0 auto;text-align:center}
-.cost-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;margin-top:48px}
-.cost-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:36px 28px}
-.cost-card.bad{border-color:rgba(204,0,0,0.25)}
-.cost-card.good{border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.04)}
-.cost-label{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:12px}
-.cost-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;margin-bottom:8px}
-.cost-card.bad .cost-num{color:var(--rojo)}
-.cost-card.good .cost-num{color:var(--verde)}
-.cost-desc{font-size:.85rem;color:#aaa;line-height:1.6}
-.cost-vs{font-family:'Bebas Neue',sans-serif;color:#555;font-size:1.4rem}
-@media(max-width:700px){.cost-grid{grid-template-columns:1fr}.cost-vs{display:none}}
-
-/* ── MODULES ── */
-.modules{padding:80px 5%}
-.modules-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-.modules-left{}
-.modules-left p{color:#aaa;font-size:1rem;line-height:1.7;margin-bottom:16px;font-weight:300}
-.modules-list{display:flex;flex-direction:column;gap:8px}
-.mod-item{display:flex;align-items:flex-start;gap:16px;background:rgba(204,0,0,0.05);border:1px solid rgba(204,0,0,0.15);border-left:3px solid var(--rojo);padding:18px 20px;border-radius:0 6px 6px 0;transition:background .2s}
-.mod-item:hover{background:rgba(204,0,0,0.1)}
-.mod-flag{font-size:1.2rem;flex-shrink:0;margin-top:2px}
-.mod-content h4{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
-.mod-content p{font-size:.82rem;color:#888;line-height:1.5}
-@media(max-width:768px){.modules-inner{grid-template-columns:1fr}}
-
-/* ── HOW TO BUY ── */
-.how-buy{background:var(--negro2);padding:80px 5%}
-.how-buy-inner{max-width:900px;margin:0 auto;text-align:center}
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:48px;text-align:left}
-.step{position:relative;padding:28px 24px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:8px}
-.step-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(204,0,0,0.25);line-height:1;margin-bottom:12px}
-.step h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px}
-.step p{font-size:.85rem;color:#888;line-height:1.6}
-.payment-methods{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:32px}
-.pay-badge{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 20px;font-size:.82rem;color:#ccc;display:flex;align-items:center;gap:8px}
-
-/* ── PRICE ── */
-.pricing{padding:80px 5%}
-.pricing-inner{max-width:520px;margin:0 auto;text-align:center}
-.price-card{background:var(--negro2);border:1px solid rgba(204,0,0,0.3);border-radius:12px;padding:48px 40px;position:relative;overflow:hidden}
-.price-card::before{content:'OFERTA';position:absolute;top:18px;right:-28px;background:var(--rojo);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:2px;padding:5px 40px;transform:rotate(45deg)}
-.price-card-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;margin-bottom:8px}
-.price-card-sub{font-size:.9rem;color:#888;margin-bottom:32px}
-.price-display{margin-bottom:8px}
-.price-display .old{font-size:1rem;color:#555;text-decoration:line-through}
-.price-display .now{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:var(--verde);letter-spacing:2px;line-height:1}
-.price-display .currency{font-size:1.5rem;vertical-align:top;margin-top:10px;display:inline-block;color:var(--verde)}
-.price-note{font-size:.82rem;color:#666;margin-bottom:32px}
-.includes{text-align:left;margin-bottom:24px}
-.includes h4{font-size:.8rem;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:12px}
-.include-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:.88rem;color:#ccc}
-.include-item .check{color:var(--verde);font-size:1rem;flex-shrink:0}
-.guarantee-box{display:flex;align-items:center;gap:14px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);border-radius:10px;padding:16px 18px;margin-bottom:28px;text-align:left}
-.guarantee-box .g-ic{font-size:1.8rem;flex-shrink:0}
-.guarantee-box h5{font-size:.88rem;color:#fff;font-weight:700;margin-bottom:2px}
-.guarantee-box p{font-size:.78rem;color:#aaa;line-height:1.5}
-.guarantee{margin-top:20px;font-size:.78rem;color:#555;display:flex;align-items:center;justify-content:center;gap:6px}
-
-/* ── TESTIMONIALS ── */
-.testi{background:var(--negro2);padding:80px 5%}
-.testi-inner{max-width:1100px;margin:0 auto}
-.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:0}
-.testi-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:28px}
-.testi-stars{color:var(--rojo);font-size:.9rem;letter-spacing:3px;margin-bottom:14px}
-.testi-quote{font-size:.95rem;color:#ccc;line-height:1.7;font-style:italic;margin-bottom:18px}
-.testi-author{font-size:.82rem;font-weight:600;color:#fff}
-
-/* ── FAQ ── */
-.faq{padding:80px 5%}
-.faq-inner{max-width:800px;margin:0 auto}
-.faq-item{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:10px;margin-bottom:12px;overflow:hidden}
-.faq-item summary{padding:22px 24px;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:600;color:#fff;font-size:1rem}
-.faq-item summary::-webkit-details-marker{display:none}
-.faq-item .chev{transition:transform .25s;color:var(--rojo);flex-shrink:0}
-.faq-item[open] .chev{transform:rotate(180deg)}
-.faq-item p{padding:0 24px 22px;color:#aaa;font-size:.92rem;line-height:1.7}
-
-/* ── FINAL CTA ── */
-.final{padding:100px 5%;text-align:center;position:relative;overflow:hidden}
-.final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(204,0,0,0.12) 0%,transparent 70%);pointer-events:none}
-.final h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,7vw,5.5rem);line-height:1;max-width:800px;margin:0 auto 20px;letter-spacing:2px}
-.final h2 em{font-style:normal;color:var(--rojo)}
-.final p{color:#aaa;font-size:1.05rem;max-width:500px;margin:0 auto 40px}
-
-/* ── STICKY ── */
-.sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(10,0,5,0.97);border-top:2px solid var(--rojo);padding:12px 24px;display:flex;align-items:center;justify-content:center;gap:20px;z-index:998;transform:translateY(100%);transition:transform .3s}
-.sticky.show{transform:translateY(0)}
-.sticky-text{font-size:.88rem;color:#ccc}
-.sticky-text strong{color:#fff}
-.sticky a{background:var(--rojo);color:#fff;padding:10px 24px;border-radius:4px;font-weight:700;font-size:.88rem;text-decoration:none;white-space:nowrap;transition:background .2s}
-.sticky a:hover{background:#aa0000}
-
-/* ── FOOTER ── */
-footer{padding:28px 5%;border-top:1px solid #1a1a1a;text-align:center;font-size:11px;color:#333}
-footer a{color:#555;text-decoration:none}
-
-@media(max-width:768px){
-  .hero-stats{gap:20px}
-  .modules-inner{grid-template-columns:1fr}
-  .sticky{flex-direction:column;gap:8px;padding:14px}
-  .price-card{padding:32px 20px}
-  .trust-inner{gap:20px}
-}
-
-/* ── EFECTOS ── */
-#progressBar{position:fixed;top:0;left:0;height:3px;width:0%;z-index:99999;background:linear-gradient(90deg,#CC0000,#ff4d4d);box-shadow:0 0 20px #CC0000}
-.reveal{opacity:0;transform:translateY(40px);transition:all .8s ease}
-.visible{opacity:1;transform:none}
-.flag-particle{position:absolute;font-size:24px;opacity:.15;animation:floatFlag linear infinite;pointer-events:none}
-@keyframes floatFlag{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(-120vh) rotate(360deg)}}
-.btn-primary{position:relative;overflow:hidden;background:linear-gradient(135deg,#CC0000,#ff3333);box-shadow:0 0 20px rgba(204,0,0,.4),0 0 60px rgba(204,0,0,.2)}
-.btn-primary::before{content:'';position:absolute;top:0;left:-120%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:.8s}
-.btn-primary:hover::before{left:120%}
-.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65),transparent 35%),linear-gradient(to bottom,rgba(0,0,0,.35),transparent 25%);pointer-events:none;z-index:1}
-.hero-content::before{content:'';position:absolute;width:500px;height:500px;left:-150px;top:50%;transform:translateY(-50%);background:radial-gradient(circle,rgba(204,0,0,.18),transparent 70%);filter:blur(60px);pointer-events:none;z-index:-1}
-.hero h1{text-shadow:0 0 20px rgba(204,0,0,.15),0 0 40px rgba(204,0,0,.08)}
-.tl-card,.mod-item,.step,.testi-card,.price-card,.qualify-card,.cost-card,.faq-item{transition:all .3s ease}
-.tl-card:hover,.mod-item:hover,.step:hover,.testi-card:hover,.qualify-card:hover,.cost-card:hover{transform:translateY(-5px);border-color:rgba(204,0,0,.4);box-shadow:0 20px 40px rgba(0,0,0,.35)}
-.price-card{box-shadow:0 0 60px rgba(204,0,0,.12),0 20px 60px rgba(0,0,0,.4)}
-.btn-cta-pulse{animation:pulseRed 2.5s infinite}
-@keyframes pulseRed{0%,100%{box-shadow:0 0 20px rgba(204,0,0,.35),0 0 50px rgba(204,0,0,.15)}50%{box-shadow:0 0 35px rgba(204,0,0,.65),0 0 90px rgba(204,0,0,.25)}}
-nav.scrolled{background:rgba(10,0,5,.98);box-shadow:0 8px 40px rgba(0,0,0,.5)}
-::-webkit-scrollbar{width:10px}
-::-webkit-scrollbar-track{background:#0a0005}
-::-webkit-scrollbar-thumb{background:#CC0000;border-radius:10px}
-.testi-quote{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;max-height:6.5em;transition:all .4s ease}
-.testi-quote.expanded{display:block;-webkit-line-clamp:unset;max-height:2000px}
-.ver-mas{background:none;border:none;color:var(--rojo);font-size:.8rem;font-weight:700;cursor:pointer;padding:6px 0 0;display:block;letter-spacing:1px;font-family:'Inter',sans-serif;text-transform:uppercase}
-.ver-mas:hover{color:#aa0000}
-.whatsapp-btn{position:fixed;bottom:90px;right:20px;z-index:1000;background:#25D366;color:#fff;border-radius:50px;padding:12px 20px;display:flex;align-items:center;gap:10px;text-decoration:none;font-family:"Inter",sans-serif;font-size:.85rem;font-weight:700;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:all .2s ease;animation:waPulse 2.5s ease infinite}
-.whatsapp-btn:hover{background:#20ba5a;transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,0.5);animation:none}
-.whatsapp-btn svg{width:22px;height:22px;fill:#fff;flex-shrink:0}
-@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,0.7),0 0 0 8px rgba(37,211,102,0.1)}}
-@media(max-width:600px){.whatsapp-btn span{display:none}.whatsapp-btn{padding:14px;border-radius:50%;bottom:80px}}
-</style>
-<!-- Meta Pixel Code -->
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1274753604821165');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Meta Pixel Code -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --charcoal: #0A0A0A;
+    --charcoal-soft: #161616;
+    --cream: #FFFFFF;
+    --cream-soft: #FAFAFA;
+    --mustard: #FFC107;
+    --mustard-deep: #E0A800;
+    --oxblood: #E2231A;
+    --sage: #2E7D32;
+    --line: rgba(28,27,25,0.10);
+    --line-light: rgba(255,255,255,0.10);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--cream);
+    color:var(--charcoal);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4{font-family:'Fraunces',serif;line-height:1.1;}
+  .mono{font-family:'Space Mono',monospace;}
+
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  
+  /* Contenedor estándar para textos */
+  .wrap{max-width:1090px;margin:0 auto;padding:0 24px;}
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  
+
+  .hero-video {
+    position: relative;
+    max-width: 1700px;
+    width: 100%;
+    margin: 0 auto 38px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line-light);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
+  }
+
+  .trust-banner-link {
+    display: inline-block;
+    margin-top: 20px;
+    border-radius: 6px;
+    overflow: hidden;
+    width: 100%; 
+    max-width: 1600px;
+    box-shadow: 0 4px 12px -4px rgba(28,27,25,0.15);
+  }
+  .trust-banner-link img {
+    display: block;
+    width: 100%; 
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .mockup-wide-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .mockup-image {
+    width: 100%;
+    margin: 0 auto 36px;
+  }
+  .mockup-image img {
+    width: 100%;
+    height: auto;
+    filter:drop-shadow(0 24px 40px rgba(28,27,25,0.16));
+  }
+
+  .testi-wide-container {
+    max-width: 1700px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .testi-grid-images {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 32px;       
+    justify-content: center;
+  }
+  .testi-img {
+    width: min(440px, 100%);
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+  }
+
+  .google-wide-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .google-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 32px;
+  }
+  .google-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  }
+
+  /* ==========================================================================
+     FIN DE LAS INDICACIONES MANUALES (Estilos Generales Continuos)
+     ========================================================================== */
+
+  /* Urgency bar */
+  .urgency-bar{
+    position:sticky;top:0;z-index:100;
+    background:linear-gradient(90deg, #FF2D1F, #D8000A, #FF2D1F);
+    background-size:200% 100%;
+    color:#fff;
+    text-align:center;
+    padding:10px 12px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    flex-wrap:wrap;
+    animation:barShimmer 5s linear infinite, urgentPulse 1.8s ease-in-out infinite;
+  }
+  .urgency-bar .timer{
+    font-family:'Space Mono',monospace;
+    background:#000;
+    color:#FF5A4D;
+    padding:4px 10px;
+    border-radius:4px;
+    font-size:14px;
+    font-weight:700;
+    box-shadow:0 0 0 1px rgba(255,255,255,0.15) inset;
+  }
+  @keyframes urgentPulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(216,0,10,0);}
+    50%{box-shadow:0 0 18px 2px rgba(255,45,31,0.55);}
+  }
+
+  /* Hero */
+  .hero{
+    background:linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal-soft) 100%);
+    color:var(--cream);
+    padding:64px 0 72px;
+    position:relative;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:0;height:6px;
+    background:repeating-linear-gradient(90deg, var(--mustard) 0 18px, transparent 18px 36px);
+  }
+  .hero-eyebrow{
+    font-family:'Space Mono',monospace;
+    color:var(--mustard);
+    font-size:13px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .hero-eyebrow::before{content:"";width:24px;height:1px;background:var(--mustard);}
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    font-weight:700;
+    margin-bottom:18px;
+    max-width:780px;
+  }
+  .hero p.lead{
+    font-size:18px;
+    color:rgba(246,239,228,0.82);
+    max-width:560px;
+    margin-bottom:34px;
+  }
+
+  .hero-video::before{content:"";display:block;padding-top:56.25%;}
+  .hero-video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+
+  .price-ticket{
+    display:inline-flex;align-items:center;gap:16px;
+    background:rgba(246,239,228,0.06);
+    border:1px solid var(--line-light);
+    border-radius:10px;
+    padding:14px 20px;
+    margin-bottom:28px;
+  }
+  .price-ticket .old{font-family:'Space Mono',monospace;text-decoration:line-through;opacity:0.5;font-size:15px;}
+  .price-ticket .now{font-family:'Space Mono',monospace;font-size:22px;font-weight:700;color:var(--mustard);}
+  .price-ticket .tag{font-size:12px;background:var(--sage);color:var(--cream);padding:3px 8px;border-radius:4px;font-weight:700;}
+
+  .btn-cta{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--mustard);
+    color:var(--charcoal);
+    font-weight:700;
+    font-size:17px;
+    padding:18px 34px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    transition:transform 0.15s ease, background 0.15s ease;
+    box-shadow:0 10px 24px -8px rgba(217,142,59,0.5);
+  }
+  .btn-cta:hover{background:var(--mustard-deep);transform:translateY(-2px);}
+  .cta-sub{font-size:13px;color:rgba(246,239,228,0.55);margin-top:12px;}
+
+  /* Media strip */
+  .media-strip{background:#fff;padding:28px 0;border-bottom:1px solid var(--line);}
+  .media-strip img{max-width:560px;width:100%;margin:0 auto;opacity:0.85;}
+
+  /* Section heading */
+  .section{padding:80px 0;}
+  .section-head{text-align:center;max-width:620px;margin:0 auto 48px;}
+  .section-head .eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--oxblood);margin-bottom:10px;display:block;}
+  .section-head h2{font-size:clamp(1.9rem, 4vw, 2.6rem);font-weight:700;}
+  .section-head p{color:rgba(28,27,25,0.62);margin-top:12px;font-size:16px;}
+
+  /* Menu */
+  .menu-section{background:var(--cream-soft);color:var(--charcoal);}
+  .menu-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 4px 24px -8px rgba(28,27,25,0.06);}
+  .menu-course{display:flex;align-items:baseline;gap:14px;padding:18px 22px;border-bottom:1px dashed rgba(28,27,25,0.14);}
+  .menu-course:last-child{border-bottom:none;}
+  .menu-course .num{font-family:'Space Mono',monospace;font-size:13px;color:var(--oxblood);flex-shrink:0;width:26px;}
+  .menu-course .name{font-family:'Fraunces',serif;font-size:19px;font-weight:500;color:var(--charcoal);}
+  .menu-course .leader{flex:1;border-bottom:1px dotted rgba(28,27,25,0.22);margin:0 4px;transform:translateY(-6px);}
+  .menu-course .status{font-family:'Space Mono',monospace;font-size:12px;color:#8a6d00;background:rgba(255,193,7,0.22);padding:4px 10px;border-radius:20px;white-space:nowrap;}
+
+  /* Benefits grid */
+  .benefits-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;}
+  .benefit-card{background:var(--cream-soft);border:1px solid var(--line);border-radius:12px;padding:28px 24px;}
+  .benefit-card .icon{width:46px;height:46px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .benefit-card .icon svg{width:100%;height:100%;stroke:var(--mustard-deep);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+  .benefit-card h3{font-size:17px;font-weight:600;margin-bottom:8px;}
+  .benefit-card p{font-size:14px;color:rgba(28,27,25,0.62);}
+
+  /* Guarantee strip */
+  .guarantee{background:#fff;border:1px solid var(--line);color:var(--charcoal);border-radius:16px;padding:36px 40px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+  .guarantee .badge-img{width:96px;height:96px;flex-shrink:0;}
+  .guarantee .badge-img img{width:100%;height:100%;object-fit:contain;}
+
+  /* Stats strip */
+  .stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-light);border-radius:14px;overflow:hidden;margin-top:44px;}
+  .stat-cell{background:var(--oxblood);padding:26px 16px;text-align:center;}
+  .stat-cell .num{font-family:'Space Mono',monospace;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--mustard);display:block;}
+  .stat-cell .label{font-size:12px;color:rgba(255,255,255,0.85);margin-top:4px;text-transform:uppercase;}
+
+  /* Mockup UI Elements */
+  .mockup-cta .btn-cta-big{font-size:20px;padding:20px 48px;}
+  .payment-icons{display:flex;justify-content:center;gap:18px;margin-top:18px;flex-wrap:wrap;}
+  .payment-icons span{font-family:'Space Mono',monospace;font-size:11px;color:rgba(28,27,25,0.45);border:1px solid var(--line);padding:6px 12px;border-radius:6px;}
+
+  .payment-info-block{
+    background:var(--cream-soft);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:36px 40px;
+    text-align:center;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .payment-info-block h3{font-size:19px;margin-bottom:12px;}
+  .payment-info-block p{font-size:14px;color:rgba(28,27,25,0.62);max-width:580px;margin:0 auto;}
+
+  /* Certification Block */
+  .cert-block{display:grid;grid-template-columns: 1.3fr 1fr;gap:48px;align-items:center;max-width: 1150px;margin: 0 auto;}
+  .cert-image img{width: 100%;height: auto;border-radius:14px;border:1px solid var(--line);box-shadow:0 20px 40px -16px rgba(28,27,25,0.18);}
+  .cert-text h2{font-size:clamp(1.7rem,3.5vw,2.2rem);margin-bottom:14px;}
+  .cert-text p{font-size:15px;color:rgba(28,27,25,0.62);margin-bottom:26px;}
+
+  /* FAQ System */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{width:100%;text-align:left;background:none;border:none;padding:20px 4px;font-family:'Fraunces',serif;font-size:17px;font-weight:500;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
+  .faq-q .plus{font-family:'Space Mono',monospace;color:var(--oxblood);font-size:18px;}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height 0.25s ease;font-size:14px;color:rgba(28,27,25,0.65);}
+  .faq-a-inner{padding:0 4px 20px;}
+
+  /* Final CTA */
+  .final-cta{background:var(--charcoal);color:var(--cream);text-align:center;padding:80px 0;}
+  .final-cta h2{font-size:clamp(2rem,4.5vw,2.8rem);margin:14px 0 30px;}
+
+  footer{background:var(--charcoal-soft);color:rgba(246,239,228,0.45);font-size:12px;text-align:center;padding:28px 24px;}
+
+  /* ==========================================================================
+     RESPONSIVE / ADAPTACIÓN PARA MÓVILES
+     ========================================================================== */
+  @media (max-width: 900px) {
+    .google-grid {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    .cert-block {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .stats-strip {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .trust-banner-link {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .testi-grid-images {
+      gap: 16px;
+    }
+    .testi-img {
+      width: 100%;
+    }
+  }
+
+  @keyframes barShimmer{0%{background-position:0% 0;}100%{background-position:200% 0;}}
+</style>
 </head>
 <body>
 
-<div id="progressBar"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">
-    <div class="nav-flag"></div>
-    BANDERAS <span>ROJAS</span>
-  </div>
-  <a class="nav-cta" href="https://go.hotmart.com/V106289648D?ap=dea5" onclick="fbq('track', 'Lead')" target="_blank" rel="noopener">Acceder por $25 →</a>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">🚩 Andres Vernazza · Emprendedor Moderno</div>
-    <h1>¿Siempre terminas<br/>en relaciones<br/><em>que duelen?</em></h1>
-    <p class="hero-sub">Las relaciones tóxicas no empiezan con dolor.<br/><strong>Empiezan con intensidad.</strong><br/>Por eso no ves las señales — hasta que ya es tarde.</p>
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-num" data-count="7" data-suffix="">7</div><div class="stat-label">Módulos</div></div>
-      <div class="stat"><div class="stat-num" data-count="10" data-suffix="+">+10</div><div class="stat-label">Señales de alerta</div></div>
-      <div class="stat"><div class="stat-num" data-count="9" data-suffix="">9</div><div class="stat-label">Reseñas 5★</div></div>
-    </div>
-    <a class="btn-primary btn-cta-pulse" href="https://go.hotmart.com/V106289648D?ap=dea5" onclick="fbq('track', 'Lead')" target="_blank" rel="noopener">
-      Comienza ahora <span class="arrow">→</span>
-    </a>
-    <div class="hero-price" style="flex-wrap:wrap;gap:6px;align-items:center;margin-top:16px">
-      <span style="font-size:.82rem;color:#888">Precio oficial:</span>
-      <span class="price-old" style="font-size:1.1rem;font-weight:700;color:#666;text-decoration:line-through">$97.00</span>
-      <span style="font-size:.82rem;color:#888">· Como asesor te lo habilito por:</span>
-      <span class="price-now" style="font-size:2rem">$25</span>
-      <span style="font-size:.82rem;color:#888">USD</span>
-    </div>
-    <p style="color:#ffb3b3;font-size:.85rem;margin-top:12px">🔥 Precio promocional disponible por tiempo limitado</p>
-    <p class="hero-note">✓ Pago seguro vía Hotmart &nbsp;·&nbsp; ✓ Acceso de por vida &nbsp;·&nbsp; ✓ Garantía incluida</p>
-  </div>
-
-  <div class="hero-img">
-    <img
-      src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1182,fit=crop/FCjcBPikiJOPwM4k/sin-tatulo-700-x-2000-px-1rZFxABFLf8ipu36.png"
-      alt="Andres Vernazza - Banderas Rojas"
-      loading="eager"
-    />
-  </div>
-</section>
-
-<!-- TRUST STRIP (nuevo) -->
-<div class="trust-strip">
-  <div class="trust-inner reveal">
-    <div class="trust-item"><span class="ic">🔒</span> Pago <strong>100% seguro</strong> vía Hotmart</div>
-    <div class="trust-item"><span class="ic">⚡</span> Acceso <strong>inmediato</strong></div>
-    <div class="trust-item"><span class="ic">🛡️</span> <strong>Garantía</strong> de satisfacción</div>
-    <div class="trust-item"><span class="ic">★</span> <strong>5.0</strong> · 9 reseñas verificadas</div>
-  </div>
+<div class="urgency-bar">
+  <span>⏳ Promoción especial termina en</span>
+  <span class="timer" id="timer">00:10:00</span>
 </div>
 
-<div class="divider"></div>
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Cocina de Élite</div>
+    <h1>Aprende a cocinar como <em>profesional</em>, desde tu propia cocina.</h1>
+    <p class="lead">7 cursos completos — cocina internacional, panadería artesanal, repostería, coctelería, sushi y más. A tu ritmo, con certificación incluida.</p>
 
-<!-- PAIN -->
-<section class="section">
-  <div class="section-inner">
-    <p class="eyebrow reveal">¿Por qué pasa?</p>
-    <h2 class="section-title">Si no entiendes el ciclo,<br/><em>lo repites.</em></h2>
-    <p class="pain-text reveal">Cambia la persona, pero el final vuelve a ser el mismo. No es mala suerte — es un patrón. Y los patrones se aprenden, <strong>y también se rompen.</strong></p>
+    <div class="hero-video">
+      <iframe src="https://www.youtube.com/embed/2XdOloUNraU" title="Gastronomía Online" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div class="price-ticket">
+      <span class="tag">Acceso de por vida</span>
+      <span class="old">$175,00</span>
+      <span class="now">$65,00</span>
+    </div>
+    <br>
+    <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta" onclick="fbq('track','InitiateCheckout');">
+      Quiero empezar hoy <span class="arrow">→</span>
+    </a>
+    <p class="cta-sub">Acceso inmediato tras tu inscripción · Pago 100% seguro vía Hotmart</p>
+  </div>
+</header>
+
+  
+
+<section class="section reveal" style="background:#fff;">
+  <div class="mockup-wide-container">
+    <div class="mockup-image">
+      <img src="https://cursosdecocina.tv/wp-content/uploads/2024/12/caja-gastronomia-1536x960.png" alt="Gastronomía Online — contenido del curso, recetario y garantía de 7 días">
+    </div>
+    <div class="mockup-cta">
+      <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta btn-cta-big" onclick="fbq('track','InitiateCheckout');">
+        Comprar ahora <span class="arrow">→</span>
+      </a>
+    
+      <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="trust-banner-link" onclick="fbq('track','InitiateCheckout');">
+        <img src="https://cdn.shopify.com/s/files/1/0078/9620/3362/files/468x60.jpg" alt="Compra segura garantizada">
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- ANTES / DURANTE / DESPUÉS -->
-<section class="timeline">
-  <div class="timeline-inner">
-    <p class="eyebrow reveal">El ciclo tóxico</p>
-    <h2 class="section-title">Lo que vives en<br/><em>cada etapa</em></h2>
-    <div class="timeline-grid stagger">
-      <div class="tl-card">
-        <div class="tl-num">01</div>
-        <div class="tl-label"><span>Antes</span></div>
-        <div class="tl-text">
-          <p>Empiezas a ver señales. Algo no termina de sentirse bien. Pero dudas de tu intuición.</p>
-          <p>Las banderas están ahí — solo que todavía no las lees.</p>
-        </div>
+<section class="section menu-section reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">La carta del curso</span>
+      <h2>7 cursos, servidos completos</h2>
+      <p>Cada curso es un programa entero, con lecciones, recetas y recursos descargables.</p>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-course"><span class="num">01</span><span class="name">Cocina Internacional</span><span class="leader"></span><span class="status">incluido</span></div>
+      <div class="menu-course"><span class="num">02</span><span class="name">Panadería Artesanal</span><span class="leader"></span><span class="status">incluido</span></div>
+      <div class="menu-course"><span class="num">03</span><span class="name">Repostería y Decoración</span><span class="leader"></span><span class="status">incluido</span></div>
+      <div class="menu-course"><span class="num">04</span><span class="name">Tortas Modernas</span><span class="leader"></span><span class="status">incluido</span></div>
+      <div class="menu-course"><span class="num">05</span><span class="name">Sushi Rolls</span><span class="leader"></span><span class="status">incluido</span></div>
+      <div class="menu-course"><span class="num">06</span><span class="name">Coctelería Clásica</span><span class="leader"></span><span class="status">incluido</span></div>
+      <div class="menu-course"><span class="num">07</span><span class="name">Barista Training</span><span class="leader"></span><span class="status">incluido</span></div>
+    </div>
+
+    <div class="stats-strip">
+      <div class="stat-cell"><span class="num">5000+</span><span class="label">Alumnos</span></div>
+      <div class="stat-cell"><span class="num">300+</span><span class="label">Lecciones</span></div>
+      <div class="stat-cell"><span class="num">7</span><span class="label">Cursos</span></div>
+      <div class="stat-cell"><span class="num">99%</span><span class="label">Satisfacción</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Por qué este curso</span>
+      <h2>6 Beneficios Exclusivos al comprar el curso</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Estudia a tu propio ritmo desde cualquier dispositivo</h3>
+        <p>Avanza, pausa y repite las lecciones cuando quieras. Sin horarios fijos ni presiones, adaptado por completo a tu vida real.</p>
       </div>
-      <div class="tl-card">
-        <div class="tl-num">02</div>
-        <div class="tl-label"><span>Durante</span></div>
-        <div class="tl-text">
-          <p>Todo se vuelve intenso. Conexión acelerada. Altibajos emocionales.</p>
-          <p>Confundes intensidad con amor. Drama con pasión. Urgencia con vínculo.</p>
-        </div>
+      <div class="benefit-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M7 9a3 3 0 1 0 0 6 3 3 0 0 0 2.4-1.2L12 12l2.6 1.8A3 3 0 1 0 17 9a3 3 0 0 0-2.4 1.2L12 12 9.4 10.2A3 3 0 0 0 7 9Z"/></svg></div>
+        <h3>Un único pago para un acceso de por vida</h3>
+        <p>Olvídate de las mensualidades. Pagas una sola vez y el contenido completo del programa es tuyo para siempre, incluyendo futuras actualizaciones.</p>
       </div>
-      <div class="tl-card">
-        <div class="tl-num">03</div>
-        <div class="tl-label"><span>Después</span></div>
-        <div class="tl-text">
-          <p>Cansancio emocional. Confusión interna. Culpa por haberte quedado — o por no haber salido antes.</p>
-          <p>Necesitas entender lo que pasó para poder soltar.</p>
-        </div>
+      <div class="benefit-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="M6 9.8V15c0 1.4 2.7 3 6 3s6-1.6 6-3V9.8"/><path d="M21 7.5v6"/></svg></div>
+        <h3>Certificación digital incluida al finalizar</h3>
+        <p>Al completar cada uno de los cursos del programa, recibirás un certificado digital descargable que respalda tus nuevos conocimientos culinarios.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/></svg></div>
+        <h3>E-books descargables y recetarios exclusivos</h3>
+        <p>Accede a guías detalladas en formato PDF con el paso a paso de cada preparación, listas de ingredientes precisas y secretos técnicos listos para imprimir.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16.5 7a3 3 0 0 1 0 6"/><path d="M19 20c0-2.6-1.8-4.8-4.2-5.6"/></svg></div>
+        <h3>Resolución de dudas directo con profesores</h3>
+        <p>Nunca estarás solo en el proceso. Cuentas con un área privada debajo de cada video-lección para dejar tus preguntas y recibir soporte directo.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 7.8 8 9 4.5-1.2 8-4 8-9V6l-8-3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg></div>
+        <h3>Garantía de satisfacción total por 7 días</h3>
+        <p>Prueba el programa completo sin ningún riesgo. Si en tu primera semana sientes que la gastronomía no es para ti, te reembolsamos el 100% de tu dinero.</p>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- PARA QUIÉN ES / NO ES (nuevo) -->
-<section class="section">
-  <div class="section-inner">
-    <p class="eyebrow reveal">¿Es para ti?</p>
-    <h2 class="section-title">Antes de seguir,<br/><em>seamos honestos</em></h2>
-    <div class="qualify-grid stagger">
-      <div class="qualify-card yes">
-        <h3>✓ Es para ti si...</h3>
-        <div class="qualify-item"><span class="mark">→</span> Has sentido que algo no encaja, pero no sabías ponerle nombre.</div>
-        <div class="qualify-item"><span class="mark">→</span> Quieres detectar señales de alerta antes de involucrarte más.</div>
-        <div class="qualify-item"><span class="mark">→</span> Estás saliendo de una relación tóxica y necesitas entender qué pasó.</div>
-        <div class="qualify-item"><span class="mark">→</span> Valoras un enfoque empático, directo y sin sermones.</div>
-      </div>
-      <div class="qualify-card no">
-        <h3>✕ No es para ti si...</h3>
-        <div class="qualify-item"><span class="mark">→</span> Buscas culpar a todas tus parejas o vivir a la defensiva.</div>
-        <div class="qualify-item"><span class="mark">→</span> Quieres una receta mágica sin mirar tu propio patrón.</div>
-        <div class="qualify-item"><span class="mark">→</span> Esperas aprender a "manipular mejor" a otra persona.</div>
-        <div class="qualify-item"><span class="mark">→</span> No estás dispuesto/a a hacer los ejercicios prácticos.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- COSTO DE NO ACTUAR (nuevo) -->
-<section class="cost-section" style="background:var(--negro2)">
-  <div class="cost-inner">
-    <p class="eyebrow reveal">El verdadero costo</p>
-    <h2 class="section-title reveal">¿Cuánto te ha costado<br/><em>ya no saber esto?</em></h2>
-    <p class="pain-text reveal" style="margin:0 auto">No se trata solo de $25. Se trata de lo que sigues pagando — en tiempo, en energía y en autoestima — cada vez que repites el mismo patrón.</p>
-    <div class="cost-grid stagger">
-      <div class="cost-card bad">
-        <div class="cost-label">Seguir sin saberlo</div>
-        <div class="cost-num">Meses</div>
-        <p class="cost-desc">de confusión, ciclos repetidos y desgaste emocional — sin herramientas para romperlo.</p>
-      </div>
-      <div class="cost-vs">VS</div>
-      <div class="cost-card good">
-        <div class="cost-label">Banderas Rojas</div>
-        <div class="cost-num">$25</div>
-        <p class="cost-desc">pago único, acceso de por vida, y un sistema claro para identificar el patrón a tiempo.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- MODULES -->
-<section class="modules">
-  <div class="section-inner">
-    <div class="modules-inner">
-      <div class="modules-left">
-        <p class="eyebrow reveal">El curso</p>
-        <h2 class="section-title">Contenido del<br/><em>curso</em></h2>
-        <p>Este curso no se centra solo en identificar banderas rojas en otros — sino en desarrollar <strong style="color:#fff">conciencia vincular</strong>, asumir responsabilidad sin culpa y construir vínculos más sanos a futuro.</p>
-        <p>7 módulos completos con ejercicios prácticos y herramientas reales.</p>
-        <br/>
-        <a class="btn-primary btn-cta-pulse" href="https://go.hotmart.com/V106289648D?ap=dea5" onclick="fbq('track', 'Lead')" target="_blank" rel="noopener">Quiero acceder →</a>
-      </div>
-      <div class="modules-list stagger">
-        <div class="mod-item"><div class="mod-flag">🚩</div><div class="mod-content"><h4>Módulo 1 — Bases del problema</h4><p>Comprender por qué caemos y repetimos los mismos patrones.</p></div></div>
-        <div class="mod-item"><div class="mod-flag">🚩</div><div class="mod-content"><h4>Módulo 2 — El antes: cómo comienza la trampa</h4><p>Identificar la toxicidad en las primeras etapas de la relación.</p></div></div>
-        <div class="mod-item"><div class="mod-flag">🚩</div><div class="mod-content"><h4>Módulo 3 — Tu parte en el vínculo</h4><p>Reconocer qué toleras y por qué — sin culparte.</p></div></div>
-        <div class="mod-item"><div class="mod-flag">🚩</div><div class="mod-content"><h4>Módulo 4 — Dentro de la relación tóxica</h4><p>Cuando el daño ya está activo: gaslighting, control, manipulación.</p></div></div>
-        <div class="mod-item"><div class="mod-flag">🚩</div><div class="mod-content"><h4>Módulo 5 — Límites, comunicación y realidad</h4><p>Evaluar si la relación es viable y cómo comunicarte sanamente.</p></div></div>
-        <div class="mod-item"><div class="mod-flag">🚩</div><div class="mod-content"><h4>Módulo 6 — Salir de la relación</h4><p>Sostener la decisión y protegerte emocionalmente al salir.</p></div></div>
-        <div class="mod-item"><div class="mod-flag">🚩</div><div class="mod-content"><h4>Módulo 7 — Después: corte, recuperación y prevención</h4><p>Sanar, procesar y no volver a caer en el mismo patrón.</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-<div class="divider"></div>
-
-<!-- DIFERENCIADORES -->
-<section class="section" style="background:var(--negro2)">
-  <div class="section-inner">
-    <p class="eyebrow reveal" style="text-align:center">Por qué funciona</p>
-    <h2 class="section-title reveal" style="text-align:center">No es un curso más.<br/><em>Es un proceso.</em></h2>
-    <div class="flags-grid stagger" style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
-      <div class="step" style="padding:32px 28px">
-        <div style="font-size:2rem;margin-bottom:16px">⚡</div>
-        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:1px;color:#fff;margin-bottom:12px">Integras el contenido con ejercicios prácticos</h3>
-        <p style="font-size:.88rem;color:#aaa;line-height:1.7;margin-bottom:12px">Entender no siempre es suficiente. Por eso el programa incluye ejercicios diseñados para:</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
-          <li style="font-size:.85rem;color:#ccc;display:flex;gap:8px;align-items:flex-start"><span style="color:var(--rojo);flex-shrink:0">→</span> Llevar lo aprendido a tu experiencia real</li>
-          <li style="font-size:.85rem;color:#ccc;display:flex;gap:8px;align-items:flex-start"><span style="color:var(--rojo);flex-shrink:0">→</span> Observarte con mayor claridad</li>
-          <li style="font-size:.85rem;color:#ccc;display:flex;gap:8px;align-items:flex-start"><span style="color:var(--rojo);flex-shrink:0">→</span> Romper automatismos que sostienen el patrón</li>
-        </ul>
-        <p style="font-size:.88rem;color:#fff;margin-top:14px;line-height:1.6"><strong style="color:var(--rojo)">El cambio ocurre cuando lo que entiendes se vuelve práctica.</strong></p>
-      </div>
-      <div class="step" style="padding:32px 28px">
-        <div style="font-size:2rem;margin-bottom:16px">🤝</div>
-        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:1px;color:#fff;margin-bottom:12px">No atraviesas el proceso en soledad</h3>
-        <p style="font-size:.88rem;color:#aaa;line-height:1.7;margin-bottom:12px">El acompañamiento y la comunidad hacen la diferencia. Durante el programa compartes el espacio con personas que:</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
-          <li style="font-size:.85rem;color:#ccc;display:flex;gap:8px;align-items:flex-start"><span style="color:var(--rojo);flex-shrink:0">→</span> Están viviendo procesos similares</li>
-          <li style="font-size:.85rem;color:#ccc;display:flex;gap:8px;align-items:flex-start"><span style="color:var(--rojo);flex-shrink:0">→</span> Buscan entender y sanar sus vínculos</li>
-          <li style="font-size:.85rem;color:#ccc;display:flex;gap:8px;align-items:flex-start"><span style="color:var(--rojo);flex-shrink:0">→</span> No quieren seguir normalizando el dolor</li>
-        </ul>
-        <p style="font-size:.88rem;color:#fff;margin-top:14px;line-height:1.6">Aquí no tienes que explicarte ni defenderte.<br/><strong style="color:var(--rojo)">Solo avanzar acompañado/a.</strong></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- HOW TO BUY -->
-<section class="how-buy">
-  <div class="how-buy-inner">
-    <p class="eyebrow reveal">Es muy simple</p>
-    <h2 class="section-title">¿Cómo hago la<br/><em>compra?</em></h2>
-    <p style="color:#aaa;font-size:1rem;margin-top:8px">El pago es 100% seguro a través de Hotmart, la plataforma líder en cursos digitales en Latinoamérica.</p>
-    <div class="steps-grid stagger">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h3>Haz clic en el botón</h3>
-        <p>Presiona cualquier botón rojo de esta página y serás redirigido a la página segura de pago de Hotmart.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h3>Ingresa tus datos</h3>
-        <p>Escribe tu nombre completo y correo electrónico. Ahí recibirás tu acceso al curso.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h3>Elige cómo pagar</h3>
-        <p>Puedes pagar con tarjeta de débito o crédito, PayPal, o dividir el pago en dos tarjetas.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <h3>Acceso inmediato</h3>
-        <p>Tras confirmar el pago recibirás un email con tu acceso. En menos de 5 minutos ya puedes empezar.</p>
-      </div>
-    </div>
-    <div class="payment-methods reveal">
-      <div class="pay-badge">💳 Débito / Crédito</div>
-      <div class="pay-badge">🅿️ PayPal</div>
-      <div class="pay-badge">💳💳 Dos tarjetas</div>
-      <div class="pay-badge">🔒 Protegido por Hotmart</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- AUTHOR -->
-<section class="section" style="background:var(--negro2)">
-  <div class="section-inner">
-    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center;max-width:1000px;margin:0 auto" class="author-grid">
-      <div style="position:relative">
-        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(204,0,0,0.2) 0%,transparent 70%);border-radius:12px;z-index:0"></div>
-        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1248,fit=crop/FCjcBPikiJOPwM4k/chatgpt-image-2-feb-2026-04_27_17-a.m.-DTXlEb0bHTLfnqz9.png"
-          alt="Andres Vernazza" class="author-img"
-          style="width:100%;border-radius:12px;display:block;position:relative;z-index:1;border:1px solid rgba(204,0,0,0.2);filter:brightness(0.95) contrast(1.05)"/>
-        <div style="position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,var(--negro2),transparent);border-radius:0 0 12px 12px;z-index:2"></div>
+<section class="section reveal" style="padding-top:0;">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="badge-img">
+        <img src="https://cursosdecocina.tv/wp-content/uploads/elementor/thumbs/garantia-7-dias-1-1-q5i4nhvvdzlfdzc18722l8hm1q4ah64ff5knyzc0r4.png" alt="Garantía de 7 días">
       </div>
       <div>
-        <p class="eyebrow reveal">El autor</p>
-        <h2 class="section-title">Andres<br/><em>Vernazza</em></h2>
-        <p style="color:#aaa;line-height:1.8;margin-bottom:16px;font-weight:300">Emprendedor Moderno. Experto en relaciones conscientes y desarrollo personal, con miles de alumnos en toda Latinoamérica.</p>
-        <p style="color:#aaa;line-height:1.8;margin-bottom:28px;font-weight:300">Su método no se centra en culpar a nadie — se centra en <strong style="color:#fff">entender los patrones</strong> que te llevaron ahí y en darte las herramientas reales para romperlos.</p>
-        <div style="display:flex;gap:28px;flex-wrap:wrap">
-          <div><div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--rojo)">7</div><div style="font-size:.75rem;color:#666;text-transform:uppercase;letter-spacing:1px">Módulos</div></div>
-          <div><div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--rojo)">97%</div><div style="font-size:.75rem;color:#666;text-transform:uppercase;letter-spacing:1px">Satisfacción</div></div>
-          <div><div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--rojo)">5★</div><div style="font-size:.75rem;color:#666;text-transform:uppercase;letter-spacing:1px">Calificación</div></div>
-        </div>
+        <h3>Pruébalo sin riesgo</h3>
+        <p>Si dentro de los primeros 7 días sientes que no es para ti, te devolvemos el 100% de tu inversión. Sin preguntas.</p>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- PRICING -->
-<section class="pricing">
-  <div class="pricing-inner">
-    <p class="eyebrow" style="text-align:center">Inversión</p>
-    <h2 class="section-title" style="text-align:center">Tu acceso<br/><em>completo</em></h2>
-    <br/>
-    <div class="price-card reveal">
-      <div class="price-card-title">Banderas Rojas</div>
-      <div class="price-card-sub">Curso completo · Andres Vernazza</div>
-      <div class="price-display">
-        <p style="font-size:.9rem;color:#888;margin-bottom:12px;line-height:1.6">Como podrás ver, el curso tiene un costo oficial de:</p>
-        <div class="old" style="font-size:2.2rem;font-weight:700;color:#666;text-decoration:line-through;margin-bottom:6px">$97.00</div>
-        <p style="font-size:.85rem;color:#aaa;margin-bottom:10px">Como asesor del curso, te lo estoy habilitando por:</p>
-        <div class="now"><span class="currency">$</span>25<span style="font-size:2rem">.00</span></div>
-      </div>
-      <div class="price-note">USD · Pago único · Acceso de por vida</div>
-
-      <div class="guarantee-box">
-        <div class="g-ic">🛡️</div>
-        <div>
-          <h5>Garantía de satisfacción</h5>
-          <p>Si el contenido no es lo que esperabas, escríbenos por WhatsApp y lo resolvemos contigo.</p>
-        </div>
-      </div>
-
-      <div class="includes">
-        <h4>Incluye</h4>
-        <div class="include-item"><span class="check">✓</span> 7 módulos completos en video</div>
-        <div class="include-item"><span class="check">✓</span> +10 señales de alerta explicadas</div>
-        <div class="include-item"><span class="check">✓</span> Ejercicios prácticos por módulo</div>
-        <div class="include-item"><span class="check">✓</span> Acceso de por vida desde cualquier dispositivo</div>
-        <div class="include-item"><span class="check">✓</span> Actualizaciones incluidas</div>
-      </div>
-      <a class="btn-primary btn-cta-pulse" href="https://go.hotmart.com/V106289648D?ap=dea5" onclick="fbq('track', 'Lead')" target="_blank" rel="noopener" style="width:100%;justify-content:center;font-size:1.1rem;padding:20px">
-        Comienza ahora por $25 →
-      </a>
-      <div class="guarantee">🔒 Pago 100% seguro · Garantía de satisfacción · Hotmart</div>
-    </div>
+<!-- SECURE PAYMENT + CURRENCY -->
+<section class="section reveal" style="padding-top:0;">
+  <div class="wrap">
+    <div class="payment-info-block">
+      <h3>Pago 100% seguro, sin importar tu país</h3>
+      <p>El cobro se procesa a través de la plataforma de pago de Hotmart, una de las más usadas en Latinoamérica. El sistema convierte automáticamente el precio a tu moneda local, así que pagas como si estuvieras comprando dentro de tu propio país, sin recargos por transacciones internacionales.</p>
+      
+   </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testi">
-  <div class="testi-inner">
-    <p class="eyebrow">Testimonios</p>
-    <h2 class="section-title">Lo que dicen<br/><em>quienes ya lo vieron</em></h2>
-    <div class="reveal" style="display:flex;align-items:center;justify-content:center;gap:32px;margin-bottom:48px;flex-wrap:wrap">
-      <div style="text-align:center">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;color:#fff">5.0</div>
-        <div style="color:#CC0000;font-size:1.2rem;letter-spacing:4px">★★★★★</div>
-        <div style="font-size:.8rem;color:#666;margin-top:4px;letter-spacing:1px">9 EVALUACIONES VERIFICADAS</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:6px;min-width:200px">
-        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.75rem;color:#666;width:70px">5 estrellas</span><div style="flex:1;height:6px;background:#222;border-radius:3px"><div style="width:100%;height:100%;background:#CC0000;border-radius:3px"></div></div></div>
-        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.75rem;color:#666;width:70px">4 estrellas</span><div style="flex:1;height:6px;background:#222;border-radius:3px"><div style="width:4%;height:100%;background:#555;border-radius:3px"></div></div></div>
-        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.75rem;color:#666;width:70px">3 estrellas</span><div style="flex:1;height:6px;background:#222;border-radius:3px"><div style="width:0%;height:100%;background:#555;border-radius:3px"></div></div></div>
-        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.75rem;color:#666;width:70px">2 estrellas</span><div style="flex:1;height:6px;background:#222;border-radius:3px"><div style="width:0%;height:100%;background:#555;border-radius:3px"></div></div></div>
-        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.75rem;color:#666;width:70px">1 estrella</span><div style="flex:1;height:6px;background:#222;border-radius:3px"><div style="width:0%;height:100%;background:#555;border-radius:3px"></div></div></div>
-      </div>
-    </div>
+   <section class="media-strip">
+  <div class="wrap">
+    <img src="https://cursosdecocina.tv/wp-content/uploads/2023/04/logos-tv-1-1.png" alt="Medios donde nos hemos visto">
+  </div>
+</section>
 
-    <div class="testi-grid stagger">
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Comencé este curso porque recién terminé una relación y me sentía perdida, con un vacío enorme. Le pedí a Dios que me guiara para poder sanar y entender porque me había vuelto a pasar lo mismo. Un día entre a Facebook y vi un reel de Andrés que me llamó la atención, me metí a su página y vi los cursos que ofrecía y me anoté a todos en ese momento. Poco a poco empecé a trabajar en cada uno hasta que fui entendiendo muchas cosas que desconocía completamente y que he ido sanando. Me siento más capacitada para identificar banderas rojas y patrones tóxicos y sobre todo a no brincarme mis límites. Mi relación anterior fue con un Narcisista. Gracias a este curso pude sanar el dolor, el vacío y la culpa que venía sintiendo tras la ruptura. Logré entender que parte de mi error fue no tener la madurez emocional y el amor propio para poder detectarlo desde el inicio de la relación. Haber permitido que se brincara mis límites y no haberme ido a tiempo. Hay una frase de Andrés que me marcó completamente y me hizo ver las cosas de otra manera. Dentro de las sesiones grupales al comentar mi situación Él me dijo: "Está actuando como un Jefe, no como un Líder" y eso bastó para hacerme entender de golpe que lo que me estaba dando esta persona en la relación era control y no libertad. Al grupo que me acompañó en este proceso, le agradezco su amor, apoyo, paciencia y amistad generada. Te recomiendo completamente tomar estos cursos con Andrés, yo siento que ha sido como un Angel que Diosito me puso para lograr salir renovada de este proceso."</p>
-        <p class="testi-author">— Alejandra · 21 de Mayo de 2026</p>
+<section class="section reveal" style="background:#fff;">
+  <div class="wrap">
+    <div class="cert-block">
+      <div class="cert-image">
+        <img src="https://static-media.hotmart.com/aIob-SW8fRSmQlzS8Bq6_Rl0JZo=/1024x639/filters:quality(100)/hotmart/checkout_custom/bbee9cca-2f04-4350-adaa-63fdd782c4a1/ak9at0ugi.png" alt="Certificado Gastronomía Online">
       </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Quién elegimos como compañero o compañera de vida es la decisión más importante de nuestra vida. Este curso nos educa y nos empodera para identificar y examinar nuestras decisiones pasadas y actuales en las relaciones. Nos ayuda a fortalecer nuestros límites y a defendernos mejor a nosotros mismos. Si meditas y aplicas la orientación y los ejercicios recomendados, te ahorrará años y dinero en terapia."</p>
-        <p class="testi-author">— Loveda · 13 de Marzo de 2026</p>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Excelente contenido. Nos ayuda a construir relaciones más conscientes y equilibradas."</p>
-        <p class="testi-author">— Diana · 13 de Marzo de 2026</p>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Este curso fue mucho más de lo que esperaba... Me ayudó a identificar patrones en mi comportamiento que antes no veía y a entender cómo muchas de mis reacciones afectaban mis relaciones. Gracias a las herramientas que compartes, hoy estoy trabajando conscientemente en dejar atrás actitudes tóxicas y en construir una versión más sana de mí misma. Salir de ciertos lugares emocionales no es fácil y muchas veces duele, pero tener claridad y herramientas hace toda la diferencia. Gracias por crear un curso tan necesario y transformador!!!"</p>
-        <p class="testi-author">— Amanda · 12 de Marzo de 2026</p>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Me parece muy interesante porque define qué es una bandera roja frente a una incompatibilidad de caracteres o errores que podemos corregir. Me parece valioso porque no solo enseña a "detectar" al otro, sino a entender por qué uno se siente atraído a determinados arquetipos de persona para que nos ayude a romper el ciclo. Con este curso he aprendido a establecer límites claros, para poder retirarme de una relación de pareja insana."</p>
-        <p class="testi-author">— Jacqueline · 12 de Marzo de 2026</p>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Hola Andres! Hermano de felicito por compartir tus, conocimientos, experiencias y sobre todo tu entusiasmo de servir y ayudar a todas las personas que de una manera u otra hemos pasado por desafíos en nuestras vidas. Dios te dio ese propósito para ayudarnos y que nosotros tengamos una mejor calidad de vida. Eres una persona muy valiosa y especial. A traves de este taller de Banderas Rojas he aprendido mucho contigo y mis compañeros de este maravillo grupo. Estoy seguro de que estos nuevos conocimientos van a ser de gran ayuda para mí en mi vida. Muchas Gracias Andres. Dios te Bendice hoy y siempre. Te envió un fuerte abrazo con cariño. Atte. Arq. Juan Castaños."</p>
-        <p class="testi-author">— Juan · 11 de Marzo de 2026</p>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Ha sido una experiencia significativa para el punto de vida que estoy llevando. He aprendido mucho para sentirme mejor, cuidarme y aprender sobre alguien que se nota sabe y ha estudiado mucho de estos temas."</p>
-        <p class="testi-author">— Adrian · 10 de Marzo de 2026</p>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"HA SIDO UNA EXPERIENCIA BONITA ENCONTRADO ALGUNOS PATRONES, EN LA FORMA DE CÓMO SOCIALIZAR, COMO APRENDER A MARCAR LÍMITES..."</p>
-        <p class="testi-author">— Katherine · 10 de Marzo de 2026</p>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Creo que es algo increíble el proceso por el que vamos pasando en el curso creo que nos ayuda a crecer y tener herramientas para poder construir una nueva y mejorada versión, me siento muy orgulloso del crecimiento emocional y personal que me está generando y me siento con ganas de hacer más cursos y me da pena que se terminen por eso me encantaría seguir creciendo con el equipo tan increíble que tenéis que hace esto posible."</p>
-        <p class="testi-author">— Andres · 09 de Marzo de 2026</p>
+      <div class="cert-text">
+        <h2>Tu esfuerzo, con respaldo en papel</h2>
+        <p>Al finalizar el programa recibes un certificado digital descargable + ebook, listo para compartir o sumar a tu portafolio.</p>
+        <p>La certificación es emitida por la escuela oficial del curso, con años de trayectoria formando a estudiantes que hoy cocinan con más confianza en su propia casa o han dado el salto a emprender con lo aprendido. No dejes tus ganas de aprender para después — súmate hoy y empieza tu propio camino en la cocina.</p>
+        <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta" onclick="fbq('track','InitiateCheckout');">
+          Quiero mi certificación <span class="arrow">→</span>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- FAQ (nuevo) -->
-<section class="faq">
-  <div class="faq-inner">
-    <p class="eyebrow reveal" style="text-align:center">Preguntas frecuentes</p>
-    <h2 class="section-title reveal" style="text-align:center">Antes de que dudes,<br/><em>resolvámoslo</em></h2>
-    <div style="margin-top:40px">
-      <details class="faq-item reveal">
-        <summary>¿Esto aplica si ya terminé la relación, o solo si sigo en una? <span class="chev">▾</span></summary>
-        <p>Aplica para ambos casos. Muchas personas lo toman para sanar y entender qué pasó, y otras para no repetir el patrón en la próxima relación.</p>
-      </details>
-      <details class="faq-item reveal">
-        <summary>¿El curso me va a hacer sentir culpable o juzgado/a? <span class="chev">▾</span></summary>
-        <p>No. El enfoque de Andrés no es culpar — es ayudarte a entender el patrón con honestidad y sin vergüenza, para que puedas decidir mejor desde ahora.</p>
-      </details>
-      <details class="faq-item reveal">
-        <summary>¿Cuánto tiempo necesito para verlo? <span class="chev">▾</span></summary>
-        <p>Lo ves a tu ritmo. Son 7 módulos cortos y directos, pensados para aplicar lo aprendido desde la primera lección, sin saturarte.</p>
-      </details>
-      <details class="faq-item reveal">
-        <summary>¿Qué pasa si tengo dudas antes de comprar? <span class="chev">▾</span></summary>
-        <p>Puedes escribirnos por WhatsApp (botón verde abajo a la derecha) y te respondemos antes de que tomes la decisión.</p>
-      </details>
-      <details class="faq-item reveal">
-        <summary>¿Es seguro pagar en Hotmart? <span class="chev">▾</span></summary>
-        <p>Sí. Hotmart es la plataforma de cursos digitales líder en Latinoamérica, con pago cifrado y soporte propio para reclamos de compra.</p>
-      </details>
+<section class="section reveal">
+  <div class="testi-wide-container">
+    <div class="section-head">
+      <span class="eyebrow">Resultados reales</span>
+      <h2>Lo que dicen quienes ya cocinan distinto</h2>
+    </div>
+    <div class="testi-grid-images">
+      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1.jpg" alt="Opinión de alumno — Gastronomía Online">
+      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-1.jpg" alt="Opinión de alumno — Gastronomía Online">
+      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-2.jpg" alt="Opinión de alumno — Gastronomía Online">
+      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t2-4.jpg" alt="Opinión de alumno — Gastronomía Online">
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="final">
-  <h2>Rompe el patrón.<br/><em>Empieza hoy.</em></h2>
-  <p>Si algo no se siente bien, confía en tu instinto. Esta guía te da las herramientas para entender qué está pasando — y cómo salir.</p>
-  <a class="btn-primary btn-cta-pulse" href="https://go.hotmart.com/V106289648D?ap=dea5" onclick="fbq('track', 'Lead')" target="_blank" rel="noopener" style="font-size:1.1rem;padding:20px 44px">
-    Acceder a Banderas Rojas por $25 →
-  </a>
-  <p style="margin-top:16px;font-size:12px;color:#444">✓ Acceso inmediato &nbsp;·&nbsp; ✓ Pago seguro &nbsp;·&nbsp; ✓ Garantía incluida</p>
+<section class="section reveal" style="background:var(--cream-soft);">
+  <div class="google-wide-container">
+    <div class="section-head">
+      <span class="eyebrow">Reputación verificada</span>
+      <h2>Lo que opinan en Google</h2>
+    </div>
+    <div class="google-grid">
+      <img src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle1_1_760x.png.webp" alt="Reseñas de Google — Gastronomía Online">
+      <img src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle2-1-768x728.png" alt="Reseñas de Google — Gastronomía Online">
+      <img src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle3_1_760x.png.webp" alt="Reseñas de Google — Gastronomía Online">
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" style="background:var(--cream-soft);">
+  <div class="wrap" style="max-width:720px;">
+    <div class="section-head">
+      <span class="eyebrow">Antes de empezar</span>
+      <h2>Preguntas frecuentes</h2>
+    </div>
+    <div id="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">¿Cuándo empieza el curso? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Apenas completas tu inscripción, recibes acceso inmediato a la plataforma.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Por cuánto tiempo tengo acceso? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">El acceso es de por vida. Pagas una sola vez y el contenido queda disponible para siempre.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Cómo se reciben los certificados? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Al completar cada uno de los 7 módulos del programa, la plataforma generará automáticamente tu certificado digital descargable en formato PDF de alta resolución.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Los ingredientes son difíciles de conseguir? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. Todas las recetas están diseñadas con ingredientes estándar que puedes encontrar en cualquier supermercado o mercado local de tu país.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Hay soporte si tengo dudas con una receta? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Sí, cuentas con un área privada de alumnos debajo de cada video-lección donde puedes dejar tus preguntas y el equipo de profesores te responderá directamente.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta reveal">
+  <div class="wrap">
+    <h2>Tu cocina puede ser el inicio de algo nuevo. Empieza hoy.</h2>
+    <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta" onclick="fbq('track','InitiateCheckout');">
+      Inscribirme ahora <span class="arrow">→</span>
+    </a>
+  </div>
 </section>
 
 <footer>
-  <p>© 2026 · Curso Banderas Rojas · Andres Vernazza - Emprendedor Moderno</p>
-  <p style="margin-top:6px">Este sitio contiene <a href="#">enlaces de afiliado</a>. Al comprar apoyas este proyecto sin costo adicional para ti. · <a href="#">Política de privacidad</a></p>
+  © 2026 Cocina de Élite. Este sitio web es un canal oficial de distribución autorizada.<br>
+  El contenido académico y soporte técnico del curso pertenece a sus respectivos autores. Todos los pagos y accesos son procesados de forma segura mediante la tecnología encriptada de Hotmart.
 </footer>
 
-<!-- STICKY BAR -->
-<div class="sticky" id="stickyBar">
-  <span class="sticky-text"><strong>Banderas Rojas</strong> — Acceso completo por solo $25</span>
-  <a href="https://go.hotmart.com/V106289648D?ap=dea5" target="_blank" rel="noopener">Acceder ahora →</a>
-</div>
-
 <script>
-const bar = document.getElementById('stickyBar');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
-  });
-}, {threshold: 0.12});
-document.querySelectorAll('.reveal, .stagger').forEach(el => observer.observe(el));
-
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  bar.classList.toggle('show', y > 600);
-  document.querySelector('nav').classList.toggle('scrolled', y > 80);
-});
-
-const hero = document.querySelector('.hero-content');
-for(let i = 0; i < 6; i++){
-  const p = document.createElement('span');
-  p.className = 'flag-particle';
-  p.textContent = '🚩';
-  p.style.cssText = `left:${Math.random()*90+5}%;bottom:-40px;animation-duration:${8+Math.random()*10}s;animation-delay:${Math.random()*8}s`;
-  hero.appendChild(p);
-}
-
-function animateCount(el, target, suffix=''){
-  let start = 0;
-  const dur = 1800;
-  const step = timestamp => {
-    if(!start) start = timestamp;
-    const progress = Math.min((timestamp - start)/dur, 1);
-    const ease = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.floor(ease * target) + suffix;
-    if(progress < 1) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-}
-const countObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      const el = e.target;
-      const val = el.dataset.count;
-      const suf = el.dataset.suffix || '';
-      animateCount(el, parseInt(val), suf);
-      countObserver.unobserve(el);
-    }
-  });
-}, {threshold: 0.5});
-document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
-
-fbq('track', 'ViewContent', {
-  content_name: 'Banderas Rojas Landing',
-  content_category: 'Relaciones',
-  value: 25.00,
-  currency: 'USD'
-});
-
-document.querySelectorAll('.testi-quote').forEach(q => {
-  if(q.scrollHeight > q.clientHeight + 5) {
-    const btn = document.createElement('button');
-    btn.className = 'ver-mas';
-    btn.textContent = 'Ver más ↓';
-    btn.onclick = function(){
-      if(q.classList.contains('expanded')){
-        q.classList.remove('expanded');
-        btn.textContent = 'Ver más ↓';
-      } else {
-        q.classList.add('expanded');
-        btn.textContent = 'Ver menos ↑';
+  // Script para manejar animaciones al hacer Scroll (Reveal Effect)
+  function revealSections() {
+    const reveals = document.querySelectorAll('.reveal');
+    const windowHeight = window.innerHeight;
+    reveals.forEach(reveal => {
+      const revealTop = reveal.getBoundingClientRect().top;
+      const revealPoint = 80; 
+      if (revealTop < windowHeight - revealPoint) {
+        reveal.classList.add('active');
       }
-    };
-    q.parentNode.insertBefore(btn, q.nextSibling);
+    });
   }
-});
-</script>
+  window.addEventListener('scroll', revealSections);
+  window.addEventListener('load', revealSections);
 
-<a class="whatsapp-btn"
-   href="https://wa.me/593968107948?text=Hola%2C%20vi%20el%20curso%20Banderas%20Rojas%20y%20tengo%20algunas%20preguntas%20antes%20de%20acceder.%20%C2%BFMe%20puedes%20ayudar%3F"
-   target="_blank"
-   rel="noopener"
-   onclick="fbq && fbq('track', 'Contact')"
-   title="Escríbenos por WhatsApp">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
-  <span>¿Dudas? Escríbenos</span>
-</a>
+  // Control de las preguntas frecuentes (Apertura y cierre)
+  document.querySelectorAll('.faq-q').forEach(button => {
+    button.addEventListener('click', () => {
+      const faqItem = button.parentElement;
+      const answer = faqItem.querySelector('.faq-a');
+      faqItem.classList.toggle('open');
+      if (faqItem.classList.contains('open')) {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      } else {
+        answer.style.maxHeight = 0;
+      }
+    });
+  });
 
-<script>
-window.addEventListener('scroll',()=>{
-const h=document.documentElement.scrollHeight-window.innerHeight;
-const sc=(window.scrollY/h)*100;
-document.getElementById('progressBar').style.width=sc+'%';
-});
+  // Temporizador de Cuenta Regresiva (10 minutos repetitivos)
+  let time = 600; 
+  const timerElement = document.getElementById('timer');
+  setInterval(() => {
+    let minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    if(timerElement) timerElement.innerText = `${minutes}:${seconds}`;
+    if (time > 0) time--; else time = 600;
+  }, 1000);
 </script>
 
 </body>

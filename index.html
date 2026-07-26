@@ -51,7 +51,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
   a{color:inherit;text-decoration:none;}
   img{max-width:100%;display:block;}
-  
+
   .wrap{max-width:1090px;margin:0 auto;padding:0 24px;}
 
   .reveal {
@@ -111,23 +111,71 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     from{opacity:0;transform:translateY(24px);}
     to{opacity:1;transform:translateY(0);}
   }
-  .hero-eyebrow, .hero h1, .hero p.lead, .hero-video, .hero .price-ticket, .hero .btn-cta, .hero .cta-sub{
+  .hero-eyebrow, .hero h1, .hero p.lead, .hero-video, .hero .price-ticket, .hero .btn-cta, .hero .cta-sub, .hero-trust-row{
     opacity:0;
     animation:heroFadeUp 0.85s cubic-bezier(0.22,1,0.36,1) forwards;
   }
   .hero-eyebrow{animation-delay:.05s;}
   .hero h1{animation-delay:.15s;}
-  .hero p.lead{animation-delay:.28s;}
-  .hero-video{animation-delay:.38s;}
-  .hero .price-ticket{animation-delay:.52s;}
-  .hero .btn-cta{animation-delay:.60s;}
-  .hero .cta-sub{animation-delay:.70s;}
+  .hero p.lead{animation-delay:.26s;}
+  .hero .price-ticket{animation-delay:.36s;}
+  .hero .btn-cta{animation-delay:.46s;}
+  .hero .cta-sub{animation-delay:.56s;}
+  .hero-trust-row{animation-delay:.64s;}
+  .hero-video{animation-delay:.74s;}
+
+  /* Fondo animado del hero */
+  .hero-glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:0.32;
+    pointer-events:none;
+    z-index:0;
+  }
+  .hero-glow.g1{width:420px;height:420px;background:var(--mustard);top:-140px;left:-100px;animation:glowFloat 11s ease-in-out infinite;}
+  .hero-glow.g2{width:360px;height:360px;background:var(--oxblood);bottom:-140px;right:-80px;animation:glowFloat 13s ease-in-out infinite reverse;}
+  @keyframes glowFloat{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(28px,-18px) scale(1.08);}
+  }
+  .hero > .wrap{position:relative;z-index:1;}
+
+  /* Fila de confianza bajo el CTA del hero */
+  .hero-trust-row{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:18px;
+  }
+  .hero-trust-row span{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    color:rgba(246,239,228,0.68);
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  /* Brillo sutil en el CTA principal del hero, tras la animación de entrada */
+  @keyframes ctaGlow{
+    0%,100%{box-shadow:0 10px 24px -8px rgba(217,142,59,0.5);}
+    50%{box-shadow:0 10px 34px -6px rgba(255,193,7,0.75);}
+  }
+  .hero .btn-cta{
+    animation: heroFadeUp 0.85s cubic-bezier(0.22,1,0.36,1) forwards, ctaGlow 3s ease-in-out 1.6s infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero-glow{animation:none;}
+    .hero .btn-cta{animation:heroFadeUp 0.85s cubic-bezier(0.22,1,0.36,1) forwards;}
+  }
 
   .hero-video {
     position: relative;
     max-width: 1700px;
     width: 100%;
-    margin: 0 auto 38px auto;
+    margin: 38px auto 0 auto;
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid var(--line-light);
@@ -139,13 +187,13 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     margin-top: 20px;
     border-radius: 6px;
     overflow: hidden;
-    width: 100%; 
+    width: 100%;
     max-width: 1600px;
     box-shadow: 0 4px 12px -4px rgba(28,27,25,0.15);
   }
   .trust-banner-link img {
     display: block;
-    width: 100%; 
+    width: 100%;
     height: auto;
     margin: 0 auto;
   }
@@ -173,8 +221,8 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   }
   .testi-grid-images {
     display: flex;
-    flex-wrap: wrap; 
-    gap: 32px;       
+    flex-wrap: wrap;
+    gap: 32px;
     justify-content: center;
   }
   .testi-img {
@@ -184,6 +232,13 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     border: 1px solid var(--line);
     box-shadow: 0 8px 16px rgba(0,0,0,0.05);
   }
+  .testi-img, .google-grid img{
+    transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, filter 0.35s ease;
+  }
+  .testi-img:hover, .google-grid img:hover{
+    box-shadow: 0 16px 32px -12px rgba(28,27,25,0.22);
+    filter: brightness(1.03);
+  }
 
   .google-wide-container {
     max-width: 1600px;
@@ -192,7 +247,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   }
   .google-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
     gap: 32px;
   }
   .google-grid img {
@@ -203,42 +258,13 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     box-shadow: 0 6px 18px rgba(0,0,0,0.04);
   }
 
-  /* Urgency bar */
-  .urgency-bar{
-    position:sticky;top:0;z-index:100;
-    background:linear-gradient(90deg, #FF2D1F, #D8000A, #FF2D1F);
-    background-size:200% 100%;
-    color:#fff;
-    text-align:center;
-    padding:10px 12px;
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:0.04em;
-    display:flex;align-items:center;justify-content:center;gap:14px;
-    flex-wrap:wrap;
-    animation:barShimmer 5s linear infinite, urgentPulse 1.8s ease-in-out infinite;
-  }
-  .urgency-bar .timer{
-    font-family:'Space Mono',monospace;
-    background:#000;
-    color:#FF5A4D;
-    padding:4px 10px;
-    border-radius:4px;
-    font-size:14px;
-    font-weight:700;
-    box-shadow:0 0 0 1px rgba(255,255,255,0.15) inset;
-  }
-  @keyframes urgentPulse{
-    0%,100%{box-shadow:0 0 0 0 rgba(216,0,10,0);}
-    50%{box-shadow:0 0 18px 2px rgba(255,45,31,0.55);}
-  }
-
   /* Hero */
   .hero{
     background:linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal-soft) 100%);
     color:var(--cream);
     padding:64px 0 72px;
     position:relative;
+    overflow:hidden;
   }
   .hero::after{
     content:"";
@@ -315,9 +341,22 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     border-radius:8px;
     border:none;
     cursor:pointer;
+    position:relative;
+    overflow:hidden;
     transition:transform 0.15s ease, background 0.15s ease, box-shadow 0.25s ease;
     box-shadow:0 10px 24px -8px rgba(217,142,59,0.5);
   }
+  .btn-cta::before{
+    content:"";
+    position:absolute;
+    top:0;left:-75%;
+    width:45%;height:100%;
+    background:linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform:skewX(-20deg);
+    transition:left 0.6s ease;
+    pointer-events:none;
+  }
+  .btn-cta:hover::before{left:125%;}
   .btn-cta:hover{background:var(--mustard-deep);transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(217,142,59,0.65);}
   .btn-cta:active{transform:translateY(0);}
   .btn-cta .arrow{display:inline-block;transition:transform 0.25s ease;}
@@ -330,12 +369,22 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
   /* Media strip */
   .media-strip{background:#fff;padding:28px 0;border-bottom:1px solid var(--line);}
-  .media-strip img{max-width:560px;width:100%;margin:0 auto;opacity:0.85;}
+  .media-strip img{max-width:560px;width:100%;margin:0 auto;opacity:0.85;filter:grayscale(15%);transition:filter 0.4s ease, opacity 0.4s ease;}
+  .media-strip:hover img{filter:grayscale(0%);opacity:1;}
 
   /* Section heading */
   .section{padding:80px 0;}
   .section-head{text-align:center;max-width:620px;margin:0 auto 48px;}
-  .section-head .eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--oxblood);margin-bottom:10px;display:block;}
+  .section-head .eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--oxblood);margin-bottom:10px;display:block;position:relative;padding-bottom:8px;}
+  .section-head .eyebrow::after{
+    content:"";
+    position:absolute;left:50%;bottom:0;
+    width:0;height:2px;
+    background:var(--oxblood);
+    transform:translateX(-50%);
+    transition:width 0.6s ease 0.15s;
+  }
+  .reveal.active .section-head .eyebrow::after{width:32px;}
   .section-head h2{font-size:clamp(1.9rem, 4vw, 2.6rem);font-weight:700;}
   .section-head p{color:rgba(28,27,25,0.62);margin-top:12px;font-size:16px;}
 
@@ -348,12 +397,15 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .menu-course .name{font-family:'Fraunces',serif;font-size:19px;font-weight:500;color:var(--charcoal);}
   .menu-course .leader{flex:1;border-bottom:1px dotted rgba(28,27,25,0.22);margin:0 4px;transform:translateY(-6px);}
   .menu-course .status{font-family:'Space Mono',monospace;font-size:12px;color:#8a6d00;background:rgba(255,193,7,0.22);padding:4px 10px;border-radius:20px;white-space:nowrap;}
+  .menu-course{transition:background 0.25s ease, padding-left 0.25s ease; border-radius:8px;}
+  .menu-course:hover{background:rgba(255,193,7,0.08); padding-left:28px;}
 
   /* Benefits grid */
   .benefits-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;}
   .benefit-card{background:var(--cream-soft);border:1px solid var(--line);border-radius:12px;padding:28px 24px;transition:transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease;}
   .benefit-card:hover{transform:translateY(-4px);box-shadow:0 16px 30px -12px rgba(28,27,25,0.14);}
-  .benefit-card .icon{width:46px;height:46px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .benefit-card .icon{width:46px;height:46px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:transform 0.3s cubic-bezier(0.22,1,0.36,1);}
+  .benefit-card:hover .icon{transform:scale(1.1) rotate(-4deg);}
   .benefit-card .icon svg{width:100%;height:100%;stroke:var(--mustard-deep);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
   .benefit-card h3{font-size:17px;font-weight:600;margin-bottom:8px;}
   .benefit-card p{font-size:14px;color:rgba(28,27,25,0.62);}
@@ -385,6 +437,43 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   }
   .payment-info-block h3{font-size:19px;margin-bottom:12px;}
   .payment-info-block p{font-size:14px;color:rgba(28,27,25,0.62);max-width:580px;margin:0 auto;}
+
+  /* Para quién es / no es */
+  .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:900px;margin:0 auto;}
+  .fit-col{background:var(--cream-soft);border:1px solid var(--line);border-radius:14px;padding:32px 28px;}
+  .fit-col h3{font-size:18px;font-weight:600;margin-bottom:16px;}
+  .fit-col ul{list-style:none;display:flex;flex-direction:column;gap:12px;}
+  .fit-col li{font-size:14px;color:rgba(28,27,25,0.72);padding-left:24px;position:relative;}
+  .fit-col.yes li::before{content:"✓";position:absolute;left:0;color:var(--sage);font-weight:700;}
+  .fit-col.no li::before{content:"✕";position:absolute;left:0;color:var(--oxblood);font-weight:700;}
+  @media (max-width:700px){.fit-grid{grid-template-columns:1fr;}}
+
+  /* Captura de correo */
+  .email-capture-block{
+    background:var(--charcoal);
+    color:var(--cream);
+    border-radius:16px;
+    padding:44px 40px;
+    text-align:center;
+    max-width:640px;
+    margin:0 auto;
+  }
+  .email-capture-block h3{font-size:20px;margin-bottom:10px;color:var(--cream);}
+  .email-capture-block p{font-size:14px;color:rgba(246,239,228,0.7);margin-bottom:24px;}
+  .email-capture-form{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+  .email-capture-form input{
+    flex:1;min-width:180px;
+    padding:14px 16px;
+    border-radius:8px;
+    border:1px solid var(--line-light);
+    background:rgba(255,255,255,0.06);
+    color:var(--cream);
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+  }
+  .email-capture-form input::placeholder{color:rgba(246,239,228,0.4);}
+  .email-capture-form button{flex-shrink:0;}
+  @media (max-width:520px){.email-capture-form{flex-direction:column;}}
 
   /* Certification Block */
   .cert-block{display:grid;grid-template-columns: 1.3fr 1fr;gap:48px;align-items:center;max-width: 1150px;margin: 0 auto;}
@@ -545,28 +634,27 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     }
   }
 
-  @keyframes barShimmer{0%{background-position:0% 0;}100%{background-position:200% 0;}}
+  /* Barra de progreso de lectura */
+  .scroll-progress{
+    position:fixed;top:0;left:0;
+    height:3px;width:0%;
+    background:linear-gradient(90deg, var(--mustard), var(--oxblood));
+    z-index:200;
+    transition:width 0.1s linear;
+  }
 </style>
 </head>
 <body>
 
-<div class="urgency-bar">
-  <span>⏳ Promoción especial termina en</span>
-  <span class="timer" id="timer">00:10:00</span>
-</div>
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <header class="hero">
+  <div class="hero-glow g1"></div>
+  <div class="hero-glow g2"></div>
   <div class="wrap">
     <div class="hero-eyebrow">Cocina de Élite</div>
-    <h1>Aprende a cocinar como <em>profesional</em>, desde tu propia cocina.</h1>
-    <p class="lead">7 cursos completos — cocina internacional, panadería artesanal, repostería, coctelería, sushi y más. A tu ritmo, con certificación incluida.</p>
-
-    <div class="hero-video" id="video-wrap" data-video-id="2XdOloUNraU">
-      <img class="video-thumb" src="https://img.youtube.com/vi/2XdOloUNraU/maxresdefault.jpg" alt="Reproducir video — Gastronomía Online">
-      <button class="video-play-btn" id="video-play-btn" aria-label="Reproducir video">
-        <svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5v14l11-7-11-7Z" fill="#fff"/></svg>
-      </button>
-    </div>
+    <h1>Aprende a cocinar como <em>profesional</em>, a tu manera.</h1>
+    <p class="lead">7 cursos completos —de cocina internacional a coctelería— para disfrutar cocinando en casa o empezar a generar ingresos con lo que aprendes. A tu ritmo, con certificación incluida.</p>
 
     <div class="price-ticket">
       <span class="tag">Acceso de por vida</span>
@@ -578,6 +666,18 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       Quiero empezar hoy <span class="arrow">→</span>
     </a>
     <p class="cta-sub">Acceso inmediato tras tu inscripción · Pago 100% seguro vía Hotmart</p>
+    <div class="hero-trust-row">
+      <span>🔒 Pago 100% seguro</span>
+      <span>♻️ Garantía de 7 días</span>
+      <span>🔓 Acceso de por vida</span>
+    </div>
+
+    <div class="hero-video" id="video-wrap" data-video-id="2XdOloUNraU">
+      <img class="video-thumb" src="https://img.youtube.com/vi/2XdOloUNraU/maxresdefault.jpg" alt="Reproducir video — Gastronomía Online">
+      <button class="video-play-btn" id="video-play-btn" aria-label="Reproducir video">
+        <svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5v14l11-7-11-7Z" fill="#fff"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -591,7 +691,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       <a href="https://go.hotmart.com/H106417293X?ap=1bab" class="btn-cta btn-cta-big" onclick="fbq('track','InitiateCheckout');">
         Comprar ahora <span class="arrow">→</span>
       </a>
-     
+
       <a href="https://go.hotmart.com/H106417293X?ap=1bab" class="trust-banner-link" onclick="fbq('track','InitiateCheckout');">
         <img src="https://cdn.shopify.com/s/files/1/0078/9620/3362/files/468x60.jpg" alt="Compra segura garantizada">
       </a>
@@ -635,18 +735,18 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     <div class="benefits-grid">
       <div class="benefit-card">
         <div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <h3>Estudia a tu propio ritmo desde cualquier dispositivo</h3>
-        <p>Avanza, pausa y repite las lecciones cuando quieras. Sin horarios fijos ni presiones, adaptado por completo a tu vida real.</p>
+        <h3>Cocina por placer, a tu propio ritmo</h3>
+        <p>Avanza, pausa y repite las lecciones cuando quieras. Ideal si solo buscas disfrutar el proceso de aprender, sin horarios fijos ni presiones.</p>
       </div>
       <div class="benefit-card">
         <div class="icon"><svg viewBox="0 0 24 24"><path d="M7 9a3 3 0 1 0 0 6 3 3 0 0 0 2.4-1.2L12 12l2.6 1.8A3 3 0 1 0 17 9a3 3 0 0 0-2.4 1.2L12 12 9.4 10.2A3 3 0 0 0 7 9Z"/></svg></div>
-        <h3>Un único pago para un acceso de por vida</h3>
-        <p>Olvídate de las mensualidades. Pagas una sola vez y el contenido completo del programa es tuyo para siempre, incluyendo futuras actualizaciones.</p>
+        <h3>Un único pago, ideas para toda la vida</h3>
+        <p>Ya sea que quieras montar tu propio emprendimiento gastronómico o simplemente cocinar mejor en casa, pagas una sola vez y el contenido es tuyo para siempre, sin mensualidades.</p>
       </div>
       <div class="benefit-card">
         <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="M6 9.8V15c0 1.4 2.7 3 6 3s6-1.6 6-3V9.8"/><path d="M21 7.5v6"/></svg></div>
-        <h3>Certificación digital incluida al finalizar</h3>
-        <p>Al completar cada uno de los cursos del programa, recibirás un certificado digital descargable que respalda tus nuevos conocimientos culinarios.</p>
+        <h3>Certificación digital para dar el salto profesional</h3>
+        <p>Si buscas un cambio de carrera o sumar valor a tu perfil, cada curso completado te entrega un certificado digital descargable que respalda tus nuevos conocimientos.</p>
       </div>
       <div class="benefit-card">
         <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/></svg></div>
@@ -662,6 +762,35 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
         <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 7.8 8 9 4.5-1.2 8-4 8-9V6l-8-3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg></div>
         <h3>Garantía de satisfacción total por 7 días</h3>
         <p>Prueba el programa completo sin ningún riesgo. Si en tu primera semana sientes que la gastronomía no es para ti, te reembolsamos el 100% de tu dinero.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" style="background:#fff;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">¿Es para ti?</span>
+      <h2>Para quién es este curso (y para quién no)</h2>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-col yes">
+        <h3>Este curso es para ti si...</h3>
+        <ul>
+          <li>Quieres aprender a cocinar en serio, sin salir de casa</li>
+          <li>Te gustaría eventualmente vender lo que preparas o emprender con tus habilidades</li>
+          <li>Buscas una certificación formal que respalde un cambio de carrera</li>
+          <li>Disfrutas aprender cosas nuevas a tu propio ritmo, sin presión de horarios</li>
+        </ul>
+      </div>
+      <div class="fit-col no">
+        <h3>Este curso no es para ti si...</h3>
+        <ul>
+          <li>Esperas resultados sin practicar ni dedicar tiempo a las recetas</li>
+          <li>Buscas clases en vivo con horario fijo</li>
+          <li>No te interesa cocinar, solo ver contenido</li>
+          <li>Buscas contenido gratuito; este es un programa de pago único</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -739,6 +868,21 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       <img src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle1_1_760x.png.webp" alt="Reseñas de Google — Gastronomía Online">
       <img src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle2-1-768x728.png" alt="Reseñas de Google — Gastronomía Online">
       <img src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle3_1_760x.png.webp" alt="Reseñas de Google — Gastronomía Online">
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" style="background:var(--cream-soft);">
+  <div class="wrap">
+    <div class="email-capture-block">
+      <h3>¿Todavía lo estás pensando?</h3>
+      <p>Déjanos tu correo y te avisamos cuando haya nuevas ofertas o descuentos del curso.</p>
+      <!-- Conectar este formulario a un servicio de email marketing (ej. Mailchimp, Brevo, ActiveCampaign) vía su API o endpoint de formulario -->
+      <form class="email-capture-form" onsubmit="event.preventDefault();">
+        <input type="text" name="nombre" placeholder="Tu nombre" required>
+        <input type="email" name="email" placeholder="Tu correo electrónico" required>
+        <button type="submit" class="btn-cta">Avísame de nuevas ofertas</button>
+      </form>
     </div>
   </div>
 </section>
@@ -874,7 +1018,8 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   function loadVideo(){
     const videoId = videoWrap.dataset.videoId;
     const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1`;
+    const origin = window.location.origin !== 'null' ? window.location.origin : '';
+    iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1&playsinline=1&origin=${encodeURIComponent(origin)}`;
     iframe.title = 'Gastronomía Online';
     iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
     iframe.allowFullscreen = true;
@@ -904,30 +1049,16 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   window.addEventListener('scroll', toggleStickyBar, { passive: true });
   window.addEventListener('load', toggleStickyBar);
 
-  // Temporizador persistente
-  (function(){
-    const DURATION = 600;
-    const STORAGE_KEY = 'promoDeadline';
-    const timerElement = document.getElementById('timer');
-    let deadline = parseInt(localStorage.getItem(STORAGE_KEY), 10);
-    const now = Date.now();
-    if (!deadline || isNaN(deadline) || deadline <= now) {
-      deadline = now + DURATION * 1000;
-      localStorage.setItem(STORAGE_KEY, deadline);
-    }
-    function tick(){
-      const remaining = Math.max(0, Math.round((deadline - Date.now()) / 1000));
-      const minutes = String(Math.floor(remaining / 60)).padStart(2, '0');
-      const seconds = String(remaining % 60).padStart(2, '0');
-      if (timerElement) timerElement.innerText = `${minutes}:${seconds}`;
-      if (remaining <= 0) {
-        deadline = Date.now() + DURATION * 1000;
-        localStorage.setItem(STORAGE_KEY, deadline);
-      }
-    }
-    tick();
-    setInterval(tick, 1000);
-  })();
+  // Barra de progreso de lectura
+  const scrollProgress = document.getElementById('scrollProgress');
+  function updateScrollProgress(){
+    if(!scrollProgress) return;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+    scrollProgress.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  window.addEventListener('load', updateScrollProgress);
 </script>
 
 </body>

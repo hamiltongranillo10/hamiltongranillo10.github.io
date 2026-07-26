@@ -877,8 +877,21 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     <div class="email-capture-block">
       <h3>¿Todavía lo estás pensando?</h3>
       <p>Déjanos tu correo y te avisamos cuando haya nuevas ofertas o descuentos del curso.</p>
-      <!-- Conectar este formulario a un servicio de email marketing (ej. Mailchimp, Brevo, ActiveCampaign) vía su API o endpoint de formulario -->
-      <form class="email-capture-form" onsubmit="event.preventDefault();">
+      <!--
+        Formulario conectado a FormSubmit (https://formsubmit.co), servicio gratuito
+        que reenvía cada envío al correo indicado en la acción del formulario, sin
+        necesidad de backend propio ni claves API expuestas en el HTML.
+        IMPORTANTE: la primera vez que alguien envíe este formulario en el sitio ya
+        publicado, FormSubmit mandará un correo de confirmación a la dirección de
+        abajo — hay que abrirlo y confirmar una sola vez para activar el envío
+        automático de los siguientes formularios.
+        Para cambiar a dónde llegan los leads, reemplaza el correo en la acción del
+        formulario (los correos llegan a: elitecocina9@gmail.com).
+      -->
+      <form id="email-capture-form" class="email-capture-form" action="https://formsubmit.co/ajax/elitecocina9@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Nuevo interesado — Cocina de Élite">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
         <input type="text" name="nombre" placeholder="Tu nombre" required>
         <input type="email" name="email" placeholder="Tu correo electrónico" required>
         <button type="submit" class="btn-cta">Avísame de nuevas ofertas</button>
@@ -1059,6 +1072,33 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   }
   window.addEventListener('scroll', updateScrollProgress, { passive: true });
   window.addEventListener('load', updateScrollProgress);
+
+  // Captura de correo — envío vía FormSubmit sin recargar la página
+  const emailForm = document.getElementById('email-capture-form');
+  if (emailForm) {
+    emailForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const submitBtn = emailForm.querySelector('button[type="submit"]');
+      const originalLabel = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+
+      fetch(emailForm.action, {
+        method: 'POST',
+        body: new FormData(emailForm),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then((res) => { if (!res.ok) throw new Error('request-failed'); })
+        .then(() => {
+          emailForm.outerHTML = '<p style="font-family:\'Fraunces\',serif;font-size:18px;color:var(--mustard);">¡Listo! Te avisaremos apenas haya nuevas ofertas.</p>';
+        })
+        .catch(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+          alert('Hubo un problema enviando tu correo. Intenta de nuevo en unos segundos.');
+        });
+    });
+  }
 </script>
 
 </body>

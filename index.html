@@ -810,15 +810,22 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 
   <div class="wrap">
-    <div class="hero-video" id="video-wrap" data-video-id="2XdOloUNraU">
-      <img class="video-thumb" src="https://youtu.be/6f9AdrDYPGU" fetchpriority="high" decoding="async">
+    <div class="hero-video" id="video-wrap">
+      <video
+        class="hero-video-player"
+        id="hero-video-player"
+        controls
+        playsinline
+        preload="metadata"
+        aria-label="Video de presentación de Cocina de Élite">
+        <source src="videos/video-gastronomia.mp4" type="video/mp4">
+        Tu navegador no soporta la reproducción de video.
+      </video>
       <button class="video-play-btn" id="video-play-btn" aria-label="Reproducir video">
         <svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5v14l11-7-11-7Z" fill="#fff"/></svg>
       </button>
     </div>
   </div>
-</header>
-
 
 <section class="section reveal" style="background:#fff;">
   <div class="mockup-wide-container">

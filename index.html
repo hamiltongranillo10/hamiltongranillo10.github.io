@@ -7,7 +7,6 @@
 <meta name="description" content="Domina cocina internacional, panadería, repostería y más con 7 cursos completos. Certificación incluida. Acceso inmediato.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0A'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23FFC107' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
 
-<!-- Open Graph / vista previa al compartir en redes y WhatsApp. Reemplaza og:url por el dominio real cuando lo publiques. -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cocina de Élite — Gastronomía Online | 7 Cursos">
 <meta property="og:description" content="Domina cocina internacional, panadería, repostería y más con 7 cursos completos. Certificación incluida. Acceso inmediato.">
@@ -123,7 +122,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     from{opacity:0;transform:translateY(24px);}
     to{opacity:1;transform:translateY(0);}
   }
-  .hero-eyebrow, .hero h1, .hero p.lead, .hero-video, .hero .price-ticket, .hero .btn-cta, .hero .cta-sub, .hero-trust-row{
+  .hero-eyebrow, .hero h1, .hero p.lead, .hero-video, .hero .price-ticket, .hero .btn-cta, .hero .cta-sub, .hero-trust-row, .hero .countdown-block{
     opacity:0;
     animation:heroFadeUp 0.85s cubic-bezier(0.22,1,0.36,1) forwards;
   }
@@ -131,6 +130,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .hero h1{animation-delay:.15s;}
   .hero p.lead{animation-delay:.26s;}
   .hero .price-ticket{animation-delay:.36s;}
+  .hero .countdown-block{animation-delay:.42s;}
   .hero .btn-cta{animation-delay:.46s;}
   .hero .cta-sub{animation-delay:.56s;}
   .hero-trust-row{animation-delay:.64s;}
@@ -152,6 +152,46 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     50%{transform:translate(28px,-18px) scale(1.08);}
   }
   .hero > .wrap{position:relative;z-index:1;}
+
+  /* Contador regresivo del hero — refuerza la urgencia junto al precio */
+  .countdown-block{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:26px;
+    flex-wrap:wrap;
+  }
+  .countdown-label{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:rgba(246,239,228,0.55);
+  }
+  .countdown-units{display:flex;gap:8px;}
+  .countdown-unit{
+    background:rgba(226,35,26,0.12);
+    border:1px solid rgba(226,35,26,0.4);
+    border-radius:6px;
+    padding:6px 10px;
+    text-align:center;
+    min-width:46px;
+  }
+  .countdown-unit .val{
+    font-family:'Space Mono',monospace;
+    font-weight:700;
+    font-size:18px;
+    color:var(--oxblood);
+    display:block;
+    line-height:1;
+  }
+  .countdown-unit .u{
+    font-family:'Space Mono',monospace;
+    font-size:9px;
+    color:rgba(246,239,228,0.5);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
 
   /* Fila de confianza bajo el CTA del hero */
   .hero-trust-row{
@@ -337,7 +377,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     border:1px solid var(--line-light);
     border-radius:10px;
     padding:14px 20px;
-    margin-bottom:28px;
+    margin-bottom:20px;
   }
   .price-ticket .old{font-family:'Space Mono',monospace;text-decoration:line-through;opacity:0.5;font-size:15px;}
   .price-ticket .now{font-family:'Space Mono',monospace;font-size:22px;font-weight:700;color:var(--mustard);}
@@ -427,9 +467,9 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .guarantee .badge-img{width:96px;height:96px;flex-shrink:0;}
   .guarantee .badge-img img{width:100%;height:100%;object-fit:contain;}
 
-  /* Stats strip */
-  .stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-light);border-radius:14px;overflow:hidden;margin-top:44px;}
-  .stat-cell{background:var(--oxblood);padding:26px 16px;text-align:center;}
+  /* Stats strip — antes fondo oxblood; ahora charcoal para no competir con el CTA mostaza */
+  .stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-light);border-radius:14px;overflow:hidden;margin-top:44px;border-top:3px solid var(--oxblood);}
+  .stat-cell{background:var(--charcoal);padding:26px 16px;text-align:center;}
   .stat-cell .num{font-family:'Space Mono',monospace;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--mustard);display:block;}
   .stat-cell .label{font-size:12px;color:rgba(255,255,255,0.85);margin-top:4px;text-transform:uppercase;}
 
@@ -563,13 +603,11 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     .sticky-cta-btn{padding:11px 16px;font-size:13px;}
   }
 
-  /* ============================================================
-     BOTÓN FLOTANTE DE WHATSAPP
-     ============================================================ */
+  /* BOTÓN FLOTANTE DE WHATSAPP */
   .whatsapp-float {
     position: fixed;
     right: 24px;
-    bottom: 100px; /* encima de la sticky bar de compra */
+    bottom: 100px;
     z-index: 95;
     display: flex;
     flex-direction: column;
@@ -620,7 +658,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,0.45); }
     50%       { box-shadow: 0 6px 36px rgba(37,211,102,0.75); }
   }
-  /* En móvil sube un poco más para no tapar la barra de compra */
   @media (max-width: 900px) {
     .whatsapp-float {
       right: 16px;
@@ -664,6 +701,9 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     .testi-img {
       width: 100%;
     }
+    .countdown-block{gap:10px;}
+    .countdown-unit{min-width:40px;padding:5px 8px;}
+    .countdown-unit .val{font-size:15px;}
   }
 
   /* Barra de progreso de lectura */
@@ -693,7 +733,16 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       <span class="old">$130,00</span>
       <span class="now">$45,00</span>
     </div>
-    <br>
+
+    <div class="countdown-block" id="countdownBlock">
+      <span class="countdown-label">Oferta termina en</span>
+      <div class="countdown-units">
+        <div class="countdown-unit"><span class="val" id="cd-h">00</span><span class="u">hrs</span></div>
+        <div class="countdown-unit"><span class="val" id="cd-m">00</span><span class="u">min</span></div>
+        <div class="countdown-unit"><span class="val" id="cd-s">00</span><span class="u">seg</span></div>
+      </div>
+    </div>
+
     <a href="https://go.hotmart.com/H106417293X?ap=1bab" class="btn-cta" onclick="fbq('track','InitiateCheckout');">
       Quiero empezar hoy <span class="arrow">→</span>
     </a>
@@ -923,17 +972,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
       <div class="email-capture-divider">o si prefieres</div>
 
-      <!--
-        Formulario conectado a FormSubmit (https://formsubmit.co), servicio gratuito
-        que reenvía cada envío al correo indicado en la acción del formulario, sin
-        necesidad de backend propio ni claves API expuestas en el HTML.
-        IMPORTANTE: la primera vez que alguien envíe este formulario en el sitio ya
-        publicado, FormSubmit mandará un correo de confirmación a la dirección de
-        abajo — hay que abrirlo y confirmar una sola vez para activar el envío
-        automático de los siguientes formularios.
-        Para cambiar a dónde llegan los leads, reemplaza el correo en la acción del
-        formulario (los correos llegan a: elitecocina9@gmail.com).
-      -->
       <form id="email-capture-form" class="email-capture-form" action="https://formsubmit.co/ajax/elitecocina9@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="Nuevo interesado — Cocina de Élite">
         <input type="hidden" name="_template" value="table">
@@ -1017,7 +1055,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   El contenido académico y soporte técnico del curso pertenece a sus respectivos autores. Todos los pagos y accesos son procesados de forma segura mediante la tecnología encriptada de Hotmart.
 </footer>
 
-<!-- Barra flotante de compra -->
 <div class="sticky-cta-bar" id="stickyCtaBar">
   <div class="sticky-cta-price">
     <span class="sticky-now">$45,00</span>
@@ -1029,11 +1066,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </a>
 </div>
 
-<!-- ============================================================
-     BOTÓN FLOTANTE DE WHATSAPP
-     Número: +593 968107948
-     El texto pre-cargado ayuda al visitante a escribir rápido
-     ============================================================ -->
 <div class="whatsapp-float">
   <span class="wa-tooltip">💬 ¿Tienes dudas? Escríbeme</span>
   <a class="wa-btn"
@@ -1041,7 +1073,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
      target="_blank"
      rel="noopener noreferrer"
      aria-label="Contactar por WhatsApp">
-    <!-- Ícono oficial de WhatsApp -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
       <path d="M16 .5C7.44.5.5 7.44.5 16c0 2.83.74 5.49 2.03 7.8L.5 31.5l7.93-2.07A15.43 15.43 0 0 0 16 31.5C24.56 31.5 31.5 24.56 31.5 16S24.56.5 16 .5Zm0 28.3a12.76 12.76 0 0 1-6.5-1.78l-.47-.28-4.71 1.23 1.26-4.6-.3-.48A12.76 12.76 0 0 1 3.2 16C3.2 9.45 8.95 4.2 16 4.2S28.8 9.45 28.8 16 23.05 28.8 16 28.8Zm7-9.56c-.38-.19-2.27-1.12-2.62-1.25-.35-.13-.6-.19-.86.19s-.98 1.25-1.2 1.5c-.22.26-.44.29-.82.1-.38-.19-1.62-.6-3.08-1.9-1.14-1.01-1.9-2.27-2.13-2.65-.22-.38-.02-.58.17-.77.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.13-.26.06-.48-.03-.67-.1-.19-.86-2.07-1.18-2.84-.31-.74-.63-.64-.86-.65h-.74c-.26 0-.67.1-1.02.48-.35.38-1.33 1.3-1.33 3.17s1.36 3.68 1.55 3.93c.19.26 2.68 4.09 6.49 5.74.91.39 1.61.63 2.16.8.91.29 1.74.25 2.39.15.73-.11 2.27-.93 2.59-1.82.32-.9.32-1.66.22-1.82-.1-.16-.35-.25-.73-.44Z"/>
     </svg>
@@ -1049,7 +1080,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 </div>
 
 <script>
-  // Animación de aparición al hacer scroll
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1083,7 +1113,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     requestAnimationFrame(step);
   }
 
-  // FAQ
   document.querySelectorAll('.faq-q').forEach(button => {
     button.addEventListener('click', () => {
       const faqItem = button.parentElement;
@@ -1097,7 +1126,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     });
   });
 
-  // Video click-to-play
   const videoWrap = document.getElementById('video-wrap');
   const playBtn = document.getElementById('video-play-btn');
   function loadVideo(){
@@ -1119,7 +1147,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     videoWrap.addEventListener('click', loadVideo);
   }
 
-  // Barra flotante de compra
   const stickyBar = document.getElementById('stickyCtaBar');
   const heroEl = document.querySelector('.hero');
   function toggleStickyBar(){
@@ -1134,7 +1161,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   window.addEventListener('scroll', toggleStickyBar, { passive: true });
   window.addEventListener('load', toggleStickyBar);
 
-  // Barra de progreso de lectura
   const scrollProgress = document.getElementById('scrollProgress');
   function updateScrollProgress(){
     if(!scrollProgress) return;
@@ -1145,7 +1171,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   window.addEventListener('scroll', updateScrollProgress, { passive: true });
   window.addEventListener('load', updateScrollProgress);
 
-  // Captura de correo — envío vía FormSubmit sin recargar la página
   const emailForm = document.getElementById('email-capture-form');
   if (emailForm) {
     emailForm.addEventListener('submit', function (e) {
@@ -1171,6 +1196,39 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
         });
     });
   }
+
+  // Contador regresivo — persiste por visitante usando localStorage,
+  // así cada visitante ve su propia ventana de 12h de "oferta" sin
+  // reiniciarse cada vez que recarga la página.
+  (function(){
+    const STORAGE_KEY = 'ce_offer_deadline';
+    const WINDOW_MS = 12 * 60 * 60 * 1000; // 12 horas
+    let deadline = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+    if (!deadline || deadline < Date.now()) {
+      deadline = Date.now() + WINDOW_MS;
+      localStorage.setItem(STORAGE_KEY, deadline);
+    }
+    const hEl = document.getElementById('cd-h');
+    const mEl = document.getElementById('cd-m');
+    const sEl = document.getElementById('cd-s');
+    function pad(n){ return n.toString().padStart(2,'0'); }
+    function tick(){
+      const remaining = deadline - Date.now();
+      if (remaining <= 0) {
+        deadline = Date.now() + WINDOW_MS;
+        localStorage.setItem(STORAGE_KEY, deadline);
+      }
+      const rem = Math.max(deadline - Date.now(), 0);
+      const h = Math.floor(rem / 3600000);
+      const m = Math.floor((rem % 3600000) / 60000);
+      const s = Math.floor((rem % 60000) / 1000);
+      if(hEl) hEl.textContent = pad(h);
+      if(mEl) mEl.textContent = pad(m);
+      if(sEl) sEl.textContent = pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
 </script>
 
 </body>

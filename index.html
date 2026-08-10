@@ -597,7 +597,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .cert-text h2{font-size:clamp(1.7rem,3.5vw,2.2rem);margin-bottom:14px;}
   .cert-text p{font-size:15px;color:rgba(28,27,25,0.62);margin-bottom:26px;}
 
- 
+  /* FAQ System */
   .faq-item{border-bottom:1px solid var(--line);}
   .faq-q{width:100%;text-align:left;background:none;border:none;padding:20px 4px;font-family:'Fraunces',serif;font-size:17px;font-weight:500;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
   .faq-q .plus{font-family:'Space Mono',monospace;color:var(--oxblood);font-size:18px;display:inline-block;transition:transform 0.3s cubic-bezier(0.22,1,0.36,1);}
@@ -810,22 +810,15 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 
   <div class="wrap">
-    <div class="hero-video" id="video-wrap">
-      <video
-        class="hero-video-player"
-        id="hero-video-player"
-        controls
-        playsinline
-        preload="metadata"
-        aria-label="Video de presentación de Cocina de Élite">
-        <source src="video-gastronomia.mp4" type="video/mp4">
-        Tu navegador no soporta la reproducción de video.
-      </video>
+    <div class="hero-video" id="video-wrap" data-video-id="2XdOloUNraU">
+      <img class="video-thumb" src="https://img.youtube.com/vi/2XdOloUNraU/hqdefault.jpg" alt="Reproducir video — Gastronomía Online" fetchpriority="high" decoding="async">
       <button class="video-play-btn" id="video-play-btn" aria-label="Reproducir video">
         <svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5v14l11-7-11-7Z" fill="#fff"/></svg>
       </button>
     </div>
   </div>
+</header>
+
 
 <section class="section reveal" style="background:#fff;">
   <div class="mockup-wide-container">

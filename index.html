@@ -76,7 +76,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     transform: translateY(0) scale(1);
   }
 
-  .benefit-card, .menu-course, .testi-img, .google-grid img, .stat-cell{
+  .benefit-card, .menu-course, .testi-img, .google-grid img, .stat-cell, .step-item{
     opacity:0;
     transform:translateY(26px);
     transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
@@ -85,10 +85,14 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .reveal.active .menu-course,
   .reveal.active .testi-img,
   .reveal.active .google-grid img,
-  .reveal.active .stat-cell{
+  .reveal.active .stat-cell,
+  .reveal.active .step-item{
     opacity:1;
     transform:translateY(0);
   }
+  .reveal.active .step-item:nth-child(1){transition-delay:.08s;}
+  .reveal.active .step-item:nth-child(2){transition-delay:.18s;}
+  .reveal.active .step-item:nth-child(3){transition-delay:.28s;}
   .reveal.active .benefit-card:nth-child(1){transition-delay:.05s;}
   .reveal.active .benefit-card:nth-child(2){transition-delay:.12s;}
   .reveal.active .benefit-card:nth-child(3){transition-delay:.19s;}
@@ -534,15 +538,30 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .payment-info-block h3{font-size:19px;margin-bottom:12px;}
   .payment-info-block p{font-size:14px;color:rgba(28,27,25,0.62);max-width:580px;margin:0 auto;}
 
-  /* Para quién es / no es */
-  .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:900px;margin:0 auto;}
-  .fit-col{background:var(--cream-soft);border:1px solid var(--line);border-radius:14px;padding:32px 28px;}
-  .fit-col h3{font-size:18px;font-weight:600;margin-bottom:16px;}
-  .fit-col ul{list-style:none;display:flex;flex-direction:column;gap:12px;}
-  .fit-col li{font-size:14px;color:rgba(28,27,25,0.72);padding-left:24px;position:relative;}
-  .fit-col.yes li::before{content:"✓";position:absolute;left:0;color:var(--sage);font-weight:700;}
-  .fit-col.no li::before{content:"✕";position:absolute;left:0;color:var(--oxblood);font-weight:700;}
-  @media (max-width:700px){.fit-grid{grid-template-columns:1fr;}}
+  /* Cómo funciona -- 3 pasos */
+  .steps-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;max-width:1000px;margin:0 auto;position:relative;}
+  .step-item{background:var(--cream-soft);border:1px solid var(--line);border-radius:14px;padding:30px 26px;position:relative;transition:transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease;}
+  .step-item:hover{transform:translateY(-6px);box-shadow:0 16px 30px -12px rgba(28,27,25,0.14);}
+  .step-num{font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:var(--charcoal);background:var(--mustard);display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;margin-bottom:16px;}
+  .step-item h3{font-size:18px;font-weight:600;margin-bottom:10px;}
+  .step-item p{font-size:14px;color:rgba(28,27,25,0.62);}
+  .step-item:not(:last-child)::after{
+    content:"";
+    display:none;
+  }
+  @media (min-width:701px){
+    .step-item:not(:last-child)::after{
+      display:block;
+      content:"→";
+      position:absolute;
+      right:-26px;top:50%;
+      transform:translateY(-50%);
+      font-family:'Space Mono',monospace;
+      font-size:18px;
+      color:var(--oxblood);
+    }
+  }
+  @media (max-width:700px){.steps-grid{grid-template-columns:1fr;}}
 
   /* Captura de correo */
   .email-capture-block{
@@ -823,12 +842,15 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 <section class="section reveal" style="background:#fff;">
   <div class="mockup-wide-container">
     <div class="mockup-image">
-      <img loading="lazy" decoding="async" src="https://cursosdecocina.tv/wp-content/uploads/2024/12/caja-gastronomia-1536x960.png" alt="Gastronomía Online — contenido del curso, recetario y garantía de 7 días">
+      <img loading="lazy" decoding="async" src="https://cursosdecocina.tv/wp-content/uploads/2024/12/caja-gastronomia-1536x960.png" width="1536" height="960" alt="Gastronomía Online — contenido del curso, recetario y garantía de 7 días">
     </div>
     <div class="mockup-cta">
       <a href="https://go.hotmart.com/H106417293X?ap=1bab" class="btn-cta btn-cta-big" onclick="fbq('track','InitiateCheckout');">
         Comprar ahora <span class="arrow">→</span>
       </a>
+    </div>
+  </div>
+</section>
 
 <section class="section menu-section reveal">
   <div class="wrap">
@@ -901,27 +923,38 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 <section class="section reveal" style="background:#fff;">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">¿Es para ti?</span>
-      <h2>Para quién es este curso (y para quién no)</h2>
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>De inscribirte a cocinar como profesional, en 3 pasos</h2>
     </div>
-    <div class="fit-grid">
-      <div class="fit-col yes">
-        <h3>Este curso es para ti si...</h3>
-        <ul>
-          <li>Quieres aprender a cocinar en serio, sin salir de casa</li>
-          <li>Te gustaría eventualmente vender lo que preparas o emprender con tus habilidades</li>
-          <li>Buscas una certificación formal que respalde un cambio de carrera</li>
-          <li>Disfrutas aprender cosas nuevas a tu propio ritmo, sin presión de horarios</li>
-        </ul>
+    <div class="steps-grid">
+      <div class="step-item">
+        <span class="step-num">01</span>
+        <h3>Te inscribes hoy</h3>
+        <p>Pago único y 100% seguro vía Hotmart. Recibes tu acceso al instante, sin esperas.</p>
       </div>
-      <div class="fit-col no">
-        <h3>Este curso no es para ti si...</h3>
-        <ul>
-          <li>Esperas resultados sin practicar ni dedicar tiempo a las recetas</li>
-          <li>Buscas clases en vivo con horario fijo</li>
-          <li>No te interesa cocinar, solo ver contenido</li>
-          <li>Buscas contenido gratuito; este es un programa de pago único</li>
-        </ul>
+      <div class="step-item">
+        <span class="step-num">02</span>
+        <h3>Entras a la plataforma</h3>
+        <p>Los 7 cursos, recetarios descargables y videolecciones quedan disponibles de inmediato en tu cuenta.</p>
+      </div>
+      <div class="step-item">
+        <span class="step-num">03</span>
+        <h3>Aprendes a tu ritmo</h3>
+        <p>Avanzas cuando quieras, resuelves tus dudas con los profesores y terminas cada curso con tu certificado descargable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" style="padding-top:0;">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="badge-img">
+        <img loading="lazy" decoding="async" src="https://cursosdecocina.tv/wp-content/uploads/elementor/thumbs/garantia-7-dias-1-1-q5i4nhvvdzlfdzc18722l8hm1q4ah64ff5knyzc0r4.png" width="300" height="300" alt="Garantía de 7 días">
+      </div>
+      <div>
+        <h3>Pruébalo sin riesgo</h3>
+        <p>Si dentro de los primeros 7 días sientes que no es para ti, te devolvemos el 100% de tu inversión. Sin preguntas.</p>
       </div>
     </div>
   </div>
@@ -934,7 +967,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       <p>El cobro se procesa a través de la plataforma de pago de Hotmart, una de las más usadas en Latinoamérica. El sistema convierte automáticamente el precio a tu moneda local, así que pagas como si estuvieras comprando dentro de tu propio país, sin recargos por transacciones internacionales.</p>
       <section class="media-strip">
   <div class="wrap">
-    <img loading="lazy" decoding="async" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/logos-tv-1-1.png" alt="Medios donde nos hemos visto">
+    <img loading="lazy" decoding="async" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/logos-tv-1-1.png" width="560" height="90" alt="Medios donde nos hemos visto">
   </div>
 </section>
       </div>
@@ -946,7 +979,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   <div class="wrap">
     <div class="cert-block">
       <div class="cert-image">
-        <img loading="lazy" decoding="async" src="https://static-media.hotmart.com/aIob-SW8fRSmQlzS8Bq6_Rl0JZo=/1024x639/filters:quality(100)/hotmart/checkout_custom/bbee9cca-2f04-4350-adaa-63fdd782c4a1/ak9at0ugi.png" alt="Certificado Gastronomía Online">
+        <img loading="lazy" decoding="async" src="https://static-media.hotmart.com/aIob-SW8fRSmQlzS8Bq6_Rl0JZo=/1024x639/filters:quality(100)/hotmart/checkout_custom/bbee9cca-2f04-4350-adaa-63fdd782c4a1/ak9at0ugi.png" width="1024" height="639" alt="Certificado Gastronomía Online">
       </div>
       <div class="cert-text">
         <h2>Tu esfuerzo, con respaldo en papel</h2>
@@ -967,10 +1000,10 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       <h2>Lo que dicen quienes ya cocinan distinto</h2>
     </div>
     <div class="testi-grid-images">
-      <img loading="lazy" decoding="async" class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1.jpg" alt="Opinión de alumno — Gastronomía Online">
-      <img loading="lazy" decoding="async" class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-1.jpg" alt="Opinión de alumno — Gastronomía Online">
-      <img loading="lazy" decoding="async" class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-2.jpg" alt="Opinión de alumno — Gastronomía Online">
-      <img loading="lazy" decoding="async" class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t2-4.jpg" alt="Opinión de alumno — Gastronomía Online">
+      <img loading="lazy" decoding="async" class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1.jpg" width="440" height="440" alt="Opinión de alumno — Gastronomía Online">
+      <img loading="lazy" decoding="async" class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-1.jpg" width="440" height="440" alt="Opinión de alumno — Gastronomía Online">
+      <img loading="lazy" decoding="async" class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-2.jpg" width="440" height="440" alt="Opinión de alumno — Gastronomía Online">
+      <img loading="lazy" decoding="async" class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t2-4.jpg" width="440" height="440" alt="Opinión de alumno — Gastronomía Online">
     </div>
   </div>
 </section>
@@ -982,9 +1015,9 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       <h2>Lo que opinan en Google</h2>
     </div>
     <div class="google-grid">
-      <img loading="lazy" decoding="async" src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle1_1_760x.png.webp" alt="Reseñas de Google — Gastronomía Online">
-      <img loading="lazy" decoding="async" src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle2-1-768x728.png" alt="Reseñas de Google — Gastronomía Online">
-      <img loading="lazy" decoding="async" src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle3_1_760x.png.webp" alt="Reseñas de Google — Gastronomía Online">
+      <img loading="lazy" decoding="async" src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle1_1_760x.png.webp" width="760" height="500" alt="Reseñas de Google — Gastronomía Online">
+      <img loading="lazy" decoding="async" src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle2-1-768x728.png" width="768" height="728" alt="Reseñas de Google — Gastronomía Online">
+      <img loading="lazy" decoding="async" src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle3_1_760x.png.webp" width="760" height="500" alt="Reseñas de Google — Gastronomía Online">
     </div>
   </div>
 </section>

@@ -499,6 +499,41 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .menu-course{transition:background 0.25s ease, transform 0.25s cubic-bezier(0.22,1,0.36,1); border-radius:8px; will-change:transform;}
   .menu-course:hover{background:rgba(255,193,7,0.08); transform:translateX(10px);}
 
+/* Malla curricular */
+.curriculum-image-wrap{
+  max-width:1120px;
+  margin:0 auto;
+  text-align:center;
+}
+
+.curriculum-image{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:16px;
+  box-shadow:0 20px 50px -18px rgba(0,0,0,0.20);
+  border:1px solid var(--line);
+  transition:transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.curriculum-image:hover{
+  transform:translateY(-3px);
+  box-shadow:0 26px 55px -18px rgba(0,0,0,0.24);
+}
+
+@media (max-width:600px){
+  .curriculum-image-wrap{
+    width:100%;
+  }
+
+  .curriculum-image{
+    border-radius:10px;
+  }
+}
+
+
+
+  
   /* Benefits grid */
   .benefits-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;}
   .benefit-card{background:var(--cream-soft);border:1px solid var(--line);border-radius:12px;padding:28px 24px;transition:transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease;}
@@ -835,28 +870,38 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
 <section class="section menu-section reveal">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">La carta del curso</span>
-      <h2>7 cursos, servidos completos</h2>
-      <p>Cada curso es un programa entero, con lecciones, recetas y recursos descargables.</p>
-    </div>
 
-    <div class="menu-card">
-      <div class="menu-course"><span class="num">01</span><span class="name">Cocina Internacional</span><span class="leader"></span><span class="status">incluido</span></div>
-      <div class="menu-course"><span class="num">02</span><span class="name">Panadería Artesanal</span><span class="leader"></span><span class="status">incluido</span></div>
-      <div class="menu-course"><span class="num">03</span><span class="name">Repostería y Decoración</span><span class="leader"></span><span class="status">incluido</span></div>
-      <div class="menu-course"><span class="num">04</span><span class="name">Tortas Modernas</span><span class="leader"></span><span class="status">incluido</span></div>
-      <div class="menu-course"><span class="num">05</span><span class="name">Sushi Rolls</span><span class="leader"></span><span class="status">incluido</span></div>
-      <div class="menu-course"><span class="num">06</span><span class="name">Coctelería Clásica</span><span class="leader"></span><span class="status">incluido</span></div>
-      <div class="menu-course"><span class="num">07</span><span class="name">Barista Training</span><span class="leader"></span><span class="status">incluido</span></div>
+    <div class="curriculum-image-wrap">
+      <img
+        class="curriculum-image"
+        src="images/malla-gastronomia.png"
+        alt="Malla curricular de Gastronomía Internacional - 7 cursos incluidos"
+        loading="lazy"
+        decoding="async">
     </div>
 
     <div class="stats-strip">
-      <div class="stat-cell"><span class="num">5000+</span><span class="label">Alumnos</span></div>
-      <div class="stat-cell"><span class="num">300+</span><span class="label">Lecciones</span></div>
-      <div class="stat-cell"><span class="num">7</span><span class="label">Cursos</span></div>
-      <div class="stat-cell"><span class="num">99%</span><span class="label">Satisfacción</span></div>
+      <div class="stat-cell">
+        <span class="num">5000+</span>
+        <span class="label">Alumnos</span>
+      </div>
+
+      <div class="stat-cell">
+        <span class="num">300+</span>
+        <span class="label">Lecciones</span>
+      </div>
+
+      <div class="stat-cell">
+        <span class="num">7</span>
+        <span class="label">Cursos</span>
+      </div>
+
+      <div class="stat-cell">
+        <span class="num">99%</span>
+        <span class="label">Satisfacción</span>
+      </div>
     </div>
+
   </div>
 </section>
 

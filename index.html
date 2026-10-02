@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EnglishMaster Pro - Aprende Inglés</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -22,6 +21,7 @@
             --border: #e2e8f0;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --glow: 0 0 20px rgba(99, 102, 241, 0.5);
         }
 
         [data-theme="dark"] {
@@ -30,13 +30,10 @@
             --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
             --border: #334155;
+            --glow: 0 0 30px rgba(99, 102, 241, 0.8);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -44,941 +41,159 @@
             color: var(--text-primary);
             line-height: 1.6;
             transition: all 0.3s ease;
+            overflow-x: hidden;
         }
 
+        /* Animated Background */
+        .bg-animation {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden;
+        }
+        .bg-animation::before {
+            content: ''; position: absolute; width: 200%; height: 200%;
+            background: linear-gradient(45deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 50%, rgba(16, 185, 129, 0.1) 100%);
+            animation: rotateBg 20s linear infinite;
+        }
+        @keyframes rotateBg { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+        /* Header with Glass Effect */
         .header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow-lg);
+            background: rgba(99, 102, 241, 0.95); backdrop-filter: blur(10px); color: white;
+            padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; font-size: 1.5rem; font-weight: 700; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+        .logo i { font-size: 2rem; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
+        .header-actions { display: flex; gap: 1rem; align-items: center; }
         .theme-toggle, .user-stats {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.2); border: none; color: white; padding: 0.5rem 1rem;
+            border-radius: 8px; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(5px);
         }
+        .theme-toggle:hover, .user-stats:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-2px) scale(1.05); box-shadow: var(--glow); }
 
-        .theme-toggle:hover, .user-stats:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
+        /* Progress Bar */
+        .progress-container { background: var(--bg-primary); padding: 1.5rem 2rem; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+        .progress-container::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent); animation: shimmer 2s infinite; }
+        @keyframes shimmer { 0% { left: -100%; } 100% { left: 100%; } }
+        .progress-wrapper { max-width: 1400px; margin: 0 auto; }
+        .progress-info { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-secondary); }
+        .progress-bar { height: 10px; background: var(--border); border-radius: 10px; overflow: hidden; position: relative; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); width: 12.5%; transition: width 0.5s ease; border-radius: 10px; box-shadow: 0 0 10px rgba(99, 102, 241, 0.5); }
 
-        .progress-container {
-            background: var(--bg-primary);
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid var(--border);
-        }
+        /* Level Tabs */
+        .level-tabs { background: var(--bg-primary); padding: 1rem 2rem; border-bottom: 1px solid var(--border); position: sticky; top: 73px; z-index: 999; perspective: 1000px; }
+        .tabs-wrapper { max-width: 1400px; margin: 0 auto; display: flex; gap: 0.5rem; overflow-x: auto; }
+        .tab { padding: 0.75rem 1.5rem; border: none; background: transparent; color: var(--text-secondary); cursor: pointer; border-radius: 8px; font-weight: 500; transition: all 0.3s; white-space: nowrap; }
+        .tab:hover { background: var(--bg-secondary); color: var(--primary); transform: translateY(-3px) rotateX(10deg); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
+        .tab.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4); }
 
-        .progress-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        /* Main Container */
+        .main-container { max-width: 1400px; margin: 2rem auto; padding: 0 2rem; display: grid; grid-template-columns: 300px 1fr; gap: 2rem; }
 
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .progress-bar {
-            height: 10px;
-            background: var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            width: 12.5%;
-            transition: width 0.5s ease;
-            border-radius: 10px;
-        }
-
-        .level-tabs {
-            background: var(--bg-primary);
-            padding: 1rem 2rem;
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 73px;
-            z-index: 999;
-        }
-
-        .tabs-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            gap: 0.5rem;
-            overflow-x: auto;
-        }
-
-        .tab {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            background: transparent;
-            color: var(--text-secondary);
-            cursor: pointer;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-
-        .tab:hover {
-            background: var(--bg-secondary);
-            color: var(--primary);
-        }
-
-        .tab.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        .main-container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 2rem;
-        }
-
+        /* Sidebar */
         .sidebar {
-            background: var(--bg-primary);
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            height: fit-content;
-            position: sticky;
-            top: 140px;
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 16px;
+            padding: 1.5rem; box-shadow: var(--shadow-lg); height: fit-content; position: sticky; top: 140px;
+            border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s;
         }
-
-        .sidebar-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .module-list {
-            list-style: none;
-        }
-
+        .sidebar:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); }
+        .sidebar-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); }
+        .module-list { list-style: none; }
         .module-item {
-            padding: 0.75rem;
-            margin-bottom: 0.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            border: 2px solid transparent;
-        }
-
-        .module-item:hover {
-            background: var(--bg-secondary);
-            border-color: var(--primary);
-        }
-
-        .module-item.active {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-        }
-
-        .module-item.completed {
-            border-color: var(--success);
-        }
-
-        .module-number {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: var(--bg-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .module-item.active .module-number {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .module-item.completed .module-number {
-            background: var(--success);
-            color: white;
-        }
-
-        .content-area {
-            background: var(--bg-primary);
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-        }
-
-        .unit-header {
-            margin-bottom: 2rem;
-        }
-
-        .breadcrumb {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .unit-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .unit-subtitle {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-
-        .section-card {
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--primary);
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .section-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .vocab-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .vocab-card {
-            background: var(--bg-primary);
-            padding: 1rem;
-            border-radius: 10px;
-            border: 2px solid var(--border);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .vocab-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .vocab-word {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .vocab-meaning {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .vocab-pronunciation {
-            font-size: 0.8rem;
-            color: var(--secondary);
-            margin-top: 0.5rem;
-            font-style: italic;
-        }
-
-        .phrase-item {
-            background: var(--bg-primary);
-            padding: 1rem;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            border-left: 3px solid var(--success);
-        }
-
-        .phrase-en {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .phrase-es {
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .phrase-pronunciation {
-            font-size: 0.85rem;
-            color: var(--secondary);
-            font-style: italic;
-        }
-
-        .audio-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 0.5rem;
-            transition: all 0.3s;
-        }
-
-        .audio-btn:hover {
-            background: var(--primary-dark);
-            transform: scale(1.05);
-        }
-
-        .grammar-box {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-top: 1rem;
-        }
-
-        [data-theme="dark"] .grammar-box {
-            background: linear-gradient(135deg, #451a03, #78350f);
-        }
-
-        .grammar-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .action-buttons {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .action-btn {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border: none;
-            padding: 1.5rem;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .action-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .action-btn i {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .achievements {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .achievement {
-            background: var(--bg-secondary);
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-            flex: 1;
-            min-width: 120px;
-        }
-
-        .achievement-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .achievement-label {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-
-        .achievement-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal {
-            background: var(--bg-primary);
-            border-radius: 20px;
-            padding: 2rem;
-            max-width: 800px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: modalSlideIn 0.3s ease;
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--bg-secondary);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            transition: all 0.3s;
-        }
-
-        .modal-close:hover {
-            background: var(--error);
-            color: white;
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-
-        .quiz-question {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-        }
-
-        .question-number {
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .question-text {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .quiz-options {
-            display: grid;
-            gap: 0.75rem;
-        }
-
-        .quiz-option {
-            background: var(--bg-primary);
-            padding: 1rem;
-            border-radius: 8px;
-            border: 2px solid var(--border);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .quiz-option:hover {
-            border-color: var(--primary);
-            background: var(--bg-secondary);
-        }
-
-        .quiz-option.selected {
-            border-color: var(--primary);
-            background: rgba(99, 102, 241, 0.1);
-        }
-
-        .quiz-option.correct {
-            border-color: var(--success);
-            background: rgba(16, 185, 129, 0.1);
-        }
-
-        .quiz-option.incorrect {
-            border-color: var(--error);
-            background: rgba(239, 68, 68, 0.1);
-        }
-
-        .quiz-submit {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 1rem;
-            transition: all 0.3s;
-        }
-
-        .quiz-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .quiz-result {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            margin-top: 1rem;
-        }
-
-        .result-score {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 1rem 0;
-        }
-
-        .flashcard-container {
-            perspective: 1000px;
-            margin: 2rem 0;
-        }
-
-        .flashcard {
-            width: 100%;
-            height: 300px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.6s;
-            cursor: pointer;
-        }
-
-        .flashcard.flipped {
-            transform: rotateY(180deg);
-        }
-
-        .flashcard-face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .flashcard-front {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-        }
-
-        .flashcard-back {
-            background: linear-gradient(135deg, var(--secondary), #db2777);
-            color: white;
-            transform: rotateY(180deg);
-        }
-
-        .flashcard-word {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .flashcard-hint {
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-
-        .flashcard-controls {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1.5rem;
-        }
-
-        .flashcard-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .flashcard-btn:hover {
-            background: var(--primary-dark);
-            transform: scale(1.05);
-        }
-
-        .flashcard-counter {
-            text-align: center;
-            margin-top: 1rem;
-            color: var(--text-secondary);
-        }
-
-        .chatbot-container {
-            display: flex;
-            flex-direction: column;
-            height: 500px;
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-
-        .chat-message {
-            margin-bottom: 1rem;
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        .chat-message.user {
-            flex-direction: row-reverse;
-        }
-
-        .chat-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-
-        .chat-message.user .chat-avatar {
-            background: var(--secondary);
-        }
-
-        .chat-bubble {
-            background: var(--bg-primary);
-            padding: 1rem;
-            border-radius: 12px;
-            max-width: 70%;
-            box-shadow: var(--shadow);
-        }
-
-        .chat-message.user .chat-bubble {
-            background: var(--primary);
-            color: white;
-        }
-
-        .chat-input-container {
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .chat-send {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .chat-send:hover {
-            background: var(--primary-dark);
-        }
-
-        .chat-suggestions {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .chat-suggestion {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .chat-suggestion:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .level-system {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-top: 2rem;
-        }
-
-        .level-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .level-badge {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .level-progress {
-            margin-top: 1rem;
-        }
-
-        .level-bar {
-            height: 15px;
-            background: var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 0.5rem;
-        }
-
-        .level-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            width: 25%;
-            transition: width 0.5s ease;
-            border-radius: 10px;
-        }
-
-        .xp-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .skill-item {
-            background: var(--bg-primary);
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .skill-name {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .skill-level {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .notes-section {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: var(--bg-secondary);
-            border-radius: 12px;
-        }
-
-        .notes-textarea {
-            width: 100%;
-            min-height: 100px;
-            padding: 1rem;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            font-family: inherit;
-            resize: vertical;
-            margin-top: 0.5rem;
-        }
-
-        .save-notes-btn {
-            background: var(--success);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 0.5rem;
-            font-weight: 600;
-        }
-
-        @media (max-width: 1024px) {
-            .main-container {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                position: static;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .unit-title {
-                font-size: 1.5rem;
-            }
-
-            .vocab-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .action-buttons {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .content-area {
-            animation: fadeIn 0.5s ease;
-        }
+            padding: 0.75rem; margin-bottom: 0.5rem; border-radius: 8px; cursor: pointer;
+            transition: all 0.3s; display: flex; align-items: center; gap: 0.75rem; border: 2px solid transparent;
+        }
+        .module-item:hover { background: var(--bg-secondary); border-color: var(--primary); transform: translateX(10px) scale(1.02); box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3); }
+        .module-item.active { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; transform: translateX(10px) scale(1.05); box-shadow: 0 10px 25px rgba(99, 102, 241, 0.5); }
+        .module-item.locked { opacity: 0.5; cursor: not-allowed; filter: grayscale(1); }
+        .module-number { width: 30px; height: 30px; border-radius: 50%; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.9rem; }
+        .module-item.active .module-number { background: rgba(255, 255, 255, 0.3); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+        /* Content Area */
+        .content-area { background: var(--bg-primary); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow); transform-style: preserve-3d; perspective: 1000px; min-height: 600px; }
+        .unit-header { margin-bottom: 2rem; animation: slideInDown 0.6s ease; }
+        @keyframes slideInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        .breadcrumb { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .unit-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        
+        /* Section Cards */
+        .section-card { background: var(--bg-secondary); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--primary); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .section-card:hover { transform: translateY(-10px) rotateX(5deg); box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2); }
+        .section-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+        .section-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; }
+        .section-title { font-size: 1.3rem; font-weight: 600; }
+
+        /* Vocab & Phrases */
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .vocab-card { background: var(--bg-primary); padding: 1rem; border-radius: 10px; border: 2px solid var(--border); transition: all 0.4s; cursor: pointer; }
+        .vocab-card:hover { border-color: var(--primary); transform: translateY(-10px) rotateY(10deg) scale(1.05); box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3); }
+        .vocab-word { font-size: 1.2rem; font-weight: 600; color: var(--primary); }
+        .phrase-item { background: var(--bg-primary); padding: 1rem; border-radius: 10px; margin-bottom: 1rem; border-left: 3px solid var(--success); transition: all 0.3s; }
+        .phrase-item:hover { transform: translateX(10px); box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2); }
+        .audio-btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; margin-top: 0.5rem; transition: all 0.3s; }
+        .audio-btn:hover { transform: scale(1.1); box-shadow: 0 0 20px rgba(99, 102, 241, 0.6); }
+
+        /* Action Buttons */
+        .action-buttons { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+        .action-btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 1.5rem; border-radius: 12px; cursor: pointer; transition: all 0.4s; text-align: center; font-weight: 600; }
+        .action-btn:hover { transform: translateY(-10px) rotateX(10deg) scale(1.05); box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4); }
+        .action-btn i { font-size: 2rem; margin-bottom: 0.5rem; display: block; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* Modals */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.8); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+        .modal-overlay.active { display: flex; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal { background: var(--bg-primary); border-radius: 20px; padding: 2rem; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative; animation: modal3DEntrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes modal3DEntrance { from { opacity: 0; transform: perspective(1000px) rotateX(-20deg) translateY(-100px) scale(0.8); } to { opacity: 1; transform: perspective(1000px) rotateX(0) translateY(0) scale(1); } }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: var(--bg-secondary); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; color: var(--text-secondary); transition: all 0.3s; }
+        .modal-close:hover { background: var(--error); color: white; transform: rotate(180deg) scale(1.2); }
+
+        /* Quiz Styles */
+        .quiz-option { background: var(--bg-primary); padding: 1rem; border-radius: 8px; border: 2px solid var(--border); cursor: pointer; transition: all 0.3s; margin-bottom: 0.5rem; }
+        .quiz-option:hover { border-color: var(--primary); background: var(--bg-secondary); }
+        .quiz-option.correct { border-color: var(--success); background: rgba(16, 185, 129, 0.1); }
+        .quiz-option.incorrect { border-color: var(--error); background: rgba(239, 68, 68, 0.1); animation: shake 0.5s; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
+        .quiz-submit { background: var(--primary); color: white; border: none; padding: 1rem; border-radius: 10px; width: 100%; cursor: pointer; margin-top: 1rem; font-weight: bold; }
+
+        /* Flashcards */
+        .flashcard-container { perspective: 1500px; margin: 2rem 0; }
+        .flashcard { width: 100%; height: 300px; position: relative; transform-style: preserve-3d; transition: transform 0.8s; cursor: pointer; }
+        .flashcard.flipped { transform: rotateY(180deg); }
+        .flashcard-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+        .flashcard-front { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; }
+        .flashcard-back { background: linear-gradient(135deg, var(--secondary), #db2777); color: white; transform: rotateY(180deg); }
+        .flashcard-controls { display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; }
+        .flashcard-btn { background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; }
+
+        /* Chatbot */
+        .chatbot-container { display: flex; flex-direction: column; height: 400px; }
+        .chat-messages { flex: 1; overflow-y: auto; padding: 1rem; background: var(--bg-secondary); border-radius: 12px; margin-bottom: 1rem; }
+        .chat-message { margin-bottom: 1rem; display: flex; gap: 0.75rem; }
+        .chat-message.user { flex-direction: row-reverse; }
+        .chat-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: white; }
+        .chat-bubble { background: var(--bg-primary); padding: 1rem; border-radius: 12px; max-width: 80%; box-shadow: var(--shadow); }
+        .chat-input-container { display: flex; gap: 0.5rem; }
+        .chat-input { flex: 1; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border); }
+        .chat-send { background: var(--primary); color: white; border: none; padding: 0 1.5rem; border-radius: 8px; cursor: pointer; }
+
+        /* Responsive */
+        @media (max-width: 1024px) { .main-container { grid-template-columns: 1fr; } .sidebar { position: static; } }
     </style>
 </head>
 <body>
+    <div class="bg-animation"></div>
+    
     <header class="header">
         <div class="header-content">
-            <div class="logo">
-                <i class="fas fa-graduation-cap"></i>
-                <span>EnglishMaster Pro</span>
-            </div>
+            <div class="logo"><i class="fas fa-graduation-cap"></i><span>EnglishMaster Pro</span></div>
             <div class="header-actions">
-                <button class="user-stats">
-                    <i class="fas fa-fire"></i> Racha: 5 días
-                </button>
-                <button class="theme-toggle" onclick="toggleTheme()">
-                    <i class="fas fa-moon"></i>
-                </button>
+                <button class="user-stats"><i class="fas fa-fire"></i> Racha: 5 días</button>
+                <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
             </div>
         </div>
     </header>
@@ -986,640 +201,358 @@
     <div class="progress-container">
         <div class="progress-wrapper">
             <div class="progress-info">
-                <span><strong>Nivel A1</strong> - Módulo 1 de 8</span>
-                <span>12.5% completado</span>
+                <span id="progressText"><strong>Nivel A1</strong> - Módulo 1 de 3</span>
+                <span id="progressPercent">33% completado</span>
             </div>
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
-            </div>
+            <div class="progress-bar"><div class="progress-fill" id="progressBar" style="width: 33%"></div></div>
         </div>
     </div>
 
     <div class="level-tabs">
         <div class="tabs-wrapper">
-            <button class="tab active">A1</button>
-            <button class="tab">A2</button>
-            <button class="tab">B1</button>
-            <button class="tab">B2</button>
-            <button class="tab">C1</button>
+            <button class="tab active">A1</button><button class="tab">A2</button><button class="tab">B1</button>
         </div>
     </div>
 
     <div class="main-container">
         <aside class="sidebar">
-            <h3 class="sidebar-title">
-                <i class="fas fa-book-open"></i> Unidades A1
-            </h3>
-            <ul class="module-list">
-                <li class="module-item active">
-                    <div class="module-number">1</div>
-                    <div>
-                        <div style="font-weight: 600;">Saludos y presentaciones</div>
-                        <div style="font-size: 0.8rem; opacity: 0.8;">Hello / Hi · verbo to be</div>
-                    </div>
-                </li>
-                <li class="module-item completed">
-                    <div class="module-number"><i class="fas fa-check"></i></div>
-                    <div>
-                        <div>Datos personales</div>
-                        <div style="font-size: 0.8rem; opacity: 0.8;">Información básica</div>
-                    </div>
-                </li>
-                <li class="module-item">
-                    <div class="module-number">3</div>
-                    <div>Familia y personas</div>
-                </li>
-                <li class="module-item">
-                    <div class="module-number">4</div>
-                    <div>Casa y objetos</div>
-                </li>
-                <li class="module-item">
-                    <div class="module-number">5</div>
-                    <div>Rutinas diarias</div>
-                </li>
-                <li class="module-item">
-                    <div class="module-number">6</div>
-                    <div>Comida y compras</div>
-                </li>
-                <li class="module-item">
-                    <div class="module-number">7</div>
-                    <div>Ciudad y direcciones</div>
-                </li>
-                <li class="module-item">
-                    <div class="module-number">8</div>
-                    <div>Repaso y situación final</div>
-                </li>
+            <h3 class="sidebar-title"><i class="fas fa-book-open"></i> Unidades A1</h3>
+            <ul class="module-list" id="moduleList">
+                <!-- Generated by JS -->
             </ul>
         </aside>
 
-        <main class="content-area">
-            <div class="unit-header">
-                <div class="breadcrumb">A1 > Módulo 1 · Primer contacto</div>
-                <h1 class="unit-title">Saludos y presentaciones</h1>
-                <p class="unit-subtitle">Hello / Hi · verbo to be</p>
-            </div>
-
-            <div class="section-card">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h2 class="section-title">La idea principal</h2>
-                </div>
-                <p>Saludar, presentarte y responder cómo estás. <strong>Hello</strong> y <strong>Hi</strong> funcionan a cualquier hora. Usa "Good morning" por la mañana y "Good evening" al llegar por la noche. Para decir tu nombre, empieza con "My name is…".</p>
-            </div>
-
-            <div class="section-card">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h2 class="section-title">Frases del módulo</h2>
-                </div>
-                
-                <div class="phrase-item">
-                    <div class="phrase-en">Hello! My name is Ana.</div>
-                    <div class="phrase-es">¡Hola! Me llamo Ana.</div>
-                    <div class="phrase-pronunciation">jelóu · mai néim is Ána</div>
-                    <button class="audio-btn" onclick="playAudio('hello')">
-                        <i class="fas fa-volume-up"></i> Escuchar
-                    </button>
-                </div>
-
-                <div class="phrase-item">
-                    <div class="phrase-en">How are you? I am fine.</div>
-                    <div class="phrase-es">¿Cómo estás? Estoy bien.</div>
-                    <div class="phrase-pronunciation">jáu ar iu · ai am fáin</div>
-                    <button class="audio-btn" onclick="playAudio('howareyou')">
-                        <i class="fas fa-volume-up"></i> Escuchar
-                    </button>
-                </div>
-
-                <div class="phrase-item">
-                    <div class="phrase-en">Nice to meet you.</div>
-                    <div class="phrase-es">Mucho gusto.</div>
-                    <div class="phrase-pronunciation">náis tu míit iu</div>
-                    <button class="audio-btn" onclick="playAudio('nicetomeetyou')">
-                        <i class="fas fa-volume-up"></i> Escuchar
-                    </button>
-                </div>
-            </div>
-
-            <div class="section-card">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-spell-check"></i>
-                    </div>
-                    <h2 class="section-title">Vocabulario</h2>
-                </div>
-                <div class="vocab-grid">
-                    <div class="vocab-card">
-                        <div class="vocab-word">hello</div>
-                        <div class="vocab-meaning">hola</div>
-                        <div class="vocab-pronunciation">jelóu</div>
-                    </div>
-                    <div class="vocab-card">
-                        <div class="vocab-word">name</div>
-                        <div class="vocab-meaning">nombre</div>
-                        <div class="vocab-pronunciation">néim</div>
-                    </div>
-                    <div class="vocab-card">
-                        <div class="vocab-word">fine</div>
-                        <div class="vocab-meaning">bien</div>
-                        <div class="vocab-pronunciation">fáin</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-card">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h2 class="section-title">Gramática en contexto</h2>
-                </div>
-                <div class="grammar-box">
-                    <div class="grammar-title">
-                        <i class="fas fa-star"></i>
-                        Verbo TO BE (ser/estar)
-                    </div>
-                    <p><strong>I am</strong> (Yo soy/estoy)</p>
-                    <p><strong>You are</strong> (Tú eres/estás)</p>
-                    <p><strong>He/She is</strong> (Él/Ella es/está)</p>
-                </div>
-            </div>
-
-            <div class="action-buttons">
-                <button class="action-btn" onclick="openQuiz()">
-                    <i class="fas fa-question-circle"></i>
-                    Realizar Quiz
-                </button>
-                <button class="action-btn" onclick="openFlashcards()">
-                    <i class="fas fa-clone"></i>
-                    Flashcards
-                </button>
-                <button class="action-btn" onclick="openChatbot()">
-                    <i class="fas fa-robot"></i>
-                    Practicar con IA
-                </button>
-            </div>
-
-            <div class="level-system">
-                <div class="level-header">
-                    <h3><i class="fas fa-trophy"></i> Tu Progreso</h3>
-                    <div class="level-badge">Nivel 3</div>
-                </div>
-                <div class="level-progress">
-                    <div class="level-bar">
-                        <div class="level-fill"></div>
-                    </div>
-                    <div class="xp-info">
-                        <span>150 XP</span>
-                        <span>600 XP para Nivel 4</span>
-                    </div>
-                </div>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <div class="skill-name">Vocabulario</div>
-                        <div class="skill-level">⭐⭐⭐</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">Gramática</div>
-                        <div class="skill-level">⭐⭐</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">Pronunciación</div>
-                        <div class="skill-level">⭐⭐⭐</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">Comprensión</div>
-                        <div class="skill-level">⭐⭐</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="achievements">
-                <div class="achievement">
-                    <div class="achievement-icon">🔥</div>
-                    <div class="achievement-value">5</div>
-                    <div class="achievement-label">Días de racha</div>
-                </div>
-                <div class="achievement">
-                    <div class="achievement-icon">⭐</div>
-                    <div class="achievement-value">150</div>
-                    <div class="achievement-label">Puntos XP</div>
-                </div>
-                <div class="achievement">
-                    <div class="achievement-icon">🏆</div>
-                    <div class="achievement-value">3</div>
-                    <div class="achievement-label">Logros</div>
-                </div>
-                <div class="achievement">
-                    <div class="achievement-icon">📚</div>
-                    <div class="achievement-value">1</div>
-                    <div class="achievement-label">Unidades</div>
-                </div>
-            </div>
-
-            <div class="notes-section">
-                <h3><i class="fas fa-sticky-note"></i> Mis notas personales</h3>
-                <textarea class="notes-textarea" placeholder="Escribe aquí tus apuntes..."></textarea>
-                <button class="save-notes-btn" onclick="saveNotes()">
-                    <i class="fas fa-save"></i> Guardar notas
-                </button>
-            </div>
+        <main class="content-area" id="contentArea">
+            <!-- Dynamic Content -->
         </main>
     </div>
 
-    <!-- Quiz Modal -->
-    <div id="quizModal" class="modal-overlay">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('quizModal')">
-                <i class="fas fa-times"></i>
-            </button>
-            <h2 class="modal-title"><i class="fas fa-question-circle"></i> Quiz Interactivo</h2>
-            <div id="quizContent"></div>
-        </div>
-    </div>
-
-    <!-- Flashcards Modal -->
-    <div id="flashcardsModal" class="modal-overlay">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('flashcardsModal')">
-                <i class="fas fa-times"></i>
-            </button>
-            <h2 class="modal-title"><i class="fas fa-clone"></i> Flashcards Interactivas</h2>
-            <div id="flashcardsContent"></div>
-        </div>
-    </div>
-
-    <!-- Chatbot Modal -->
-    <div id="chatbotModal" class="modal-overlay">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('chatbotModal')">
-                <i class="fas fa-times"></i>
-            </button>
-            <h2 class="modal-title"><i class="fas fa-robot"></i> Practica con el Tutor IA</h2>
-            <div id="chatbotContent"></div>
-        </div>
-    </div>
+    <!-- Modals -->
+    <div id="quizModal" class="modal-overlay"><div class="modal"><button class="modal-close" onclick="closeModal('quizModal')"><i class="fas fa-times"></i></button><h2 class="modal-title">Quiz Interactivo</h2><div id="quizContent"></div></div></div>
+    <div id="flashcardsModal" class="modal-overlay"><div class="modal"><button class="modal-close" onclick="closeModal('flashcardsModal')"><i class="fas fa-times"></i></button><h2 class="modal-title">Flashcards 3D</h2><div id="flashcardsContent"></div></div></div>
+    <div id="chatbotModal" class="modal-overlay"><div class="modal"><button class="modal-close" onclick="closeModal('chatbotModal')"><i class="fas fa-times"></i></button><h2 class="modal-title">Tutor IA</h2><div id="chatbotContent"></div></div></div>
 
     <script>
-        // Theme Toggle
-        function toggleTheme() {
-            const body = document.body;
-            const currentTheme = body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            const icon = document.querySelector('.theme-toggle i');
-            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        document.body.setAttribute('data-theme', savedTheme);
-
-        function playAudio(phrase) {
-            alert(`Reproduciendo audio: "${phrase}"`);
-        }
-
-        function saveNotes() {
-            const notes = document.querySelector('.notes-textarea').value;
-            localStorage.setItem('lesson_notes', notes);
-            alert('¡Notas guardadas correctamente!');
-        }
-
-        window.addEventListener('load', () => {
-            const savedNotes = localStorage.getItem('lesson_notes');
-            if (savedNotes) {
-                document.querySelector('.notes-textarea').value = savedNotes;
-            }
-        });
-
-        document.querySelectorAll('.module-item').forEach(item => {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.module-item').forEach(i => i.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.add('active');
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-        }
-
-        document.querySelectorAll('.modal-overlay').forEach(overlay => {
-            overlay.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.classList.remove('active');
-                }
-            });
-        });
-
-        // QUIZ SYSTEM
-        const quizQuestions = [
+        // --- DATA ---
+        const lessonsDB = [
             {
-                question: "¿Cómo se dice 'Hola' en inglés?",
-                options: ["Goodbye", "Hello", "Thanks", "Please"],
-                correct: 1
+                id: 1, title: "Saludos y presentaciones", subtitle: "Hello / Hi · verbo to be", locked: false,
+                phrases: [
+                    { en: "Hello! My name is Ana.", es: "¡Hola! Me llamo Ana.", pron: "jelóu" },
+                    { en: "How are you? I am fine.", es: "¿Cómo estás? Estoy bien.", pron: "jáu ar iu" }
+                ],
+                vocab: [ { word: "hello", meaning: "hola" }, { word: "name", meaning: "nombre" } ],
+                quiz: [
+                    { q: "¿Cómo se dice 'Hola'?", opts: ["Goodbye", "Hello", "Thanks"], ans: 1 },
+                    { q: "Completa: My name ___ Ana.", opts: ["are", "am", "is"], ans: 2 },
+                    { q: "Nice to meet you significa:", opts: ["Adiós", "Mucho gusto", "Bien"], ans: 1 }
+                ]
             },
             {
-                question: "Completa: 'My name ___ Ana.'",
-                options: ["are", "am", "is", "be"],
-                correct: 2
+                id: 2, title: "Datos personales", subtitle: "Información básica · Wh- questions", locked: true,
+                phrases: [
+                    { en: "Where are you from?", es: "¿De dónde eres?", pron: "juér ar iu" },
+                    { en: "I am from Mexico.", es: "Soy de México.", pron: "ai am fróm" }
+                ],
+                vocab: [ { word: "from", meaning: "de" }, { word: "where", meaning: "dónde" } ],
+                quiz: [
+                    { q: "¿Cómo preguntas el origen?", opts: ["Who are you", "Where are you from", "What is this"], ans: 1 },
+                    { q: "I am ___ Spain.", opts: ["in", "from", "at"], ans: 1 },
+                    { q: "Where significa:", opts: ["Qué", "Quién", "Dónde"], ans: 2 }
+                ]
             },
             {
-                question: "¿Qué significa 'Nice to meet you'?",
-                options: ["Hasta luego", "Mucho gusto", "Buenos días", "¿Cómo estás?"],
-                correct: 1
-            },
-            {
-                question: "Selecciona la forma correcta: '___ you fine?'",
-                options: ["Is", "Am", "Are", "Be"],
-                correct: 2
-            },
-            {
-                question: "¿Cuál es la traducción de 'See you later'?",
-                options: ["Nos vemos mañana", "Hasta luego", "Buenas noches", "Adiós para siempre"],
-                correct: 1
+                id: 3, title: "Rutinas diarias", subtitle: "Present Simple · Horas", locked: true,
+                phrases: [
+                    { en: "I wake up at 7 AM.", es: "Me despierto a las 7.", pron: "wéik ap" },
+                    { en: "She works every day.", es: "Ella trabaja diario.", pron: "wórks" }
+                ],
+                vocab: [ { word: "wake up", meaning: "despertar" }, { word: "work", meaning: "trabajar" } ],
+                quiz: [
+                    { q: "I ___ up at 7.", opts: ["wake", "wakes", "waking"], ans: 0 },
+                    { q: "She ___ every day.", opts: ["work", "works", "working"], ans: 1 },
+                    { q: "Wake up significa:", opts: ["Dormir", "Despertar", "Comer"], ans: 1 }
+                ]
             }
         ];
 
-        let currentQuestion = 0;
+        let currentLessonId = 1;
+        let currentQIndex = 0;
         let score = 0;
         let selectedAnswer = null;
+        let currentCard = 0;
 
+        // --- INIT ---
+        function init() {
+            renderSidebar();
+            loadLesson(1);
+            
+            // Theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            
+            // Notes
+            const savedNotes = localStorage.getItem('lesson_notes');
+            if (savedNotes) document.querySelector('.notes-textarea').value = savedNotes;
+        }
+
+        // --- RENDER SIDEBAR ---
+        function renderSidebar() {
+            const list = document.getElementById('moduleList');
+            list.innerHTML = '';
+            lessonsDB.forEach(l => {
+                const li = document.createElement('li');
+                li.className = `module-item ${l.id === currentLessonId ? 'active' : ''} ${l.locked ? 'locked' : ''}`;
+                li.onclick = () => !l.locked && loadLesson(l.id);
+                li.innerHTML = `
+                    <div class="module-number">${l.locked ? '<i class="fas fa-lock"></i>' : l.id}</div>
+                    <div>
+                        <div style="font-weight:600">${l.title}</div>
+                        <div style="font-size:0.8rem;opacity:0.8">${l.subtitle.split('·')[0]}</div>
+                    </div>`;
+                list.appendChild(li);
+            });
+        }
+
+        // --- LOAD LESSON ---
+        function loadLesson(id) {
+            currentLessonId = id;
+            const lesson = lessonsDB.find(l => l.id === id);
+            renderSidebar();
+            
+            // Update Progress
+            const percent = Math.round((id / lessonsDB.length) * 100);
+            document.getElementById('progressBar').style.width = `${percent}%`;
+            document.getElementById('progressPercent').innerText = `${percent}% completado`;
+            document.getElementById('progressText').innerHTML = `<strong>Nivel A1</strong> - Módulo ${id} de ${lessonsDB.length}`;
+
+            // Render Content
+            const area = document.getElementById('contentArea');
+            area.style.animation = 'none';
+            area.offsetHeight; 
+            area.style.animation = 'slideInDown 0.6s ease';
+
+            let phrasesHTML = lesson.phrases.map(p => `
+                <div class="phrase-item">
+                    <div style="font-weight:bold;color:var(--primary)">${p.en}</div>
+                    <div style="color:var(--text-secondary)">${p.es}</div>
+                    <div style="font-size:0.8rem;color:var(--secondary)">${p.pron}</div>
+                    <button class="audio-btn" onclick="playAudio('${p.en}')"><i class="fas fa-volume-up"></i> Escuchar</button>
+                </div>`).join('');
+
+            let vocabHTML = lesson.vocab.map(v => `
+                <div class="vocab-card">
+                    <div class="vocab-word">${v.word}</div>
+                    <div style="color:var(--text-secondary)">${v.meaning}</div>
+                </div>`).join('');
+
+            area.innerHTML = `
+                <div class="unit-header">
+                    <div class="breadcrumb">A1 > Módulo ${lesson.id}</div>
+                    <h1 class="unit-title">${lesson.title}</h1>
+                    <p style="color:var(--text-secondary)">${lesson.subtitle}</p>
+                </div>
+                
+                <div class="section-card">
+                    <div class="section-header"><div class="section-icon"><i class="fas fa-comments"></i></div><h2 class="section-title">Frases Clave</h2></div>
+                    ${phrasesHTML}
+                </div>
+
+                <div class="section-card">
+                    <div class="section-header"><div class="section-icon"><i class="fas fa-spell-check"></i></div><h2 class="section-title">Vocabulario</h2></div>
+                    <div class="vocab-grid">${vocabHTML}</div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-btn" onclick="openQuiz()"><i class="fas fa-question-circle"></i>Realizar Quiz</button>
+                    <button class="action-btn" onclick="openFlashcards()"><i class="fas fa-clone"></i>Flashcards</button>
+                    <button class="action-btn" onclick="openChatbot()"><i class="fas fa-robot"></i>Practicar con IA</button>
+                </div>
+
+                <div class="section-card" style="margin-top:2rem">
+                    <h3><i class="fas fa-sticky-note"></i> Mis notas</h3>
+                    <textarea class="notes-textarea" style="width:100%;margin-top:1rem;padding:1rem;border-radius:8px;border:1px solid var(--border)" placeholder="Escribe aquí..."></textarea>
+                    <button class="audio-btn" style="margin-top:0.5rem;background:var(--success)" onclick="saveNotes()">Guardar Notas</button>
+                </div>
+            `;
+        }
+
+        // --- QUIZ SYSTEM ---
         function openQuiz() {
-            currentQuestion = 0;
-            score = 0;
+            currentQIndex = 0; score = 0;
             showQuestion();
             openModal('quizModal');
         }
 
         function showQuestion() {
-            const quizContent = document.getElementById('quizContent');
-            const question = quizQuestions[currentQuestion];
+            const lesson = lessonsDB.find(l => l.id === currentLessonId);
+            const q = lesson.quiz[currentQIndex];
+            const content = document.getElementById('quizContent');
             
-            let optionsHTML = '';
-            question.options.forEach((option, index) => {
-                optionsHTML += `
-                    <div class="quiz-option" onclick="selectAnswer(${index})" data-index="${index}">
-                        ${option}
-                    </div>
-                `;
-            });
+            let optsHTML = q.opts.map((opt, i) => 
+                `<div class="quiz-option" onclick="selectAnswer(${i})" data-idx="${i}">${opt}</div>`
+            ).join('');
 
-            quizContent.innerHTML = `
-                <div class="quiz-question">
-                    <div class="question-number">Pregunta ${currentQuestion + 1} de ${quizQuestions.length}</div>
-                    <div class="question-text">${question.question}</div>
-                    <div class="quiz-options">
-                        ${optionsHTML}
-                    </div>
-                    <button class="quiz-submit" onclick="submitAnswer()" id="submitBtn" disabled>
-                        Enviar Respuesta
-                    </button>
-                </div>
+            content.innerHTML = `
+                <div style="margin-bottom:1rem;color:var(--primary)">Pregunta ${currentQIndex+1} de ${lesson.quiz.length}</div>
+                <h3 style="margin-bottom:1.5rem">${q.q}</h3>
+                <div>${optsHTML}</div>
+                <button class="quiz-submit" id="submitBtn" disabled onclick="submitAnswer()">Enviar Respuesta</button>
             `;
-            
             selectedAnswer = null;
         }
 
-        function selectAnswer(index) {
-            selectedAnswer = index;
-            document.querySelectorAll('.quiz-option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
-            document.querySelector(`[data-index="${index}"]`).classList.add('selected');
+        function selectAnswer(idx) {
+            selectedAnswer = idx;
+            document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+            document.querySelector(`[data-idx="${idx}"]`).classList.add('selected');
             document.getElementById('submitBtn').disabled = false;
+            document.getElementById('submitBtn').style.opacity = '1';
         }
 
         function submitAnswer() {
-            const question = quizQuestions[currentQuestion];
-            const options = document.querySelectorAll('.quiz-option');
+            const lesson = lessonsDB.find(l => l.id === currentLessonId);
+            const q = lesson.quiz[currentQIndex];
+            const opts = document.querySelectorAll('.quiz-option');
             
-            if (selectedAnswer === question.correct) {
-                options[selectedAnswer].classList.add('correct');
+            if(selectedAnswer === q.ans) {
+                opts[selectedAnswer].classList.add('correct');
                 score++;
             } else {
-                options[selectedAnswer].classList.add('incorrect');
-                options[question.correct].classList.add('correct');
+                opts[selectedAnswer].classList.add('incorrect');
+                opts[q.ans].classList.add('correct');
             }
 
             setTimeout(() => {
-                currentQuestion++;
-                if (currentQuestion < quizQuestions.length) {
-                    showQuestion();
-                } else {
-                    showQuizResult();
-                }
+                currentQIndex++;
+                if(currentQIndex < lesson.quiz.length) showQuestion();
+                else showResult();
             }, 1500);
         }
 
-        function showQuizResult() {
-            const percentage = Math.round((score / quizQuestions.length) * 100);
-            const quizContent = document.getElementById('quizContent');
+        function showResult() {
+            const lesson = lessonsDB.find(l => l.id === currentLessonId);
+            const passed = score >= 2; // Aprobar con 2/3
             
-            let message = '';
-            let emoji = '';
-            if (percentage >= 80) {
-                message = '¡Excelente trabajo!';
-                emoji = '🎉';
-            } else if (percentage >= 60) {
-                message = '¡Bien hecho! Sigue practicando';
-                emoji = '👍';
-            } else {
-                message = 'Necesitas más práctica. ¡No te rindas!';
-                emoji = '💪';
+            if(passed && currentLessonId < lessonsDB.length) {
+                lessonsDB[currentLessonId].locked = false; // Unlock next
+                renderSidebar();
             }
 
-            quizContent.innerHTML = `
-                <div class="quiz-result">
-                    <div style="font-size: 4rem;">${emoji}</div>
-                    <h2>${message}</h2>
-                    <div class="result-score">${score}/${quizQuestions.length}</div>
-                    <p>Has acertado el ${percentage}% de las preguntas</p>
-                    <button class="quiz-submit" onclick="openQuiz()" style="margin-top: 1rem;">
-                        Intentar de nuevo
-                    </button>
+            const msg = passed ? "¡Excelente! Siguiente nivel desbloqueado." : "Sigue practicando.";
+            document.getElementById('quizContent').innerHTML = `
+                <div style="text-align:center;padding:2rem">
+                    <i class="fas fa-trophy" style="font-size:4rem;color:${passed?'gold':'silver'};margin-bottom:1rem"></i>
+                    <h2>${msg}</h2>
+                    <p>Puntuación: ${score}/${lesson.quiz.length}</p>
+                    <button class="quiz-submit" onclick="closeModal('quizModal')">Continuar</button>
                 </div>
             `;
         }
 
-        // FLASHCARDS SYSTEM
-        const flashcardsData = [
-            { front: 'Hello', back: 'Hola', pronunciation: 'jelóu' },
-            { front: 'Name', back: 'Nombre', pronunciation: 'néim' },
-            { front: 'Fine', back: 'Bien', pronunciation: 'fáin' },
-            { front: 'Meet', back: 'Conocer', pronunciation: 'míit' },
-            { front: 'Later', back: 'Luego', pronunciation: 'léiter' },
-            { front: 'Good', back: 'Bueno/a', pronunciation: 'gud' }
-        ];
-
-        let currentCard = 0;
-
+        // --- FLASHCARDS ---
         function openFlashcards() {
             currentCard = 0;
-            showFlashcard();
+            showCard();
             openModal('flashcardsModal');
         }
 
-        function showFlashcard() {
-            const card = flashcardsData[currentCard];
-            const flashcardsContent = document.getElementById('flashcardsContent');
-            
-            flashcardsContent.innerHTML = `
+        function showCard() {
+            const lesson = lessonsDB.find(l => l.id === currentLessonId);
+            const card = lesson.vocab[currentCard];
+            document.getElementById('flashcardsContent').innerHTML = `
                 <div class="flashcard-container">
-                    <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard" onclick="this.classList.toggle('flipped')">
                         <div class="flashcard-face flashcard-front">
-                            <div class="flashcard-word">${card.front}</div>
-                            <div class="flashcard-hint">Haz clic para ver la traducción</div>
+                            <div style="font-size:2rem;font-weight:bold">${card.word}</div>
+                            <div style="margin-top:1rem;opacity:0.8">Click para voltear</div>
                         </div>
                         <div class="flashcard-face flashcard-back">
-                            <div class="flashcard-word">${card.back}</div>
-                            <div class="flashcard-hint">${card.pronunciation}</div>
+                            <div style="font-size:2rem;font-weight:bold">${card.meaning}</div>
                         </div>
                     </div>
                 </div>
                 <div class="flashcard-controls">
-                    <button class="flashcard-btn" onclick="previousCard()">
-                        <i class="fas fa-arrow-left"></i> Anterior
-                    </button>
-                    <button class="flashcard-btn" onclick="nextCard()">
-                        Siguiente <i class="fas fa-arrow-right"></i>
-                    </button>
+                    <button class="flashcard-btn" onclick="prevCard()"><i class="fas fa-arrow-left"></i></button>
+                    <button class="flashcard-btn" onclick="nextCard()"><i class="fas fa-arrow-right"></i></button>
                 </div>
-                <div class="flashcard-counter">
-                    Tarjeta ${currentCard + 1} de ${flashcardsData.length}
-                </div>
+                <div style="text-align:center;margin-top:1rem">${currentCard+1} / ${lesson.vocab.length}</div>
             `;
-        }
-
-        function flipCard(card) {
-            card.classList.toggle('flipped');
         }
 
         function nextCard() {
-            currentCard = (currentCard + 1) % flashcardsData.length;
-            showFlashcard();
+            const lesson = lessonsDB.find(l => l.id === currentLessonId);
+            currentCard = (currentCard + 1) % lesson.vocab.length;
+            showCard();
+        }
+        function prevCard() {
+            const lesson = lessonsDB.find(l => l.id === currentLessonId);
+            currentCard = (currentCard - 1 + lesson.vocab.length) % lesson.vocab.length;
+            showCard();
         }
 
-        function previousCard() {
-            currentCard = (currentCard - 1 + flashcardsData.length) % flashcardsData.length;
-            showFlashcard();
-        }
-
-        // CHATBOT SYSTEM
-        const chatResponses = {
-            'hello': 'Hello! How are you today?',
-            'hi': 'Hi there! Nice to meet you!',
-            'how are you': "I'm fine, thank you! And you?",
-            'my name is': "Nice to meet you! What's your name?",
-            'good morning': 'Good morning! How can I help you?',
-            'goodbye': 'Goodbye! See you later!',
-            'thank you': "You're welcome!",
-            'default': "That's interesting! Can you tell me more? Try using simple English sentences."
-        };
-
+        // --- CHATBOT ---
         function openChatbot() {
             openModal('chatbotModal');
-            const chatbotContent = document.getElementById('chatbotContent');
-            
-            if (!chatbotContent.querySelector('.chatbot-container')) {
-                chatbotContent.innerHTML = `
+            const c = document.getElementById('chatbotContent');
+            if(!c.querySelector('.chatbot-container')) {
+                c.innerHTML = `
                     <div class="chatbot-container">
-                        <div class="chat-messages" id="chatMessages">
-                            <div class="chat-message">
-                                <div class="chat-avatar">AI</div>
-                                <div class="chat-bubble">
-                                    Hello! I'm your English tutor. Let's practice together! You can start by saying "Hello" or asking me something.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat-suggestions">
-                            <div class="chat-suggestion" onclick="sendSuggestion('Hello')">Hello</div>
-                            <div class="chat-suggestion" onclick="sendSuggestion('How are you?')">How are you?</div>
-                            <div class="chat-suggestion" onclick="sendSuggestion('My name is...')">My name is...</div>
-                            <div class="chat-suggestion" onclick="sendSuggestion('Good morning')">Good morning</div>
+                        <div class="chat-messages" id="chatMsgs">
+                            <div class="chat-message"><div class="chat-avatar">AI</div><div class="chat-bubble">Hello! Let's practice.</div></div>
                         </div>
                         <div class="chat-input-container">
-                            <input type="text" class="chat-input" id="chatInput" placeholder="Escribe en inglés..." onkeypress="handleChatKeypress(event)">
-                            <button class="chat-send" onclick="sendMessage()">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
+                            <input type="text" class="chat-input" id="chatIn" placeholder="Type here..." onkeypress="if(event.key==='Enter')sendMsg()">
+                            <button class="chat-send" onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button>
                         </div>
-                    </div>
-                `;
+                    </div>`;
             }
         }
 
-        function sendSuggestion(text) {
-            document.getElementById('chatInput').value = text;
-            sendMessage();
-        }
-
-        function handleChatKeypress(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
-            }
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
+        function sendMsg() {
+            const inp = document.getElementById('chatIn');
+            const txt = inp.value.trim();
+            if(!txt) return;
             
-            if (message) {
-                addMessage(message, 'user');
-                input.value = '';
+            const msgs = document.getElementById('chatMsgs');
+            msgs.innerHTML += `<div class="chat-message user"><div class="chat-avatar">Tú</div><div class="chat-bubble">${txt}</div></div>`;
+            inp.value = '';
+            msgs.scrollTop = msgs.scrollHeight;
+
+            setTimeout(() => {
+                let resp = "That's interesting!";
+                if(txt.toLowerCase().includes('hello')) resp = "Hi there!";
+                else if(txt.toLowerCase().includes('name')) resp = "My name is Tutor AI.";
                 
-                setTimeout(() => {
-                    const response = getAIResponse(message.toLowerCase());
-                    addMessage(response, 'ai');
-                }, 1000);
-            }
+                msgs.innerHTML += `<div class="chat-message"><div class="chat-avatar">AI</div><div class="chat-bubble">${resp}</div></div>`;
+                msgs.scrollTop = msgs.scrollHeight;
+            }, 1000);
         }
 
-        function addMessage(text, sender) {
-            const chatMessages = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `chat-message ${sender}`;
-            
-            const avatar = sender === 'user' ? 'Tú' : 'AI';
-            messageDiv.innerHTML = `
-                <div class="chat-avatar">${avatar}</div>
-                <div class="chat-bubble">${text}</div>
-            `;
-            
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+        // --- UTILS ---
+        function toggleTheme() {
+            const b = document.body;
+            const n = b.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            b.setAttribute('data-theme', n);
+            localStorage.setItem('theme', n);
+            document.querySelector('.theme-toggle i').className = n === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
         }
 
-        function getAIResponse(message) {
-            for (let key in chatResponses) {
-                if (message.includes(key)) {
-                    return chatResponses[key];
-                }
-            }
-            return chatResponses['default'];
+        function playAudio(t) { alert("🔊 Reproduciendo: " + t); }
+        function saveNotes() { 
+            localStorage.setItem('lesson_notes', document.querySelector('.notes-textarea').value); 
+            alert("Notas guardadas"); 
         }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal-overlay').forEach(modal => {
-                    modal.classList.remove('active');
-                });
-            }
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        
+        // Close modal on outside click
+        document.querySelectorAll('.modal-overlay').forEach(o => {
+            o.addEventListener('click', e => { if(e.target === o) o.classList.remove('active'); });
         });
+
+        // Start
+        init();
     </script>
 </body>
 </html>

@@ -10,18 +10,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* =========================================
+   🎨 VARIABLES Y BASE
+   ========================================= */
 :root{
   --ink:#111b17; --green:#123d2c; --green-2:#1d6044; --deep:#071b14;
   --gold:#c7a15a; --gold-light:#e8d2a0; --cream:#fbfaf6; --paper:#ffffff;
   --sage:#eef4f0; --muted:#66766f; --line:#e3e8e4; --wa:#25d366;
   --shadow:0 24px 70px rgba(10,34,25,.12); --shadow-lg:0 35px 100px rgba(7,27,20,.18);
   --ease-premium:cubic-bezier(.22,1,.36,1);
+  --ease-bounce:cubic-bezier(.34,1.56,.64,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{
   margin:0;background:var(--cream);color:var(--ink);
-  font:16px/1.6 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font:16px/1.6 'Onest',system-ui,-apple-system,sans-serif;
   -webkit-font-smoothing:antialiased;overflow-x:hidden
 }
 a{text-decoration:none;color:inherit}
@@ -30,64 +34,217 @@ button{cursor:pointer}
 img{max-width:100%;display:block}
 .wrap{width:min(1160px,calc(100% - 40px));margin:auto}
 .eyebrow{color:var(--gold);font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:.68rem}
+
+/* =========================================
+   🔘 BOTONES BASE
+   ========================================= */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  border:1px solid transparent;border-radius:5px;padding:14px 22px;
-  font-weight:800;transition:.25s ease;position:relative;overflow:hidden
+  border:1px solid transparent;border-radius:999px;padding:14px 22px;
+  font-weight:700;transition:all .3s var(--ease-premium);position:relative;overflow:hidden;
+  font-size:.9rem;
 }
 .btn-primary{background:var(--green);color:#fff;box-shadow:0 12px 30px rgba(18,61,44,.2)}
-.btn-primary:hover{background:var(--green-2);transform:translateY(-2px)}
+.btn-primary:hover{background:var(--green-2);transform:translateY(-3px);box-shadow:0 18px 40px rgba(18,61,44,.3)}
 .btn-light{border-color:var(--line);background:#fff;color:var(--green)}
-.btn-light:hover{border-color:var(--gold);transform:translateY(-2px)}
-.btn-wa{background:var(--wa);color:#07321b}
-.section{padding:105px 0}
-.section-head{max-width:720px;margin-bottom:44px}
-.section-head h2{font-size:clamp(2.2rem,4.3vw,4rem);line-height:1.03;letter-spacing:-.045em;margin:10px 0 18px;color:var(--green)}
-.section-head p{color:var(--muted);font-size:1.04rem;max-width:650px}
-.site-nav{position:sticky;top:0;z-index:30;background:rgba(251,250,246,.88);backdrop-filter:blur(18px);border-bottom:1px solid rgba(227,232,228,.8)}
-.nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between}
-.brand{font-weight:850;font-size:1.03rem;color:var(--green);letter-spacing:-.02em}
-.brand span{display:inline-block;margin-left:9px;color:var(--gold);font:700 .59rem monospace;letter-spacing:.1em;text-transform:uppercase}
-.nav-links{display:flex;align-items:center;gap:27px;font-size:.84rem;color:var(--muted)}
-.nav-links a:hover{color:var(--green)}
-.mobile-nav{display:none}
+.btn-light:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 30px rgba(199,161,90,.15)}
 
-.hero{position:relative;overflow:hidden;padding:115px 0 125px;background:radial-gradient(circle at 85% 25%,rgba(199,161,90,.14),transparent 25%),linear-gradient(135deg,#fbfaf6 0%,#f0f6f2 100%)}
-.hero:after{content:"";position:absolute;width:520px;height:520px;border:1px solid rgba(199,161,90,.18);border-radius:50%;right:-220px;top:-190px}
+/* =========================================
+   🧭 NAVEGACIÓN
+   ========================================= */
+.site-nav{
+  position:sticky;top:0;z-index:30;
+  background:rgba(251,250,246,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(227,232,228,.8);
+  transition:all .3s var(--ease-premium);
+}
+.nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;font-size:1.05rem;color:var(--green);letter-spacing:-.02em;transition:transform .3s var(--ease-premium)}
+.brand:hover{transform:translateY(-1px)}
+.brand span{display:inline-block;margin-left:9px;color:var(--gold);font:700 .59rem monospace;letter-spacing:.1em;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:27px;font-size:.88rem;color:var(--muted)}
+.nav-links a{transition:color .3s ease}
+.nav-links a:hover{color:var(--green)}
+
+/* Mobile menu button */
+.mobile-nav{
+  display:none;width:44px;height:44px;padding:0;border-radius:50%;
+  align-items:center;justify-content:center;flex-direction:column;gap:4px;
+  border:1px solid rgba(23,63,53,.14);background:rgba(255,255,255,.72);color:var(--green);
+  transition:all .3s var(--ease-premium);
+}
+.mobile-nav span{display:block;width:19px;height:2px;border-radius:2px;background:currentColor;transition:transform .3s var(--ease-premium),opacity .2s ease}
+.mobile-nav.is-open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.mobile-nav.is-open span:nth-child(2){opacity:0}
+.mobile-nav.is-open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+.mobile-menu{
+  display:none;position:absolute;left:0;right:0;top:100%;
+  padding:8px 20px 18px;background:rgba(251,250,246,.98);
+  border-bottom:1px solid rgba(23,63,53,.10);
+  box-shadow:0 20px 40px rgba(7,27,20,.12);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  animation:mobileMenuIn .28s var(--ease-premium) both;
+}
+.mobile-menu[hidden]{display:none!important}
+.mobile-menu a{
+  display:flex;align-items:center;justify-content:space-between;
+  min-height:52px;padding:13px 4px;
+  border-bottom:1px solid rgba(23,63,53,.10);
+  font-size:.95rem;color:#173f35;
+}
+.mobile-menu a:last-child{border-bottom:0}
+.mobile-menu-cta{
+  margin-top:10px;padding:13px 18px!important;
+  border:0!important;border-radius:999px;
+  background:#173f35;color:#fff!important;
+  justify-content:center;
+}
+@keyframes mobileMenuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+/* =========================================
+   🏠 HERO
+   ========================================= */
+.hero{
+  position:relative;overflow:hidden;padding:115px 0 125px;
+  background:radial-gradient(circle at 85% 25%,rgba(199,161,90,.14),transparent 25%),
+             linear-gradient(135deg,#fbfaf6 0%,#f0f6f2 100%);
+}
+.hero:after{
+  content:"";position:absolute;width:520px;height:520px;
+  border:1px solid rgba(199,161,90,.18);border-radius:50%;
+  right:-220px;top:-190px;
+}
 .hero-grid{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;max-width:930px;position:relative;z-index:1}
-.hero h1{font:850 clamp(3rem,6.2vw,6.1rem)/.98 Inter,system-ui,sans-serif;letter-spacing:-.065em;color:var(--green);margin:16px 0 25px}
+.hero h1{
+  font:800 clamp(3rem,6.2vw,6.1rem)/.98 'Onest',sans-serif;
+  letter-spacing:-.065em;color:var(--green);margin:16px 0 25px;
+}
 .hero h1 em{font-style:normal;color:var(--gold)}
 .hero-lead{font-size:1.16rem;color:var(--muted);max-width:650px;margin-bottom:30px}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px}
 .trust{display:flex;flex-wrap:wrap;gap:19px;color:var(--muted);font-size:.8rem}
 .trust span:before{content:"✓";color:var(--gold);font-weight:900;margin-right:7px}
 
+/* =========================================
+   📌 SECCIONES GENERALES
+   ========================================= */
+.section{padding:105px 0}
+.section-head{max-width:720px;margin-bottom:44px}
+.section-head h2{
+  font-size:clamp(2.2rem,4.3vw,4rem);line-height:1.03;
+  letter-spacing:-.045em;margin:10px 0 18px;color:var(--green);
+  font-weight:700;
+}
+.section-head p{color:var(--muted);font-size:1.04rem;max-width:650px}
+
+/* =========================================
+   🟢 CHOICE BAND
+   ========================================= */
 .choice-band{background:var(--deep);color:#fff;padding:23px 0}
 .choice-band-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .choice-band strong{font-size:1.02rem}
 .choice-band p{margin:3px 0 0;color:#bcd0c6;font-size:.87rem}
 .choice-band .btn{white-space:nowrap;background:var(--gold);color:var(--deep)}
 
+/* =========================================
+   🎬 VIDEO SECTION
+   ========================================= */
 .video-section{padding:105px 0;background:var(--deep);color:white;position:relative;overflow:hidden}
-.video-section:before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;border:1px solid rgba(199,161,90,.12);right:-250px;top:-250px}
+.video-section:before{
+  content:"";position:absolute;width:600px;height:600px;border-radius:50%;
+  border:1px solid rgba(199,161,90,.12);right:-250px;top:-250px;
+}
 .video-wrap{max-width:1020px;position:relative;z-index:1}
 .video-section .section-head{max-width:760px}
 .video-section .section-head h2{color:#fff}
 .video-section .section-head p{color:#bcd0c6}
-.video-box{position:relative;aspect-ratio:16/9;background:#000;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.1)}
+.video-box{
+  position:relative;aspect-ratio:16/9;background:#000;border-radius:16px;
+  overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.1);
+  cursor:pointer;
+}
 .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.video-play{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:78px;height:78px;border:0;border-radius:50%;background:var(--gold);color:#fff;font-size:1.5rem;box-shadow:0 15px 40px rgba(0,0,0,.35)}
-.video-meta{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:18px;color:#bcd0c6;font-size:.82rem}
+.video-play{
+  position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);
+  width:78px;height:78px;border:0;border-radius:50%;
+  background:var(--gold);color:#fff;font-size:1.5rem;
+  box-shadow:0 15px 40px rgba(0,0,0,.35);
+  transition:transform .35s var(--ease-premium);
+}
+.video-box:hover .video-play{transform:translate(-50%,-50%) scale(1.08)}
+.video-overlay{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;
+  background:radial-gradient(circle,rgba(7,27,20,.08),rgba(7,27,20,.32));
+  color:#fff;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+}
+.video-meta{
+  display:flex;justify-content:space-between;gap:20px;align-items:center;
+  margin-top:18px;color:#bcd0c6;font-size:.82rem;
+}
 .video-meta strong{color:var(--gold-light);font-weight:800}
 
+/* =========================================
+   📸 PHOTO SECTION (HAMILTON - ORIGINAL)
+   ========================================= */
+.photo-section{background:#fff}
+.photo-section .proof-grid{
+  display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;
+}
+.photo-section .proof-image{
+  width:min(100%, 410px);max-width:410px;justify-self:center;margin:auto;
+  padding:7px;background:linear-gradient(145deg,#fff,#eef4f0);
+  border:1px solid rgba(199,161,90,.22);border-radius:20px;
+  box-shadow:0 24px 60px rgba(10,34,25,.13);
+  overflow:hidden;transition:transform .6s var(--ease-premium), box-shadow .6s ease;
+}
+.photo-section .proof-image img{
+  width:100%;height:auto;aspect-ratio:4 / 4.35;
+  object-fit:cover;object-position:center top;border-radius:14px;
+  transition:transform 1.2s var(--ease-premium);
+}
+.photo-section .proof-image:hover{
+  transform:translateY(-6px);
+  box-shadow:0 35px 85px rgba(10,34,25,.18);
+}
+.photo-section .proof-image:hover img{transform:scale(1.035)}
+.photo-section .proof-copy{max-width:570px}
+.proof-copy h2{
+  font:700 clamp(2.1rem,4vw,3.7rem)/1.04 'Onest',sans-serif;
+  color:var(--green);margin:12px 0 18px;letter-spacing:-.045em;
+}
+.quote{border-left:2px solid var(--gold);padding-left:18px;color:var(--muted);font-size:1.04rem;margin:20px 0}
+.proof-points{display:grid;gap:13px;margin:27px 0}
+.proof-points div{display:flex;gap:12px;align-items:flex-start}
+.proof-points b{color:var(--green);min-width:140px}
+.proof-points span{color:var(--muted);font-size:.9rem}
+
+/* =========================================
+   📦 OPTIONS
+   ========================================= */
 .options{background:#fff}
 .options-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.option{border:1px solid var(--line);border-radius:14px;padding:30px;position:relative;display:flex;flex-direction:column;min-height:350px;background:#fff;transition:.3s ease}
-.option:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:#b8c9bf}
+.option{
+  border:1px solid var(--line);border-radius:14px;padding:30px;
+  position:relative;display:flex;flex-direction:column;
+  min-height:350px;background:#fff;
+  transition:transform .4s var(--ease-premium), box-shadow .4s ease, border-color .35s ease;
+}
+.option:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:#b8c9bf}
 .option.featured{border:1px solid var(--gold);box-shadow:0 18px 45px rgba(199,161,90,.14)}
-.option-badge{position:absolute;top:-12px;right:18px;border-radius:20px;padding:5px 12px;background:var(--gold);color:white;font-size:.66rem;font-weight:800;letter-spacing:.04em}
-.option-icon{width:45px;height:45px;border-radius:50%;background:var(--sage);display:grid;place-items:center;color:var(--green);font-weight:800;margin-bottom:21px}
-.option h3{font:700 1.55rem/1.1 Inter,system-ui,sans-serif;color:var(--green);margin:0 0 8px}
+.option-badge{
+  position:absolute;top:-12px;right:18px;border-radius:20px;
+  padding:5px 12px;background:var(--gold);color:white;
+  font-size:.66rem;font-weight:800;letter-spacing:.04em;
+}
+.option-icon{
+  width:45px;height:45px;border-radius:50%;background:var(--sage);
+  display:grid;place-items:center;color:var(--green);font-weight:800;
+  margin-bottom:21px;transition:transform .45s var(--ease-premium);
+}
+.option:hover .option-icon{transform:rotate(-5deg) scale(1.08)}
+.option h3{font:700 1.55rem/1.1 'Onest',sans-serif;color:var(--green);margin:0 0 8px}
 .option .price{color:var(--gold);font-weight:800;margin-bottom:14px}
 .option p{color:var(--muted);margin:0 0 18px;font-size:.92rem}
 .option ul{padding:0;margin:0 0 22px;list-style:none;color:var(--ink);font-size:.86rem}
@@ -96,36 +253,45 @@ img{max-width:100%;display:block}
 .option .btn{margin-top:auto;width:100%}
 .small-note{font-size:.76rem;color:var(--muted);margin-top:22px}
 
+/* =========================================
+   🪜 PROCESS
+   ========================================= */
 .process{background:var(--sage)}
 .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.step{background:white;border-radius:14px;padding:27px;border:1px solid var(--line)}
-.step-no{font:800 2.3rem/1 Inter,system-ui,sans-serif;color:var(--gold)}
-.step h3{color:var(--green);margin:15px 0 7px}
+.step{
+  background:white;border-radius:14px;padding:27px;border:1px solid var(--line);
+  transition:transform .4s var(--ease-premium), box-shadow .4s ease;
+}
+.step:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.step-no{font:800 2.3rem/1 'Onest',sans-serif;color:var(--gold);transition:transform .45s var(--ease-premium)}
+.step:hover .step-no{transform:translateX(5px)}
+.step h3{color:var(--green);margin:15px 0 7px;font-weight:700}
 .step p{color:var(--muted);margin:0;font-size:.92rem}
 
-.proof-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
-.proof-image{border-radius:18px;overflow:hidden;background:var(--sage);box-shadow:var(--shadow)}
-.proof-image img{width:100%;aspect-ratio:1/1;object-fit:cover}
-.proof-copy h2{font:700 clamp(2.1rem,4vw,3.7rem)/1.04 Inter,system-ui,sans-serif;color:var(--green);margin:12px 0 18px;letter-spacing:-.045em}
-.quote{border-left:2px solid var(--gold);padding-left:18px;color:var(--muted);font-size:1.04rem}
-.proof-points{display:grid;gap:13px;margin:27px 0}
-.proof-points div{display:flex;gap:12px;align-items:flex-start}
-.proof-points b{color:var(--green)}
-.proof-points span{color:var(--muted);font-size:.9rem}
-
+/* =========================================
+   📝 FORM SECTION
+   ========================================= */
 .form-section{background:var(--deep);color:white}
 .form-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}
-.form-copy h2{font:850 clamp(2.3rem,4.2vw,4.1rem)/1.04 Inter,system-ui,sans-serif;margin:12px 0 18px;letter-spacing:-.05em}
+.form-copy h2{font:800 clamp(2.3rem,4.2vw,4.1rem)/1.04 'Onest',sans-serif;margin:12px 0 18px;letter-spacing:-.05em}
 .form-copy p{color:#bcd0c6}
 .form-copy .eyebrow{color:var(--gold-light)}
 .mini-guarantee{margin-top:30px;padding:17px;border:1px solid rgba(255,255,255,.13);border-radius:10px;color:#d7e9dd;font-size:.86rem}
 .lead-form{background:white;color:var(--ink);border-radius:16px;padding:30px;box-shadow:var(--shadow-lg)}
 .mode-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:21px}
-.mode-tabs button{border:1px solid var(--line);border-radius:7px;background:var(--sage);padding:10px 6px;color:var(--muted);font-size:.75rem;font-weight:800}
+.mode-tabs button{
+  border:1px solid var(--line);border-radius:7px;background:var(--sage);
+  padding:10px 6px;color:var(--muted);font-size:.75rem;font-weight:800;
+  transition:all .3s var(--ease-premium);
+}
 .mode-tabs button.active{background:var(--green);color:white;border-color:var(--green)}
 .field{margin-bottom:15px}
 .field label{display:block;font-weight:800;font-size:.81rem;margin-bottom:6px}
-.field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:7px;padding:12px 13px;outline:none;background:#fff;color:var(--ink)}
+.field input,.field textarea{
+  width:100%;border:1px solid var(--line);border-radius:7px;
+  padding:12px 13px;outline:none;background:#fff;color:var(--ink);
+  transition:border-color .3s ease, box-shadow .3s ease;
+}
 .field textarea{min-height:100px;resize:vertical}
 .field input:focus,.field textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(35,107,75,.12)}
 .form-submit{width:100%;border:0}
@@ -134,31 +300,155 @@ img{max-width:100%;display:block}
 .consent a{color:var(--green);text-decoration:underline}
 .form-status{font-size:.8rem;color:var(--green);min-height:20px;text-align:center}
 
+/* =========================================
+   ❓ FAQ - ALINEACIÓN PERFECTA
+   ========================================= */
 .faq{max-width:800px;margin:auto}
-.faq details{border-bottom:1px solid var(--line);padding:4px 0}
-.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;padding:18px 0;font-weight:800;color:var(--green)}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary span{color:var(--gold);font-size:1.3rem}
-.faq p{color:var(--muted);margin:0 0 18px;font-size:.92rem}
+.faq-intro{max-width:600px;margin:10px 0 0;color:var(--muted);line-height:1.7}
+.faq-list{margin-top:30px;border-top:1px solid var(--line)}
+.faq-list details{
+  border-bottom:1px solid var(--line);padding:0;
+  transition:background .35s ease;
+}
+.faq-list details[open]{background:rgba(238,244,240,.5)}
+.faq-list summary{
+  display:grid;
+  grid-template-columns:2.5rem 1fr auto;
+  align-items:center;
+  gap:1rem;
+  padding:1.25rem 0.5rem;
+  list-style:none;cursor:pointer;
+  color:var(--ink);font-size:1rem;font-weight:650;
+  transition:padding-left .35s var(--ease-premium);
+}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary:hover{padding-left:1rem}
+.faq-number{
+  color:var(--gold);font-size:.72rem;font-weight:800;
+  letter-spacing:.12em;font-family:'Onest',sans-serif;
+}
+.faq-question{line-height:1.45;color:var(--ink)}
+.faq-icon{
+  width:2.15rem;height:2.15rem;display:grid;place-items:center;
+  border:1px solid rgba(23,63,53,.18);border-radius:50%;
+  color:var(--green);font-size:1.25rem;font-weight:400;
+  transition:transform .35s var(--ease-premium),background .35s ease,color .35s ease;
+  flex-shrink:0;
+}
+.faq-list details[open] .faq-icon{
+  transform:rotate(45deg);background:var(--green);color:#fff;border-color:var(--green);
+}
+.faq-answer{
+  padding:0 0.5rem 1.5rem 3.5rem;
+}
+.faq-answer p{
+  margin:0;max-width:52rem;color:var(--muted);line-height:1.75;font-size:.95rem;
+}
+.faq-cta{
+  margin-top:40px;padding:1.5rem 1.6rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+  background:var(--green);color:#fff;border-radius:1.5rem;
+  box-shadow:0 20px 50px rgba(10,34,25,.12);
+}
+.faq-cta div{display:flex;flex-direction:column;gap:.3rem}
+.faq-cta strong{font-size:1rem}
+.faq-cta span{color:rgba(255,255,255,.68);font-size:.88rem}
+.faq-cta .btn{
+  flex-shrink:0;background:#fff;color:var(--green);border-color:#fff;
+}
+.faq-cta .btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
 
-.footer{background:#06170f;color:white;text-align:center;padding:45px 0 90px}
-.footer p{color:#bcd0c6;font-size:.8rem}
-.footer a{text-decoration:underline}
-.footer .disclaimer{max-width:700px;margin:18px auto 0;font-size:.7rem}
+/* =========================================
+   🦶 FOOTER COMPLETO
+   ========================================= */
+.footer{
+  background:#06170f;color:white;padding:60px 0 40px;
+  margin-top:0;overflow:hidden;position:relative;
+}
+.footer::before{
+  content:"";position:absolute;width:22rem;height:22rem;
+  right:-8rem;top:-10rem;border:1px solid rgba(255,255,255,.08);
+  border-radius:50%;
+  box-shadow:0 0 0 4rem rgba(255,255,255,.018),0 0 0 8rem rgba(255,255,255,.012);
+  pointer-events:none;
+}
+.footer-inner{position:relative;z-index:1}
+.footer-brand{display:flex;align-items:center;gap:1rem;margin-bottom:3rem}
+.footer-mark{
+  width:3.2rem;height:3.2rem;display:grid;place-items:center;
+  border:1px solid rgba(255,255,255,.22);border-radius:1rem;
+  color:var(--gold-light);font-size:.8rem;font-weight:800;letter-spacing:.08em;
+}
+.footer-brand strong{display:block;color:#fff;font-size:1.05rem}
+.footer-brand p{margin:.3rem 0 0;color:rgba(255,255,255,.6)}
+.footer-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2rem;padding-bottom:3rem;
+}
+.footer-col{display:flex;flex-direction:column;align-items:flex-start;gap:.7rem}
+.footer-label{
+  margin-bottom:.35rem;color:var(--gold-light);
+  font-size:.68rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+}
+.footer-col a{
+  color:rgba(255,255,255,.68);transition:color .25s ease,transform .25s ease;
+  display:inline-block;
+}
+.footer-col a:hover{color:#fff;transform:translateX(4px)}
+.footer-divider{height:1px;background:rgba(255,255,255,.12);margin-bottom:1.5rem}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+}
+.footer-bottom .disclaimer{
+  margin:0;max-width:55rem;font-size:.76rem;line-height:1.65;
+  text-align:left;color:rgba(255,255,255,.5);
+}
+.footer-copy{
+  margin:0;white-space:nowrap;
+  color:rgba(255,255,255,.38)!important;font-size:.72rem!important;
+}
 
-.float-wa{position:fixed;right:24px;bottom:24px;z-index:45;display:flex;align-items:center;gap:11px;min-height:58px;padding:9px 18px 9px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:linear-gradient(135deg,#25d366 0%,#16b957 100%);color:#fff;box-shadow:0 14px 34px rgba(7,73,38,.25),0 4px 12px rgba(0,0,0,.12);font-size:.84rem;font-weight:800;letter-spacing:-.01em;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:transform .28s ease,box-shadow .28s ease,filter .28s ease;animation:waFloat 3.2s ease-in-out infinite}
-.float-wa::before{content:'';width:40px;height:40px;flex:0 0 40px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.3);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='white' d='M19.1 17.2c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.8-2.1-.2-.3 0-.5.1-.7.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.1 3.1c.1.2 2 3 4.9 4.2.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2.1-1.3.3-.6.3-1.1.2-1.3-.1-.2-.3-.3-.6-.5Z'/%3E%3Cpath fill='white' d='M16 3.5A12.5 12.5 0 0 0 5.2 22.3L3.7 28.1l5.9-1.5A12.5 12.5 0 1 0 16 3.5Zm0 22.8c-2 0-4-.5-5.7-1.6l-.4-.2-3.5.9.9-3.4-.2-.4A10.3 10.3 0 1 1 16 26.3Z'/%3E%3C/svg%3E");background-size:23px 23px;background-position:center;background-repeat:no-repeat}
+/* =========================================
+   💬 FLOATING WHATSAPP
+   ========================================= */
+.float-wa{
+  position:fixed;right:24px;bottom:24px;z-index:45;
+  display:flex;align-items:center;gap:11px;min-height:58px;
+  padding:9px 18px 9px 10px;
+  border:1px solid rgba(255,255,255,.38);border-radius:999px;
+  background:linear-gradient(135deg,#25d366 0%,#16b957 100%);
+  color:#fff;box-shadow:0 14px 34px rgba(7,73,38,.25),0 4px 12px rgba(0,0,0,.12);
+  font-size:.84rem;font-weight:800;letter-spacing:-.01em;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  transition:transform .28s ease,box-shadow .28s ease;
+  animation:waFloat 3.2s ease-in-out infinite;
+}
+.float-wa::before{
+  content:'';width:40px;height:40px;flex:0 0 40px;border-radius:50%;
+  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='white' d='M19.1 17.2c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.8-2.1-.2-.3 0-.5.1-.7.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.1 3.1c.1.2 2 3 4.9 4.2.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2.1-1.3.3-.6.3-1.1.2-1.3-.1-.2-.3-.3-.6-.5Z'/%3E%3Cpath fill='white' d='M16 3.5A12.5 12.5 0 0 0 5.2 22.3L3.7 28.1l5.9-1.5A12.5 12.5 0 1 0 16 3.5Zm0 22.8c-2 0-4-.5-5.7-1.6l-.4-.2-3.5.9.9-3.4-.2-.4A10.3 10.3 0 1 1 16 26.3Z'/%3E%3C/svg%3E");
+  background-size:23px 23px;background-position:center;background-repeat:no-repeat;
+}
 .float-wa span{display:block;white-space:nowrap}
-.float-wa:hover{transform:translateY(-4px) scale(1.015);box-shadow:0 18px 42px rgba(7,73,38,.32),0 6px 16px rgba(0,0,0,.14);filter:saturate(1.08)}
-.float-wa:active{transform:translateY(-1px) scale(.99)}
-@keyframes waFloat{0%,100%{box-shadow:0 14px 34px rgba(7,73,38,.25),0 4px 12px rgba(0,0,0,.12)}50%{box-shadow:0 18px 42px rgba(7,73,38,.32),0 5px 16px rgba(0,0,0,.13)}}
-.float-wa:hover{transform:translateY(-2px)}
+.float-wa:hover{
+  transform:translateY(-4px) scale(1.015);
+  box-shadow:0 18px 42px rgba(7,73,38,.32),0 6px 16px rgba(0,0,0,.14);
+  animation:none;
+}
+@keyframes waFloat{
+  0%,100%{box-shadow:0 14px 34px rgba(7,73,38,.25),0 4px 12px rgba(0,0,0,.12)}
+  50%{box-shadow:0 18px 42px rgba(7,73,38,.32),0 5px 16px rgba(0,0,0,.13)}
+}
+
 .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,120%);background:var(--green);color:white;padding:12px 18px;border-radius:8px;z-index:50;transition:.3s ease}
 .toast.show{transform:translate(-50%,0)}
-.photo-section{background:#fff}
-.photo-section .proof-image{max-width:520px;margin:auto}
-.photo-section .proof-copy{max-width:560px}
-.cookie-notice{position:fixed;left:18px;right:18px;bottom:18px;z-index:60;background:#fff;border:1px solid #cbded2;border-radius:14px;box-shadow:0 18px 45px rgba(0,0,0,.18);padding:16px 18px;display:flex;gap:18px;align-items:center;justify-content:space-between}
+
+.cookie-notice{
+  position:fixed;left:18px;right:18px;bottom:18px;z-index:60;
+  background:#fff;border:1px solid #cbded2;border-radius:14px;
+  box-shadow:0 18px 45px rgba(0,0,0,.18);padding:16px 18px;
+  display:flex;gap:18px;align-items:center;justify-content:space-between;
+}
 .cookie-notice[hidden]{display:none}
 .cookie-notice p{margin:0;color:#405b4e;font-size:.78rem;line-height:1.45;max-width:760px}
 .cookie-notice a{color:#164b36;text-decoration:underline}
@@ -168,248 +458,287 @@ img{max-width:100%;display:block}
 .cookie-reject{background:#eef7f1;color:#164b36}
 
 /* =========================================
-   🖼️ MARCO HAMILTON ORIGINAL (RESTAURADO)
+   🚀 EFECTOS PREMIUM
    ========================================= */
-.photo-section .proof-grid{align-items:center}
-.photo-section .proof-image{
-  width:min(100%, 410px);
-  max-width:410px;
-  justify-self:center;
-  margin:auto;
-  padding:7px;
-  background:linear-gradient(145deg,#fff,#eef4f0);
-  border:1px solid rgba(199,161,90,.22);
-  border-radius:20px;
-  box-shadow:0 24px 60px rgba(10,34,25,.13);
-  transition:transform .6s var(--ease-premium), box-shadow .6s ease;
-}
-.photo-section .proof-image img{
-  width:100%;
-  height:auto;
-  aspect-ratio:4 / 4.35;
-  object-fit:cover;
-  object-position:center top;
-  border-radius:14px;
-  transition:transform 1.2s var(--ease-premium);
-}
-.photo-section .proof-image:hover img{
-  transform:scale(1.035);
-}
-.photo-section .proof-copy{max-width:570px}
 
-@media(max-width:850px){
-  .photo-section .proof-grid{gap:42px}
-  .photo-section .proof-image{
-    width:min(78vw,340px);
-    max-width:340px;
-  }
+/* Loading Screen */
+.loading-screen{
+  position:fixed;inset:0;background:var(--deep);z-index:999999;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  transition:opacity 0.8s ease, visibility 0.8s ease;
 }
-@media(max-width:480px){
-  .photo-section .proof-image{
-    width:min(72vw,280px);
-    max-width:280px;
-    padding:5px;
-    border-radius:16px;
-  }
-  .photo-section .proof-image img{
-    border-radius:11px;
-    aspect-ratio:4 / 4.45;
-  }
+.loading-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loading-logo{
+  font-size:3rem;font-weight:800;color:var(--gold);
+  letter-spacing:-.05em;
+  animation:logoReveal 1.5s ease-out;
 }
+.loading-sub{
+  color:rgba(255,255,255,.5);font-size:.85rem;margin-top:10px;
+  letter-spacing:.2em;text-transform:uppercase;
+  animation:logoReveal 1.5s ease-out .2s both;
+}
+.loading-bar{
+  width:200px;height:3px;background:rgba(255,255,255,0.1);
+  border-radius:10px;margin-top:30px;overflow:hidden;
+}
+.loading-bar-fill{
+  height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));
+  width:0%;animation:loadBar 1.5s ease-out forwards;
+}
+@keyframes logoReveal{from{opacity:0;transform:scale(0.8) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes loadBar{to{width:100%}}
+
+/* Cursor Personalizado */
+.cursor-dot,.cursor-outline{
+  position:fixed;top:0;left:0;transform:translate(-50%,-50%);
+  border-radius:50%;z-index:99999;pointer-events:none;
+}
+.cursor-dot{width:8px;height:8px;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.cursor-outline{
+  width:40px;height:40px;border:1px solid rgba(199,161,90,0.5);
+  transition:width 0.3s var(--ease-premium),height 0.3s var(--ease-premium),background 0.3s;
+  box-shadow:0 0 20px rgba(199,161,90,0.15);
+}
+.cursor-outline.hovered{
+  width:60px;height:60px;background:rgba(199,161,90,0.1);
+  border-color:var(--gold);backdrop-filter:blur(2px);
+}
+@media (hover:none){
+  .cursor-dot,.cursor-outline{display:none}
+  body,a,button{cursor:auto}
+}
+
+/* Scroll Progress Bar 3D */
+.scroll-progress-3d{
+  position:fixed;top:0;left:0;height:4px;width:0%;
+  background:linear-gradient(90deg,var(--gold),var(--green-2));
+  z-index:100000;
+  box-shadow:0 2px 10px rgba(199,161,90,0.6),inset 0 1px 0 rgba(255,255,255,0.6);
+  transform-origin:left;
+}
+.scroll-progress-3d::after{
+  content:'';position:absolute;right:-6px;top:-4px;
+  width:12px;height:12px;background:var(--gold);border-radius:50%;
+  box-shadow:0 0 15px var(--gold),0 0 30px rgba(199,161,90,0.4);
+}
+
+/* Transición de Página 3D */
+.page-transition-overlay{
+  position:fixed;inset:0;background:var(--deep);
+  z-index:99998;transform:perspective(1000px) rotateX(-90deg);
+  transform-origin:top;transition:transform 0.7s var(--ease-premium);
+  display:flex;align-items:center;justify-content:center;
+}
+.page-transition-overlay.active{transform:perspective(1000px) rotateX(0deg)}
+.page-transition-overlay .loader{
+  width:40px;height:40px;border:3px solid rgba(199,161,90,0.2);
+  border-top-color:var(--gold);border-radius:50%;
+  animation:spin 0.8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Typewriter 3D */
+.typewriter-3d{
+  font-size:clamp(1.05rem,2.3vw,1.4rem);color:var(--muted);
+  font-weight:500;
+  text-shadow:1px 1px 0 rgba(199,161,90,0.3),2px 2px 0 rgba(199,161,90,0.2),3px 3px 5px rgba(0,0,0,0.1);
+  border-right:2px solid var(--gold);white-space:nowrap;overflow:hidden;
+  display:inline-block;animation:blink-caret 0.75s step-end infinite;
+  margin-bottom:20px;min-height:1.5em;
+}
+@keyframes blink-caret{50%{border-color:transparent}}
+
+/* Spotlight Effect */
+.spotlight-card{position:relative;overflow:hidden}
+.spotlight-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(199,161,90,0.15),transparent 40%);
+  opacity:0;transition:opacity 0.3s;pointer-events:none;z-index:1;
+}
+.spotlight-card:hover::before{opacity:1}
+
+/* Magnetic Buttons */
+.magnetic-btn{transition:transform 0.2s var(--ease-premium)}
+
+/* Counter Animation */
+.counter{display:inline-block}
+
+/* Carrusel 3D */
+.carousel-3d-section{
+  padding:100px 0;background:var(--deep);color:white;
+  overflow:hidden;position:relative;
+}
+.carousel-3d-container{
+  perspective:1200px;width:100%;max-width:900px;
+  margin:40px auto;height:400px;position:relative;
+}
+.carousel-3d{
+  width:100%;height:100%;position:absolute;
+  transform-style:preserve-3d;transition:transform 1s var(--ease-premium);
+}
+.carousel-3d-item{
+  position:absolute;width:320px;height:360px;
+  left:50%;top:50%;margin-left:-160px;margin-top:-180px;
+  background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);
+  border:1px solid rgba(199,161,90,0.2);border-radius:20px;
+  padding:30px;display:flex;flex-direction:column;justify-content:center;
+  text-align:center;box-shadow:0 20px 50px rgba(0,0,0,0.3);
+  transition:box-shadow 0.3s;
+}
+.carousel-3d-item:hover{box-shadow:0 30px 60px rgba(199,161,90,0.2)}
+.carousel-3d-item h4{color:var(--gold);font-size:1.3rem;margin-bottom:15px}
+.carousel-3d-item p{color:#bcd0c6;font-size:0.95rem;line-height:1.6}
+.carousel-controls{display:flex;justify-content:center;gap:20px;margin-top:30px}
+.carousel-btn{
+  width:50px;height:50px;border-radius:50%;border:1px solid var(--gold);
+  background:transparent;color:var(--gold);font-size:1.2rem;
+  transition:all 0.3s var(--ease-premium);
+  display:flex;align-items:center;justify-content:center;
+}
+.carousel-btn:hover{background:var(--gold);color:var(--deep);transform:scale(1.1)}
+
+/* Partículas 3D Canvas */
+#particles-canvas{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  z-index:-1;pointer-events:none;opacity:0.5;
+}
+
+/* Scroll Reveal con Stagger */
+.reveal{
+  opacity:0;transform:translateY(40px);
+  transition:opacity 0.9s var(--ease-premium),transform 0.9s var(--ease-premium);
+}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
 
 /* =========================================
-   🚀 ULTRA-PREMIUM FEATURES
+   📱 RESPONSIVE - TABLET
    ========================================= */
-
-/* 1. Loading Screen */
-.loading-screen {
-  position: fixed; inset: 0; background: var(--deep); z-index: 999999;
-  display: flex; align-items: center; justify-content: center; flex-direction: column;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-.loading-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-.loading-logo {
-  font-size: 3rem; font-weight: 800; color: var(--gold);
-  animation: logoReveal 1.5s ease-out;
-}
-.loading-bar {
-  width: 200px; height: 3px; background: rgba(255,255,255,0.1);
-  border-radius: 10px; margin-top: 30px; overflow: hidden;
-}
-.loading-bar-fill {
-  height: 100%; background: var(--gold); width: 0%;
-  animation: loadBar 1.5s ease-out forwards;
-}
-@keyframes logoReveal {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
-@keyframes loadBar {
-  to { width: 100%; }
-}
-
-/* 2. Spotlight Effect */
-.spotlight-card {
-  position: relative; overflow: hidden;
-}
-.spotlight-card::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(199, 161, 90, 0.15), transparent 40%);
-  opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1;
-}
-.spotlight-card:hover::before { opacity: 1; }
-
-/* 3. Magnetic Buttons */
-.magnetic-btn {
-  transition: transform 0.2s var(--ease-premium);
-}
-
-/* 4. Counter Animation */
-.counter { display: inline-block; }
-
-/* 5. Text Reveal */
-.text-reveal {
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 1s var(--ease-premium);
-}
-.text-reveal.revealed { clip-path: inset(0 0 0 0); }
-
-/* 6. Cursor Personalizado */
-.cursor-dot, .cursor-outline {
-  position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-  border-radius: 50%; z-index: 99999; pointer-events: none;
-}
-.cursor-dot {
-  width: 8px; height: 8px; background: var(--gold);
-  box-shadow: 0 0 10px var(--gold);
-}
-.cursor-outline {
-  width: 40px; height: 40px; border: 1px solid rgba(199, 161, 90, 0.5);
-  transition: width 0.3s var(--ease-premium), height 0.3s var(--ease-premium), background 0.3s;
-  box-shadow: 0 0 20px rgba(199, 161, 90, 0.15);
-}
-.cursor-outline.hovered {
-  width: 60px; height: 60px; background: rgba(199, 161, 90, 0.1);
-  border-color: var(--gold); backdrop-filter: blur(2px);
-}
-@media (hover: none) {
-  .cursor-dot, .cursor-outline { display: none; }
-  body, a, button { cursor: auto; }
-}
-
-/* 7. Scroll Progress Bar 3D */
-.scroll-progress-3d {
-  position: fixed; top: 0; left: 0; height: 4px; width: 0%;
-  background: linear-gradient(90deg, var(--gold), var(--green-2));
-  z-index: 100000; box-shadow: 0 2px 10px rgba(199, 161, 90, 0.6), inset 0 1px 0 rgba(255,255,255,0.6);
-  transform-origin: left;
-}
-.scroll-progress-3d::after {
-  content: ''; position: absolute; right: -6px; top: -4px;
-  width: 12px; height: 12px; background: var(--gold);
-  border-radius: 50%; box-shadow: 0 0 15px var(--gold), 0 0 30px rgba(199, 161, 90, 0.4);
-}
-
-/* 8. Transición de Página 3D */
-.page-transition-overlay {
-  position: fixed; inset: 0; background: var(--deep);
-  z-index: 99998; transform: perspective(1000px) rotateX(-90deg);
-  transform-origin: top; transition: transform 0.7s var(--ease-premium);
-  display: flex; align-items: center; justify-content: center;
-}
-.page-transition-overlay.active { transform: perspective(1000px) rotateX(0deg); }
-.page-transition-overlay .loader {
-  width: 40px; height: 40px; border: 3px solid rgba(199,161,90,0.2);
-  border-top-color: var(--gold); border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* 9. Typewriter 3D */
-.typewriter-3d {
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: var(--muted);
-  font-weight: 500;
-  text-shadow: 1px 1px 0 rgba(199, 161, 90, 0.3), 2px 2px 0 rgba(199, 161, 90, 0.2), 3px 3px 5px rgba(0,0,0,0.1);
-  border-right: 2px solid var(--gold); white-space: nowrap; overflow: hidden;
-  display: inline-block; animation: blink-caret 0.75s step-end infinite; margin-bottom: 20px;
-}
-@keyframes blink-caret { 50% { border-color: transparent; } }
-
-/* 10. Carrusel 3D */
-.carousel-3d-section {
-  padding: 100px 0; background: var(--deep); color: white; overflow: hidden; position: relative;
-}
-.carousel-3d-container {
-  perspective: 1200px; width: 100%; max-width: 900px; margin: 40px auto;
-  height: 400px; position: relative;
-}
-.carousel-3d {
-  width: 100%; height: 100%; position: absolute;
-  transform-style: preserve-3d; transition: transform 1s var(--ease-premium);
-}
-.carousel-3d-item {
-  position: absolute; width: 320px; height: 360px;
-  left: 50%; top: 50%; margin-left: -160px; margin-top: -180px;
-  background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);
-  border: 1px solid rgba(199, 161, 90, 0.2); border-radius: 20px;
-  padding: 30px; display: flex; flex-direction: column; justify-content: center;
-  text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3); transition: box-shadow 0.3s;
-}
-.carousel-3d-item:hover { box-shadow: 0 30px 60px rgba(199, 161, 90, 0.2); }
-.carousel-3d-item h4 { color: var(--gold); font-size: 1.3rem; margin-bottom: 15px; }
-.carousel-3d-item p { color: #bcd0c6; font-size: 0.95rem; line-height: 1.6; }
-.carousel-controls { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
-.carousel-btn {
-  width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--gold);
-  background: transparent; color: var(--gold); font-size: 1.2rem;
-  transition: all 0.3s var(--ease-premium); display: flex; align-items: center; justify-content: center;
-}
-.carousel-btn:hover { background: var(--gold); color: var(--deep); transform: scale(1.1); }
-
-/* 11. Partículas 3D Canvas */
-#particles-canvas {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  z-index: -1; pointer-events: none; opacity: 0.5;
-}
-
-/* 12. Parallax Scroll */
-.parallax-img {
-  transition: transform 0.1s linear;
-}
-
-/* Responsive */
 @media(max-width:850px){
   .nav-links{display:none}
-  .mobile-nav{display:block;border:0;background:none;color:var(--green);font-size:1.4rem}
-  .hero{padding:75px 0 85px}
+  .mobile-nav{display:flex}
+  .hero{padding:80px 0 90px}
   .hero-grid,.proof-grid,.form-grid{grid-template-columns:1fr;gap:38px}
   .options-grid,.process-grid{grid-template-columns:1fr}
   .option{min-height:0}
-  .choice-band-inner{display:block}
-  .choice-band .btn{margin-top:14px}
+  .choice-band-inner{flex-direction:column;text-align:center;gap:16px}
+  .choice-band .btn{margin-top:14px;width:100%;max-width:320px}
   .section{padding:78px 0}
   .float-wa{right:14px;bottom:14px}
-  .video-meta{display:block}
+  .video-meta{flex-direction:column;align-items:flex-start;gap:8px}
   .form-grid{gap:25px}
   .carousel-3d-item{width:280px;height:320px;margin-left:-140px;margin-top:-160px}
   .carousel-3d-container{height:340px}
   #particles-canvas{opacity:0.3}
+  
+  /* FAQ Tablet */
+  .faq-list summary{grid-template-columns:2.2rem 1fr auto;gap:.8rem;padding:1.1rem .4rem}
+  .faq-answer{padding:0 .4rem 1.3rem 3rem}
+  .faq-cta{flex-direction:column;align-items:flex-start;padding:1.35rem}
+  .faq-cta .btn{width:100%;justify-content:center}
+  
+  /* Footer Tablet */
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem 1rem}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:.8rem}
+  .footer-copy{white-space:normal}
+  
+  /* Photo section tablet */
+  .photo-section .proof-image{width:min(78vw,340px);max-width:340px}
+  .photo-section .proof-grid{gap:42px}
 }
-@media(max-width:480px){
+
+/* =========================================
+   📱 RESPONSIVE - MÓVIL
+   ========================================= */
+@media(max-width:600px){
   .wrap{width:min(100% - 28px,1160px)}
   .nav-inner{height:64px}
-  .hero h1{font-size:2.85rem}
-  .hero-lead{font-size:1rem}
-  .hero-actions .btn{width:100%}
-  .mode-tabs{grid-template-columns:1fr}
-  .lead-form{padding:20px}
-  .choice-band .btn{width:100%}
+  .hero{padding:68px 0 76px}
+  .hero h1{font-size:clamp(2.65rem,13vw,4rem);letter-spacing:-.055em}
+  .hero-lead{font-size:1rem;line-height:1.55}
+  .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+  .hero-actions .btn{width:100%;min-height:50px}
+  .trust{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px;font-size:.75rem}
+  .choice-band{padding:22px 0}
+  .section-head{margin-bottom:30px}
+  .section-head h2{font-size:clamp(2rem,10vw,3rem)}
   .video-section{padding:70px 0}
+  .video-box{border-radius:14px}
+  .video-overlay .video-play{width:62px;height:62px;font-size:1.2rem}
+  .options-grid,.process-grid{gap:14px}
+  .option{padding:24px;min-height:0}
+  .option-badge{right:14px}
+  .proof-copy h2,.form-copy h2{font-size:clamp(2rem,10vw,3rem)}
+  .proof-points div{flex-direction:column;gap:3px}
+  .proof-points b{min-width:auto}
+  .mode-tabs{grid-template-columns:1fr!important}
+  .mode-tabs button{min-height:44px}
+  .lead-form{padding:18px}
+  .field input,.field textarea{font-size:16px;min-height:48px}
+  .field textarea{min-height:110px}
+  .form-submit{min-height:52px}
+  
+  /* FAQ Móvil - ALINEADO PERFECTO */
+  .faq-list summary{
+    grid-template-columns:2rem 1fr 2rem;
+    gap:.6rem;padding:1rem .3rem;font-size:.94rem;
+  }
+  .faq-number{font-size:.65rem}
+  .faq-icon{width:2rem;height:2rem;font-size:1.1rem}
+  .faq-answer{padding:0 .3rem 1.2rem 2.6rem}
+  .faq-answer p{font-size:.9rem}
+  .faq-cta{margin-top:24px;padding:1.25rem;border-radius:1.25rem}
+  .faq-cta strong{font-size:.95rem}
+  .faq-cta span{font-size:.82rem}
+  .faq-cta .btn{min-height:50px;font-size:.9rem}
+  
+  /* Footer Móvil */
+  .footer{padding:50px 0 30px}
+  .footer-brand{margin-bottom:2rem}
+  .footer-mark{width:2.8rem;height:2.8rem;font-size:.7rem}
+  .footer-grid{grid-template-columns:1fr;gap:1.5rem;padding-bottom:2rem}
+  
+  /* Photo Móvil */
+  .photo-section .proof-image{
+    width:min(72vw,280px);max-width:280px;padding:5px;border-radius:16px;
+  }
+  .photo-section .proof-image img{border-radius:11px;aspect-ratio:4 / 4.45}
+  
+  /* Carousel Móvil */
+  .carousel-3d-section{padding:70px 0}
   .carousel-3d-item{width:240px;height:280px;margin-left:-120px;margin-top:-140px;padding:20px}
+  .carousel-3d-item h4{font-size:1.1rem}
+  .carousel-3d-item p{font-size:.88rem}
   .carousel-3d-container{height:300px}
-  .carousel-btn{width:40px;height:40px;font-size:1rem}
+  .carousel-btn{width:44px;height:44px;font-size:1rem}
+  
   #particles-canvas{display:none}
-  .typewriter-3d{font-size:0.95rem}
+  .typewriter-3d{font-size:0.95rem;white-space:normal}
+  
+  .float-wa{max-width:calc(100vw - 28px)}
+  .float-wa span{white-space:nowrap}
+  
+  .cookie-notice{left:12px;right:12px;bottom:12px;flex-direction:column;align-items:stretch;gap:12px}
+  .cookie-actions{width:100%}
+  .cookie-actions button{flex:1;min-height:44px}
+}
+
+@media(max-width:390px){
+  .wrap{width:calc(100% - 24px)}
+  .brand{font-size:.98rem}
+  .brand span{font-size:.49rem}
+  .hero h1{font-size:2.45rem}
+  .trust{grid-template-columns:1fr}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
 }
 </style>
 </head>
@@ -418,6 +747,7 @@ img{max-width:100%;display:block}
 <!-- 🎬 LOADING SCREEN -->
 <div class="loading-screen" id="loadingScreen">
   <div class="loading-logo">HG</div>
+  <div class="loading-sub">Hamilton Granillo</div>
   <div class="loading-bar"><div class="loading-bar-fill"></div></div>
 </div>
 
@@ -445,7 +775,9 @@ img{max-width:100%;display:block}
       <a href="#preguntas">Preguntas</a>
       <a class="btn btn-primary magnetic-btn" href="#registro">Quiero orientación</a>
     </nav>
-    <button class="mobile-nav" id="mobileNavToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+    <button class="mobile-nav" id="mobileNavToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
   <nav class="mobile-menu" id="mobileMenu" aria-label="Navegación móvil" hidden>
     <a href="#opciones">Opciones</a>
@@ -459,21 +791,21 @@ img{max-width:100%;display:block}
 <section class="hero" id="inicio">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow">Acompañamiento personal para tu registro</div>
-      <h1>Conoce Omnilife.<br><em>Decide con claridad.</em></h1>
+      <div class="eyebrow reveal">Acompañamiento personal para tu registro</div>
+      <h1 class="reveal reveal-delay-1">Conoce Omnilife.<br><em>Decide con claridad.</em></h1>
       <div class="typewriter-3d" id="typewriter"></div>
-      <div class="hero-actions">
+      <div class="hero-actions reveal reveal-delay-2">
         <a class="btn btn-primary magnetic-btn" href="#opciones">Conocer mis opciones <span>↓</span></a>
         <a class="btn btn-light magnetic-btn" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20recibir%20orientaci%C3%B3n%20sobre%20Omnilife." target="_blank" rel="noopener">Hablar conmigo por WhatsApp</a>
       </div>
-      <div class="trust">
+      <div class="trust reveal reveal-delay-3">
         <span>Sin presión</span><span>Explicación clara</span><span>Registro en portal oficial</span>
       </div>
     </div>
   </div>
 </section>
 
-<section class="choice-band">
+<section class="choice-band reveal">
   <div class="wrap choice-band-inner">
     <div><strong>¿No sabes cuál elegir?</strong><p>Cuéntame qué buscas y te recomiendo una opción según tu objetivo.</p></div>
     <a class="btn magnetic-btn" href="#registro" data-mode="recomendacion">Quiero una recomendación</a>
@@ -482,46 +814,46 @@ img{max-width:100%;display:block}
 
 <section class="video-section" id="video">
   <div class="wrap video-wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow">Mira antes de decidir</div>
       <h2>Así se vive un Día Morado en Omnilife.</h2>
       <p>Conoce experiencias y resultados compartidos por personas que decidieron cambiar su estilo de vida y explorar nuevas oportunidades con Omnilife.</p>
     </div>
-    <div class="video-box video-lazy" id="videoBox" role="button" tabindex="0" aria-label="Reproducir video de Día Morado" onclick="loadGuideVideo()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();loadGuideVideo()}">
+    <div class="video-box reveal" id="videoBox" role="button" tabindex="0" aria-label="Reproducir video de Día Morado" onclick="loadGuideVideo()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();loadGuideVideo()}">
       <img src="https://i.ytimg.com/vi/bl1jFjnwoXE/maxresdefault.jpg" alt="Resultados Omnilife - Día Morado" loading="lazy" width="1280" height="720">
       <div class="video-overlay">
         <button class="video-play" type="button" aria-label="Reproducir video de Día Morado" onclick="event.stopPropagation();loadGuideVideo()">▶</button>
         <span>Ver video</span>
       </div>
     </div>
-    <div class="video-meta">
+    <div class="video-meta reveal">
       <span><strong>RESULTADOS OMNILIFE · DÍA MORADO</strong></span>
       <span>Historias, experiencias y una mirada más cercana a la comunidad.</span>
     </div>
   </div>
 </section>
 
-<!-- 🖼️ SECCIÓN FOTO HAMILTON (CON ESTILOS ORIGINALES RESTAURADOS) -->
+<!-- 📸 SECCIÓN FOTO HAMILTON -->
 <section class="section photo-section">
   <div class="wrap proof-grid">
-    <div class="proof-image parallax-img">
+    <div class="proof-image reveal">
       <img src="Hamilton.jpg" alt="Hamilton Granillo brinda asesoría personalizada" loading="lazy" width="1000" height="1000">
     </div>
     <div class="proof-copy">
-      <div class="eyebrow">Por qué contar conmigo</div>
-      <h2 class="text-reveal">Una orientación clara para tomar mejores decisiones.</h2>
-      <p class="quote">"Conoce tus opciones, resuelve tus dudas y recibe acompañamiento personalizado durante tu proceso."</p>
+      <div class="eyebrow reveal">Por qué contar conmigo</div>
+      <h2 class="reveal reveal-delay-1">Una orientación clara para tomar mejores decisiones.</h2>
+      <p class="quote reveal reveal-delay-2">"Conoce tus opciones, resuelve tus dudas y recibe acompañamiento personalizado durante tu proceso."</p>
       <div class="proof-points">
-        <div><b>✓ Atención personal</b><span>Hablas directamente conmigo y recibes orientación según tus objetivos.</span></div>
-        <div><b>✓ Información transparente</b><span>Conoce las opciones, condiciones y pasos antes de tomar una decisión.</span></div>
-        <div><b>✓ Registro oficial</b><span>El registro se realiza en el sitio oficial de Omnilife.</span></div>
+        <div class="reveal reveal-delay-1"><b>✓ Atención personal</b><span>Hablas directamente conmigo y recibes orientación según tus objetivos.</span></div>
+        <div class="reveal reveal-delay-2"><b>✓ Información transparente</b><span>Conoce las opciones, condiciones y pasos antes de tomar una decisión.</span></div>
+        <div class="reveal reveal-delay-3"><b>✓ Registro oficial</b><span>El registro se realiza en el sitio oficial de Omnilife.</span></div>
       </div>
-      <a class="btn btn-primary magnetic-btn" href="#registro">Quiero conversar contigo</a>
+      <a class="btn btn-primary magnetic-btn reveal reveal-delay-3" href="#registro">Quiero conversar contigo</a>
     </div>
   </div>
 </section>
 
-<section class="section options" id="opciones">
+<section class="section options reveal" id="opciones">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Primero, elige tu objetivo</div>
@@ -529,7 +861,7 @@ img{max-width:100%;display:block}
       <p>No necesitas saberlo todo antes de comenzar. Lee la opción que más se parece a lo que quieres hacer hoy.</p>
     </div>
     <div class="options-grid">
-      <article class="option spotlight-card">
+      <article class="option spotlight-card reveal reveal-delay-1">
         <div class="option-icon">C</div>
         <h3>Cliente Admirable</h3>
         <div class="price">Registro gratuito</div>
@@ -537,7 +869,7 @@ img{max-width:100%;display:block}
         <ul><li>Sin costo de registro</li><li>Compra a precio oficial</li><li>Sin compras mensuales forzosas</li></ul>
         <button class="btn btn-light choose-mode magnetic-btn" data-mode="cliente">Quiero esta opción</button>
       </article>
-      <article class="option spotlight-card">
+      <article class="option spotlight-card reveal reveal-delay-2">
         <div class="option-icon">A</div>
         <h3>Afiliación</h3>
         <div class="price">Descuentos desde 25%</div>
@@ -545,7 +877,7 @@ img{max-width:100%;display:block}
         <ul><li>Kit de afiliación según país</li><li>Descuento desde el inicio</li><li>Acompañamiento y capacitación</li></ul>
         <button class="btn btn-light choose-mode magnetic-btn" data-mode="afiliacion">Quiero esta opción</button>
       </article>
-      <article class="option featured spotlight-card">
+      <article class="option featured spotlight-card reveal reveal-delay-3">
         <div class="option-badge">Más elegida</div>
         <div class="option-icon">1K</div>
         <h3>Kit Emprendedor</h3>
@@ -555,11 +887,11 @@ img{max-width:100%;display:block}
         <button class="btn btn-primary choose-mode magnetic-btn" data-mode="emprendedor">Quiero información</button>
       </article>
     </div>
-    <p class="small-note">Los precios, descuentos, kits y condiciones pueden variar según el país y las reglas vigentes. Te ayudo a confirmarlos antes de registrarte.</p>
+    <p class="small-note reveal">Los precios, descuentos, kits y condiciones pueden variar según el país y las reglas vigentes. Te ayudo a confirmarlos antes de registrarte.</p>
   </div>
 </section>
 
-<section class="section process" id="como-funciona">
+<section class="section process reveal" id="como-funciona">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Así de simple</div>
@@ -567,18 +899,18 @@ img{max-width:100%;display:block}
       <p>No tienes que descifrar el proceso por tu cuenta.</p>
     </div>
     <div class="process-grid">
-      <article class="step spotlight-card">
-        <div class="step-no counter" data-target="1">0</div>
+      <article class="step spotlight-card reveal reveal-delay-1">
+        <div class="step-no">01</div>
         <h3>Me cuentas tu objetivo</h3>
         <p>¿Quieres comprar, ahorrar en tus productos o explorar un emprendimiento? Te escucho sin presión.</p>
       </article>
-      <article class="step spotlight-card">
-        <div class="step-no counter" data-target="2">0</div>
+      <article class="step spotlight-card reveal reveal-delay-2">
+        <div class="step-no">02</div>
         <h3>Elegimos la ruta</h3>
         <p>Te explico costos, descuentos y condiciones de cada opción para que tomes una decisión informada.</p>
       </article>
-      <article class="step spotlight-card">
-        <div class="step-no counter" data-target="3">0</div>
+      <article class="step spotlight-card reveal reveal-delay-3">
+        <div class="step-no">03</div>
         <h3>Te guío en el registro</h3>
         <p>Te acompaño por WhatsApp o Zoom mientras completas el proceso en el portal oficial.</p>
       </article>
@@ -586,12 +918,12 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<section class="carousel-3d-section" id="experiencias">
-  <div class="wrap" style="text-align: center;">
-    <div class="section-head" style="margin: 0 auto 20px; color: white;">
-      <div class="eyebrow" style="color: var(--gold-light);">Testimonios Reales</div>
-      <h2 style="color: white;">Experiencias que inspiran</h2>
-      <p style="color: #bcd0c6;">Así se vive el acompañamiento y el crecimiento con Omnilife.</p>
+<section class="carousel-3d-section reveal" id="experiencias">
+  <div class="wrap" style="text-align:center;">
+    <div class="section-head" style="margin:0 auto 20px;color:white;">
+      <div class="eyebrow" style="color:var(--gold-light);">Testimonios Reales</div>
+      <h2 style="color:white;">Experiencias que inspiran</h2>
+      <p style="color:#bcd0c6;">Así se vive el acompañamiento y el crecimiento con Omnilife.</p>
     </div>
     
     <div class="carousel-3d-container" id="carouselContainer">
@@ -621,7 +953,7 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<section class="section form-section" id="registro">
+<section class="section form-section reveal" id="registro">
   <div class="wrap form-grid">
     <div class="form-copy">
       <div class="eyebrow">El siguiente paso</div>
@@ -657,7 +989,8 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<section class="section" id="preguntas">
+<!-- ❓ FAQ - ALINEACIÓN PERFECTA -->
+<section class="section reveal" id="preguntas">
   <div class="wrap faq">
     <div class="section-head">
       <div class="eyebrow">Antes de escribir</div>
@@ -667,43 +1000,74 @@ img{max-width:100%;display:block}
 
     <div class="faq-list">
       <details>
-        <summary><span class="faq-number">01</span><span class="faq-question">¿Qué es Omnilife y cómo puedo empezar?</span><span class="faq-icon">+</span></summary>
+        <summary>
+          <span class="faq-number">01</span>
+          <span class="faq-question">¿Qué es Omnilife y cómo puedo empezar?</span>
+          <span class="faq-icon">+</span>
+        </summary>
         <div class="faq-answer"><p>Omnilife cuenta con diferentes modalidades para quienes desean comprar productos, acceder a descuentos o conocer una opción de emprendimiento. Primero revisamos lo que buscas y después te explico el proceso correspondiente.</p></div>
       </details>
 
       <details>
-        <summary><span class="faq-number">02</span><span class="faq-question">¿Cuál es la diferencia entre Cliente Admirable, Afiliación y Kit Emprendedor?</span><span class="faq-icon">+</span></summary>
+        <summary>
+          <span class="faq-number">02</span>
+          <span class="faq-question">¿Cuál es la diferencia entre Cliente Admirable, Afiliación y Kit Emprendedor?</span>
+          <span class="faq-icon">+</span>
+        </summary>
         <div class="faq-answer"><p>Cliente Admirable está orientado a comprar productos; la Afiliación permite acceder a descuentos; y el Kit Emprendedor está pensado para quienes quieren conocer una alternativa de emprendimiento con mayor volumen inicial. Te explico cada opción antes de que decidas.</p></div>
       </details>
 
       <details>
-        <summary><span class="faq-number">03</span><span class="faq-question">¿El registro como Cliente Admirable tiene costo?</span><span class="faq-icon">+</span></summary>
+        <summary>
+          <span class="faq-number">03</span>
+          <span class="faq-question">¿El registro como Cliente Admirable tiene costo?</span>
+          <span class="faq-icon">+</span>
+        </summary>
         <div class="faq-answer"><p>El registro como Cliente Admirable es sin costo. Para adquirir tus productos en una CEDI o realizar compras en línea, primero debes registrarte como Cliente Admirable. Si quieres, te guío paso a paso para realizar tu registro y comenzar a comprar.</p></div>
       </details>
 
       <details>
-        <summary><span class="faq-number">04</span><span class="faq-question">¿Tengo que comprar productos todos los meses?</span><span class="faq-icon">+</span></summary>
+        <summary>
+          <span class="faq-number">04</span>
+          <span class="faq-question">¿Tengo que comprar productos todos los meses?</span>
+          <span class="faq-icon">+</span>
+        </summary>
         <div class="faq-answer"><p>No necesariamente. Puedes comprar según tus necesidades. Las condiciones específicas pueden depender de la modalidad, el país y las condiciones comerciales vigentes, por eso te explico lo que aplica antes de registrarte.</p></div>
       </details>
 
       <details>
-        <summary><span class="faq-number">05</span><span class="faq-question">¿Qué descuento puedo obtener?</span><span class="faq-icon">+</span></summary>
+        <summary>
+          <span class="faq-number">05</span>
+          <span class="faq-question">¿Qué descuento puedo obtener?</span>
+          <span class="faq-icon">+</span>
+        </summary>
         <div class="faq-answer"><p>Los descuentos pueden variar según la modalidad, el país y la vigencia comercial. En la página mostramos opciones con descuentos desde el 25% y, para el Kit Emprendedor, desde el 30%. Te ayudo a confirmar el porcentaje que corresponde a tu caso.</p></div>
       </details>
 
       <details>
-        <summary><span class="faq-number">06</span><span class="faq-question">¿Qué incluye el Kit Emprendedor de 1.000 puntos?</span><span class="faq-icon">+</span></summary>
+        <summary>
+          <span class="faq-number">06</span>
+          <span class="faq-question">¿Qué incluye el Kit Emprendedor de 1.000 puntos?</span>
+          <span class="faq-icon">+</span>
+        </summary>
         <div class="faq-answer"><p>La composición y las condiciones del kit pueden variar según el país y la vigencia comercial. Antes de registrarte te explico qué aplica actualmente y te indico dónde puedes verificar la información oficial.</p></div>
       </details>
 
       <details>
-        <summary><span class="faq-number">07</span><span class="faq-question">¿Puedo empezar solo para comprar productos?</span><span class="faq-icon">+</span></summary>
+        <summary>
+          <span class="faq-number">07</span>
+          <span class="faq-question">¿Puedo empezar solo para comprar productos?</span>
+          <span class="faq-icon">+</span>
+        </summary>
         <div class="faq-answer"><p>Sí. La opción de Cliente Admirable está orientada a quienes desean comprar productos. Si buscas acceder a descuentos o conocer una alternativa de emprendimiento, también puedo explicarte las demás opciones.</p></div>
       </details>
     </div>
 
     <div class="faq-cta">
-      <div><strong>¿No encontraste tu pregunta?</strong><span>Escríbeme y revisamos tu caso paso a paso.</span></div>
+      <div>
+        <strong>¿No encontraste tu pregunta?</strong>
+        <span>Escríbeme y revisamos tu caso paso a paso.</span>
+      </div>
       <a class="btn btn-primary magnetic-btn" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20tengo%20una%20pregunta%20sobre%20Omnilife." target="_blank" rel="noopener" onclick="trackEvent('faq_whatsapp_click')">Quiero conversar contigo →</a>
     </div>
   </div>
@@ -766,6 +1130,9 @@ img{max-width:100%;display:block}
 </a>
 <div class="toast" id="toast" role="status"></div>
 
+<!-- =========================================
+   📜 SCRIPTS
+   ========================================= -->
 <script>
 const META_PIXEL_ID='1330108458187229';
 const GTM_ID='GTM-NMKKFPHN';
@@ -773,12 +1140,12 @@ const GA4_ID='';
 function loadMetaPixel(){if(window.__metaLoaded)return;window.__metaLoaded=true;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=true;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=true;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init',META_PIXEL_ID);fbq('track','PageView')}
 function loadGtm(){if(window.__gtmLoaded)return;window.__gtmLoaded=true;window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});const s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id='+encodeURIComponent(GTM_ID);document.head.appendChild(s)}
 function loadGa4(){if(!GA4_ID||window.__ga4Loaded)return;window.__ga4Loaded=true;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date);gtag('config',GA4_ID);const s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(GA4_ID);document.head.appendChild(s)}
-function setTrackingConsent(value){localStorage.setItem('hamilton_tracking_consent',value);document.querySelector('#cookieNotice').hidden=true;if(value==='analytics'){loadMetaPixel();loadGtm();loadGa4();trackEvent('tracking_consent', {consent:'analytics'})}}
-function trackEvent(name,params={}){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:name,...params});if(window.fbq)fbq('trackCustom',name,params);}
-function trackMetaStandard(name,params={}){if(window.fbq)fbq('track',name,params);}
+function setTrackingConsent(value){localStorage.setItem('hamilton_tracking_consent',value);document.querySelector('#cookieNotice').hidden=true;if(value==='analytics'){loadMetaPixel();loadGtm();loadGa4();trackEvent('tracking_consent',{consent:'analytics'})}}
+function trackEvent(name,params={}){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:name,...params});if(window.fbq)fbq('trackCustom',name,params)}
+function trackMetaStandard(name,params={}){if(window.fbq)fbq('track',name,params)}
 function loadGuideVideo(){
   const box=document.querySelector('#videoBox');
-  if(!box || box.dataset.loaded==='1') return;
+  if(!box||box.dataset.loaded==='1')return;
   box.dataset.loaded='1';
   box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/bl1jFjnwoXE?autoplay=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1" title="Resultados Omnilife - Día Morado" loading="eager" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
   trackEvent('video_play',{video:'dia_morado_omnilife'});
@@ -788,17 +1155,17 @@ if(localStorage.getItem('hamilton_tracking_consent')==='analytics'){loadMetaPixe
 
 let viewContentSent=false;
 function sendViewContent(){
-  if(viewContentSent || !window.fbq) return;
+  if(viewContentSent||!window.fbq)return;
   viewContentSent=true;
   trackMetaStandard('ViewContent',{content_name:'Landing Omnilife Hamilton Granillo',content_category:'Omnilife'});
 }
 const videoSection=document.querySelector('#video');
-if(videoSection && 'IntersectionObserver' in window){
+if(videoSection&&'IntersectionObserver' in window){
   const contentObserver=new IntersectionObserver(entries=>{
-    if(entries.some(e=>e.isIntersecting)){sendViewContent();contentObserver.disconnect();}
+    if(entries.some(e=>e.isIntersecting)){sendViewContent();contentObserver.disconnect()}
   },{threshold:0.25});
   contentObserver.observe(videoSection);
-}else{sendViewContent();}
+}else{sendViewContent()}
 </script>
 
 <script>
@@ -826,38 +1193,11 @@ document.querySelector('#leadForm').addEventListener('submit',e=>{
 });
 </script>
 
-<script>
-document.addEventListener('DOMContentLoaded',function(){
-  const optionsCta=document.querySelector('a[href="#opciones"]');
-  const optionsSection=document.getElementById('opciones');
-  if(optionsCta && optionsSection){
-    optionsCta.addEventListener('click',function(e){e.preventDefault();optionsSection.scrollIntoView({behavior:'smooth',block:'start'});});
-  }
-});
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  const destinations = {'#registro': document.getElementById('registro'),'#como-funciona': document.getElementById('como-funciona'),'#preguntas': document.getElementById('preguntas')};
-  document.querySelectorAll('a[href="#registro"], a[href="#como-funciona"], a[href="#preguntas"]').forEach(function(link){
-    link.addEventListener('click', function(e){
-      const target = destinations[link.getAttribute('href')];
-      if(!target) return;
-      e.preventDefault();
-      const header = document.querySelector('.site-nav');
-      const offset = header ? header.offsetHeight + 12 : 12;
-      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({top: top, behavior:'smooth'});
-    });
-  });
-});
-</script>
-
 <script id="faq-accordion">
 document.querySelectorAll('.faq-list details').forEach(item=>{
   item.addEventListener('toggle',()=>{
-    if(!item.open) return;
-    document.querySelectorAll('.faq-list details[open]').forEach(other=>{if(other!==item) other.removeAttribute('open');});
+    if(!item.open)return;
+    document.querySelectorAll('.faq-list details[open]').forEach(other=>{if(other!==item)other.removeAttribute('open')});
   });
 });
 </script>
@@ -878,246 +1218,198 @@ document.querySelectorAll('.faq-list details').forEach(item=>{
 </script>
 
 <!-- =========================================
-   🚀 ULTRA-PREMIUM SCRIPTS
+   🚀 SCRIPTS PREMIUM
    ========================================= -->
-<script id="ultra-premium-js">
-document.addEventListener('DOMContentLoaded', () => {
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 850;
+<script id="premium-js">
+document.addEventListener('DOMContentLoaded',()=>{
+  const isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)||window.innerWidth<850;
   
-  // 1. 🎬 LOADING SCREEN
-  setTimeout(() => {
-    document.getElementById('loadingScreen').classList.add('hidden');
-  }, 1800);
+  // 1. LOADING SCREEN
+  setTimeout(()=>{document.getElementById('loadingScreen').classList.add('hidden')},1800);
 
-  // 2. 🎨 CURSOR PERSONALIZADO (Solo desktop)
-  if (!isMobile) {
-    const cursorDot = document.getElementById('cursorDot');
-    const cursorOutline = document.getElementById('cursorOutline');
-    let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX; mouseY = e.clientY;
-      cursorDot.style.left = `${mouseX}px`; cursorDot.style.top = `${mouseY}px`;
+  // 2. CURSOR PERSONALIZADO (Solo desktop)
+  if(!isMobile){
+    const cursorDot=document.getElementById('cursorDot');
+    const cursorOutline=document.getElementById('cursorOutline');
+    let mouseX=0,mouseY=0,outlineX=0,outlineY=0;
+    document.addEventListener('mousemove',(e)=>{
+      mouseX=e.clientX;mouseY=e.clientY;
+      cursorDot.style.left=`${mouseX}px`;cursorDot.style.top=`${mouseY}px`;
     });
-
-    function animateCursor() {
-      outlineX += (mouseX - outlineX) * 0.15;
-      outlineY += (mouseY - outlineY) * 0.15;
-      cursorOutline.style.left = `${outlineX}px`; cursorOutline.style.top = `${outlineY}px`;
+    function animateCursor(){
+      outlineX+=(mouseX-outlineX)*0.15;
+      outlineY+=(mouseY-outlineY)*0.15;
+      cursorOutline.style.left=`${outlineX}px`;cursorOutline.style.top=`${outlineY}px`;
       requestAnimationFrame(animateCursor);
     }
     animateCursor();
-
-    document.querySelectorAll('a, button, input, textarea, .option, .step, .faq details').forEach(el => {
-      el.addEventListener('mouseenter', () => cursorOutline.classList.add('hovered'));
-      el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovered'));
+    document.querySelectorAll('a,button,input,textarea,.option,.step,.faq details').forEach(el=>{
+      el.addEventListener('mouseenter',()=>cursorOutline.classList.add('hovered'));
+      el.addEventListener('mouseleave',()=>cursorOutline.classList.remove('hovered'));
     });
   }
 
-  // 3. 📊 SCROLL PROGRESS BAR 3D
-  window.addEventListener('scroll', () => {
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (scrollTop / scrollHeight) * 100;
-    document.getElementById('scrollProgress').style.width = scrolled + '%';
-  });
+  // 3. SCROLL PROGRESS BAR
+  window.addEventListener('scroll',()=>{
+    const scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+    const scrollHeight=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+    const scrolled=(scrollTop/scrollHeight)*100;
+    document.getElementById('scrollProgress').style.width=scrolled+'%';
+  },{passive:true});
 
-  // 4. ✍️ TYPEWRITER 3D
-  const textToType = isMobile 
-    ? "Descubre Omnilife y recibe acompañamiento personal."
-    : "Descubre cómo funciona, conoce las formas de participar y recibe acompañamiento personal.";
-  const typewriterEl = document.getElementById('typewriter');
-  let typeIndex = 0;
-  function typeWriter() {
-    if (typeIndex < textToType.length) {
-      typewriterEl.textContent += textToType.charAt(typeIndex);
+  // 4. TYPEWRITER 3D
+  const textToType=isMobile?"Descubre Omnilife y recibe acompañamiento personal.":"Descubre cómo funciona, conoce las formas de participar y recibe acompañamiento personal.";
+  const typewriterEl=document.getElementById('typewriter');
+  let typeIndex=0;
+  function typeWriter(){
+    if(typeIndex<textToType.length){
+      typewriterEl.textContent+=textToType.charAt(typeIndex);
       typeIndex++;
-      setTimeout(typeWriter, isMobile ? 25 : 35);
+      setTimeout(typeWriter,isMobile?25:35);
     }
   }
-  setTimeout(typeWriter, 2000);
+  setTimeout(typeWriter,2000);
 
-  // 5. 🖼️ CARRUSEL 3D con Swipe
-  const carousel = document.getElementById('carousel3d');
-  const items = carousel.querySelectorAll('.carousel-3d-item');
-  const totalItems = items.length;
-  const angleStep = 360 / totalItems;
-  const radius = isMobile ? 220 : 380;
-  let currentAngle = 0;
-
-  items.forEach((item, index) => {
-    const angle = angleStep * index;
-    item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+  // 5. CARRUSEL 3D con Swipe
+  const carousel=document.getElementById('carousel3d');
+  const items=carousel.querySelectorAll('.carousel-3d-item');
+  const totalItems=items.length;
+  const angleStep=360/totalItems;
+  const radius=isMobile?220:380;
+  let currentAngle=0;
+  items.forEach((item,index)=>{
+    const angle=angleStep*index;
+    item.style.transform=`rotateY(${angle}deg) translateZ(${radius}px)`;
   });
-
-  function updateCarousel() { carousel.style.transform = `rotateY(${currentAngle}deg)`; }
-  document.getElementById('nextBtn').addEventListener('click', () => { currentAngle -= angleStep; updateCarousel(); });
-  document.getElementById('prevBtn').addEventListener('click', () => { currentAngle += angleStep; updateCarousel(); });
-
-  let touchStartX = 0;
-  const carouselContainer = document.getElementById('carouselContainer');
-  carouselContainer.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
-  carouselContainer.addEventListener('touchend', (e) => {
-    const touchEndX = e.changedTouches[0].clientX;
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) { currentAngle -= angleStep; } else { currentAngle += angleStep; }
+  function updateCarousel(){carousel.style.transform=`rotateY(${currentAngle}deg)`}
+  document.getElementById('nextBtn').addEventListener('click',()=>{currentAngle-=angleStep;updateCarousel()});
+  document.getElementById('prevBtn').addEventListener('click',()=>{currentAngle+=angleStep;updateCarousel()});
+  
+  let touchStartX=0;
+  const carouselContainer=document.getElementById('carouselContainer');
+  carouselContainer.addEventListener('touchstart',(e)=>{touchStartX=e.touches[0].clientX},{passive:true});
+  carouselContainer.addEventListener('touchend',(e)=>{
+    const touchEndX=e.changedTouches[0].clientX;
+    const diff=touchStartX-touchEndX;
+    if(Math.abs(diff)>50){
+      if(diff>0){currentAngle-=angleStep}else{currentAngle+=angleStep}
       updateCarousel();
     }
   });
+  
+  let autoRotate=setInterval(()=>{currentAngle-=angleStep;updateCarousel()},5000);
+  carousel.addEventListener('mouseenter',()=>clearInterval(autoRotate));
+  carousel.addEventListener('mouseleave',()=>{autoRotate=setInterval(()=>{currentAngle-=angleStep;updateCarousel()},5000)});
 
-  let autoRotate = setInterval(() => { currentAngle -= angleStep; updateCarousel(); }, 5000);
-  carousel.addEventListener('mouseenter', () => clearInterval(autoRotate));
-  carousel.addEventListener('mouseleave', () => { autoRotate = setInterval(() => { currentAngle -= angleStep; updateCarousel(); }, 5000); });
-
-  // 6. 🎬 TRANSICIÓN DE PÁGINA 3D
-  const transitionOverlay = document.getElementById('pageTransition');
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      const targetId = link.getAttribute('href');
-      if (targetId === '#' || targetId === '#inicio') return;
+  // 6. TRANSICIÓN DE PÁGINA 3D
+  const transitionOverlay=document.getElementById('pageTransition');
+  document.querySelectorAll('a[href^="#"]').forEach(link=>{
+    link.addEventListener('click',(e)=>{
+      const targetId=link.getAttribute('href');
+      if(targetId==='#'||targetId==='#inicio'||targetId.length<2)return;
       e.preventDefault();
       transitionOverlay.classList.add('active');
-      setTimeout(() => {
-        document.querySelector(targetId).scrollIntoView({ behavior: 'auto' });
-        setTimeout(() => { transitionOverlay.classList.remove('active'); }, 300);
-      }, 700);
+      setTimeout(()=>{
+        document.querySelector(targetId).scrollIntoView({behavior:'auto'});
+        setTimeout(()=>{transitionOverlay.classList.remove('active')},300);
+      },700);
     });
   });
 
-  // 7. 🌐 PARTÍCULAS 3D (Solo desktop)
-  if (!isMobile) {
-    const canvas = document.getElementById('particles-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    const particleCount = 40;
-
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    window.addEventListener('resize', resizeCanvas);
+  // 7. PARTÍCULAS 3D (Solo desktop)
+  if(!isMobile){
+    const canvas=document.getElementById('particles-canvas');
+    const ctx=canvas.getContext('2d');
+    let particles=[];
+    const particleCount=40;
+    function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+    window.addEventListener('resize',resizeCanvas);
     resizeCanvas();
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.z = Math.random() * 2;
-        this.vx = (Math.random() - 0.5) * 0.3;
-        this.vy = (Math.random() - 0.5) * 0.3;
-        this.size = Math.random() * 2 + 1;
+    class Particle{
+      constructor(){
+        this.x=Math.random()*canvas.width;
+        this.y=Math.random()*canvas.height;
+        this.z=Math.random()*2;
+        this.vx=(Math.random()-0.5)*0.3;
+        this.vy=(Math.random()-0.5)*0.3;
+        this.size=Math.random()*2+1;
       }
-      update() {
-        this.x += this.vx; this.y += this.vy;
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      update(){
+        this.x+=this.vx;this.y+=this.vy;
+        if(this.x<0||this.x>canvas.width)this.vx*=-1;
+        if(this.y<0||this.y>canvas.height)this.vy*=-1;
       }
-      draw() {
-        ctx.beginPath(); ctx.arc(this.x, this.y, this.size * this.z, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(199, 161, 90, ${0.3 * this.z})`; ctx.fill();
+      draw(){
+        ctx.beginPath();ctx.arc(this.x,this.y,this.size*this.z,0,Math.PI*2);
+        ctx.fillStyle=`rgba(199,161,90,${0.3*this.z})`;ctx.fill();
       }
     }
-    for (let i = 0; i < particleCount; i++) particles.push(new Particle());
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < 120) {
-            ctx.beginPath(); ctx.strokeStyle = `rgba(199, 161, 90, ${0.1 * (1 - distance / 120)})`;
-            ctx.lineWidth = 0.5; ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+    for(let i=0;i<particleCount;i++)particles.push(new Particle());
+    function animateParticles(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particles.forEach(p=>{p.update();p.draw()});
+      for(let i=0;i<particles.length;i++){
+        for(let j=i+1;j<particles.length;j++){
+          const dx=particles[i].x-particles[j].x;
+          const dy=particles[i].y-particles[j].y;
+          const distance=Math.sqrt(dx*dx+dy*dy);
+          if(distance<120){
+            ctx.beginPath();
+            ctx.strokeStyle=`rgba(199,161,90,${0.1*(1-distance/120)})`;
+            ctx.lineWidth=0.5;
+            ctx.moveTo(particles[i].x,particles[i].y);
+            ctx.lineTo(particles[j].x,particles[j].y);
+            ctx.stroke();
           }
         }
       }
       requestAnimationFrame(animateParticles);
     }
     animateParticles();
-
-    canvas.addEventListener('mousemove', (e) => {
-      const canvasMouseX = e.clientX; const canvasMouseY = e.clientY;
-      particles.forEach(p => {
-        const dx = p.x - canvasMouseX; const dy = p.y - canvasMouseY;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 150) { p.x += dx * 0.02; p.y += dy * 0.02; }
+    canvas.addEventListener('mousemove',(e)=>{
+      const mx=e.clientX,my=e.clientY;
+      particles.forEach(p=>{
+        const dx=p.x-mx,dy=p.y-my;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<150){p.x+=dx*0.02;p.y+=dy*0.02}
       });
     });
   }
 
-  // 8. ✨ SPOTLIGHT EFFECT
-  document.querySelectorAll('.spotlight-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
+  // 8. SPOTLIGHT EFFECT
+  document.querySelectorAll('.spotlight-card').forEach(card=>{
+    card.addEventListener('mousemove',(e)=>{
+      const rect=card.getBoundingClientRect();
+      const x=e.clientX-rect.left;
+      const y=e.clientY-rect.top;
+      card.style.setProperty('--mouse-x',`${x}px`);
+      card.style.setProperty('--mouse-y',`${y}px`);
     });
   });
 
-  // 9. 🧲 MAGNETIC BUTTONS
-  document.querySelectorAll('.magnetic-btn').forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+  // 9. MAGNETIC BUTTONS
+  if(!isMobile){
+    document.querySelectorAll('.magnetic-btn').forEach(btn=>{
+      btn.addEventListener('mousemove',(e)=>{
+        const rect=btn.getBoundingClientRect();
+        const x=e.clientX-rect.left-rect.width/2;
+        const y=e.clientY-rect.top-rect.height/2;
+        btn.style.transform=`translate(${x*0.15}px,${y*0.15}px)`;
+      });
+      btn.addEventListener('mouseleave',()=>{btn.style.transform='translate(0,0)'});
     });
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transform = 'translate(0, 0)';
-    });
-  });
+  }
 
-  // 10. 🔢 COUNTER ANIMATION
-  const counters = document.querySelectorAll('.counter');
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const counter = entry.target;
-        const target = +counter.getAttribute('data-target');
-        const duration = 1500;
-        const step = target / (duration / 16);
-        let current = 0;
-        const updateCounter = () => {
-          current += step;
-          if (current < target) {
-            counter.textContent = Math.ceil(current);
-            requestAnimationFrame(updateCounter);
-          } else {
-            counter.textContent = target;
-          }
-        };
-        updateCounter();
-        counterObserver.unobserve(counter);
-      }
-    });
-  }, { threshold: 0.5 });
-  counters.forEach(counter => counterObserver.observe(counter));
-
-  // 11. 📜 TEXT REVEAL
-  const textReveals = document.querySelectorAll('.text-reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
+  // 10. SCROLL REVEAL con stagger
+  const revealObserver=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 });
-  textReveals.forEach(el => revealObserver.observe(el));
-
-  // 12. 🖼️ PARALLAX SCROLL (Solo desktop)
-  if (!isMobile) {
-    const parallaxImgs = document.querySelectorAll('.parallax-img');
-    window.addEventListener('scroll', () => {
-      parallaxImgs.forEach(img => {
-        const rect = img.getBoundingClientRect();
-        const scrollPercent = rect.top / window.innerHeight;
-        img.style.transform = `translateY(${scrollPercent * 30}px)`;
-      });
-    });
-  }
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
 });
 </script>
 </body>
